@@ -1018,6 +1018,10 @@ import weapon_coverage_check;rec['weapon_coverage_rows']=weapon_coverage_check.c
 import backpocket_weapons_1125;backpocket_weapons_1125.apply(t,g,ok,rec)
 # ---------- (after the back-pocket weapons so their row ids stay) Sig Spear Shorty, back pocket: M7 Spear stat clone with its own suppressed icon (Osama 26 Nov 2026 01:5x). See spear_shorty_1126.py.
 import spear_shorty_1126;spear_shorty_1126.apply(t,g,ok,rec)
+# ---------- Infantry weapons: one name, one set of stats; M240L T3, PKP-N, PKP 2.1, PKM 1.8, M249 -> M249E3, M249 Para 2.4, R-20 Rahe T1,
+# HK 416A5 Zaliukai; unused variants removed (Lateralus 26 Nov 2026 13:1x). Makes one round: keep it the last row-making section before
+# the ROC hook so no other ID moves. See lateralus/infantry_tiers_1126.py.
+import infantry_tiers_1126;infantry_tiers_1126.apply(t,g,ok,rec,patches)
 import roc_hook;roc_hook.apply(t,g,ok,rec,recheck=lambda:(disposable_launchers_1123.check(t,ok,a.vanilla),weapon_coverage_check.check(t,patches,ok)))
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
