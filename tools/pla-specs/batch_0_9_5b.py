@@ -969,6 +969,8 @@ import aps_two_charges_1125;aps_two_charges_1125.apply(t,g,ok,rec)
 import ztz99_lsdw_1125;ztz99_lsdw_1125.apply(t,g,ok,rec)
 # ---------- ZTQ-15, ZTQ-15 Recon, ZTQ-15 Light 25 points cheaper (Osama 25 Nov 2026 11:3x PST). See ztq15_cost_1125.py.
 import ztq15_cost_1125;ztq15_cost_1125.apply(t,g,ok,rec)
+# ---------- Z-20S 0 -> 4 seats, MH-60M SOAR Recon 60 -> 65 pts (Lateralus 25 Nov 2026 18:0x PST). See recon_helo_1125.py.
+import recon_helo_1125;recon_helo_1125.apply(t,g,ok,rec)
 # ---------- Plane guns: ActualArrow 1.2.2 values on the US/RU rows, China and preview copies by class; existing rows only (Lateralus 25 Nov 2026
 # 08:5x, thread 1572962048705429598: "1. Copy 2. Copy 3. Copy 4. Copy 5. A, queue it"). See plane_guns_aa_1125.py.
 import plane_guns_aa_1125;plane_guns_aa_1125.apply(t,g,ok,rec)
