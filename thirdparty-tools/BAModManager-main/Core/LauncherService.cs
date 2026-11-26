@@ -291,6 +291,7 @@ public sealed class LauncherService
         if (PinnedFreedomArrow.Enabled)
         {
             await HostedDistribution.PrepareAsync(progress, ct);
+            foreach (var gone in HostedDistribution.LastRemoved) log("Removed old download: " + gone);
             progress.Report(new LaunchProgress(T("Verifying gameplay, models, music and voices…"), Stage: LaunchStage.Mod));
             try { await Task.Run(PinnedFreedomArrow.VerifyAssets, ct); }
             catch (AssetsIndexInstall.DamagedListException ex)

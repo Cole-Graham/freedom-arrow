@@ -45,7 +45,7 @@
     <Product>Freedom Arrow Launcher</Product>
     <AssemblyTitle>Freedom Arrow Launcher</AssemblyTitle>
     <ApplicationIcon>Assets\FreedomArrow.ico</ApplicationIcon>
-    <Version>1.1.18</Version>
+    <Version>1.1.19</Version>
     <!-- 1.1.16 (Lateralus/SteelPlate 22 Nov 2026, Windows 1440p at 150 %): per-monitor DPI changes after the window opened left the
          stat tiles at 100 %, reset the patch-notes formatting and skipped the fit to the screen. System-aware: the layout is scaled once
          at start-up for the sign-in DPI; Windows stretches the window if the scale is changed later or it is moved to another screen. -->
@@ -62,7 +62,7 @@
     <AssemblyName>FreedomArrowDev</AssemblyName>
     <Product>Freedom Arrow Dev Launcher</Product>
     <AssemblyTitle>Freedom Arrow Dev Launcher</AssemblyTitle>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <Description>Internal Freedom Arrow launcher: pick any dev or test build from the signed dev list; models and music update file by file.</Description>
   </PropertyGroup>
 

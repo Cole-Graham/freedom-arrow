@@ -277,5 +277,28 @@ public static class HostedDistribution
         // Commit the new manifest only once both referenced packages have verified successfully.
         await File.WriteAllBytesAsync(ManifestFile+".tmp",envelope,ct);File.Move(ManifestFile+".tmp",ManifestFile,true);
         Active=selected;
+        LastRemoved=PruneCache(CacheRoot,selected);
+    }
+    /// <summary>Names PruneCache removed in the last PrepareAsync (LauncherService logs them).</summary>
+    public static List<string> LastRemoved { get; private set; } = new();
+
+    /// <summary>Lateralus 25 Nov 2026 ("the launchers should be cleaning these files up on their own"; 32 GB in his downloads folder, 30 GB of it
+    /// full Models + Music packages that launchers before 1.1.5 kept): after a verified PLAY preparation, deletes every cached package, file list
+    /// and partial download that the selected release does not use. Only names this launcher writes are touched ("&lt;sha256&gt;-...bamod",
+    /// "&lt;sha256&gt;-...files.json" and their ".part"); the signed list, assets-state.json and anything else stay. Returns the removed names.</summary>
+    public static List<string> PruneCache(string cache,DistributionRelease keep)
+    {
+        var removed=new List<string>();
+        if(!Directory.Exists(cache))return removed;
+        var used=new HashSet<string>(StringComparer.OrdinalIgnoreCase){keep.Gameplay.Sha256.ToLowerInvariant()+"-"+keep.Gameplay.Filename};
+        if(keep.Assets.Index!=null)used.Add(keep.Assets.Index.Sha256.ToLowerInvariant()+"-"+Path.GetFileNameWithoutExtension(keep.Assets.Filename)+".files.json");
+        else used.Add(keep.Assets.Sha256.ToLowerInvariant()+"-"+keep.Assets.Filename);
+        foreach(var file in Directory.GetFiles(cache))
+        {
+            var name=Path.GetFileName(file);var bare=name.EndsWith(".part",StringComparison.OrdinalIgnoreCase)?name[..^5]:name;
+            if(!Regex.IsMatch(bare,"^[0-9a-fA-F]{64}-.+\\.(bamod|files\\.json)$",RegexOptions.IgnoreCase) || used.Contains(bare))continue;
+            try{File.Delete(file);removed.Add(name);}catch(IOException){/* in use: next PLAY */}catch(UnauthorizedAccessException){}
+        }
+        return removed;
     }
 }

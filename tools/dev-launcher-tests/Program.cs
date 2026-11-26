@@ -43,6 +43,23 @@ if(args.Contains("--live"))
  Console.WriteLine(JsonSerializer.Serialize(new{checks=count,live=true}));
  return;
 }
+// --- download cache cleanup (Lateralus 25 Nov 2026: "the launchers should be cleaning these files up on their own") ---
+{
+ var cache=Path.Combine(Path.GetTempPath(),"fa-cache-test-"+Guid.NewGuid().ToString("N"));Directory.CreateDirectory(cache);
+ string H(char c)=>new string(c,64);
+ var keepG=new DistributionPackage("freedomarrow.gameplay","0.9.7-dev.19","FreedomArrow-0.9.7-dev.19.bamod","https://freedomarrow.app/gameplay/x.bamod",1,H('a'));
+ var keepA=new DistributionPackage("freedomarrow.assets.live","0.2.101","FreedomArrow-Assets-0.2.101.bamod","https://freedomarrow.app/assets/x.bamod",1,H('b'),new DistributionIndex("https://freedomarrow.app/assets/index/x.json",1,H('c')));
+ var files=new[]{H('a')+"-FreedomArrow-0.9.7-dev.19.bamod",H('c')+"-FreedomArrow-Assets-0.2.101.files.json",                       // kept: selected release
+  H('d')+"-FreedomArrow-0.9.6.bamod",H('e')+"-FreedomArrow-Assets-0.2.45.bamod",H('f')+"-FreedomArrow-Assets-0.2.94.files.json",    // old: removed
+  H('1')+"-FreedomArrow-0.9.7-dev.18.bamod.part",                                                                                   // old partial: removed
+  "dev-manifest.signed.json","assets-state.json","dev-build.txt","my-notes.bamod"};                                                 // not ours: kept
+ foreach(var f in files)File.WriteAllText(Path.Combine(cache,f),"x");
+ var gone=HostedDistribution.PruneCache(cache,new DistributionRelease("0.9.7-dev.19",keepG,keepA));
+ var left=Directory.GetFiles(cache).Select(Path.GetFileName).OrderBy(x=>x).ToList();
+ Check(gone.Count==4 && left.SequenceEqual(new[]{files[0],files[1],"assets-state.json","dev-build.txt","dev-manifest.signed.json","my-notes.bamod"}.OrderBy(x=>x)),
+  "cache cleanup removes the 4 old packages / lists / partial downloads, keeps the selected release, the signed list, state files and foreign files ("+string.Join(", ",left)+")");
+ Directory.Delete(cache,true);
+}
 var root=Path.Combine(Path.GetTempPath(),"fa-dev-launcher-test-"+Guid.NewGuid().ToString("N"));var game=Path.Combine(root,"game");Directory.CreateDirectory(game);
 try{Directory.Delete(HostedDistribution.CacheRoot,true);}catch(DirectoryNotFoundException){}
 var server=new Server();AssetsIndexInstall.Client=new HttpClient(server);
