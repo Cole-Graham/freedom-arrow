@@ -10,3 +10,5 @@ m_hx77_
 m_vab_
 # 11:5x "and hide the EBRC Jaguar" (it was in live Assets 0.2.94; the next Assets drops it)
 m_fr_jaguar_
+# Osama 25 Nov 2026 18:1x: "keep ztz-98 out" (card 1309 already hidden; 12 files, 95 MB, were in live Assets 0.2.94; model kept in work/ztz98-1123, stage EU_HELD 'ztz98')
+m_ztz98_
