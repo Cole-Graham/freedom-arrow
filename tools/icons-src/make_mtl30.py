@@ -1,4 +1,4 @@
-"""MTL-30 HUD icon v2, higher-fidelity pass (Osama 25 Nov 2026 20:1x, bugs thread 1573561286803980289: "can you to a higher fidelity pass on
+"""MTL-30 HUD icon v3 (25 Nov 20:3x Osama "change the magazine and grip": grip + trigger guard and magazine re-measured from the photo). v2, higher-fidelity pass (Osama 25 Nov 2026 20:1x, bugs thread 1573561286803980289: "can you to a higher fidelity pass on
 this icon"). Re-traced from 2x zoomed crops of ref/mtl30.png (photo coordinates, muzzle right): skeleton stock (butt pad, rear upright, bottom
 bar with lightening holes, diagonal strut, arched web to the receiver), receiver with rounded nose, top rail, handguard with two vent rows and the
 raised upper panel, muzzle stub, angled pistol grip with finger grooves, trigger guard, slanted magazine, and the optic: two bells, focus ring,
@@ -29,11 +29,11 @@ poly([(430, 184), (1290, 184), (1292, 201), (430, 202)])                        
 poly([(440, 200), (1295, 201), (1300, 212), (1297, 298), (1288, 306), (980, 307), (978, 331), (455, 334), (442, 324),
       (428, 290), (425, 250), (430, 214)])
 poly([(1298, 228), (1312, 228), (1312, 244), (1298, 244)])                                    # muzzle stub
-# --- grip, trigger guard, magazine
-poly([(452, 330), (505, 331), (522, 344), (548, 368), (553, 410), (549, 452), (530, 470), (522, 481), (458, 481),
-      (447, 468), (468, 432), (486, 400), (466, 360), (452, 340)])
-thick([(553, 336), (562, 376), (588, 391), (618, 385), (632, 335)], 6)
-poly([(636, 331), (747, 331), (780, 537), (773, 545), (648, 545), (641, 538)])
+# --- grip + trigger guard, magazine: v3 outlines measured from the photo (dark grip and tan magazine against the white display)
+poly([(446, 333), (515, 333), (512, 350), (522, 364), (556, 402), (549, 418), (546, 432), (534, 444), (531, 456), (520, 468),
+      (512, 484), (496, 489), (462, 481), (449, 469), (452, 455), (470, 428), (486, 404), (470, 374), (447, 350)])
+thick([(521, 336), (527, 378), (548, 390), (576, 388), (586, 336)], 6)                       # trigger guard
+poly([(636, 331), (806, 331), (792, 352), (788, 372), (781, 400), (779, 535), (770, 546), (645, 546), (641, 538), (637, 400)])
 # --- optic
 poly([(484, 84), (500, 81), (500, 171), (484, 168)])                                        # rear bell
 poly([(500, 92), (576, 91), (576, 158), (500, 156)])                                        # rear tube
@@ -73,9 +73,10 @@ ell(546, 338, 8, 4, 0) if False else None
 C(546, 338, 4)                                                                               # selector
 L((432, 228), (440, 220)); L((427, 290), (436, 300))                                         # nose bevel
 # grip / magazine
-for k in range(3): C(551 - 2 * k, 392 + 22 * k, 4, 10)                                       # finger grooves
-L((455, 344), (522, 344))
-L((644, 356), (752, 356)); L((648, 380), (755, 380)); L((650, 520), (775, 520))              # magazine ribs + base plate
+L((534, 340), (540, 372))                                                                     # trigger
+L((537, 436), (548, 430)); L((522, 460), (534, 452))                                          # finger grooves
+L((637, 400), (781, 400)); L((642, 528), (779, 528))                                          # magwell seam + base plate
+for y in range(420, 520, 20): L((660, y), (760, y))                                          # magazine ribs
 # optic
 for x in (488, 494): L((x, 90), (x, 162))                                                    # rear bell rings
 for x in (584, 592, 600): L((x, 92), (x, 158))                                               # focus ring grip
