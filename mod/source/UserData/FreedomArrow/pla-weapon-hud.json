@@ -3286,11 +3286,11 @@
       "weapon": 2012157,
       "name": "QLZ-87",
       "scope": "INFANTRY",
-      "mode": "native",
-      "profile": null,
-      "address": "INF_AGS30",
+      "mode": "custom",
+      "profile": "QLZ87",
+      "address": "FA_PLA_WP_QLZ87",
       "native_weapon": 148,
-      "basis": "Detailed native stand-in artwork; not an exact Chinese weapon drawing"
+      "basis": "Osama-supplied QLZ-87 photo (26 Nov 2026), tools/icons-src/make_qlz87.py (bipod left out); stats = QLZ-04 copy"
     },
     {
       "weapon": 2012205,
