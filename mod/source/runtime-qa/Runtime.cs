@@ -427,6 +427,17 @@ public class Runtime : MelonMod
         try { MelonLogger.Msg($"FREEDOM_ARROW_DB_SOURCE {dataBase?.name} main={dataBase?.MainBuildDatabase} source={sourceId} patched={applied}"); }
         catch(Exception e) { MelonLogger.Error("FREEDOM_ARROW_DB_SOURCE_FAILED: "+e.Message); }
     }
+    // Osama 26 Nov 2026 15:5x "Rearrange the order of the specs. So it's heavy, medium light cab then marine, air, rocket": the China rows take the
+    // slots they already hold in the table, in this order. Ids stay, so decks keep their specs. Missing ids (Light CAB on other branches) are skipped.
+    static readonly int[] ChinaSpecOrder={18,21,70,20,17,19};
+    static void SpecOrder(JsonArray rows)
+    {
+        var pick=ChinaSpecOrder.Select(id=>rows.FirstOrDefault(r=>r?["Id"]?.GetValue<int>()==id)).Where(r=>r!=null).ToList();
+        var slots=pick.Select(r=>rows.IndexOf(r)).OrderBy(i=>i).ToList();
+        foreach(var r in pick)rows.Remove(r);
+        for(int k=0;k<pick.Count;k++)rows.Insert(slots[k],pick[k]);
+        MelonLogger.Msg("FREEDOM_ARROW_SPEC_ORDER "+string.Join(",",pick.Select(r=>r!["Id"]!.GetValue<int>())));
+    }
     static void Apply(DataBaseCompiled __instance)
     {
         if (applied || failed) return;
@@ -461,6 +472,7 @@ public class Runtime : MelonMod
                     (id,field,before,after,added)=>receipt.Add(new {table=table.Key,id,field,before,after,action=added?"add_row":"edit"}));
                 if(table.Key=="Units")TestSpec.ApplyUnits(rows,Root);   // Osama 24 Nov 2026: test-spec units only in test mode
                 if(table.Key=="SpecializationsJson")TestSpec.Apply(rows,Root);   // Osama 23 Nov 2026: hidden test spec toggle
+                if(table.Key=="SpecializationsJson")SpecOrder(rows);   // Osama 26 Nov 2026: China spec order
                 if(table.Key=="SpecializationAvailabilitiesJson")PreviewCards.Collect(rows);   // Osama 24 Nov 2026: preview units (no stat card)
                 prospective[table.Key]=rows;
                 patchedTables[table.Key]=overrides;

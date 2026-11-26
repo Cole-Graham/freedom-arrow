@@ -14,7 +14,7 @@ namespace FreedomArrow;
 // PLA only. Let the game create its real buttons and callbacks; change capacity, ordering and sprites.
 static class ChinaUi
 {
-    static readonly string[] Addresses=new[]{"FA_CHINA_FLAG","FA_CHINA_AIR_SF","FA_CHINA_ARMORED","FA_CHINA_ROCKET","FA_CHINA_NAVAL","FA_CHINA_MOTORIZED","FA_US_BLUE_DRAGON","FA_FRANCE","FA_EUROCORP_FLAG","FA_GERMANY"}
+    static readonly string[] Addresses=new[]{"FA_CHINA_FLAG","FA_CHINA_AIR_SF","FA_CHINA_ARMORED","FA_CHINA_ROCKET","FA_CHINA_NAVAL","FA_CHINA_MOTORIZED","FA_CHINA_LIGHT","FA_US_BLUE_DRAGON","FA_FRANCE","FA_EUROCORP_FLAG","FA_GERMANY"}
         .Concat(typeof(ChinaUi).Assembly.GetManifestResourceNames()
             .Where(n=>n.StartsWith("FreedomArrow.icons.FA_PLA_")&&n.EndsWith(".png"))
             .Select(n=>n.Substring("FreedomArrow.icons.".Length,n.Length-"FreedomArrow.icons.".Length-4)))
