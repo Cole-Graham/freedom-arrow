@@ -25,7 +25,7 @@ static class HeliRange
     internal static readonly Dictionary<int,float> ammoRange=new();
     // Per-weapon radar use (Lateralus 24 Nov 2026 22:2x, thread 1568104480459722894): rounds in radarExempt get no radar range bonus (IR missiles
     // except the AIM-9, and the Fletcher); radarAmmo = rounds that use the radar and can engage air targets (card trait icon). helicopter-range.json.
-    internal static readonly HashSet<int> radarExempt=new(),radarAmmo=new(),radarWeapons=new(),planeStressExempt=new(),planeStressShared=new();
+    internal static readonly HashSet<int> radarExempt=new(),radarAmmo=new(),radarWeapons=new();
     static long exemptChanged;
     internal static readonly Dictionary<(float,float,float,float,float,bool),(float range,float optics)> radar=new();
     // Radar icon label per radar group (SA SHORAD / IR SHORAD / LR SAM; Lateralus 24 Nov 2026), from helicopter-range.json "label"/"labelZh".
@@ -61,9 +61,6 @@ static class HeliRange
         foreach(var x in j["radarExempt"]?.AsArray()??new JsonArray())radarExempt.Add(x.GetValue<int>());
         foreach(var x in j["radarAmmo"]?.AsArray()??new JsonArray())radarAmmo.Add(x.GetValue<int>());
         foreach(var x in j["radarWeapons"]?.AsArray()??new JsonArray())radarWeapons.Add(x.GetValue<int>());
-        // Plane FF/TG missiles ignore shooter stress in hit chance (Lateralus 25 Nov 2026; MissileHitChance.Chance).
-        foreach(var x in j["planeStressExempt"]?.AsArray()??new JsonArray())planeStressExempt.Add(x.GetValue<int>());
-        foreach(var x in j["planeStressShared"]?.AsArray()??new JsonArray())planeStressShared.Add(x.GetValue<int>());
         logEvery=Stopwatch.Frequency*(long)(j["perfLogSeconds"]?.GetValue<int>()??60);
         hasHeli=SpottingCap.Store("MethodInfoStoreGeneric_Has_Public_Boolean_0`1",typeof(UnitHelicopterFlag));
         hasRadar=SpottingCap.Store("MethodInfoStoreGeneric_Has_Public_Boolean_0`1",typeof(RadarAbilityComponent));

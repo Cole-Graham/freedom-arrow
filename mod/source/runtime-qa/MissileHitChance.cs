@@ -57,21 +57,6 @@ static class MissileHitChance
         return target.IsAlive;
     }
     static string Id(Entity e)=>e.GetHashCode().ToString();
-    static bool shooterBroken;
-    // Missile -> WarheadComponent.ShooterWeapon -> the weapon's unit -> Units.Type 16 (plane).
-    static bool FiredByPlane(Entity missile)
-    {
-        if(shooterBroken)return false;
-        try
-        {
-            if(!missile.IsAlive||!missile.Has<WarheadComponent>())return false;
-            ulong raw=NativeEcs.Field<WarheadComponent,ulong>(missile,"ShooterWeapon");var w=Unsafe.As<ulong,Entity>(ref raw);
-            if(!w.IsAlive||!w.Has<WeaponComponent>())return false;
-            var u=NativeEcs.Read<WeaponComponent>(w)?.GetUnitEntity()??default;
-            return u.IsAlive&&u.Has<UnitComponent>()&&(int)NativeEcs.Read<UnitComponent>(u).UnitData.Type==16;
-        }
-        catch(Exception x){shooterBroken=true;MelonLogger.Error("FREEDOM_ARROW_PLANE_MISSILE_STRESS shooter check off: "+x.Message);return false;}
-    }
     static string Flares(Entity target)
     {
         if(!target.IsAlive||!target.Has<CounterMeasuresComponent>())return "cm n/a";
@@ -84,12 +69,13 @@ static class MissileHitChance
         if(broken||!Runtime.IsApplied||ammoInfo==null)return true;
         try
         {
-            // Lateralus 25 Nov 2026 ("Queue up just the low risk missile accuracy debuff removal"): fire-and-forget / terminal-guidance missiles
-            // fired by planes ignore the shooter's stress (planes: shocked 0.85, panicked 0.6). Rounds also fired by non-plane units are checked
-            // through the missile's shooter; outside a missile roll (AI overkill score) those keep the stress.
-            if(stressMultiplier!=1f&&HeliRange.planeStressExempt.Contains(ammoInfo.Id)&&(!HeliRange.planeStressShared.Contains(ammoInfo.Id)||(inDivertion&&FiredByPlane(current))))
+            // Lateralus 25 Nov 2026: fire-and-forget (Seeker 10) and terminal-guidance (Seeker 50) missiles ignore the shooter's stress
+            // ("Queue up just the low risk missile accuracy debuff removal", then "honestly this should apply to all fire and forget and terminal
+            // guidance missiles"): any shooter. Semi-active (100) keeps it; laser and SEAD never reach this roll.
+            int seeker=(int)ammoInfo.Seeker;
+            if(stressMultiplier!=1f&&(seeker==10||seeker==50))
             {
-                if(++exemptLogged<=200)MelonLogger.Msg($"FREEDOM_ARROW_PLANE_MISSILE_STRESS ammo {ammoInfo.Id} stress {stressMultiplier:0.###} -> 1");
+                if(++exemptLogged<=200)MelonLogger.Msg($"FREEDOM_ARROW_MISSILE_STRESS ammo {ammoInfo.Id} seeker {seeker} stress {stressMultiplier:0.###} -> 1");
                 stressMultiplier=1f;
             }
             float accuracy=ammoInfo.DispersionHorizontalRadius,resist=ammoInfo.DispersionVerticalRadius;
