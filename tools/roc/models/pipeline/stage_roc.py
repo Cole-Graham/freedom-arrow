@@ -6,7 +6,7 @@ H=os.path.dirname(os.path.abspath(__file__))+'/..';V=H+'/veh';S=H+'/stage/UserDa
 CARD={'cm34':'ROC CM-34','cm33':'ROC CM-33','cm22':'ROC CM-22','cm11':'ROC CM-11','antelope':'ROC Antelope','m41d':'ROC M41D',
       'tb2000':'ROC Thunderbolt-2000','kf6':'ROC Kung Feng VI','tk3':'ROC Tien Kung III','cm26':None,
       'cm21':'ROC CM-21','cm32':'ROC CM-32','lsw2':'ROC Land Sword II','f16v':'ROC F-16V','f5f':'ROC F-5F','m110a2':'ROC M110A2','uh60m':'ROC UH-60M',
-      'ah64e':'ROC AH-64E','fck1':'ROC F-CK-1','c130':'ROC C-130HE','chx2':'ROC Chung Hsiang II'}   # Shawn's 26 Nov uploads   # CM-26 has no card yet (role unknown)
+      'ah64e':'ROC AH-64E','m60a3':'ROC M60A3 TTS','fck1':'ROC F-CK-1','c130':'ROC C-130HE','chx2':'ROC Chung Hsiang II'}   # Shawn's 26 Nov uploads   # CM-26 has no card yet (role unknown)
 shutil.rmtree(H+'/stage',ignore_errors=True);os.makedirs(S)
 models={};n=0
 for s,card in CARD.items():

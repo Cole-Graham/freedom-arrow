@@ -4,6 +4,8 @@ sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)));from famread impor
 a=sys.argv[sys.argv.index('--')+1:];fam,out=a[0],a[1];d=os.path.dirname(fam)
 bpy.ops.wm.read_factory_settings(use_empty=True)
 mats={};allp=[]
+import json as _j
+_mj=os.path.join(d,os.path.basename(fam)[:-4]+'.mat.json');MJ=_j.load(open(_mj)) if os.path.exists(_mj) else {}   # ROC copy: show clearGlass as FAModels does (neutral, colour ignored)
 for bone,subs in read_fam(fam):
     for k,sb in enumerate(subs):
         n=len(sb['pos'])//3
@@ -15,6 +17,10 @@ for bone,subs in read_fam(fam):
             for li in poly.loop_indices:
                 vi=me.loops[li].vertex_index;uvl.data[li].uv=(sb['uv'][2*vi],1+sb['uv'][2*vi+1])
         t=sb['tex'];kk=(t,tuple(round(x,4) for x in sb['col'])) if not t else t
+        _key=(t or '')+'|'+','.join(f'{x:.4f}' for x in sb['col']);_g=MJ.get(_key,{}).get('clearGlass')
+        if _g:kk=('__glass__',)
+        if _g and kk not in mats:
+            m=bpy.data.materials.new('clearGlass');m.use_nodes=True;b=m.node_tree.nodes['Principled BSDF'];b.inputs['Base Color'].default_value=(1,1,1,1);b.inputs['Roughness'].default_value=0.05;b.inputs['Alpha'].default_value=max(0.12,MJ[_key].get('opacity',0.1));mats[kk]=m
         if kk not in mats:
             m=bpy.data.materials.new(t);m.use_nodes=True;nt=m.node_tree;b=nt.nodes['Principled BSDF']
             if t and os.path.exists(os.path.join(d,t)):

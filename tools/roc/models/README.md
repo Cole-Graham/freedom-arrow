@@ -65,6 +65,22 @@ Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `inf
 - `conv.py` (fat) skips files that already exist: move the old `.fat` away before rebuilding a texture.
 - `stage_roc.py` now also stages the infantry bodies, `infantry-bodies-roc.json` and the T91 rifle, because it empties the stage folder first.
 
+## M60A3 TTS, canopy glass and texture budget (26 November 2026, later)
+
+**The M60A3 TTS has its ROC model (21 cards now). Aircraft canopies are clear glass. Armory textures of 13 models are fitted to the team budget. Not yet in a game build.**
+
+- **M60A3 TTS:** from Shawn's new FBX (Substance textures). 9.44 m, Armory 91k / battle 53k triangles (LODs 36.6k / 25.3k). Textures fitted to the budget: Armory 134 → 11 MB, battle 33 → 3 MB.
+- **Canopy glass (Shawn: "correct color (not a blue color) ... like glass"):** F-5F (its canopy was a solid deep-blue material), F-16V, UH-60M (`玻璃` windows were opaque) and F-CK-1 now use FAModels `clearGlass` (neutral, colour ignored). The F-CK-1 canopy shared the airframe texture and was only cut out; `canopy_split.py` moves the 660 see-through canopy faces to their own glass material.
+- **LOD material files:** every ROC `_lo_static_l1/l2.fam` now has a `.mat.json` (a copy of the battle one), as the live models do; without it the glass settings were lost at distance.
+- **Armory texture budget (Osama 24 Nov: about 1.5x vanilla = 9.4 Mpx colour + normal):** `tex_budget.py` shrinks in 3/4 steps the texture with the most pixels per square metre of surface it covers. Applied to Antelope, C-130HE, CM-11, CM-21, CM-26, CM-34, Land Sword II, M110A2, M41D, Thunderbolt-2000, Tien Kung III, UH-60M and M60A3. Fighters (F-CK-1, F-16V, F-5F) stay above vanilla detail, as the rule says. Battle textures were not changed (except the new M60A3); the battle budget is per role and a batch needs Osama's go.
+
+---
+
+**Gotchas**
+- `fbx2glb.py` (shared tool) falls back to a sibling material's opacity map (M60A3: the body got the camo net's). `fbx2glb_roc.py` is a ROC copy that only takes a material's own opacity map; the shared tool is unchanged.
+- Substance exports name files `<part>_Base_color.png` / `_Normal_DirectX.png`: copy them to `<material>_BaseColor.png` / `_Normal.png` and flip the normal's green channel (DirectX → OpenGL).
+- `glass.py` now also handles untextured (colour-keyed) glass materials and Chinese names, and leaves coloured light lenses alone.
+
 ## Document change log
 
 - 2026-11-25 03:4x PST (America/Los_Angeles) — T91 rifle converted; recipe and first grip offset.
@@ -73,3 +89,4 @@ Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `inf
 - 2026-11-25 11:2x PST (America/Los_Angeles) — SF Scout recoloured to ROC camo; SF Section waits for ROC SF2.
 - 2026-11-25 13:5x PST (America/Los_Angeles) — SF Scout camo rebuilt from real ROC fabric; SF 1 arm-fit fix (shape keys); matte previews.
 - 2026-11-26 02:51 PST (America/Los_Angeles) — AH-64E, F-CK-1, C-130HE and Chung Hsiang II converted; Antelope textures replaced; stage includes infantry and T91.
+- 2026-11-26 03:11 PST (America/Los_Angeles) — M60A3 TTS converted; canopy glass fixed on 4 aircraft; LOD material files; Armory texture budget on 13 models.
