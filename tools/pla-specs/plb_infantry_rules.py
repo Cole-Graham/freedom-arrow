@@ -3,7 +3,7 @@ sure the new units have PLA skins and equipment visually"; 04:3x "can you build 
 codex/batch/osama/pla-light-brigade only.
 - Bodies: the new squads (unit IDs 6000-6999, FAModels 0.3.49-plb.1 approves that block) get add-on rules in infantry-bodies-plb.json, each a copy of
   the squad it was made from (Sky Wolf Commandos <- Sea Dragons 1191, Tiger Brigade <- Marines 1192, Marine Scouts <- Marine Recon 1224, PAP AA
-  Patrol <- Moto. Riflemen 1196). The pinned infantry-bodies.json does not change.
+  Patrol <- Moto. Riflemen 1196, Marines PF-98 <- Marines 1192). The pinned infantry-bodies.json does not change.
 - Weapons (infantry-weapons.json): the new squads take the weapon rules of their source squad. Then every China infantry squad that has a body rule
   gets a rule for each weapon it carries that has none, copied from a rule for the same weapon (or its stand-in below) on another squad:
   QJY-88 -> the QJY-201 model, VQX191 / QBZ URGI -> the QBZ-192, squad QLZ-87 -> the QLU-11 (Osama: "uses the QLU-11 model for now"), long-range
@@ -24,7 +24,8 @@ for tab, fn in FIELD_TO_FILE.items():
 U, W, SM = t['Units'], t['WeaponsJson'], t['SquadMembersJson']
 bodies, weapons = json.loads((SRC / 'infantry-bodies.json').read_text()), json.loads((SRC / 'infantry-weapons.json').read_text())
 name = lambda u: U[u]['Name']
-NEW = {'PLA Sky Wolf Commandos': 1191, 'PLA Tiger Brigade': 1192, 'PLA Marine Scouts': 1224, 'PLA PAP AA Patrol': 1196}
+NEW = {'PLA Sky Wolf Commandos': 1191, 'PLA Tiger Brigade': 1192, 'PLA Marine Scouts': 1224, 'PLA PAP AA Patrol': 1196,
+       'PLA Marines PF-98': 1192}   # Marines PF-98 (copy of the Tank Hunters, PLAN) wears the Marines' bodies (26 Nov 13:0x)
 new = {next(i for i, u in U.items() if u and u.get('Name') == n): src for n, src in NEW.items()}
 assert all(6000 <= i <= 6999 for i in new), new
 add = []
