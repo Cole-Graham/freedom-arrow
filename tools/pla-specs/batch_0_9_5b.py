@@ -1014,6 +1014,9 @@ import weapon_coverage_check;rec['weapon_coverage_rows']=weapon_coverage_check.c
 # owner did not make (mod/id-reservations.json), or if a section after this line makes rows. New sections go above the disposable-launcher check.
 # ---------- Back-pocket China weapons, no squad yet: QJY-88, QBZ-192 MLOK, VQX191, QBU-202 (Osama 25 Nov 13:3x). See backpocket_weapons_1125.py.
 import backpocket_weapons_1125;backpocket_weapons_1125.apply(t,g,ok,rec)
+# ---------- PLA Light Brigade build (branch codex/batch/osama/pla-light-brigade only): QJY-201 gunners -> QJY-88, QJY-201 = VDV PKP-M stat copy
+# (Osama 26 Nov 2026 01:2x PST). See pla_light_brigade_mg_1126.py.
+import pla_light_brigade_mg_1126;pla_light_brigade_mg_1126.apply(t,g,ok,rec)
 import roc_hook;roc_hook.apply(t,g,ok,rec,recheck=lambda:(disposable_launchers_1123.check(t,ok,a.vanilla),weapon_coverage_check.check(t,patches,ok)))
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
