@@ -967,6 +967,8 @@ import hj10_nlos_range_1125;hj10_nlos_range_1125.apply(t,g,ok,rec)
 import aps_two_charges_1125;aps_two_charges_1125.apply(t,g,ok,rec)
 # ---------- ZTZ-99 LSDW +60; LSDW pulse stress 80 -> 70 (Osama 25 Nov 2026 12:2x PST, bugs thread). See ztz99_lsdw_1125.py.
 import ztz99_lsdw_1125;ztz99_lsdw_1125.apply(t,g,ok,rec)
+# ---------- Thunder Gods second QJS-161 (Osama 25 Nov 2026 18:2x PST, bugs thread). See thunder_gods_qjs2_1125.py.
+import thunder_gods_qjs2_1125;thunder_gods_qjs2_1125.apply(t,g,ok,rec)
 # ---------- ZTQ-15, ZTQ-15 Recon, ZTQ-15 Light 25 points cheaper (Osama 25 Nov 2026 11:3x PST). See ztq15_cost_1125.py.
 import ztq15_cost_1125;ztq15_cost_1125.apply(t,g,ok,rec)
 # ---------- Z-20S 0 -> 4 seats, MH-60M SOAR Recon 60 -> 65 pts (Lateralus 25 Nov 2026 18:0x PST). See recon_helo_1125.py.
