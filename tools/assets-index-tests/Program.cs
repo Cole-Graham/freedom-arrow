@@ -81,6 +81,12 @@ try{
  Check(!Directory.EnumerateFiles(game,"*.fa-install-*",SearchOption.AllDirectories).Any(),"no temporary files left behind");
  server.Corrupt=null;server.FailOnce=true;AssetsIndexInstall.Ensure(game,i4,p4,prefs,Log,CancellationToken.None);
  Check(File.ReadAllBytes(G("UserData/FAModels/b.fam")).SequenceEqual(v4["UserData/FAModels/b.fam"]),"transient network failure retried");
+ // Launcher 1.1.20 (Lateralus 25 Nov: 0.9.6 "verification failed" after the dev launcher): a newer Models & music install is replaced
+ // by the selected older release's exact files, so the release's pinned Mods/FAModels.dll matches.
+ server.Requests=0;AssetsIndexInstall.Ensure(game,i2,p2,prefs,Log,CancellationToken.None);
+ Check(File.ReadAllBytes(G("UserData/FAModels/b.fam")).SequenceEqual(v2["UserData/FAModels/b.fam"]) && Manifest.Load(game).Packages.Single(p=>p.Info?.Id=="freedomarrow.assets.live").Info!.Version=="0.2.2",
+  "player launcher: older 0.2.2 selected over installed 0.2.4 installs 0.2.2 exactly, and the record says 0.2.2");
+ Check(server.Requests==2,"downgrade downloads only the 2 files that differ ("+server.Requests+")");
  // Unsafe list entries are refused.
  foreach(var evil in new[]{"../escape.dll","UserData/../../x","C:/Windows/x","Other/x.dll"})
  {

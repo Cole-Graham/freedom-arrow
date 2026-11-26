@@ -79,7 +79,6 @@ public static class PinnedFreedomArrow
             ?? throw new InvalidDataException("The included asset package is empty.");
         var manifest = Manifest.Load(gameDir);
         var pack = manifest.Packages.FirstOrDefault(p => p.Info?.Id == AssetsId);
-        bool newer = pack?.Info?.Version != null && ModVersion.Compare(pack.Info.Version, AssetsVersion) > 0;
         int installed = 0, retained = 0;
         foreach (var file in plan.Files)
         {
@@ -92,7 +91,7 @@ public static class PinnedFreedomArrow
             // arrived (0.9.0-dev.2 refused to load: old UserData/FAModels/infantry-bodies.json). Same rule as the PC
             // installer (switch.py): the package's files win; only the player's voice and music preferences are kept.
             bool preference = Preferences.Contains(file.TargetRel.Replace('\\', '/'));
-            if (exists && (preference || newer || SameContent(file, path))) { retained++; continue; }
+            if (exists && (preference || SameContent(file, path))) { retained++; continue; }
             Directory.CreateDirectory(Path.GetDirectoryName(path)!);
             var temp = path + ".fa-install-" + Guid.NewGuid().ToString("N");
             try
@@ -112,9 +111,8 @@ public static class PinnedFreedomArrow
             pack = new InstalledPackage { Name = plan.PackageName, Source = AssetsArchivePath, Info = plan.Info, InstalledAt = DateTime.Now };
             manifest.Packages.Add(pack);
         }
-        else if (!newer) pack.Info = plan.Info;
+        else pack.Info = plan.Info;
         pack.Files = pack.Files.Concat(plan.Files.Select(f => f.TargetRel)).Distinct(StringComparer.OrdinalIgnoreCase).ToList();
-        // Also enable extra files belonging to an already installed newer asset pack.
         var entry = mods.Scan(gameDir, manifest).FirstOrDefault(e => e.Package == pack);
         if (entry != null && !entry.Enabled) mods.SetEnabled(gameDir, entry, true, log);
         pack.Enabled = true;

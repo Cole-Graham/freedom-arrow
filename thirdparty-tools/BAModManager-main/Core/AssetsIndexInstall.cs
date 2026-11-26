@@ -15,8 +15,9 @@ public sealed record AssetsIndex(int Schema, string Id, string Version, string P
 /// downloaded, instead of the entire assets pack"). The list (tools/distribution/publish_assets_index.py) names every installed file with its
 /// size and SHA-256; each file is on R2 once, gzipped, as files_base + sha256 + ".gz". Files already on disk with the right content are kept;
 /// only missing or changed files are downloaded (8 at a time), checked and moved into place. A file that the previous list installed and the
-/// new list no longer has is removed only if it is unchanged. Same keep rules as the full-package install: the player's voice and music
-/// preferences, and everything when a newer Assets version is already installed.
+/// new list no longer has is removed only if it is unchanged. The player's voice and music preferences are kept. The selected release's
+/// files are installed exactly, also when a newer Assets version is installed (launcher 1.1.20, Lateralus 25 Nov 2026: 0.9.6 refused to
+/// load after the dev launcher had installed newer Models & music, because 0.9.6 pins its own Mods/FAModels.dll).
 /// </summary>
 public static class AssetsIndexInstall
 {
@@ -160,8 +161,6 @@ public static class AssetsIndexInstall
         var mods = new ModService(new ManagerConfig());
         var manifest = Manifest.Load(gameDir);
         var pack = manifest.Packages.FirstOrDefault(x => x.Info?.Id == p.Id);
-        // Dev launcher: the picked build's exact files, also when an older version than the installed one was picked.
-        bool newer = !HostedDistribution.DevChannel && pack?.Info?.Version != null && ModVersion.Compare(pack.Info.Version, p.Version) > 0;
         var state = LoadState(gameDir);
         var need = new List<(AssetsIndexFile File, string Path)>();
         int retained = 0, checkedFiles = 0; var shown = DateTime.MinValue;
@@ -179,7 +178,7 @@ public static class AssetsIndexInstall
             if (!File.Exists(path) && File.Exists(path + PathUtil.DisabledSuffix))
                 File.Move(path + PathUtil.DisabledSuffix, path);
             bool exists = File.Exists(path);
-            if (exists && (preferences.Contains(f.Path) || newer ||
+            if (exists && (preferences.Contains(f.Path) ||
                 new FileInfo(path).Length == f.Size && HashCached(state, f.Path, path).Equals(f.Sha256, StringComparison.OrdinalIgnoreCase)))
             { retained++; continue; }
             need.Add((f, path));
@@ -231,8 +230,7 @@ public static class AssetsIndexInstall
         // Files the previous list installed and this list dropped: removed only if still exactly as installed.
         var keep = new HashSet<string>(index.Files.Select(f => f.Path), StringComparer.OrdinalIgnoreCase);
         var removed = new List<string>();
-        if (!newer)
-            foreach (var old in state.Installed.Values.Where(o => !keep.Contains(o.Path)))
+        foreach (var old in state.Installed.Values.Where(o => !keep.Contains(o.Path)))
             {
                 var path = PathUtil.ToFull(gameDir, old.Path);
                 if (File.Exists(path) && HashCached(state, old.Path, path).Equals(old.Sha256, StringComparison.OrdinalIgnoreCase))
@@ -243,7 +241,7 @@ public static class AssetsIndexInstall
             pack = new InstalledPackage { Name = info.Name ?? Path.GetFileNameWithoutExtension(index.Package), Source = p.Index!.Url, Info = info, InstalledAt = DateTime.Now };
             manifest.Packages.Add(pack);
         }
-        else if (!newer) pack.Info = info;
+        else pack.Info = info;
         pack.Files = pack.Files.Concat(index.Files.Select(f => f.Path)).Except(removed, StringComparer.OrdinalIgnoreCase)
             .Distinct(StringComparer.OrdinalIgnoreCase).ToList();
         var entry = mods.Scan(gameDir, manifest).FirstOrDefault(e => e.Package == pack);
@@ -253,7 +251,7 @@ public static class AssetsIndexInstall
         foreach (var f in index.Files)
             if (!File.Exists(PathUtil.ToFull(gameDir, f.Path)))
                 throw new InvalidDataException("An asset file is missing: " + f.Path);
-        if (!newer) { state.Version = p.Version; state.Installed = index.Files.ToDictionary(f => f.Path, StringComparer.OrdinalIgnoreCase); }
+        state.Version = p.Version; state.Installed = index.Files.ToDictionary(f => f.Path, StringComparer.OrdinalIgnoreCase);
         SaveState(state);
         log($"Models + Music/Voices {p.Version} ready: {need.Count} downloaded; {retained} existing files kept; {removed.Count} old files removed.");
     }

@@ -106,7 +106,7 @@ try{
  Check(v2.All(kv=>File.ReadAllBytes(G(kv.Key)).SequenceEqual(kv.Value)) && !File.Exists(G("UserData/FAModels/old.fam")),"newer build installed exactly");
  server.Requests=0;AssetsIndexInstall.Ensure(game,i1,p1,prefs,Log,CancellationToken.None);
  Check(server.Requests==3,"switch back to the OLDER build downloads only the 3 files that differ ("+server.Requests+")");
- Check(v1.All(kv=>File.ReadAllBytes(G(kv.Key)).SequenceEqual(kv.Value)) && !File.Exists(G("UserData/FAModels/new.fam")),"older build installed exactly (the player launcher would keep the newer files)");
+ Check(v1.All(kv=>File.ReadAllBytes(G(kv.Key)).SequenceEqual(kv.Value)) && !File.Exists(G("UserData/FAModels/new.fam")),"older build installed exactly");
  Check(Manifest.Load(game).Packages.Single(p=>p.Info?.Id=="freedomarrow.assets.live").Info!.Version=="0.2.94","package record shows the picked older version");
  server.Requests=0;AssetsIndexInstall.Ensure(game,i1,p1,prefs,Log,CancellationToken.None);
  Check(server.Requests==0,"PLAY again on the same build downloads nothing");
