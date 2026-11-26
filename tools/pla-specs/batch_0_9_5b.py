@@ -1024,7 +1024,9 @@ import pla_light_brigade_specs_1126;pla_light_brigade_specs_1126.apply(t,g,ok,re
 # ---------- PLA Light Brigade: HQ-22 (HQ-9A copy) + J-50 into PLAN, new PLAGF Light CAB spec with the SX2121 (Osama 26 Nov 01:4x). New rows use the
 # 'plb' reserved ID block (mod/id-reservations.json).
 import pla_light_brigade_units_1126
-with g.scope('plb'):pla_light_brigade_units_1126.apply(t,g,ok,rec)
+import pla_light_brigade_jiaolong_1126
+# Jiaolong CQC (Osama 26 Nov 02:0x): QBZ URGI (Mk18 copy) + Sea Dragons CQC kit; same 'plb' scope, after the Test SF copy.
+with g.scope('plb'):pla_light_brigade_units_1126.apply(t,g,ok,rec);pla_light_brigade_jiaolong_1126.apply(t,g,ok,rec)
 import roc_hook;roc_hook.apply(t,g,ok,rec,recheck=lambda:(disposable_launchers_1123.check(t,ok,a.vanilla),weapon_coverage_check.check(t,patches,ok)))
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
