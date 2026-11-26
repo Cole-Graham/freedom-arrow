@@ -171,7 +171,7 @@ class UnitsTab:
     def _add_custom_weapon(self, label: str = "", count: int = 1) -> None:
         line = ttk.Frame(self.clone_weapons_frame)
         line.pack(fill=tk.X, pady=1)
-        pair = SearchableCombobox(line, values=sorted(self._pair_index), width=60)
+        pair = SearchableCombobox(line, values=self._weapon_choices(), width=60)
         pair.pack(side=tk.LEFT)
         pair.set(label)
         number = tk.IntVar(value=count)
@@ -179,6 +179,10 @@ class UnitsTab:
         item = {"frame": line, "pair": pair, "count": number}
         ttk.Button(line, text="Remove", command=lambda: self._remove_custom_weapon(item)).pack(side=tk.LEFT)
         self.clone_weapons.append(item)
+
+    def _weapon_choices(self) -> list[str]:
+        """Game weapon + ammo pairs, then the profile's custom weapons (Lateralus 25 Nov 2026: custom weapons in custom units)."""
+        return sorted(self._pair_index) + sorted(self.app.custom_weapons)
 
     def _remove_custom_weapon(self, item: dict[str, Any]) -> None:
         item["frame"].destroy()
@@ -258,7 +262,9 @@ class UnitsTab:
         self.clone_hp.set(f"{float(armor.get('MaxHealthPoints') or 0):g}")
         self._clear_custom_weapons()
         for weapon in custom.get("weapons") or []:
-            if weapon["weapon_id"] in catalog.weapons and weapon["ammo_id"] in catalog.ammos:
+            if weapon.get("custom_weapon") in self.app.custom_weapons:
+                self._add_custom_weapon(weapon["custom_weapon"], int(weapon["count"]))
+            elif "weapon_id" in weapon and weapon["weapon_id"] in catalog.weapons and weapon["ammo_id"] in catalog.ammos:
                 self._add_custom_weapon(self._pair_label(weapon["weapon_id"], weapon["ammo_id"]), int(weapon["count"]))
 
     def _custom_silhouette(self, key: str) -> tuple[float, float] | None:
@@ -312,7 +318,7 @@ class UnitsTab:
         self._pair_index = {label: (w, a) for label, w, a in catalog.weapon_ammo_labels()}
         self.clone_armor.set_values(self.armor_names)
         for item in self.clone_weapons:
-            item["pair"].set_values(sorted(self._pair_index))
+            item["pair"].set_values(self._weapon_choices())
         self.cover_ctl.update_info()
         if self.unit_names and not self.rows[0]["unit"].get():
             self.rows[0]["unit"].set(self.unit_names[0])
@@ -524,6 +530,12 @@ class UnitsTab:
             source_id = custom["source_unit_id"]
             mounted = []
             for weapon in custom["weapons"]:
+                if "custom_weapon" in weapon:
+                    saved = self.app.custom_weapons.get(weapon["custom_weapon"])
+                    if saved is None:
+                        raise ValueError(f"{label}: custom weapon {weapon['custom_weapon']} no longer exists.")
+                    mounted.append((saved["weapon"], saved["ammo"], int(weapon["count"]), None))
+                    continue
                 if weapon["weapon_id"] not in catalog.weapons or weapon["ammo_id"] not in catalog.ammos:
                     raise ValueError(f"{label}: weapon {weapon['weapon_id']} or ammo {weapon['ammo_id']} is not in the loaded data.")
                 mounted.append((catalog.weapons[weapon["weapon_id"]], catalog.ammos[weapon["ammo_id"]], int(weapon["count"]), None))
@@ -782,6 +794,9 @@ class UnitsTab:
             for item in self.clone_weapons:
                 label = item["pair"].get().strip()
                 if not label:
+                    continue
+                if label in self.app.custom_weapons:
+                    weapons.append({"custom_weapon": label, "count": int(item["count"].get())})
                     continue
                 if label not in self._pair_index:
                     raise ValueError(f"Unknown weapon: {label}")

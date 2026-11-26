@@ -471,6 +471,7 @@ class WeaponsTab:
         self.app.custom_weapons[key] = {"weapon": weapon, "ammo": ammo}
         self.app.save_user_data()
         self.refresh_lists()
+        self.app.units_tab.refresh_lists()  # the custom unit editor lists custom weapons too
         self._update_preview()
         messagebox.showinfo("DPM", f"Saved {key}")
 
