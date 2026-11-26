@@ -24,7 +24,8 @@ def merged(tab,fn):
     return t
 # Later decisions over the SPAAG list, from the version that made them: Osama 24 Nov 2026 (QQ feedback FA-101, pgl625_lsdw_1124.py 6ed18eb4):
 # PGL-625 gun round 2009369 damage 4.9 -> 3.5 from 0.9.7-dev.1.
-_SPA_LATER={('2009369','Damage'):3.5} if m>=key('0.9.7-dev.1') else {}
+# Osama 25 Nov 2026 23:0x (pgl625_dps_1125.py 892694c2, "7 DPS"): 3.5 -> 2.356 in builds after 0.9.7.
+_SPA_LATER={('2009369','Damage'):(2.356 if m>key('0.9.7') else 3.5)} if m>=key('0.9.7-dev.1') else {}
 for tab,fn,spec in (('WeaponsJson.json','weapons.json',S.SPW),('AmmunitionsJson.json','ammunitions.json',S.SPA)):
     t=merged(tab,fn)
     bad+=[f'{tab} {i} {k}={t.get(int(i),{}).get(k)} (want {_SPA_LATER.get((i,k),n)})' for i,f in spec.items() for k,(o,n) in f.items() if t.get(int(i),{}).get(k)!=_SPA_LATER.get((i,k),n)]
@@ -250,6 +251,8 @@ if m>=key('0.9.5-dev.34'):
         if _tab=='SquadMembersJson.json' and m>=key('0.9.7-dev.1'):_want.pop('2015623',None)
         # Osama 25 Nov 2026 18:3x (snow_leopards_qbs_1125.py 077d648c, checked there): PAP Snow Leopards QCQ-171 man 2015311 now a QBS-09, priority 2.
         if _tab=='SquadMembersJson.json' and m>=key('0.9.7-dev.22'):_want.pop('2015311',None)
+        # PLA Light Brigade branch (Osama 26 Nov 2026 02:0x, pla_light_brigade_jiaolong_1126.py, checked there): Sea Dragons 1191 re-kitted as Jiaolong CQC.
+        if _tab=='SquadMembersJson.json' and m>=key('0.9.7l-dev.1'):[_want.pop(str(i),None) for i in range(2015385,2015393)]
         bad+=[f'{_tab} {i} {k}={(_t.get(int(i)) or {}).get(k)} (want {v}, infantry_order_1122.py)' for i,f in _want.items() for k,v in f.items() if (_t.get(int(i)) or {}).get(k)!=v]
     # Lateralus 22 Nov 17:1x: QCW-05 = the KNT MP5SD6 amount (160), QBU-191 100 (infantry_ammo_1122.py).
     _wa=merged('WeaponAmmunitionsJson.json','weapon_ammunitions.json')

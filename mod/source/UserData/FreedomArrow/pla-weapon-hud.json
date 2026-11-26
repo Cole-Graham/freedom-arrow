@@ -3591,6 +3591,16 @@
       "address": "FA_US_WP_MTL30",
       "native_weapon": 365,
       "basis": "Osama-supplied MTL-30 photo (25 Nov 2026), tools/icons-src/make_mtl30.py; cosmetic rename of the XM25 Punisher, stats unchanged"
+    },
+    {
+      "weapon": 2021551,
+      "name": "Sig Spear Shorty",
+      "scope": "INFANTRY",
+      "mode": "custom",
+      "profile": "SPEAR_SHORTY",
+      "address": "FA_US_WP_SPEAR_SHORTY",
+      "native_weapon": 208,
+      "basis": "Osama-supplied Sig Spear photo (26 Nov 2026), tools/icons-src/make_spear_shorty.py, suppressor added; M7 Spear stat clone, back pocket (no squad)"
     }
   ],
   "vehicle_weapons": 307,
