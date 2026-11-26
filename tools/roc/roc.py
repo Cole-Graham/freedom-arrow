@@ -254,6 +254,9 @@ VEH = {
     'ROC CM-32': {'rename': {21: 'T91 40mm AGL'}, 'drop': {76, 23}, 'default': 21},
     'ROC CM-33': {'rename': {21: 'T91 40mm AGL'}, 'drop': {76, 23, 18}, 'default': 21},
     'ROC CM-34': {'rename': {27: 'T74'}, 'drop': {76, 21, 18}, 'default': 23},
+    # Shawn 26 Nov 02:3x: "CM-22 just keeps the data as 120mm but rename the weapon by 107mm and reduce the damage value by around 20%"
+    'ROC CM-22': {'rename_hud': {'M121': 'M30 107mm'}, 'ammo': {'120mm HE': '107mm HE', '120mm smoke': '107mm smoke'},
+                  'ammo_scale': {'107mm HE': {'Damage': 0.8}}, 'ui_auto': True},
     'ROC Chung Hsiang II': {'unarmed': True},
     'ROC MQ-9B': {'unarmed': True, 'cost_factor': 0.8},
 }
@@ -268,8 +271,10 @@ def vehicles(t, g, ok, res, rows):
         if (src, name) not in made_w: made_w[(src, name)] = g.add('WeaponsJson', W[src], {'Name': 'ROC ' + name, 'HUDName': name})
         return made_w[(src, name)]
 
-    def acopy(src, name):
-        if (src, name) not in made_a: made_a[(src, name)] = g.add('AmmunitionsJson', A[src], {'Name': 'ROC ' + name, 'HUDName': name})
+    def acopy(src, name, scale=None):
+        if (src, name) not in made_a:
+            made_a[(src, name)] = g.add('AmmunitionsJson', A[src], {'Name': 'ROC ' + name, 'HUDName': name,
+                                        **{k: round(A[src][k] * f, 3) for k, f in (scale or {}).items()}})
         return made_a[(src, name)]
 
     def donor_rows(w):
@@ -302,7 +307,10 @@ def vehicles(t, g, ok, res, rows):
         for r in tu:
             if r['TurretId'] in dead: g.remove('TurretUnitsJson', r['Id'])
         # 3. renames: copy every turret that carries a renamed weapon (children follow their copied parent)
-        ren = spec.get('rename', {})
+        ren = dict(spec.get('rename', {}))
+        for hud, new in spec.get('rename_hud', {}).items():   # every weapon row of that name the card carries
+            for r in rows('WeaponAmmunitionsJson', UnitId=uid):
+                if W[r['WeaponId']]['HUDName'].strip() == hud: ren[r['WeaponId']] = new
         newid = {}                                   # (old weapon, new name) -> new weapon id
         for w, v in ren.items():
             name, src = (v if isinstance(v, tuple) else (v, w))
@@ -352,7 +360,7 @@ def vehicles(t, g, ok, res, rows):
             amap = {**spec.get('ammo', {}), **spec.get('ammo_by_weapon', {}).get(name, {})}
             for r in (own or donor_rows(srcw)):
                 hud = A[r['AmmunitionId']]['HUDName'].strip()
-                aid = acopy(r['AmmunitionId'], amap[hud]) if hud in amap else r['AmmunitionId']
+                aid = acopy(r['AmmunitionId'], amap[hud], spec.get('ammo_scale', {}).get(amap[hud])) if hud in amap else r['AmmunitionId']
                 g.add('WeaponAmmunitionsJson', r, {'UnitId': uid, 'WeaponId': nw, 'AmmunitionId': aid,
                       'Quantity': spec.get('rounds', {}).get(name, r['Quantity'])})
         for r in rows('WeaponAmmunitionsJson', UnitId=uid):
