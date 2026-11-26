@@ -13,12 +13,15 @@ inside g.scope('plb'), after the PAP and ZSL-92 sections.
 - 04:2x "Qirborne, QJY-88 replaced with QJB-161": Airborne 空降兵 (1136, PLAAF): its QJY-88 gunner carries the QJS-161 (2011922, the 5.8 mm LMG;
   there is no QJB-161 row, read as the QJS-161), 400 rounds as its other China rows. Card + ammo rows follow.
 - 04:5x "FK-3000 given to light CAB": FK-3000 (1447) gets a Light CAB card, a copy of its Medium CAB row (4 cards); the Medium CAB keeps it
-  ("given", as the Z-20 / Z-18 cards)."""
+  ("given", as the Z-20 / Z-18 cards).
+- 04:5x "Taishan eagles 3x QJs-161, remove QTS and 2x QBu-191": Taishan Eagles 泰山雄鹰 (1203, Medium CAB): the QTS-11 man (and his QTS-11
+  grenade launcher) and the 2 QBU-191 men carry the QJS-161 (400 rounds each, death priority 2); the PF-89 stays with its carrier. 6 men stay."""
 PATROL, ZBD04, PLAN = 1196, 1308, 20
 JIUTIAN, JIUTIAN_ROW = 1095, 2008949
 QLZ87, QLU11 = 2012157, 2004002
 AIRBORNE, QJS161, QJS161_A = 1136, 2011922, 2011923
 FK3000 = 1447
+TAISHAN = 1203
 
 
 def apply(t, g, ok, rec):
@@ -59,5 +62,20 @@ def apply(t, g, ok, rec):
     fk = rows('SpecializationAvailabilitiesJson', UnitId=FK3000)
     ok(U[FK3000]['HUDName'] == 'FK-3000' and len(fk) == 1 and fk[0]['SpecializationId'] == 21, 'FK-3000: one Medium CAB card row')
     g.add('SpecializationAvailabilitiesJson', fk[0], {'SpecializationId': light})
+    tm = rows('SquadMembersJson', UnitId=TAISHAN)
+    sw = [r for r in tm if W[r['PrimaryWeaponId']]['HUDName'] in ('QTS-11', 'QBU-191')]
+    ok(U[TAISHAN]['HUDName'] == 'Taishan Eagles 泰山雄鹰' and len(tm) == 6 and len(sw) == 3, ('Taishan Eagles: 1 QTS-11 + 2 QBU-191', len(sw)))
+    for r in sw:
+        g.put('SquadMembersJson', r['Id'], {'PrimaryWeaponId': QJS161, 'DeathPriority': 2, **({'SpecialWeaponId': 0} if W[r['SpecialWeaponId']]['HUDName'] == 'QTS-11 grenade launcher' else {})} if r['SpecialWeaponId'] else {'PrimaryWeaponId': QJS161, 'DeathPriority': 2})
+    carried = {w for r in rows('SquadMembersJson', UnitId=TAISHAN) for w in (r['PrimaryWeaponId'], r['SpecialWeaponId']) if w}
+    tw, ta = rows('SquadWeaponsJson', UnitId=TAISHAN), rows('WeaponAmmunitionsJson', UnitId=TAISHAN)
+    for r in tw:
+        if r['WeaponId'] not in carried: g.remove('SquadWeaponsJson', r['Id'])
+    for r in ta:
+        if r['WeaponId'] not in carried: g.remove('WeaponAmmunitionsJson', r['Id'])
+    g.add('SquadWeaponsJson', tw[0], {'WeaponId': QJS161, 'Order': max(r['Order'] for r in tw) + 1})
+    g.add('WeaponAmmunitionsJson', ta[0], {'WeaponId': QJS161, 'AmmunitionId': QJS161_A, 'Quantity': 400})
+    ok({r['WeaponId'] for r in rows('SquadWeaponsJson', UnitId=TAISHAN)} == carried == {r['WeaponId'] for r in rows('WeaponAmmunitionsJson', UnitId=TAISHAN)}
+       and sum(r['PrimaryWeaponId'] == QJS161 for r in rows('SquadMembersJson', UnitId=TAISHAN)) == 3, 'Taishan Eagles: 3 QJS-161, card + ammo = carried')
     rec['pla_light_brigade_late_1126'] = {'mountaineers': PATROL, 'zbd04_plan_cards': src[0]['MaxAvailabilityXp0']}
     print('PLA LIGHT BRIGADE LATE', rec['pla_light_brigade_late_1126'])
