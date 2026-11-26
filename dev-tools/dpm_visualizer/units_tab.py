@@ -109,6 +109,9 @@ class UnitsTab:
         self.chart = ChartPanel(right, "Unit DPM vs range", self._on_pin_and_save)
         self.info = tk.Text(right, height=12, wrap=tk.WORD)
         self.info.pack(fill=tk.BOTH, expand=False, pady=(6, 0))
+        # Lateralus 26 Nov 2026: the unit's highest-DPM weapon green, the second yellow.
+        self.info.tag_configure("top1", background="#bbf7d0")
+        self.info.tag_configure("top2", background="#fef08a")
 
         self._build_custom(parent)
 
@@ -712,7 +715,7 @@ class UnitsTab:
             self.info.insert(tk.END, "Click the chart to pin a range.")
             return
         world = card / CARD_RANGE_MULTIPLIER
-        lines = [f"Pinned {card:.0f} card m ({world:.0f} world m)\n"]
+        lines: list[tuple[str, str]] = [(f"Pinned {card:.0f} card m ({world:.0f} world m)\n", "")]
         ranked = []
         for meta in self._series_meta:
             dpm = interpolate_dpm(meta["series"], card)
@@ -726,7 +729,8 @@ class UnitsTab:
             ttk_s = time_to_kill_s(meta["hp"], dpm if not self.normalize.get() else dpm * meta["cost"], delay)
             ttk_txt = f"{ttk_s:.1f}s TTK" if ttk_s is not None else "no TTK"
             versus = f"  vs {meta['versus']}" if meta.get("versus") else ""
-            lines.append(f"\n{meta['label']}{versus}  cost {meta['cost']}  DPM {dpm:.1f}  {ttk_txt}")
+            lines.append((f"\n{meta['label']}{versus}  cost {meta['cost']}  DPM {dpm:.1f}  {ttk_txt}", ""))
+            top = sorted((d for d, _ in weapon_dpm if d > 0), reverse=True)
             for weapon_meta in meta["weapons"]:
                 wdpm = interpolate_dpm(weapon_meta["series"], card)
                 ammo = weapon_meta["ammo"]
@@ -741,15 +745,19 @@ class UnitsTab:
                 range_part = f"  {range_txt}" if range_txt else ""
                 if burn_text(ammo):
                     range_part += f"  ({burn_text(ammo)})"
-                lines.append(
+                guns = weapon_meta["gun_count"]
+                tag = "top1" if wdpm > 0 and wdpm == top[0] else "top2" if wdpm > 0 and len(top) > 1 and wdpm == top[1] else ""
+                lines.append((
                     f"  {weapon.get('HUDName')}: {ammo.get('HUDName')}{range_part}  "
-                    f"DPM {wdpm:.1f}  dmg {ammo.get('Damage')}  "
+                    f"DPM {wdpm:.1f}  DPM x1 {wdpm / guns if guns else 0:.1f}  dmg {ammo.get('Damage')}  "
                     f"pen {ammo.get('PenetrationAtMinRange')}→{ammo.get('PenetrationAtGroundRange')}  "
                     f"guns {weapon_meta['gun_count']}  carried {weapon_meta['carried']}"
                     f"{hit_txt}"
-                    + (f"  ammo-limited to {weapon_meta['ammo_share']:.0%} of a minute" if weapon_meta.get("ammo_share", 1.0) < 1.0 else "")
-                )
-        self.info.insert(tk.END, "\n".join(lines))
+                    + (f"  ammo-limited to {weapon_meta['ammo_share']:.0%} of a minute" if weapon_meta.get("ammo_share", 1.0) < 1.0 else ""),
+                    tag,
+                ))
+        for i, (text, tag) in enumerate(lines):
+            self.info.insert(tk.END, ("\n" if i else "") + text, tag or ())
 
     def export_png(self) -> None:
         path = filedialog.asksaveasfilename(defaultextension=".png", filetypes=[("PNG", "*.png")])

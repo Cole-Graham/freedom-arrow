@@ -34,7 +34,7 @@ python -m unittest discover -s dev-tools/dpm_visualizer/tests
 - **Cover (Target box on both tabs):** Open, Woods or Building, for infantry targets (rows with an infantry armor value). The values follow the loaded data: vanilla building 0.18 + 0.02 per soldier inside and no woods reduction; the mod's `game-config.json` (`BuildingDamageFloor`, `BuildingDamagePerSoldier`, `ForestDamageTaken`). Each round's `IgnoreCover` comes from the loaded tables, so the mod's ignore-cover changes count. Building: shells hit the building, so every round lands. Cover scales physical damage only; stress is not changed. The pinned-range panel lists each weapon's share through cover.
 - **Weapons:** overlay ammo/weapon pairs. Sweep all four faces as extra lines. Clone and edit a weapon. Expected DPM uses the same spread-vs-size math as the Units tab. Pick a target unit for its box, or an armor row (kit plates use a unit that can wear them). Check **Assume hits** for 100% hits.
 
-Click the chart to pin a range. The panel lists DPM, time-to-kill, card-metre range, penetration, and RoF. Selected rows, target armor, filters, profile customs, window size, and the active tab are saved to `user_data.json` and restored on the next launch.
+Click the chart to pin a range. The panel lists DPM, time-to-kill, card-metre range, penetration, and RoF. On the Units tab each weapon also shows **DPM x1** (its DPM ÷ its guns), and the unit's highest-DPM weapon is highlighted green and the second highest yellow (Lateralus 26 Nov 2026). Selected rows, target armor, filters, profile customs, window size, and the active tab are saved to `user_data.json` and restored on the next launch.
 
 ## Math
 
