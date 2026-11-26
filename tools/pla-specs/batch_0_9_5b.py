@@ -1024,6 +1024,9 @@ import spear_shorty_1126;spear_shorty_1126.apply(t,g,ok,rec)
 # HK 416A5 Zaliukai; unused variants removed (Lateralus 26 Nov 2026 13:1x). Makes one round: keep it the last row-making section before
 # the ROC hook so no other ID moves. See lateralus/infantry_tiers_1126.py.
 import infantry_tiers_1126;infantry_tiers_1126.apply(t,g,ok,rec,patches)
+# ---------- Gvardii Motostrelki 60 -> 65, Motopekhota 55 -> 60, Shturmoviki 50 -> 55 points; VDV PKP RPG-7D3 ammo 4 -> 6 (Lateralus 26 Nov 2026 15:1x).
+# Existing rows only. See lateralus/infantry_prices_1126.py.
+import infantry_prices_1126;infantry_prices_1126.apply(t,g,ok,rec)
 import roc_hook;roc_hook.apply(t,g,ok,rec,recheck=lambda:(disposable_launchers_1123.check(t,ok,a.vanilla),weapon_coverage_check.check(t,patches,ok)))
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
