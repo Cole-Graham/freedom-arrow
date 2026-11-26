@@ -4,8 +4,11 @@ loadout"). Branch codex/batch/osama/pla-light-brigade only; inside g.scope('plb'
 - Falcons 猎鹰 (1185, 8 men, 75 pts, Light CAB) take the 'Falcons New' kit; there is no separate 'Falcons New' unit any more:
   - The 2 MG gunners: one carries the QLZ-87 (2012157, the QLZ-04's stat copy; QLZ-87 Team body), the other a QBZ-192. The 4 QMK men carry the
     QBZ-192; the leader keeps the PF-98. QLU-11 and QBU-201 men unchanged. Death priorities unchanged.
-  - Ammo per carrier as the China rows: QBZ-192 160, QLZ-87 190; the others as before. Price, armour, cards and transports unchanged."""
+  - Ammo per carrier as the China rows: QBZ-192 160, QLZ-87 190; the others as before. Armour, cards and transports unchanged.
+- 04:2x "Falcons should have 2x QLU-11 and remove teh QBU-203, set to 85 points": the QBU-203 man carries a QLU-11 (8 men stay, the 25 Nov
+  head-count rule), so 2 QLU-11 (120 rounds each); 75 -> 85 pts."""
 FALCONS, QLZ87, QLZ87_A, QBZ192, QBZ192_A = 1185, 2012157, 2012158, 2013087, 2013088
+QLU11 = 2004002
 
 
 def apply(t, g, ok, rec):
@@ -24,6 +27,8 @@ def apply(t, g, ok, rec):
         if wn(p) == 'QJY-88':
             g.put('SquadMembersJson', r['Id'], {'PrimaryWeaponId': QLZ87, 'ModelFileName': agl_body} if first_mg else {'PrimaryWeaponId': QBZ192}); first_mg = False
         elif wn(p) == 'QMK': g.put('SquadMembersJson', r['Id'], {'PrimaryWeaponId': QBZ192})
+        elif wn(p) == 'QBU-203': g.put('SquadMembersJson', r['Id'], {'PrimaryWeaponId': QLU11})
+    g.put('Units', FALCONS, {'Cost': 85})
     carried = {w for r in rows('SquadMembersJson', UnitId=FALCONS) for w in (r['PrimaryWeaponId'], r['SpecialWeaponId']) if w}
     sw0, wa_f = rows('SquadWeaponsJson', UnitId=FALCONS)[0], {r['WeaponId']: r for r in rows('WeaponAmmunitionsJson', UnitId=FALCONS)}
     for tab in ('SquadWeaponsJson', 'WeaponAmmunitionsJson'):
@@ -37,7 +42,7 @@ def apply(t, g, ok, rec):
     new = rows('SquadMembersJson', UnitId=FALCONS)
     ok({r['WeaponId'] for r in rows('SquadWeaponsJson', UnitId=FALCONS)} == carried == {r['WeaponId'] for r in rows('WeaponAmmunitionsJson', UnitId=FALCONS)}, 'card + ammo = carried')
     got = sorted((wn(r['PrimaryWeaponId']), wn(r['SpecialWeaponId']), r['DeathPriority']) for r in new)
-    ok(len(new) == 8 and sum(r['PrimaryWeaponId'] == QLZ87 for r in new) == 1 and sum(r['PrimaryWeaponId'] == QBZ192 for r in new) == 5
-       and not any(wn(r['PrimaryWeaponId']) in ('QJY-88', 'QMK') for r in new) and not any(u and u.get('HUDName') == 'Falcons New' for u in U.values()), ('Falcons kit after', got))
+    ok(len(new) == 8 and sum(r['PrimaryWeaponId'] == QLZ87 for r in new) == 1 and sum(r['PrimaryWeaponId'] == QBZ192 for r in new) == 5 and sum(r['PrimaryWeaponId'] == QLU11 for r in new) == 2 and U[FALCONS]['Cost'] == 85
+       and not any(wn(r['PrimaryWeaponId']) in ('QJY-88', 'QMK', 'QBU-203') for r in new) and not any(u and u.get('HUDName') == 'Falcons New' for u in U.values()), ('Falcons kit after', got))
     rec['pla_light_brigade_falcons_1126'] = {'unit': FALCONS, 'kit': got}
     print('PLA LIGHT BRIGADE FALCONS', rec['pla_light_brigade_falcons_1126'])
