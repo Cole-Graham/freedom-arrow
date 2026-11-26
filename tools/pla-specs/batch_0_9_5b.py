@@ -996,6 +996,9 @@ import fb10_hq17a_1125;print('FB-10 HQ-17A',fb10_hq17a_1125.apply(t,g,ok,rec,_he
 # ---------- China tripod weapons crewed like vanilla: gunner kneels at the weapon on the ground (Osama 25 Nov 2026 10:2x: "We need this for all
 # the tripod based weapons"). See crew_weapons_1125.py.
 import crew_weapons_1125;crew_weapons_1125.apply(t,g,ok,rec)
+# ---------- KS-23 slug 4.99 -> 3.5 and GM-94 thermobaric 5 -> 3 base damage (Lateralus 25 Nov 2026 19:0x PST). Existing rows only.
+# See lateralus/ks23_gm94_damage_1125.py.
+import ks23_gm94_damage_1125;ks23_gm94_damage_1125.apply(t,g,ok,rec)
 
 # Every disposable launcher: one round per carrier, or the vanilla row unchanged (Lateralus 23 Nov 2026 22:4x). Keep this the last section.
 rec['disposable_vanilla_multi_round']=disposable_launchers_1123.check(t,ok,a.vanilla)
