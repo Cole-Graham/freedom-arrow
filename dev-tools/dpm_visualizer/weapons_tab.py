@@ -165,10 +165,10 @@ class WeaponsTab:
         catalog = self.app.catalog
         if catalog is None:
             return
-        # Lateralus 26 Nov 2026: entries with stats and unit count, identical rows merged, deckless rows only with "All weapons";
+        # Lateralus 26 Nov 2026: entries with stats and unit count, identical rows merged, deckless rows only with "Only weapons in decks" off;
         # old "ammo [id] — weapon [id]" labels still resolve (saved charts).
         entries, self._aliases = catalog.weapon_ammo_entries()
-        shown = [e for e in entries if e["live"] or self.app.all_weapons.get()]
+        shown = [e for e in entries if e["live"] or not self.app.deck_only.get()]
         self._pair_index = {e["label"]: (e["weapon_id"], e["ammo_id"]) for e in entries}
         for old, new in self._aliases.items():
             self._pair_index.setdefault(old, self._pair_index[new])

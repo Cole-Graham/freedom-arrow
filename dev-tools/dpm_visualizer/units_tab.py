@@ -329,7 +329,7 @@ class UnitsTab:
         for old, new in self._aliases.items():
             self._pair_index.setdefault(old, self._pair_index[new])
         self._tips = {e["label"]: e["tip"] for e in entries}
-        self._shown_pairs = [e["label"] for e in entries if e["live"] or self.app.all_weapons.get()]
+        self._shown_pairs = [e["label"] for e in entries if e["live"] or not self.app.deck_only.get()]
         self.clone_armor.set_values(self.armor_names)
         for item in self.clone_weapons:
             item["pair"].set_values(self._weapon_choices(), self._tips)

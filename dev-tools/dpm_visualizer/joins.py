@@ -513,17 +513,33 @@ class Catalog:
         labels.sort(key=lambda item: item[0].lower())
         return labels
 
+    def deck_units(self) -> set[int]:
+        """Units with a card in a specialization the game shows in the hangar (ShowInHangar; FA's hidden test specs 26-28 are off), and the
+        transports of those cards (Lateralus 26 Nov 2026, "only show weapons which exist on units that are actually available in the decks").
+        Same rule for vanilla data. weapon_ammo_entries adds the units a loadout option of these swaps in."""
+        hangar = {int(i) for i, r in self.tables.get("SpecializationsJson", {}).items() if r.get("ShowInHangar")}
+        units: set[int] = set()
+        cards: set[int] = set()
+        for card_id, row in self.tables.get("SpecializationAvailabilitiesJson", {}).items():
+            if int(row.get("SpecializationId") or 0) in hangar:
+                units.add(int(row["UnitId"]))
+                cards.add(int(card_id))
+        for row in self.tables.get("TransportAvailabilitiesJson", {}).values():
+            if int(row.get("SpecializationAvailabilityId") or 0) in cards:
+                units.add(int(row["UnitId"]))
+        return units
+
     def weapon_ammo_entries(self) -> tuple[list[dict[str, Any]], dict[str, str]]:
         """Weapon + round list with stats (Lateralus 26 Nov 2026: many rows share one name; same as the website).
 
         Each entry: label "ammo [ids] — weapon [ids] · dmg · range · pen · tier · N units", weapon_id, ammo_id, live (carried by a
-        unit that can be in a deck: playable or an option's replacement unit) and tip (the unit names). Rows whose stats are the same
+        unit in a deck, see deck_units) and tip (the unit names). Rows whose stats are the same
         apart from strings, SupplyCost and ResupplyTime are one entry. Also returns old label ("ammo [id] — weapon [id]") -> new label.
         """
         from .calculations import card_range_text
 
-        in_game = set(self.playable_units())
-        for unit_id in list(in_game):  # loadout units a playable card swaps to (e.g. Marine Raiders CQC)
+        in_game = self.deck_units()
+        for unit_id in list(in_game):  # loadout units a deck card swaps to (e.g. Marine Raiders CQC)
             for mod in self.mods_by_unit.get(unit_id, []):
                 for option in self.options_by_mod.get(int(mod["Id"]), []):
                     replace = int(option.get("ReplaceUnitId") or 0)
