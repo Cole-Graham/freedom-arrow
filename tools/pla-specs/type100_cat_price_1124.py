@@ -41,5 +41,11 @@ def apply(t, g, ok, rec):
     g.put('ArmorsJson', arm, {'KinArmorFront': FRONT_KE})
     ok(A[arm]['KinArmorFront'] == FRONT_KE, 'Type 100 front KE 500')
     out['armour'] = {'row': arm, 'KinArmorFront': [ke_before, FRONT_KE], 'row_now': {k: v for k, v in A[arm].items() if 'Armor' in k or k == 'MaxHealthPoints'}}
+    # Type100ShopFix.cs (focolate's fix, Osama 26 Nov "Definitely port it") hard-codes transport 1416 and options 31361/31362/31363 ->
+    # units 1417/1418/1419. Fail the build if the data drifts from those IDs.
+    (tb,) = [i for i, u in U.items() if u and u.get('Name') == 'PLA ZBD-100 transport' and not u.get('IsUnitModification')]
+    (tm,) = [m for m in M.values() if m and m['UnitId'] == tb and m['Type'] == 3]
+    swaps = {o['Id']: o['ReplaceUnitId'] for o in O.values() if o and o['ModificationId'] == tm['Id'] and o['Order']}
+    ok(tb == 1416 and swaps == {31361: 1417, 31362: 1418, 31363: 1419}, ('Type100ShopFix IDs match the data', tb, swaps))
     rec['type100_cat_price_1124'] = out
     print('TYPE100 CAT+PRICE', out)
