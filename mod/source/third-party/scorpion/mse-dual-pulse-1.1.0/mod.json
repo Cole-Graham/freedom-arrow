@@ -1,0 +1,8 @@
+{
+  "id": "scorpion.mse.dualpulse",
+  "name": "PAC-3 MSE 双脉冲",
+  "version": "1.1.0",
+  "type": "mod",
+  "author": "Broken Arrow Mods",
+  "description": "PAC-3 MSE 保留原版首段，进入目标 500 距离单位内后可追加一次原燃烧时长 15% 的末段动力，常规转向 120°/秒。"
+}

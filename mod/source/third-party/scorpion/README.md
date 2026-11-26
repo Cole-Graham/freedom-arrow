@@ -14,8 +14,8 @@
   - **LoiteringMunition 2.0-net-alpha.3:** `Mods/LoiteringMunition.dll` 21cd6aa7d42a9377, plus `unit.json`, `network.json` and `network-lab.marker`.
     - Units 11510-11514. Multiplayer is off by default.
   - **`UserData/ScorpionBundle/manifest.json`:** every DLL checks all 8 files against it.
-- **`mse-dual-pulse-1.0.0/`:** PAC-3 MSE Dual Pulse 1.0.0 (package 89257bf6…9e53).
-  - `Mods/MseDualPulse.dll` 2e7ba4e4a5ad9d0b.
+- **`mse-dual-pulse-1.1.0/`:** PAC-3 MSE Dual Pulse 1.1.0 (package 8d462b80…7a47), replacing 1.0.0.
+  - `Mods/MseDualPulse.dll` 74de937390aeebad.
   - It is a separate DLL, not part of the bundle.
 
 ## Status (read from decompiled code; nothing run)
@@ -33,7 +33,7 @@ What they found:
   - Open (Lateralus): Split Patriot removes ability 59 from Patriots 163/251/448 and adds radar ability 14200.
 - **LoiteringMunition:** offline only by default. In normal online play its launchers fire a zero-damage carrier, so keep cards 11511/11513 out of online decks.
   - Still unproved: whether the server accepts its cost-free, non-deck spawns.
-- **Dual pulse:** calculated reach about −11% versus vanilla ammo 497 when the second pulse does not fire. Turn rate is 90 → 120 °/s.
+- **Dual pulse 1.1.0:** keeps the full vanilla first burn of 3 s. Once the target is within 500 units, it adds one extra burn of 0.45 s (15%), worth up to +180 speed, capped at 800. Reach without the second pulse is the same as vanilla. Turn rate is 90 → 120 °/s. (1.0.0 cut the first burn to 2.4 s, about −11% reach; that is now fixed.)
 
 ## Before any of this goes into a build
 1. **Source and permission:** focolate's source code, plus their OK to ship it in FA. Only DLLs were delivered; the decompiled code is not committed.
@@ -46,3 +46,4 @@ What they found:
 
 ## Document change log
 - 2026-11-25 14:15:14 PST (America/Los_Angeles): Staged bundle 1.0.1 and dual pulse 1.0.0 on their own branch (Osama: keep them away from the live build).
+- 2026-11-25 16:25:48 PST (America/Los_Angeles): Dual pulse updated to 1.1.0 (full first burn plus a 15% terminal pulse).
