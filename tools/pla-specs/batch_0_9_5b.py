@@ -1033,8 +1033,9 @@ import pla_light_brigade_tiger_1126   # Tiger Brigade (Marines Assault) 80 pts, 
 import pla_light_brigade_falcons_1126   # 'Falcons New': Falcons copy, 2 MGs -> QLZ-87 + QBZ-192, QMK -> QBZ-192 (Osama 26 Nov 02:4x)
 import pla_light_brigade_transports2_1126   # ZSL-191 off Light CAB (Medium CAB), ZBD-05/ZSD-05 off Light CAB (PLAN) (Osama 26 Nov 02:5x)
 import pla_light_brigade_j50_hq22_1126   # J-50 = J-20S clone (turn800, stealth 2.2, 275), PL-16 flash 3.5, HQ-22 range 2200 card / 125 pts, Y-8 -> Light CAB (Osama 26 Nov 03:0x)
+import pla_light_brigade_names_1126   # Beijing Swords -> Flying Tigers (Osama 26 Nov 03:0x)
 import pla_light_brigade_qlu11_1126   # PLAAF QLU-11 Team 4 men, 2 QLU-11, 60 pts (Osama 26 Nov 02:1x)
-with g.scope('plb'):pla_light_brigade_units_1126.apply(t,g,ok,rec);pla_light_brigade_jiaolong_1126.apply(t,g,ok,rec);pla_light_brigade_qlu11_1126.apply(t,g,ok,rec);pla_light_brigade_transports_1126.apply(t,g,ok,rec);pla_light_brigade_tiger_1126.apply(t,g,ok,rec);pla_light_brigade_falcons_1126.apply(t,g,ok,rec);pla_light_brigade_transports2_1126.apply(t,g,ok,rec);pla_light_brigade_j50_hq22_1126.apply(t,g,ok,rec)
+with g.scope('plb'):pla_light_brigade_units_1126.apply(t,g,ok,rec);pla_light_brigade_jiaolong_1126.apply(t,g,ok,rec);pla_light_brigade_qlu11_1126.apply(t,g,ok,rec);pla_light_brigade_transports_1126.apply(t,g,ok,rec);pla_light_brigade_tiger_1126.apply(t,g,ok,rec);pla_light_brigade_falcons_1126.apply(t,g,ok,rec);pla_light_brigade_transports2_1126.apply(t,g,ok,rec);pla_light_brigade_j50_hq22_1126.apply(t,g,ok,rec);pla_light_brigade_names_1126.apply(t,g,ok,rec)
 # ---------- QLZ-87 icon from Osama's photo (26 Nov 2026 02:2x); stats already = QLZ-04, min range 25 for Lateralus. See qlz87_icon_1126.py.
 import qlz87_icon_1126;qlz87_icon_1126.apply(t,g,ok,rec)
 import roc_hook;roc_hook.apply(t,g,ok,rec,recheck=lambda:(disposable_launchers_1123.check(t,ok,a.vanilla),weapon_coverage_check.check(t,patches,ok)))
