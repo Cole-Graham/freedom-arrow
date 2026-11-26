@@ -11,11 +11,14 @@ inside g.scope('plb'), after the PAP and ZSL-92 sections.
   place of the AGS crew body. The QLZ-87 Teams keep the tripod QLZ-87 (04:2x: "the QLZ-87 team for the rocket reservists use a tripod version,
   this is seperate from all of our new ones. The new ones are the hand held version that have the QLU-11 model for now").
 - 04:2x "Qirborne, QJY-88 replaced with QJB-161": Airborne 空降兵 (1136, PLAAF): its QJY-88 gunner carries the QJS-161 (2011922, the 5.8 mm LMG;
-  there is no QJB-161 row, read as the QJS-161), 400 rounds as its other China rows. Card + ammo rows follow."""
+  there is no QJB-161 row, read as the QJS-161), 400 rounds as its other China rows. Card + ammo rows follow.
+- 04:5x "FK-3000 given to light CAB": FK-3000 (1447) gets a Light CAB card, a copy of its Medium CAB row (4 cards); the Medium CAB keeps it
+  ("given", as the Z-20 / Z-18 cards)."""
 PATROL, ZBD04, PLAN = 1196, 1308, 20
 JIUTIAN, JIUTIAN_ROW = 1095, 2008949
 QLZ87, QLU11 = 2012157, 2004002
 AIRBORNE, QJS161, QJS161_A = 1136, 2011922, 2011923
+FK3000 = 1447
 
 
 def apply(t, g, ok, rec):
@@ -53,5 +56,8 @@ def apply(t, g, ok, rec):
     for r in rows('WeaponAmmunitionsJson', UnitId=AIRBORNE, WeaponId=q88): g.put('WeaponAmmunitionsJson', r['Id'], {'WeaponId': QJS161, 'AmmunitionId': QJS161_A, 'Quantity': 400})
     carried = {w for r in rows('SquadMembersJson', UnitId=AIRBORNE) for w in (r['PrimaryWeaponId'], r['SpecialWeaponId']) if w}
     ok({r['WeaponId'] for r in rows('SquadWeaponsJson', UnitId=AIRBORNE)} == carried == {r['WeaponId'] for r in rows('WeaponAmmunitionsJson', UnitId=AIRBORNE)} and q88 not in carried, 'Airborne: card + ammo = carried, no QJY-88')
+    fk = rows('SpecializationAvailabilitiesJson', UnitId=FK3000)
+    ok(U[FK3000]['HUDName'] == 'FK-3000' and len(fk) == 1 and fk[0]['SpecializationId'] == 21, 'FK-3000: one Medium CAB card row')
+    g.add('SpecializationAvailabilitiesJson', fk[0], {'SpecializationId': light})
     rec['pla_light_brigade_late_1126'] = {'mountaineers': PATROL, 'zbd04_plan_cards': src[0]['MaxAvailabilityXp0']}
     print('PLA LIGHT BRIGADE LATE', rec['pla_light_brigade_late_1126'])
