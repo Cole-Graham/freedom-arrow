@@ -3581,6 +3581,16 @@
       "address": "FA_PLA_WP_PF98T",
       "native_weapon": 172,
       "basis": "Osama-supplied tripod PF-98 image (12 Nov 04:40), measured source edges"
+    },
+    {
+      "weapon": 365,
+      "name": "MTL-30",
+      "scope": "INFANTRY",
+      "mode": "custom",
+      "profile": "MTL30",
+      "address": "FA_US_WP_MTL30",
+      "native_weapon": 365,
+      "basis": "Osama-supplied MTL-30 photo (25 Nov 2026), tools/icons-src/make_mtl30.py; cosmetic rename of the XM25 Punisher, stats unchanged"
     }
   ],
   "vehicle_weapons": 307,
