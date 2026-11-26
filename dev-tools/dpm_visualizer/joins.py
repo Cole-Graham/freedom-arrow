@@ -530,9 +530,30 @@ class Catalog:
                     if replace:
                         in_game.add(replace)
         users: dict[tuple[int, int], set[int]] = defaultdict(set)
+        used_cache: dict[int, set[int]] = {}
+
+        def used(unit_id: int) -> set[int]:
+            """Weapons the unit really has: carried by a soldier, or on one of its stock, loadout-option or child turrets. Vanilla keeps
+            ammo rows for weapons nobody has (89 on squads, e.g. Spetsnaz Alpha RPL-7; 42 on vehicles) - Lateralus 26 Nov 2026."""
+            if unit_id not in used_cache:
+                weapons = set(self.member_weapon_counts.get(unit_id, {}))
+                todo = list(self.turrets_by_unit.get(unit_id, []))
+                for mod in self.mods_by_unit.get(unit_id, []):
+                    for option in self.options_by_mod.get(int(mod["Id"]), []):
+                        todo += [int(v) for k, v in option.items() if k.startswith("Turret") and k.endswith("Id") and k[6:-2].isdigit() and v]
+                seen: set[int] = set()
+                while todo:
+                    turret = todo.pop()
+                    if turret in seen:
+                        continue
+                    seen.add(turret)
+                    weapons.update(self.weapons_by_turret.get(turret, []))
+                    todo += self.children_by_turret.get(turret, [])
+                used_cache[unit_id] = weapons
+            return used_cache[unit_id]
+
         for (unit_id, weapon_id), choices in self.ammo_by_unit_weapon.items():
-            carried = self.member_weapon_counts.get(unit_id)
-            if carried and weapon_id not in carried:  # vanilla keeps ammo rows for weapons no soldier has (Spetsnaz Alpha RPL-7)
+            if weapon_id not in used(unit_id):
                 continue
             for choice in choices:
                 users[(weapon_id, choice.ammunition_id)].add(unit_id)
