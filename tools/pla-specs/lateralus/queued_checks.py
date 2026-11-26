@@ -248,6 +248,8 @@ if m>=key('0.9.5-dev.34'):
             _want={i:f for i,f in _want.items() if int(i) not in _rekit}
         # Lateralus 24 Nov 2026 (infantry_launchers_1124.py b3de3d66, Thermobaric Assault 9 -> 8 men): rifleman 2015623 removed from 0.9.7-dev.1.
         if _tab=='SquadMembersJson.json' and m>=key('0.9.7-dev.1'):_want.pop('2015623',None)
+        # Osama 25 Nov 2026 18:3x (snow_leopards_qbs_1125.py 077d648c, checked there): PAP Snow Leopards QCQ-171 man 2015311 now a QBS-09, priority 2.
+        if _tab=='SquadMembersJson.json' and m>=key('0.9.7-dev.22'):_want.pop('2015311',None)
         bad+=[f'{_tab} {i} {k}={(_t.get(int(i)) or {}).get(k)} (want {v}, infantry_order_1122.py)' for i,f in _want.items() for k,v in f.items() if (_t.get(int(i)) or {}).get(k)!=v]
     # Lateralus 22 Nov 17:1x: QCW-05 = the KNT MP5SD6 amount (160), QBU-191 100 (infantry_ammo_1122.py).
     _wa=merged('WeaponAmmunitionsJson.json','weapon_ammunitions.json')
