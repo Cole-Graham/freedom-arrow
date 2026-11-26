@@ -1030,7 +1030,7 @@ import pla_light_brigade_jiaolong_1126
 # Jiaolong CQC (Osama 26 Nov 02:0x): QBZ URGI (Mk18 copy) + Sea Dragons CQC kit; same 'plb' scope, after the Test SF copy.
 import pla_light_brigade_transports_1126   # Moto. Riflemen -> Light CAB, ZBL-08 for PLAN, WZ-551 for Light CAB (Osama 26 Nov 02:2x)
 import pla_light_brigade_tiger_1126   # Tiger Brigade (Marines Assault) 80 pts, PTL-02 + CSK-131/CSK-181 to Light CAB (Osama 26 Nov 02:3x-02:4x)
-import pla_light_brigade_falcons_1126   # 'Falcons New': Falcons copy, 2 MGs -> QLZ-87 + QBZ-192, QMK -> QBZ-192 (Osama 26 Nov 02:4x)
+import pla_light_brigade_falcons_1126   # Falcons take the 'Falcons New' kit: 2 MGs -> QLZ-87 + QBZ-192, QMK -> QBZ-192 (Osama 26 Nov 02:4x, 04:1x)
 import pla_light_brigade_transports2_1126   # ZSL-191 off Light CAB (Medium CAB), ZBD-05/ZSD-05 off Light CAB (PLAN) (Osama 26 Nov 02:5x)
 import pla_light_brigade_j50_hq22_1126   # J-50 = J-20S clone (turn800, stealth 2.2, 275), PL-16 flash 3.5, HQ-22 range 2200 card / 125 pts, Y-8 -> Light CAB (Osama 26 Nov 03:0x)
 import pla_light_brigade_names_1126   # Beijing Swords -> Flying Tigers (Osama 26 Nov 03:0x)
