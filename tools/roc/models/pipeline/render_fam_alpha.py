@@ -17,10 +17,12 @@ for bone,subs in read_fam(fam):
             for li in poly.loop_indices:
                 vi=me.loops[li].vertex_index;uvl.data[li].uv=(sb['uv'][2*vi],1+sb['uv'][2*vi+1])
         t=sb['tex'];kk=(t,tuple(round(x,4) for x in sb['col'])) if not t else t
-        _key=(t or '')+'|'+','.join(f'{x:.4f}' for x in sb['col']);_g=MJ.get(_key,{}).get('clearGlass')
+        _key=(t or '')+'|'+','.join(f'{x:.4f}' for x in sb['col']);_g=MJ.get(_key,{}).get('clearGlass') or MJ.get(_key,{}).get('cockpitDonor')   # 26 Nov: donor glass shown as a light grey tint (US_F16_Glass is grey 0.35, no colour map)
         if _g:kk=('__glass__',)
         if _g and kk not in mats:
-            m=bpy.data.materials.new('clearGlass');m.use_nodes=True;b=m.node_tree.nodes['Principled BSDF'];b.inputs['Base Color'].default_value=(1,1,1,1);b.inputs['Roughness'].default_value=0.05;b.inputs['Alpha'].default_value=max(0.12,MJ[_key].get('opacity',0.1));mats[kk]=m
+            m=bpy.data.materials.new('clearGlass');m.use_nodes=True;b=m.node_tree.nodes['Principled BSDF'];b.inputs['Base Color'].default_value=(1,1,1,1);b.inputs['Roughness'].default_value=0.05;b.inputs['Alpha'].default_value=max(0.12,MJ[_key].get('opacity',0.1))
+            if MJ[_key].get('cockpitDonor'):b.inputs['Base Color'].default_value=(0.35,0.35,0.35,1);b.inputs['Alpha'].default_value=0.3
+            mats[kk]=m
         if kk not in mats:
             m=bpy.data.materials.new(t);m.use_nodes=True;nt=m.node_tree;b=nt.nodes['Principled BSDF']
             if t and os.path.exists(os.path.join(d,t)):
@@ -29,8 +31,13 @@ for bone,subs in read_fam(fam):
                 mk=os.path.join(d,t[:-4]+'_mask.png')
                 if os.path.exists(mk):
                     km=nt.nodes.new('ShaderNodeTexImage');km.image=bpy.data.images.load(mk);km.image.colorspace_settings.name='Non-Color';sp=nt.nodes.new('ShaderNodeSeparateColor');nt.links.new(km.outputs[0],sp.inputs[0]);nt.links.new(sp.outputs[0],b.inputs['Metallic'])
-                    iv=nt.nodes.new('ShaderNodeMath');iv.operation='SUBTRACT';iv.inputs[0].default_value=1;nt.links.new(km.outputs['Alpha'],iv.inputs[1]);nt.links.new(iv.outputs[0],b.inputs['Roughness'])
-            else:b.inputs['Base Color'].default_value=tuple(sb['col'])
+                    P=MJ.get(_key,{});mr=P.get('metallicRemap',[0,1]);sr=P.get('smoothnessRemap',[0,1])   # 26 Nov: FAModels metallic/smoothness remaps
+                    rm=nt.nodes.new('ShaderNodeMapRange');rm.inputs[3].default_value,rm.inputs[4].default_value=mr;nt.links.new(sp.outputs[0],rm.inputs[0]);nt.links.new(rm.outputs[0],b.inputs['Metallic'])
+                    rs=nt.nodes.new('ShaderNodeMapRange');rs.inputs[3].default_value,rs.inputs[4].default_value=1-sr[0],1-sr[1];nt.links.new(km.outputs['Alpha'],rs.inputs[0]);nt.links.new(rs.outputs[0],b.inputs['Roughness'])
+                elif _key in MJ:b.inputs['Metallic'].default_value=MJ[_key].get('metallic',0.1);b.inputs['Roughness'].default_value=1-MJ[_key].get('smoothness',0.3)
+            else:
+                b.inputs['Base Color'].default_value=tuple(sb['col'])
+                if _key in MJ:b.inputs['Metallic'].default_value=MJ[_key].get('metallic',0.1);b.inputs['Roughness'].default_value=1-MJ[_key].get('smoothness',0.3)
             mats[kk]=m
         me.materials.append(mats[kk]);o=bpy.data.objects.new(me.name,me);bpy.context.collection.objects.link(o)
 xs=[p[0] for p in allp];ys=[p[1] for p in allp];zs=[p[2] for p in allp];c=((min(xs)+max(xs))/2,(min(ys)+max(ys))/2,(min(zs)+max(zs))/2);size=max(max(xs)-min(xs),max(ys)-min(ys),max(zs)-min(zs))

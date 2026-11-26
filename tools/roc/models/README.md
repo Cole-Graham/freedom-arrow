@@ -92,6 +92,16 @@ Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `inf
 - **Glass:** both canopies use `clearGlass`. The F-16A's targeting-system material shares the interior texture, so that texture is stored twice (tex0 and tex4, 5.6 MB in the Arsenal); not fixed.
 - Recipe: `pipeline/new6_raw.sh`, `pipeline/new6_finish.sh`, `pipeline/stage_roc.py` (paint section).
 
+## Plane finish and vanilla F-16 glass, as on the French preview (26 November 2026, afternoon)
+
+**All 7 ROC planes now use the finish of the French-preview Rafale and Mirage. The 5 fighters use the game's own F-16 canopy glass (Osama: "use the Rafale and mirage materials we have on the French preview ... on all the planes", "vanilla f-16 glass transplant from vanilla for all the fighters"). Not yet seen in game.**
+
+- **Glass (F-16A, F-16V, F-5F, F-CK-1, Mirage 2000-5):** `cockpitDonor US_F16_Glass`, the same as the French Rafale and Mirage. Until the F-16 glass is in memory, the old clear glass is the `fallback`. The canopy UVs are squeezed into the vanilla F-16 glass patch (`glassuv.py`, u 0.003-0.145, v 0.928-0.998) in all 4 files of each plane, so the soap-film map shows as a faint tint, not waves. This replaces the clear glass of the morning. The F-5F's dark blue and green canopy colours no longer show (the donor ignores them). The C-130HE keeps clear glass (it is not a fighter).
+- **Mirage 2000-5:** the same C5 FBX as the French Mirage 2000D (`m_mirage2k`, md5 1620dec6). Shawn's folder also has its metal and roughness maps (downloaded now), so the mask is built from them and used as painted (metallic 1 / smoothness 0 in the .mat.json, as `m_mirage2k`). Both paint schemes share it.
+- **F-16A, F-16V:** the seller's specular maps (F-16A `combat_jet_alternative2_specular`, `combat_jet_interior_specular`; F-16V `F16_Body_Spec`) become the mask (metal and smoothness = normalised specular). The Rafale ranges apply: metal 0.35-0.45, smoothness 0.35-0.80.
+- **F-5F, F-CK-1, C-130HE, Chung Hsiang II:** no metal or gloss maps came with them, so they get the Rafale's middle values on every part: metallic 0.40, smoothness 0.55. The F-5F's untextured parts had been metallic 1 / smoothness 1 (mirror-like).
+- Originals: `veh/x/<slug>/pre-matfix/`. Recipe: `pipeline/plane_finish.py` (reads the originals, so a rerun does not squeeze the UVs twice). `render_fam_alpha.py` now shows the remaps and the donor glass (as a grey tint).
+
 ## Document change log
 
 - 2026-11-25 03:4x PST (America/Los_Angeles) — T91 rifle converted; recipe and first grip offset.
@@ -102,3 +112,4 @@ Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `inf
 - 2026-11-26 02:51 PST (America/Los_Angeles) — AH-64E, F-CK-1, C-130HE and Chung Hsiang II converted; Antelope textures replaced; stage includes infantry and T91.
 - 2026-11-26 03:11 PST (America/Los_Angeles) — M60A3 TTS converted; canopy glass fixed on 4 aircraft; LOD material files; Armory texture budget on 13 models.
 - 2026-11-26 12:54 PST (America/Los_Angeles) — F-16A and Mirage 2000-5 converted; Mirage second skin as a paint scheme through a ROC paint add-on file.
+- 2026-11-26 14:52 PST (America/Los_Angeles) — French-preview finish on all 7 ROC planes; vanilla F-16 glass on the 5 fighters.
