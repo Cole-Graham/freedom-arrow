@@ -651,6 +651,9 @@
   },
   "6005": {
    "set": "Infantry/Regular"
+  },
+  "6006": {
+   "set": "Vehicle/Regular"
   }
  },
  "fallback": {
