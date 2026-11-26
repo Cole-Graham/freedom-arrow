@@ -305,7 +305,7 @@ else:
       if _vkey(V)>=_vkey('0.9.1-dev.2'):assert not set(RENAMED_DLLS)&set(names) and set(RENAMED_DLLS.values())<=set(gz.namelist()),'old DLL names left or FA names missing'
 # Lateralus 13 Nov 2026: dev.18-20 changed FAModels.dll and ZSL-92 textures in the complete package only, but the receipt
 # kept saying assets 0.2.0, so "gameplay + assets 0.2.0" failed the runtime's hash check. Check the real assets package.
-vt=lambda v:tuple(int(x) for x in v.split('.'))
+vt=lambda v:tuple(int(x) for x in re.match(r'\d+(?:\.\d+)*',v).group(0).split('.'))   # ROC branch: tolerate a -rocN suffix
 paired=Path(a.assets or prev['assets'].get('path') or sys.exit(f'{a.prev} receipt names no assets path; pass --assets'));assets=paired
 def differ(assets):
     with zipfile.ZipFile(complete) as c,zipfile.ZipFile(assets) as az:
@@ -323,6 +323,7 @@ if mismatch:
     # files were all named 0.2.52. The next number counts every build in the one record, out/receipts (repo cleanup step 1).
     known=[json.loads(f.read_text()).get('assets_version','0.0.0') for f in RCPT.glob('FreedomArrow-0.*.json')]
     x=max([AV,*known],key=vt).split('.');NV='.'.join(x[:-1]+[str(int(x[-1])+1)])
+    if re.search(r'-roc\d+$',V):NV=AV.split('-')[0]+'-'+V.rsplit('-',1)[1]   # ROC branch: a ROC test build's models never take a live number (0.2.104-roc4)
     print(f'Model files differ from assets {AV} ({len(mismatch)}: {mismatch[:5]}). Making assets {NV}.',flush=True)
     assets=out/f'FreedomArrow-Assets-{NV}.bamod';made=make_assets.build(complete,paired,NV,V,assets,a.zip)
     AV,left=differ(assets);assert AV==NV and not left,left[:10]
