@@ -6,7 +6,7 @@ Infantry Elite (10); 2x M1014, 2x Mk18 CQBR, 2x QJS-161, 6x PF-97, 2x QCQ-05). B
 - Sea Dragons 蛟龙 (1191, PLAN) = the CQC kit: 2 QBS-09 (the China M1014: identical stats), 2 QBZ URGI, 2 QJS-161, 2 QCQ-05; PF-97 on the URGI, QJS-161
   and QCQ-05 men (6). Death priority: leader (URGI) 1, QJS-161 gunners 2, others 3, one QCQ-05 man 4. Ammo per carrier as their other China rows
   (QBS-09 96, QJS-161 400, QCQ-05 20, PF-97 1); URGI 240 (the Mk18's). 55 -> 65 pts, 3 -> 2 cards, armour 'Armor Infantry Elite 8Men' (272: 10, 40 HP).
-  The Stand-off loadout comes later."""
+  The Stand-off loadout comes later. 26 Nov 10:4x "Sea Dragons 70 points": 65 -> 70."""
 SEA, MK18, MK18_AMMO, ELITE8 = 1191, 67, 143, 272
 QBS, QBS_A, QJS, QJS_A, QCQ, QCQ_A, PF97, PF97_A = 2012131, 2012132, 2011922, 2011923, 2012924, 2012925, 2012515, 2012516
 MEN = [2015385, 2015386, 2015387, 2015388, 2015389, 2015390, 2015391, 2015392]
@@ -32,7 +32,7 @@ def apply(t, g, ok, rec):
         if i < 4: g.put('SquadWeaponsJson', sw[i]['Id'], {'WeaponId': w}); g.put('WeaponAmmunitionsJson', wa[i]['Id'], {'WeaponId': w, 'AmmunitionId': a, 'Quantity': q})
         else: g.add('SquadWeaponsJson', sw[0], {'WeaponId': w}); g.add('WeaponAmmunitionsJson', wa[0], {'WeaponId': w, 'AmmunitionId': a, 'Quantity': q})
     ua = rows('UnitArmorsJson', UnitId=SEA); ok(len(ua) == 1, 'one armour row'); g.put('UnitArmorsJson', ua[0]['Id'], {'ArmorId': ELITE8})
-    g.put('Units', SEA, {'Cost': 65})
+    g.put('Units', SEA, {'Cost': 70})   # 10:4x 'Sea Dragons 70 points' (was 65)
     card = rows('SpecializationAvailabilitiesJson', UnitId=SEA); ok(len(card) == 1 and card[0]['MaxAvailabilityXp0'] == 3, 'one card row, 3 cards')
     g.put('SpecializationAvailabilitiesJson', card[0]['Id'], {'MaxAvailabilityXp0': 2})
     # checks after
@@ -43,5 +43,5 @@ def apply(t, g, ok, rec):
     ok(same(W[urgi], W[MK18], ('Id', 'Name', 'HUDName')) and same(A[urgi_a], A[MK18_AMMO], ('Id', 'Name', 'HUDName')), 'QBZ URGI = Mk18 CQBR stats')
     ok(len(men) == 8 and sum(r['SpecialWeaponId'] == PF97 for r in men) == 6, '8 men, 6 PF-97')
     got = sorted((wn(r['PrimaryWeaponId']), wn(r['SpecialWeaponId']), r['DeathPriority']) for r in men)
-    rec['pla_light_brigade_jiaolong_1126'] = {'urgi': urgi, 'urgi_ammo': urgi_a, 'kit': got, 'cost': 65, 'cards': 2}
+    rec['pla_light_brigade_jiaolong_1126'] = {'urgi': urgi, 'urgi_ammo': urgi_a, 'kit': got, 'cost': 70, 'cards': 2}
     print('PLA LIGHT BRIGADE JIAOLONG', rec['pla_light_brigade_jiaolong_1126'])
