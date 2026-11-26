@@ -22,6 +22,9 @@ def _id_from_label(label: str) -> int | None:
         return None
 
 
+
+MAX_CUSTOM_WEAPONS = 10
+
 class WeaponsTab:
     def __init__(self, parent: ttk.Frame, app):
         self.app = app
@@ -30,6 +33,8 @@ class WeaponsTab:
         self.armor_names: list[str] = []
         self.unit_names: list[str] = []
         self._pair_index: dict[str, tuple[int, int]] = {}
+        self._aliases: dict[str, str] = {}
+        self._tips: dict[str, str] = {}
         self._series_meta: list[dict[str, Any]] = []
         self._cover = Cover()
         self._silhouette: tuple[float, float] | None = None
@@ -160,18 +165,25 @@ class WeaponsTab:
         catalog = self.app.catalog
         if catalog is None:
             return
-        pairs = catalog.weapon_ammo_labels()
-        self._pair_index = {label: (weapon_id, ammo_id) for label, weapon_id, ammo_id in pairs}
+        # Lateralus 26 Nov 2026: entries with stats and unit count, identical rows merged, deckless rows only with "All weapons";
+        # old "ammo [id] — weapon [id]" labels still resolve (saved charts).
+        entries, self._aliases = catalog.weapon_ammo_entries()
+        shown = [e for e in entries if e["live"] or self.app.all_weapons.get()]
+        self._pair_index = {e["label"]: (e["weapon_id"], e["ammo_id"]) for e in entries}
+        for old, new in self._aliases.items():
+            self._pair_index.setdefault(old, self._pair_index[new])
+        self._tips = {e["label"]: e["tip"] for e in entries}
+        pairs = [(e["label"], e["weapon_id"], e["ammo_id"]) for e in shown]
         self.weapon_names = [label for label, _, _ in pairs]
         self.weapon_names.extend(sorted(self.app.custom_weapons))
         self.armor_names = catalog.armor_menu_labels()
         self.unit_names = [catalog.unit_label(uid) for uid in catalog.playable_units()]
         self.unit_names.extend(sorted(self.app.custom_units))
         for row in self.rows:
-            row["weapon"].set_values(self.weapon_names)
+            row["weapon"].set_values(self.weapon_names, self._tips)
         self.target_armor.set_values(self.armor_names)
         self.target_unit.set_values(self.unit_names)
-        self.load_existing.set_values([label for label, _, _ in pairs])
+        self.load_existing.set_values([label for label, _, _ in pairs], self._tips)
         self.cover_ctl.update_info()
         if self.weapon_names and not self.rows[0]["weapon"].get():
             self.rows[0]["weapon"].set(self.weapon_names[0])
@@ -184,6 +196,7 @@ class WeaponsTab:
         visible = tk.BooleanVar(value=True)
         ttk.Checkbutton(frame, variable=visible, command=self._touch).pack(side=tk.LEFT)
         weapon = SearchableCombobox(frame, values=self.weapon_names, width=40, on_select=lambda _v: self._touch())
+        weapon.set_values(self.weapon_names, self._tips)
         weapon.pack(side=tk.LEFT, fill=tk.X, expand=True)
         qty = tk.IntVar(value=1)
         ttk.Spinbox(frame, from_=1, to=10, textvariable=qty, width=4).pack(side=tk.LEFT, padx=4)
@@ -206,7 +219,7 @@ class WeaponsTab:
         if not pair:
             raise ValueError(f"Unknown weapon {label}")
         weapon_id, ammo_id = pair
-        return catalog.weapons[weapon_id], catalog.ammos[ammo_id], label
+        return catalog.weapons[weapon_id], catalog.ammos[ammo_id], label.split(" · ")[0]
 
     def _resolve_armor(self) -> dict[str, Any]:
         catalog = self.app.catalog
@@ -468,12 +481,22 @@ class WeaponsTab:
             messagebox.showerror("DPM", "Numeric fields must be numbers.")
             return
         key = f"[custom] {name}"
+        # Lateralus 26 Nov 2026: keep at most 10 custom weapons; saving moves a weapon to the newest place, and an 11th replaces the oldest.
+        # A weapon a custom unit still uses is kept while an unused one can go instead.
+        self.app.custom_weapons.pop(key, None)
         self.app.custom_weapons[key] = {"weapon": weapon, "ammo": ammo}
+        removed = []
+        while len(self.app.custom_weapons) > MAX_CUSTOM_WEAPONS:
+            used = {w.get("custom_weapon") for u in self.app.custom_units.values() for w in u.get("weapons") or []}
+            older = [k for k in self.app.custom_weapons if k != key]
+            victim = next((k for k in older if k not in used), older[0])
+            del self.app.custom_weapons[victim]
+            removed.append(victim)
         self.app.save_user_data()
         self.refresh_lists()
         self.app.units_tab.refresh_lists()  # the custom unit editor lists custom weapons too
         self._update_preview()
-        messagebox.showinfo("DPM", f"Saved {key}")
+        messagebox.showinfo("DPM", f"Saved {key}" + (f"\nRemoved the oldest: {', '.join(removed)} (limit {MAX_CUSTOM_WEAPONS})" if removed else ""))
 
     def save_tab_state(self) -> dict[str, Any]:
         return {
@@ -522,11 +545,11 @@ class WeaponsTab:
                 self.add_row()
             while len(rows) and len(self.rows) > len(rows):
                 self.remove_row()
-            known = set(self.weapon_names) | set(self.app.custom_weapons)
+            known = set(self.weapon_names) | set(self.app.custom_weapons) | set(self._pair_index)
             for row, saved in zip(self.rows, rows):
                 weapon = saved.get("weapon") or ""
                 if weapon and weapon in known:
-                    row["weapon"].set(weapon)
+                    row["weapon"].set(weapon if weapon in self.app.custom_weapons else self._aliases.get(weapon, weapon))
                 row["visible"].set(bool(saved.get("visible", True)))
                 if saved.get("qty") is not None:
                     try:

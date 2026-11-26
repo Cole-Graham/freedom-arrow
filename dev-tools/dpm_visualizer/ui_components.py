@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import tkinter as tk
+import tkinter.font as tkfont
 from tkinter import ttk
 from typing import Callable
 
@@ -14,6 +15,8 @@ class SearchableCombobox(ttk.Frame):
         super().__init__(parent)
         self._original_values = list(values or [])
         self.values = list(self._original_values)
+        self.tips: dict[str, str] = {}
+        self.tip_label = None
         self.on_select = on_select
         self.var = tk.StringVar()
         self.entry = ttk.Entry(self, textvariable=self.var, width=width)
@@ -41,9 +44,11 @@ class SearchableCombobox(ttk.Frame):
             self.popup.destroy()
         super().destroy()
 
-    def set_values(self, values) -> None:
+    def set_values(self, values, tips: dict[str, str] | None = None) -> None:
+        """tips: text shown under the list for the entry under the mouse (e.g. the units that carry a weapon)."""
         self._original_values = list(values)
         self.values = list(values)
+        self.tips = dict(tips or {})
         if self.listbox:
             self.update_listbox()
 
@@ -87,6 +92,9 @@ class SearchableCombobox(ttk.Frame):
             scrollbar.config(command=self.listbox.yview)
             self.listbox.bind("<Button-1>", self.on_listbox_select)
             self.listbox.bind("<Double-Button-1>", self.on_listbox_select)
+            self.listbox.bind("<Motion>", self._show_tip)
+            self.tip_label = ttk.Label(self.popup, text="", wraplength=880, justify=tk.LEFT, padding=(4, 2))
+            self.tip_label.pack(side=tk.BOTTOM, fill=tk.X, before=frame)
         if not hasattr(SearchableCombobox, "_root_click_bound"):
             root.bind("<ButtonRelease-1>", self._root_release, add="+")
             SearchableCombobox._root_click_bound = True
@@ -138,9 +146,17 @@ class SearchableCombobox(ttk.Frame):
         self.update_idletasks()
         x = self.winfo_rootx()
         y = self.winfo_rooty() + self.winfo_height()
-        width = max(self.winfo_width(), 240)
-        height = min(240, max(40, len(self.values) * 18 + 8))
+        longest = max((tkfont.nametofont("TkDefaultFont").measure(v) for v in self._original_values[:2000]), default=0)
+        width = max(self.winfo_width(), 240, min(longest + 40, 980))
+        height = min(240, max(40, len(self.values) * 18 + 8)) + (40 if self.tips else 0)
         self.popup.geometry(f"{width}x{height}+{x}+{y}")
+
+    def _show_tip(self, event) -> None:
+        if not self.listbox or not self.tip_label:
+            return
+        index = self.listbox.nearest(event.y)
+        value = self.listbox.get(index) if 0 <= index < self.listbox.size() else ""
+        self.tip_label.config(text=self.tips.get(value, ""))
 
     def hide_dropdown(self) -> None:
         if self.popup:

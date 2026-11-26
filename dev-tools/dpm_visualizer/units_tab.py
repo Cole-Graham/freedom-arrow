@@ -170,13 +170,17 @@ class UnitsTab:
         self.clone_weapons_frame.pack(fill=tk.X)
         self.clone_weapons: list[dict[str, Any]] = []
         self._pair_index: dict[str, tuple[int, int]] = {}
+        self._aliases: dict[str, str] = {}
+        self._tips: dict[str, str] = {}
+        self._shown_pairs: list[str] = []
 
     def _add_custom_weapon(self, label: str = "", count: int = 1) -> None:
         line = ttk.Frame(self.clone_weapons_frame)
         line.pack(fill=tk.X, pady=1)
         pair = SearchableCombobox(line, values=self._weapon_choices(), width=60)
+        pair.set_values(self._weapon_choices(), self._tips)
         pair.pack(side=tk.LEFT)
-        pair.set(label)
+        pair.set(self._aliases.get(label, label))
         number = tk.IntVar(value=count)
         ttk.Spinbox(line, from_=0, to=50, textvariable=number, width=4).pack(side=tk.LEFT, padx=4)
         item = {"frame": line, "pair": pair, "count": number}
@@ -185,7 +189,7 @@ class UnitsTab:
 
     def _weapon_choices(self) -> list[str]:
         """Game weapon + ammo pairs, then the profile's custom weapons (Lateralus 25 Nov 2026: custom weapons in custom units)."""
-        return sorted(self._pair_index) + sorted(self.app.custom_weapons)
+        return list(self._shown_pairs) + sorted(self.app.custom_weapons)
 
     def _remove_custom_weapon(self, item: dict[str, Any]) -> None:
         item["frame"].destroy()
@@ -197,7 +201,8 @@ class UnitsTab:
 
     def _pair_label(self, weapon_id: int, ammo_id: int) -> str:
         catalog = self.app.catalog
-        return f"{catalog.ammo_label(ammo_id)} — {catalog.weapon_label(weapon_id)}"
+        old = f"{catalog.ammo_label(ammo_id)} — {catalog.weapon_label(weapon_id)}"
+        return self._aliases.get(old, old)
 
     def _set_custom_armor(self, armor: dict[str, Any]) -> None:
         for field, var in self.clone_armor_vars.items():
@@ -318,10 +323,16 @@ class UnitsTab:
         self.target_unit.set_values(self.unit_names)
         self.target_armor.set_values(self.armor_names)
         self.clone_from.set_values(self.unit_names)
-        self._pair_index = {label: (w, a) for label, w, a in catalog.weapon_ammo_labels()}
+        # Same weapon list as the Weapons tab (Lateralus 26 Nov 2026): stats, unit count, identical rows merged, old labels resolve.
+        entries, self._aliases = catalog.weapon_ammo_entries()
+        self._pair_index = {e["label"]: (e["weapon_id"], e["ammo_id"]) for e in entries}
+        for old, new in self._aliases.items():
+            self._pair_index.setdefault(old, self._pair_index[new])
+        self._tips = {e["label"]: e["tip"] for e in entries}
+        self._shown_pairs = [e["label"] for e in entries if e["live"] or self.app.all_weapons.get()]
         self.clone_armor.set_values(self.armor_names)
         for item in self.clone_weapons:
-            item["pair"].set_values(self._weapon_choices())
+            item["pair"].set_values(self._weapon_choices(), self._tips)
         self.cover_ctl.update_info()
         if self.unit_names and not self.rows[0]["unit"].get():
             self.rows[0]["unit"].set(self.unit_names[0])

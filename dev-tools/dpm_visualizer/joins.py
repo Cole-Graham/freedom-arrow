@@ -513,6 +513,62 @@ class Catalog:
         labels.sort(key=lambda item: item[0].lower())
         return labels
 
+    def weapon_ammo_entries(self) -> tuple[list[dict[str, Any]], dict[str, str]]:
+        """Weapon + round list with stats (Lateralus 26 Nov 2026: many rows share one name; same as the website).
+
+        Each entry: label "ammo [ids] — weapon [ids] · dmg · range · pen · tier · N units", weapon_id, ammo_id, live (carried by a
+        unit that can be in a deck: playable or an option's replacement unit) and tip (the unit names). Rows whose stats are the same
+        apart from strings, SupplyCost and ResupplyTime are one entry. Also returns old label ("ammo [id] — weapon [id]") -> new label.
+        """
+        from .calculations import card_range_text
+
+        in_game = set(self.playable_units())
+        for unit_id in list(in_game):  # loadout units a playable card swaps to (e.g. Marine Raiders CQC)
+            for mod in self.mods_by_unit.get(unit_id, []):
+                for option in self.options_by_mod.get(int(mod["Id"]), []):
+                    replace = int(option.get("ReplaceUnitId") or 0)
+                    if replace:
+                        in_game.add(replace)
+        users: dict[tuple[int, int], set[int]] = defaultdict(set)
+        for (unit_id, weapon_id), choices in self.ammo_by_unit_weapon.items():
+            for choice in choices:
+                users[(weapon_id, choice.ammunition_id)].add(unit_id)
+
+        def sig(row: dict[str, Any], skip: set[str]) -> str:
+            # Numbers compared as floats (10 == 10.0), as the website does.
+            return repr(sorted((k, float(v) if isinstance(v, (int, float)) and not isinstance(v, bool) else v)
+                               for k, v in row.items() if k not in skip and not isinstance(v, str)))
+
+        skip_w, skip_a = {"Id", "_v"}, {"Id", "_v", "SupplyCost", "ResupplyTime"}
+        groups: dict[tuple[str, str, str, str], list[tuple[int, int]]] = defaultdict(list)
+        for _label, weapon_id, ammo_id in self.weapon_ammo_labels():
+            weapon, ammo = self.weapons[weapon_id], self.ammos[ammo_id]
+            key = (str(ammo.get("HUDName") or ammo.get("Name")), str(weapon.get("HUDName") or weapon.get("Name")), sig(weapon, skip_w), sig(ammo, skip_a))
+            groups[key].append((weapon_id, ammo_id))
+        entries: list[dict[str, Any]] = []
+        aliases: dict[str, str] = {}
+        for members in groups.values():
+            weapon_ids = sorted({w for w, _ in members})
+            ammo_ids = sorted({a for _, a in members})
+            weapon_id, ammo_id = min(members, key=lambda m: (m[1], m[0]))
+            weapon, ammo = self.weapons[weapon_id], self.ammos[ammo_id]
+            carriers = set().union(*(users.get(m, set()) for m in members))
+            live = sorted(u for u in carriers if u in in_game)
+            tier = re.search(r"\bT(\d)\b", str(ammo.get("Name") or ""))
+            pen = float(ammo.get("PenetrationAtMinRange") or 0)
+            bits = [f"dmg {float(ammo.get('Damage') or 0)}", card_range_text(ammo).replace("range ", "", 1).strip(),
+                    f"pen {pen}" if pen else "", f"T{tier.group(1)}" if tier else "",
+                    f"{len(live)} unit{'' if len(live) == 1 else 's'}" if live else "not in any deck"]
+            label = (f"{ammo.get('HUDName') or ammo.get('Name')} [{'/'.join(map(str, ammo_ids))}] — "
+                     f"{weapon.get('HUDName') or weapon.get('Name')} [{'/'.join(map(str, weapon_ids))}] · " + " · ".join(b for b in bits if b))
+            names = sorted((self.unit_label(u) if u in self.units else f"unit {u}") for u in (live or sorted(carriers)))
+            tip = ", ".join(names) + (f"  ·  same stats except supply: ammo {', '.join(map(str, ammo_ids))}" if len(ammo_ids) > 1 else "")
+            entries.append({"label": label, "weapon_id": weapon_id, "ammo_id": ammo_id, "live": bool(live), "tip": tip})
+            for w, a in members:
+                aliases[f"{self.ammo_label(a)} — {self.weapon_label(w)}"] = label
+        entries.sort(key=lambda e: e["label"].lower())
+        return entries, aliases
+
     # Infantry armor rows are named "<class> <N>Men" (for example "Armor Infantry Elite 7Men").
     # Every row of a class has the same armor; health is 5 per soldier.
     _INFANTRY_ROW = re.compile(r"^(Armor Infantry.*?)\s*(\d+)\s*Men$")
