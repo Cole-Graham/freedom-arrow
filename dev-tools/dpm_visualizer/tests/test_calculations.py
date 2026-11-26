@@ -366,3 +366,30 @@ class CarriedAmmoTests(unittest.TestCase):
         self.assertAlmostEqual(carried_ammo_share(law, 1), 1 / 6)
         self.assertEqual(carried_ammo_share(law, 10), 1.0)
         self.assertEqual(carried_ammo_share(law, 0), 1.0)
+
+
+class BurnTests(unittest.TestCase):
+    # FHJ-02 incendiary rocket (ammo 2013058): Damage 5, burns 10 s, fire radius 20, no falloff, spread 2 x 2 at GroundRange 200.
+    FHJ = {"Damage": 5.0, "DamageOverTimeDuration": 10.0, "HealthAOERadius": 20.0, "NoDamageFalloff": True,
+           "GroundRange": 200.0, "DispersionHorizontalRadius": 2.0, "DispersionVerticalRadius": 2.0, "ArmorTargeted": 2,
+           "PenetrationAtGroundRange": 15.0}
+
+    def test_fire_reaches_target_inside_radius(self) -> None:
+        # The whole 2 x 2 spread is inside the 20 m fire, so every round's fire reaches a target at the aim point.
+        self.assertEqual(hit_chance(self.FHJ, 200.0, (1.0, 1.0)), 1.0)
+
+    def test_fire_share_falloff_at_centre_spread(self) -> None:
+        from dpm_visualizer.calculations import fire_share
+
+        self.assertEqual(fire_share(0.0, 0.0, 20.0, False), 1.0)
+        self.assertEqual(fire_share(40.0, 40.0, 20.0, True), fire_share(40.0, 40.0, 20.0, True))
+        self.assertLess(fire_share(40.0, 40.0, 20.0, False), fire_share(40.0, 40.0, 20.0, True))
+        self.assertEqual(fire_share(10.0, 10.0, 0.0, True), 0.0)
+
+    def test_burn_delay_adds_to_ttk(self) -> None:
+        from dpm_visualizer.calculations import burn_delay_s
+
+        self.assertEqual(burn_delay_s(self.FHJ), 5.25)
+        self.assertEqual(burn_delay_s({"Damage": 5.0}), 0.0)
+        self.assertEqual(time_to_kill_s(60.0, 60.0, burn_delay_s(self.FHJ)), 65.25)
+        self.assertEqual(time_to_kill_s(60.0, 60.0), 60.0)

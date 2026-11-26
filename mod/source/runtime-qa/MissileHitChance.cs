@@ -6,6 +6,7 @@ using Il2CppBrokenArrow.Client.Ecs.BattleSystem.Components;
 using Il2CppBrokenArrow.Client.Ecs.BattleSystem.Guidance.Components;
 using Il2CppBrokenArrow.Client.Ecs.BattleSystem.Guidance.Systems;
 using Il2CppBrokenArrow.DataBase.Models;
+using Il2CppBrokenArrow.Shared.Ecs.Components;
 using Il2CppDefaultEcs;
 using MelonLoader;
 using UnityEngine;
@@ -26,6 +27,7 @@ static class MissileHitChance
     [ThreadStatic] static Entity current;
     static readonly Dictionary<ulong,(float lowest,float time,float launch)> missiles=new();
     static bool broken;
+    static int exemptLogged;
     static int logged;
     // Nullable<Entity> as IL2CPP lays it out: bool at 0, Entity at 4, 12 bytes (as HarmSeeker.cs).
     [StructLayout(LayoutKind.Sequential,Pack=4)] struct NullableEntity{public byte HasValue;public byte P1,P2,P3;public int Lo,Hi;}
@@ -67,6 +69,15 @@ static class MissileHitChance
         if(broken||!Runtime.IsApplied||ammoInfo==null)return true;
         try
         {
+            // Lateralus 25 Nov 2026: fire-and-forget (Seeker 10) and terminal-guidance (Seeker 50) missiles ignore the shooter's stress
+            // ("Queue up just the low risk missile accuracy debuff removal", then "honestly this should apply to all fire and forget and terminal
+            // guidance missiles"): any shooter. Semi-active (100) keeps it; laser and SEAD never reach this roll.
+            int seeker=(int)ammoInfo.Seeker;
+            if(stressMultiplier!=1f&&(seeker==10||seeker==50))
+            {
+                if(++exemptLogged<=200)MelonLogger.Msg($"FREEDOM_ARROW_MISSILE_STRESS ammo {ammoInfo.Id} seeker {seeker} stress {stressMultiplier:0.###} -> 1");
+                stressMultiplier=1f;
+            }
             float accuracy=ammoInfo.DispersionHorizontalRadius,resist=ammoInfo.DispersionVerticalRadius;
             float perFlare=1-(1-resist)*targetDecoyEffect;
             float flat=accuracy*Math.Clamp(1-(1-targetECM)-targetActiveDecoys*perFlare,0f,1f)*stressMultiplier;

@@ -7,7 +7,7 @@ import tkinter as tk
 from tkinter import filedialog, messagebox, ttk
 from typing import Any
 
-from .calculations import Cover, building_box, card_range_text, cover_multiplier, hit_chance, interpolate_dpm, sample_dpm, shots_per_minute, time_to_kill_s
+from .calculations import Cover, building_box, burn_delay_s, burn_text, card_range_text, cover_multiplier, hit_chance, interpolate_dpm, sample_dpm, shots_per_minute, time_to_kill_s
 from .chart_panel import ChartPanel
 from .constants import CARD_RANGE_MULTIPLIER, FACE_LINE_STYLES, FACES
 from .ui_components import ArmorPicker, CoverControls, SearchableCombobox
@@ -311,9 +311,9 @@ class WeaponsTab:
         ranked = sorted(self._series_meta, key=lambda meta: interpolate_dpm(meta["series"], card), reverse=True)
         for meta in ranked:
             dpm = interpolate_dpm(meta["series"], card)
-            ttk_s = time_to_kill_s(meta["hp"], dpm)
-            ttk_txt = f"{ttk_s:.1f}s TTK" if ttk_s is not None else "no TTK"
             ammo = meta["ammo"]
+            ttk_s = time_to_kill_s(meta["hp"], dpm, burn_delay_s(ammo))
+            ttk_txt = f"{ttk_s:.1f}s TTK" if ttk_s is not None else "no TTK"
             weapon = meta["weapon"]
             spm = shots_per_minute(weapon, meta["qty"])
             covered = self._cover.kind != "Open" and meta["cover"] != 1.0
@@ -324,6 +324,8 @@ class WeaponsTab:
                 hit_txt += f"  through cover {meta['cover']:.0%}"
             range_txt = card_range_text(ammo)
             range_line = f"  {range_txt}\n" if range_txt else ""
+            if burn_text(ammo):
+                range_line += f"  {burn_text(ammo)}\n"
             lines.append(
                 f"\n{meta['label']}\n"
                 f"  DPM {dpm:.1f}  {ttk_txt}  face {meta['face']}{hit_txt}\n"
@@ -469,6 +471,7 @@ class WeaponsTab:
         self.app.custom_weapons[key] = {"weapon": weapon, "ammo": ammo}
         self.app.save_user_data()
         self.refresh_lists()
+        self.app.units_tab.refresh_lists()  # the custom unit editor lists custom weapons too
         self._update_preview()
         messagebox.showinfo("DPM", f"Saved {key}")
 

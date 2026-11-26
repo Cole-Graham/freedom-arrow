@@ -51,7 +51,46 @@ A plane ordered low (100) is Low. A plane ordered high (400) is High once it has
 - **The climb:** `PrecisionStrikeCommand.UpdateSteeringPoint` (RVA `0x77BDB0`) builds the firing `WaypointSinglePoint` at `PlaneHighAltOverride` if set, else `PlanesConfig.HighAltitude`. It does not read the hotkey. The strike lasts while the plane has `PrecisionStrikeComponent`. `CompleteStrike` (RVA `0x77A420`) then calls `FlyToPoint`, which uses the level-based altitude above, so a plane that is High after the strike stays High (code).
 - **Other attack runs:** strafe and bombing runs (`AirstrikeCommand`, `AirAttackType` Strafe 1 / Bombing 2) and plane attack orders (`AttackCommand`) set `AirAttackComponent {StartAttackAltitude, ReturnPosition, TargetTooClose}` when they start and remove it on complete or cancel (the only direct callers of `Entity.Set/Remove<AirAttackComponent>`, plus save loading). `AirstrikeCommand.GetBombingAltitude` picks the run's band from the bomb type and the current level. How each run's altitude profile is flown is not traced (code).
 - **Measured:** in Lateralus's ranked13 test logs (23 Nov 02:08–02:30 UTC) all 7 climbs out of the low band after an ordered descent came right after AGM-84 or YJ-15 launches, with `IsChangePending` false.
-- **Not traced:** what brings some planes back to Low 7–12 s after a strike (6 of those 7 did), and who writes `PlaneHighAltOverride`.
+- **Not traced:** what brings some planes back to Low 7–12 s after a strike (6 of those 7 did). `PlaneHighAltOverride` is written at spawn (section 1c).
+
+## 1c. Spawn altitude and flight altitude (Lateralus, 25 November 2026)
+
+**Summary:** these are three different things. All heights are world units above the ground; the card scale is double.
+
+- **Spawn altitude:** the height a plane appears at. It is the flight altitude of the band it starts in.
+- **Flight altitude:** the height a plane flies at when it is ordered Low or High.
+- **Low/High state:** what AA range and optics use. It is read from the plane's real height, not set: High above 220 when climbing, Low below 190 when descending (section 1).
+
+Freedom Arrow changes none of this (code, game 1.2.2.1; data 0.9.7-dev.15).
+
+---
+
+### Spawn altitude (where the plane appears)
+
+Set once, from the plane's fly preset (`FlyPresets`, linked through its `Mobility` row):
+
+- **400:** most planes (fighters, the AC-130, High drones). They start High.
+- **100:** presets with `LowAltitudeIsDefault` and no `OverrideAltitude`. They start Low. CAS A10 (A-10C, L-39, J-5 and J-6W drones), CAS Yak38, CAS (Su-25s, AV-8Bs, EA-6B, Yak-130), Drone Slow Low (RQ-7, Forpost, Korsar, Jiutian), C27.
+- **595:** every preset with `OverrideAltitude`; the spawn code checks it first. BigFast B1B, BigFast MiG31 (MiG-31 family, MD-22, WZ-8), BigFast Tu22 (Tu-22M3, H-6K), BigFast Tu160, BigSlow (B-2, B-21, B-52H, Tu-95, Tu-142), CAS F117, and also C130 (C-130J, KC-130J, MC-130H, Y-8) and BigSlow (Cargo) (C-17, IL-76MD, An-26, AN-72P, Y-20, Y-20B, KJ-500, KQ-200).
+- **C130 and BigSlow (Cargo)** have both flags: they appear at 595 with the Low state. Whether they then descend to 100, or turn High at the first state update (595 is above 220) and stay at 595, is not measured.
+- **Helicopters:** 8.
+
+### Flight altitude (where the plane flies after spawning)
+
+- **Ordered Low:** 100, every plane.
+- **Ordered High:** 400, or 595 for every `OverrideAltitude` preset. That includes the C130 and BigSlow (Cargo) presets.
+- How the order is applied is in section 1b.
+
+### Where the numbers come from
+
+- **400 and 100:** `PlanesConfig.HighAltitude` (0x18) and `PlanesConfig.LowAltitude` (0x1C), one game setting shared by every plane, \"altitude above terrain\" (data).
+- **595:** `HighAltitude + (HighAltitude − LowAltitude) × OverrideAltitideRatio` = 400 + 300 × 0.65. Every `OverrideAltitude` preset has ratio 0.65; the others have 0.5 or 1.0, which is unused. `OverrideAltitideRatio` is spelled that way in the game (data).
+
+*Code:*
+
+- `UnitBuilder.InitAltitude` (RVA `0x344530`) builds `AltitudeComponent`: helicopters (`Units.Type` 8) start Low; planes (type 16) start Low if `LowAltitudeIsDefault`, else High. With `OverrideAltitude` it writes `PlaneHighAltOverride = max(HighAltitude, 400 + 300 × ratio)` (upper clamp `float.MaxValue`).
+- `SpawnCommand.OnComplete` (RVA `0x331C50`, inlined `GetUnitAltitude` `0x331740`) adds the spawn altitude to the spawn point's height: `OverrideAltitude` → the override, else `LowAltitudeIsDefault` → `LowAltitude`, else `HighAltitude`; helicopter 8; other units 0. The spawn point's height is read from a grid, taken to be the map height (inferred).
+- `AircraftHelper.GetCurrentAltitude` (RVA `0x3A66B0`): Low → `LowAltitude`; High → `PlaneHighAltOverride` if set, else `HighAltitude`.
 
 ## 2. Which optics an air target is checked against
 
@@ -275,3 +314,5 @@ Ways to make AA placement easier (not implemented, not tested):
 - 2026-11-25 07:57 PST (America/Los_Angeles) — Section 5e: machine guns exempt from the radar; card fix for 0.9.7-dev.14 (Lateralus).
 - 2026-11-25 08:22 PST (America/Los_Angeles) — Section 5e: dev.14 battle measurement; the targeting reticle computes range inline (fix queued) (Lateralus).
 - 2026-11-25 09:21 PST (America/Los_Angeles) — Section 5e: radar only on loadouts with a radar weapon; HHQ-10 and SeaRAM use SA radar (Lateralus).
+- 2026-11-25 22:3x PST (America/Los_Angeles) — Added section 1c: spawn altitude, fly preset override and low-default, and who writes `PlaneHighAltOverride` (Lateralus).
+- 2026-11-25 22:2x PST (America/Los_Angeles) — Section 1c rewritten: spawn altitude, flight altitude and the Low/High state separated (Lateralus).

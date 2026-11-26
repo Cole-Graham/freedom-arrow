@@ -138,3 +138,18 @@ Freedom Arrow's `game-config.json` sets `StressRecoveryMultiplier` to 0.33 from 
 | 75 | 0 | Calm |
 
 A bar that starts at 800 is empty on second 67. A bar that starts at 500 is empty on second 52.
+
+## Exempting plane missiles from stress (feasibility, Lateralus 25 Nov 2026)
+
+Proposal checked: remove the shocked/panicked missile accuracy, reload, time-between-bursts and aim-time debuffs for planes, only for Fire-and-forget (Seeker 10) and Terminal-guidance (Seeker 50) missiles. Read from code (1.2.2.1), not tested.
+
+- **Where the debuffs live.** `BuffDebuffSystem.SetStressModifiers` (0x7EB380) writes one set of multipliers per unit into `BuffComponent` (`AimTimeModifier` 0x0, `TimeBetweenBurstsStressModifier` 0x8, `MagazineReloadTimeStressModifier` 0x10, `MissileAccuracyMultiplier` 0x38; obfuscated `GFloat`/`GAFloat`). Every weapon on the unit uses the same values, so a config change alone (the plane columns of `StressModifiers`) would also free guns, bombs, rockets, semi-active and SEAD missiles.
+- **Missile accuracy: easy.** FA's `MissileHitChance.Chance` prefix already receives the round and the shooter's stress multiplier (`CalculateMissileHitChance`, 0x7D4130); it can use 1 instead for listed rounds. In 0.9.7-dev.15 data planes fire 38 Seeker 10/50 rounds; 3 of them (2016381, 2016975, 2017060) are also fired by non-plane units and need a shooter check or plane-only copies.
+- **Aim time, bursts, reload: harder.** The per-weapon timer functions (`WeaponComponent.GenerateRandomAimTime` 0x82D520, `GenerateRandomTimeBetweenBursts` 0x82D9A0, `GenerateRandomMagazineReloadTime` 0x82D720, `GetAimTime` 0x82DAA0) have no direct callers (inlined), so they cannot be patched. Option: in FA's existing `ShootingSystem.InternalUpdate` hook (one weapon at a time), set the plane's three modifiers to 1 for a listed weapon and put them back afterwards, using the game's own `GFloat` conversion. Needs a trace that those modifiers are read only inside that update, and an in-game timing test.
+- **Queued (missile accuracy only, Lateralus 25 Nov 16:1x, widened 16:5x "this should apply to all fire and forget and terminal guidance missiles"):** `MissileHitChance.Chance` uses a stress multiplier of 1 whenever the round's Seeker is 10 (fire-and-forget) or 50 (terminal guidance), whatever fires it: planes, helicopters, ground and sea units, infantry. In 0.9.7-dev.15 data that is 99 rounds (38 plane, 19 helicopter, 35 ground/sea, 20 infantry; some shared), including anti-tank ones such as Javelin, Spike and HJ-12. Semi-active (100) keeps the stress; laser and SEAD never reach this roll. Log line `FREEDOM_ARROW_MISSILE_STRESS`. No data list: the rule reads the round's Seeker. Aim time, bursts and reload are unchanged. Not tested in game.
+- **Online.** Only the firing unit's own PC uses these values; the shots it then fires are sent as usual, so the other PCs stay in step.
+
+## Document change log
+- 2026-11-25 15:0x PST (America/Los_Angeles) — Added: feasibility of exempting plane fire-and-forget / terminal-guidance missiles from stress debuffs (Lateralus).
+- 2026-11-25 16:2x PST (America/Los_Angeles) — Plane FF/TG missile accuracy exemption queued (Lateralus).
+- 2026-11-25 16:5x PST (America/Los_Angeles) — Missile accuracy exemption widened to every fire-and-forget / terminal-guidance missile, any shooter (Lateralus).

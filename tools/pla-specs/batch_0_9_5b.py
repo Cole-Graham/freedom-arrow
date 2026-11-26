@@ -6,7 +6,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2];REL=ROOT/'mod';SRC=REL/'source';sys.path[:0]=[str(ROOT),str(REL),str(Path(__file__).parent),str(Path(__file__).parent/'lateralus')]
 from pipeline.tables import FIELD_TO_FILE
 from pla_graph import Graph
-V='0.9.7-dev.21';PREV='0.9.3'
+V='0.9.7';PREV='0.9.3'
 # 0.9.3 (build 242, the playtest released 20 Nov 2026) was built in out/local-093r242.
 BASE=json.loads((REL/f'out/receipts/FreedomArrow-{PREV}.json').read_text())['complete']['sha256']   # the one record of builds (repo cleanup step 1)
 p=argparse.ArgumentParser(description=__doc__);p.add_argument('--vanilla',type=Path,required=True);p.add_argument('--check',action='store_true',help='run the checks, write nothing');a=p.parse_args()
@@ -967,8 +967,18 @@ import hj10_nlos_range_1125;hj10_nlos_range_1125.apply(t,g,ok,rec)
 import aps_two_charges_1125;aps_two_charges_1125.apply(t,g,ok,rec)
 # ---------- ZTZ-99 LSDW +60; LSDW pulse stress 80 -> 70 (Osama 25 Nov 2026 12:2x PST, bugs thread). See ztz99_lsdw_1125.py.
 import ztz99_lsdw_1125;ztz99_lsdw_1125.apply(t,g,ok,rec)
+# ---------- Thunder Gods second QJS-161 (Osama 25 Nov 2026 18:2x PST, bugs thread). See thunder_gods_qjs2_1125.py.
+import thunder_gods_qjs2_1125;thunder_gods_qjs2_1125.apply(t,g,ok,rec)
+# ---------- PAP Snow Leopards: one QCQ-171 -> QBS-09 (Osama 25 Nov 2026 18:3x PST, bugs thread). See snow_leopards_qbs_1125.py.
+import snow_leopards_qbs_1125;snow_leopards_qbs_1125.apply(t,g,ok,rec)
+# ---------- XM25 Punisher shown as the MTL-30, new icon (Osama 25 Nov 2026 19:4x PST, bugs thread). See mtl30_1125.py.
+import mtl30_1125;mtl30_1125.apply(t,g,ok,rec)
+# ---------- PGL-625 main gun 7 damage/s (Osama 25 Nov 2026 23:0x PST, bugs thread). See pgl625_dps_1125.py.
+import pgl625_dps_1125;pgl625_dps_1125.apply(t,g,ok,rec)
 # ---------- ZTQ-15, ZTQ-15 Recon, ZTQ-15 Light 25 points cheaper (Osama 25 Nov 2026 11:3x PST). See ztq15_cost_1125.py.
 import ztq15_cost_1125;ztq15_cost_1125.apply(t,g,ok,rec)
+# ---------- Z-20S 0 -> 4 seats, MH-60M SOAR Recon 60 -> 65 pts (Lateralus 25 Nov 2026 18:0x PST). See recon_helo_1125.py.
+import recon_helo_1125;recon_helo_1125.apply(t,g,ok,rec)
 # ---------- Plane guns: ActualArrow 1.2.2 values on the US/RU rows, China and preview copies by class; existing rows only (Lateralus 25 Nov 2026
 # 08:5x, thread 1572962048705429598: "1. Copy 2. Copy 3. Copy 4. Copy 5. A, queue it"). See plane_guns_aa_1125.py.
 import plane_guns_aa_1125;plane_guns_aa_1125.apply(t,g,ok,rec)
@@ -990,6 +1000,9 @@ import fb10_hq17a_1125;print('FB-10 HQ-17A',fb10_hq17a_1125.apply(t,g,ok,rec,_he
 # ---------- China tripod weapons crewed like vanilla: gunner kneels at the weapon on the ground (Osama 25 Nov 2026 10:2x: "We need this for all
 # the tripod based weapons"). See crew_weapons_1125.py.
 import crew_weapons_1125;crew_weapons_1125.apply(t,g,ok,rec)
+# ---------- KS-23 slug 4.99 -> 3.5 and GM-94 thermobaric 5 -> 3 base damage (Lateralus 25 Nov 2026 19:0x PST). Existing rows only.
+# See lateralus/ks23_gm94_damage_1125.py.
+import ks23_gm94_damage_1125;ks23_gm94_damage_1125.apply(t,g,ok,rec)
 
 # Every disposable launcher: one round per carrier, or the vanilla row unchanged (Lateralus 23 Nov 2026 22:4x). Keep this the last section.
 rec['disposable_vanilla_multi_round']=disposable_launchers_1123.check(t,ok,a.vanilla)
@@ -999,6 +1012,10 @@ import weapon_coverage_check;rec['weapon_coverage_rows']=weapon_coverage_check.c
 # ---------- ROC specialization and reserved IDs (Osama 25 Nov 2026 00:5x PST, thread 1575071006240931931). Loads tools/roc/roc.py only on its branch
 # (codex/batch/shawn/roc) and runs the two checks above again on its rows; on other branches it adds nothing. Fails if any row uses a reserved ID that its
 # owner did not make (mod/id-reservations.json), or if a section after this line makes rows. New sections go above the disposable-launcher check.
+# ---------- Back-pocket China weapons, no squad yet: QJY-88, QBZ-192 MLOK, VQX191, QBU-202 (Osama 25 Nov 13:3x). See backpocket_weapons_1125.py.
+import backpocket_weapons_1125;backpocket_weapons_1125.apply(t,g,ok,rec)
+# ---------- (after the back-pocket weapons so their row ids stay) Sig Spear Shorty, back pocket: M7 Spear stat clone with its own suppressed icon (Osama 26 Nov 2026 01:5x). See spear_shorty_1126.py.
+import spear_shorty_1126;spear_shorty_1126.apply(t,g,ok,rec)
 import roc_hook;roc_hook.apply(t,g,ok,rec,recheck=lambda:(disposable_launchers_1123.check(t,ok,a.vanilla),weapon_coverage_check.check(t,patches,ok)))
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)

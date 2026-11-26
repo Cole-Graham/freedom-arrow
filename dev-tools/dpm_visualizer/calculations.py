@@ -266,8 +266,52 @@ def hit_chance(
     radius_y = scale * float(ammo.get("DispersionVerticalRadius") or 0)
     if silhouette is None:
         return 1.0
+    if burn_time(ammo) > 0:
+        return fire_share(radius_x, radius_y, float(ammo.get("HealthAOERadius") or 0), bool(ammo.get("NoDamageFalloff")))
     width, height = silhouette
     return diamond_in_box(radius_x, radius_y, width, height)
+
+
+DAMAGE_OVER_TIME_PERIOD = 0.5  # BattleSystemConstants.DAMAGE_OVER_TIME_PERIOD, set to 0.5 in its static constructor (0x2A4150)
+FIRE_GRID = 64
+
+
+def burn_time(ammo: dict[str, Any]) -> float:
+    """DamageOverTimeDuration in seconds; 0 for a round without a burn.
+
+    GameAssembly 1.2.2.1 (docs/engine/damage-over-time.md): ShellHitSystem.InternalUpdate (0x7FD3F0) gives a round with
+    DamageOverTimeDuration > 0 no impact damage (it skips the unit, building and blast damage unless the round is intercepted).
+    It leaves a fire instead. DamageOverTimeSystem.InternalUpdate (0x7EEA30) deals a blast of the round's damage x 0.5 / duration
+    every 0.5 s to everything inside HealthAOERadius, so a target that stays in the fire takes the full Damage over the burn.
+    """
+    return max(0.0, float(ammo.get("DamageOverTimeDuration") or 0))
+
+
+def burn_delay_s(ammo: dict[str, Any]) -> float:
+    """Average time from landing to the damage of a burning round: ticks at 0.5, 1.0 ... duration s, mean (duration + 0.5) / 2."""
+    burn = burn_time(ammo)
+    return (burn + DAMAGE_OVER_TIME_PERIOD) / 2.0 if burn > 0 else 0.0
+
+
+def fire_share(radius_x: float, radius_y: float, fire_radius: float, no_falloff: bool) -> float:
+    """Mean health fraction of the fire on a target at the aim point, over the landing spread.
+
+    The round lands on the AddBallisticDeviation diamond (see diamond_in_box). The fire hurts the target when the landing point
+    is closer than fire_radius (strict), with the blast falloff 1 - distance / radius unless NoDamageFalloff is set
+    (docs/engine/damage-falloff.md). The radius the game subtracts for the target's own size is taken as 0 here.
+    Midpoint grid of FIRE_GRID x FIRE_GRID over u and w, v = w x (1 - |u|); the spread is symmetric, so one quarter is enough.
+    """
+    if fire_radius <= 0:
+        return 0.0
+    total = 0.0
+    for i in range(FIRE_GRID):
+        u = (i + 0.5) / FIRE_GRID
+        for j in range(FIRE_GRID):
+            v = (j + 0.5) / FIRE_GRID * (1.0 - u)
+            d = math.hypot(u * radius_x, v * radius_y)
+            if d < fire_radius:
+                total += 1.0 if no_falloff else 1.0 - d / fire_radius
+    return total / (FIRE_GRID * FIRE_GRID)
 
 
 def diamond_in_box(radius_x: float, radius_y: float, width: float, height: float) -> float:
@@ -385,10 +429,20 @@ def sum_series(series_list: Iterable[list[tuple[float, float]]]) -> list[tuple[f
     return sorted(merged.items())
 
 
-def time_to_kill_s(hit_points: float, dpm: float) -> float | None:
+def time_to_kill_s(hit_points: float, dpm: float, delay_s: float = 0.0) -> float | None:
+    """Seconds of sustained fire to remove hit_points, plus delay_s: the mean burn delay of a burning round (burn_delay_s)."""
     if dpm <= 0 or hit_points <= 0:
         return None
-    return float(hit_points) / (dpm / 60.0)
+    return float(hit_points) / (dpm / 60.0) + delay_s
+
+
+def burn_text(ammo: dict[str, Any]) -> str:
+    """Pin-panel note for a burning round: no impact damage, the damage comes from the fire over the burn."""
+    burn = burn_time(ammo)
+    if burn <= 0:
+        return ""
+    radius = _card_m(ammo.get("HealthAOERadius") or 0)
+    return f"burns {burn:g} s, fire {radius:.0f} card m radius: no impact damage, the damage arrives over the burn"
 
 
 def interpolate_dpm(series: list[tuple[float, float]], card_m: float) -> float:

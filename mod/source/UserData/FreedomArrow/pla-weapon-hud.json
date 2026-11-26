@@ -3233,6 +3233,36 @@
       "basis": "Osama-supplied QBU-201 image (24 Nov 2026), work/qbu201-icon/make_icon.py; M40A5 stat clone on the Falcons"
     },
     {
+      "weapon": 2021543,
+      "name": "QJY-88",
+      "scope": "INFANTRY",
+      "mode": "custom",
+      "profile": "QJY88",
+      "address": "FA_PLA_WP_QJY88",
+      "native_weapon": 158,
+      "basis": "Osama-supplied QJY-88 photo (25 Nov 2026), work/qjy88-icon/make_qjy88.py; PKM T1 stat clone, back pocket (no squad)"
+    },
+    {
+      "weapon": 2021545,
+      "name": "QBZ-192 MLOK",
+      "scope": "INFANTRY",
+      "mode": "custom",
+      "profile": "QBZ192MLOK",
+      "address": "FA_PLA_WP_QBZ192_MLOK",
+      "native_weapon": 767,
+      "basis": "Osama-supplied QBZ-192 MLOK photo (25 Nov 2026), work/qbz192-mlok-icon/make_mlok.py on the approved QBZ191 outline; HK416A5 stat clone (T4 placeholder), back pocket"
+    },
+    {
+      "weapon": 2021547,
+      "name": "VQX191",
+      "scope": "INFANTRY",
+      "mode": "custom",
+      "profile": "VQX191",
+      "address": "FA_PLA_WP_VQX191",
+      "native_weapon": 210,
+      "basis": "Redrawn 25 Nov 2026 13:4x on the approved FA_PLA_WP_QBZ191 outline (work/vqx191-icon/make_vqx191_v2.py): QBZ-192-length handguard, holographic sight, short suppressor; HK416 D10RS stat clone, back pocket"
+    },
+    {
       "weapon": 2012081,
       "name": "HN-6",
       "scope": "INFANTRY",
@@ -3551,10 +3581,30 @@
       "address": "FA_PLA_WP_PF98T",
       "native_weapon": 172,
       "basis": "Osama-supplied tripod PF-98 image (12 Nov 04:40), measured source edges"
+    },
+    {
+      "weapon": 365,
+      "name": "MTL-30",
+      "scope": "INFANTRY",
+      "mode": "custom",
+      "profile": "MTL30",
+      "address": "FA_US_WP_MTL30",
+      "native_weapon": 365,
+      "basis": "Osama-supplied MTL-30 photo (25 Nov 2026), tools/icons-src/make_mtl30.py; cosmetic rename of the XM25 Punisher, stats unchanged"
+    },
+    {
+      "weapon": 2021551,
+      "name": "Sig Spear Shorty",
+      "scope": "INFANTRY",
+      "mode": "custom",
+      "profile": "SPEAR_SHORTY",
+      "address": "FA_US_WP_SPEAR_SHORTY",
+      "native_weapon": 208,
+      "basis": "Osama-supplied Sig Spear photo (26 Nov 2026), tools/icons-src/make_spear_shorty.py, suppressor added; M7 Spear stat clone, back pocket (no squad)"
     }
   ],
   "vehicle_weapons": 307,
-  "infantry_weapons": 47,
+  "infantry_weapons": 50,
   "profiles": [
     "QBB95",
     "QBU191",

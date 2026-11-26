@@ -157,14 +157,23 @@ with zipfile.ZipFile(base) as z:
     if (a.famodels or a.asset) and _ld.exists():
         _left={l.strip() for l in _ld.read_text().splitlines() if l.strip()}
         # The model stage passes its whole set (--asset for every file), leftovers included: the list wins over the stage.
-        for k in sorted(_left&set(override)):del override[k]
+        _gone=_left&set(override)
+        for k in sorted(_gone):del override[k]
         drops=sorted(set(drops)|{n for n in _left if n in z.namelist()})
+        _gone|=set(drops)
         # Guard: no unit of the new models.json may use a dropped mesh (file, battle, LODs, variants).
         _mj=override.get('UserData/FAModels/models.json') or z.read('UserData/FAModels/models.json')
         _mj=json.loads(_mj.read_bytes() if isinstance(_mj,Path) else _mj);_use=set()
         for _e in _mj.values():
             for _x in [_e,*_e.get('variants',[])]:_use|={'UserData/FAModels/'+f for f in [_x.get('file'),_x.get('battle'),*_x.get('lods',[])] if f}
-        assert not _use&set(drops),('models.json uses a dropped leftover model',sorted(_use&set(drops))[:5])
+        # 25 Nov 2026 15:4x: the infantry weapon and body lists name model files too. The 24 Nov list dropped w_qbb95 (QBB-95), which only
+        # infantry-weapons.json uses; FAModels then rejected the whole weapon list from Assets 0.2.100 on ("infantry rules rejected", every
+        # China soldier on vanilla weapon models), found in Lateralus's dev.19 / dev.21 test logs.
+        for _jn,_keys in (('infantry-weapons.json',('file','battle')),('infantry-bodies.json',('file',))):
+            _j=override.get('UserData/FAModels/'+_jn) or (z.read('UserData/FAModels/'+_jn) if 'UserData/FAModels/'+_jn in z.namelist() else b'[]')
+            for _r in json.loads(_j.read_bytes() if isinstance(_j,Path) else _j):
+                _use|={'UserData/FAModels/'+f for f in [*(_r.get(k) for k in _keys),*_r.get('lods',[])] if f}
+        assert not _use&_gone,('models.json or an infantry list uses a dropped leftover model',sorted(_use&_gone)[:5])
     # Osama 25 Nov 2026 00:2x ("lets not encrypt but lets rename at least"): model files named after a seller's model number or tag get our own
     # names in every model build (model-renames.txt). The renamed files go in, the old names leave, and the names inside the .fam files
     # (int32 length + UTF-8) and the FAModels .json files are rewritten. The launcher downloads the renamed files once.
@@ -214,6 +223,11 @@ with zipfile.ZipFile(base) as z:
         for _e in _mj.values():
             for _x in [_e,*_e.get('variants',[])]:
                 for f in [_x.get('file'),_x.get('battle'),*_x.get('lods',[])]:assert not f or 'UserData/FAModels/'+f in _final,('models.json names a missing file',f)
+        # FAModels rejects the whole infantry weapon list if one rule names a missing file (25 Nov 2026: w_qbb95), so check both lists too.
+        for _jn,_keys in (('infantry-weapons.json',('file','battle')),('infantry-bodies.json',('file',))):
+            _j=override.get('UserData/FAModels/'+_jn) or (z.read('UserData/FAModels/'+_jn) if 'UserData/FAModels/'+_jn in z.namelist() else b'[]')
+            for _r in json.loads(_j.read_bytes() if isinstance(_j,Path) else _j):
+                for f in [*(_r.get(k) for k in _keys),*_r.get('lods',[])]:assert not f or 'UserData/FAModels/'+f in _final,(_jn+' names a missing file',f)
         print(f'Renamed {_done} model files of {len(_map)} models (model-renames.txt).',flush=True)
     assert all(n.startswith(('UserData/FAModels/','UserData/FAMusic/Voice/')) and n in z.namelist() and n not in override for n in drops),'--drop-assets: FAModels or FAMusic voice files of the base package only'
     if a.famodels or a.asset or drops:

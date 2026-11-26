@@ -8,7 +8,7 @@ using Il2CppBrokenArrow.DataBase.Models;
 using System.Text.Json;
 using Il2CppBrokenArrow.Shared.Ecs.MemoryController;
 
-[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.47", "Freedom Arrow")]
+[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.49", "Freedom Arrow")]
 [assembly: MelonGame(null, "BrokenArrow")]
 namespace FAModels;
 
@@ -63,6 +63,12 @@ public partial class Mod : MelonMod
             if (e.variants.Length > 0) { int vi = VariantIndex(e, unitData); variantViews.Add((unitModel.PrefabRootScript.gameObject, unitData, e, unitData.Name, battle, vi)); e = Resolve(e, vi, battle); }
             else if (e.battle != "" && battle)
                 e = new Entry { file = e.battle, scale = e.scale, offset = e.offset, yaw = e.yaw, align = e.align, lods = e.lods };
+            // 0.3.49 (Lateralus 25 Nov 16:4x: "the mod's new custom units pop in at the highest LOD before switching to the lowest LOD, the vanilla
+            // units don't do that... Can that be changed only for the armory?"): the armory entry kept the battle detail levels ("lods"), so the
+            // full armory model got a LODGroup with the battle copies under it and the armory camera dropped it to the lightest one. The armory
+            // (not Potato/Low, which use the battle model) now shows only the full model: one level, no LODGroup (Apply makes one only for 2+).
+            else if (!battle && e.lods.Length > 0)
+                e = new Entry { file = e.file, scale = e.scale, offset = e.offset, yaw = e.yaw, align = e.align, hide = e.hide };
             // Hide immediately; Apply restores the original and cancels queued re-hides on failure.
             queue.Add((unitModel.PrefabRootScript.gameObject, e, unitData.Name, Time.realtimeSinceStartup, 0));
             Hide(unitModel.PrefabRootScript.gameObject);
@@ -382,14 +388,6 @@ public partial class Mod : MelonMod
     // 0.3.45: levels not built yet (null, LodStreaming.cs) are covered by the next lighter level that is built, so a unit with only its
     // lightest level shows it at every distance and is culled where the full set would be.
     static int lodLogged;
-    static float[] LodHeights(GameObject root, GameObject holder, int n)
-    {
-        float[] h = { 0.10f, 0.04f, 0.005f };
-        var native = root.GetComponentsInChildren<LODGroup>(true).FirstOrDefault(g => g.gameObject != holder);
-        if (native != null) { var nl = native.GetLODs(); for (int i = 0; i < Math.Min(nl.Length, h.Length); i++) h[i] = nl[i].screenRelativeTransitionHeight; }
-        var r = new float[n]; for (int i = 0; i < n; i++) r[i] = i < h.Length ? h[i] : h[h.Length - 1] * 0.5f;
-        return r;
-    }
     static void SetLevels(GameObject root, GameObject holder, List<Renderer>[] byLevel, string unit)
     {
         float[] h = { 0.10f, 0.04f, 0.005f };
@@ -424,8 +422,9 @@ public partial class Mod : MelonMod
         // gets its own parts, and a LODGroup switches between them at the stand-in's own distances (SetLevels). Level 0 is e.file.
         var files = new List<string> { e.file };
         foreach (var lf in e.lods) if (lf != "" && File.Exists(Path.Combine(dir, lf))) files.Add(lf);
-        // 0.3.47: a model with detail levels always starts on its lightest; heavier levels come only when the camera needs them (LodStreaming.cs).
-        bool streamed = stream && (files.Count > 1 || !KeptFam(files[0]));
+        // 0.3.48 (Lateralus 25 Nov 15:3x: "The hitch when zooming in the first time is unacceptable"): back to 0.3.46. 0.3.47 started every
+        // model on its lightest level and built heavier levels when the camera came close, which hitched on the first zoom-in.
+        bool streamed = stream && !files.All(KeptFam);
         if (streamed) { bool lightReady = false; for (int i = 0; i < files.Count; i++) { bool r = StreamReady(files[i]); if (i == files.Count - 1) lightReady = r; } if (!lightReady) return false; }
         var buildNow = streamed ? new List<int> { files.Count - 1 } : Enumerable.Range(0, files.Count).ToList();
         var fam = LoadFam(files[buildNow[0]], out bool kept);

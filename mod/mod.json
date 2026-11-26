@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.9 (China)",
-  "version": "0.9.7-dev.21",
+  "version": "0.9.7",
   "type": "modpack",
-  "description": "Freedom Arrow 0.9.7-dev.21 (release candidate 3 for 0.9.7, 25 Nov 2026): 0.9.7-dev.20 plus FAModels 0.3.47 (heavier model detail built only when the camera needs it, unused detail unloaded after 30 s), in a new Models & music package. Needs Freedom Arrow — Models and Music 0.2.103.",
+  "description": "Freedom Arrow 0.9.7 (25 Nov 2026): release of 0.9.7-dev.22 (release candidate 4) plus the MTL-30 name and icon for the XM25. See the 0.9.7 patch notes. Needs Freedom Arrow — Models and Music 0.2.104.",
   "repo": "Cole-Graham/freedom-arrow"
 }

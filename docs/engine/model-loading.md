@@ -68,6 +68,14 @@ End asked (25 Nov 2026) to load a level only when the engine asks for it, and to
 
 Not proven in a game: the formula's match with HDRP's own LOD bias (HDRP frame settings can scale or replace `QualitySettings.lodBias`), the VRAM saved, and any hitch when a heavier level is built while zooming in.
 
+## 0.3.48: back to 0.3.46 loading (on-demand levels removed)
+
+Lateralus tested 0.3.47 in 0.9.7-dev.21 (25 Nov 2026): "The hitch when zooming in the first time is unacceptable". 0.3.48 removes the on-demand part: heavier levels are built during deployment and after the spawn again, as in 0.3.46, and nothing is removed in battle after 30 s. `lod-preload-build.txt` is gone with it. The texture re-read leak fix (`texMade`) from 0.3.47 stays. Measured basis: Lateralus's play test (first-zoom hitch); the 0.3.46 behaviour shipped in 0.9.7-dev.16 to dev.20.
+
+## 0.3.49: the armory shows only the full model
+
+Lateralus (25 Nov 2026, dev.21): "the mod's new custom units pop in at the highest LOD before switching to the lowest LOD, the vanilla units don't do that". Read from the code: an armory entry kept its battle detail levels (`lods`), so the full armory model became level 0 of a `LODGroup` whose lower levels were the battle copies, and the armory camera's screen share dropped it to the lightest one. From 0.3.49 the armory (not Potato/Low, which use the battle model on purpose) builds only the full model: one level, and `Apply` adds a `LODGroup` only for two or more. Battles are unchanged. Not yet seen in a game.
+
 ## Limits
 
 - Building a level still runs on the main thread: Unity allows Mesh and Texture creation only there. One large level 0 can take more than 6 ms by itself.
@@ -81,3 +89,5 @@ Not proven in a game: the formula's match with HDRP's own LOD bias (HDRP frame s
 - 2026-11-24 15:35 PST (America/Los_Angeles) — Added 0.3.46: the match-start preload builds only the lightest level; heavier levels stream after the spawn (Osama).
 - 2026-11-24 15:45 PST (America/Los_Angeles) — 0.3.46: heavier levels are built during the deployment pause within the 6 ms budget (Osama).
 - 2026-11-25 09:55 PST (America/Los_Angeles) — Added 0.3.47: on-demand heavier levels, unloading, read-only deployment preload switch and the texture re-read leak fix.
+- 2026-11-25 15:4x PST (America/Los_Angeles) — 0.3.48: on-demand levels and 30 s unloading removed after the dev.21 first-zoom hitch (Lateralus); texture leak fix kept.
+- 2026-11-25 16:5x PST (America/Los_Angeles) — 0.3.49: armory models without battle detail levels (Lateralus: custom units dropped to the lowest LOD in the armory).
