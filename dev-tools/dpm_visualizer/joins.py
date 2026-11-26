@@ -545,27 +545,89 @@ class Catalog:
             weapon, ammo = self.weapons[weapon_id], self.ammos[ammo_id]
             key = (str(ammo.get("HUDName") or ammo.get("Name")), str(weapon.get("HUDName") or weapon.get("Name")), sig(weapon, skip_w), sig(ammo, skip_a))
             groups[key].append((weapon_id, ammo_id))
-        entries: list[dict[str, Any]] = []
-        aliases: dict[str, str] = {}
+        # Lateralus 26 Nov 2026: entries that share a name show only what differs between them; an entry with no look-alike shows
+        # damage, range, penetration and magazine. Same items and wording as the website.
+        def num(v: Any) -> str:
+            v = float(v or 0)
+            return f"{v:.1f}" if v.is_integer() else repr(v)
+
+        def rng(a: Any, b: Any, unit: str = "") -> str:
+            return f"{num(a)}{unit}" if num(a) == num(b) else f"{num(a)}–{num(b)}{unit}"
+
+        def pen(w: dict, a: dict) -> str:
+            lo, hi = float(a.get("PenetrationAtMinRange") or 0), float(a.get("PenetrationAtGroundRange") or 0)
+            return "" if not lo and not hi else f"pen {num(lo)}" if lo == hi else f"pen {num(lo)}→{num(hi)}"
+
+        def tier(w: dict, a: dict) -> str:
+            m = re.search(r"\bT(\d)\b", str(a.get("Name") or ""))
+            return f"T{m.group(1)}" if m else ""
+
+        items = [
+            ("dmg", lambda w, a: f"dmg {num(a.get('Damage'))}"),
+            ("range", lambda w, a: card_range_text(a).replace("range ", "", 1).strip()),
+            ("pen", pen),
+            ("mag", lambda w, a: f"mag {int(float(w.get('MagazineSize') or 0))}"),
+            ("reload", lambda w, a: f"reload {rng(w.get('MagazineReloadTimeMin'), w.get('MagazineReloadTimeMax'), ' s')}"),
+            ("burst", lambda w, a: f"burst {rng(w.get('ShotsPerBurstMin'), w.get('ShotsPerBurstMax'))} every "
+                                   f"{rng(w.get('TimeBetweenBurstsMin'), w.get('TimeBetweenBurstsMax'), ' s')}"),
+            ("gap", lambda w, a: f"shot gap {num(w.get('TimeBetweenShotsInBurst'))} s"),
+            ("aim", lambda w, a: f"aim {rng(w.get('AimTimeMin'), w.get('AimTimeMax'), ' s')}"),
+            ("spread", lambda w, a: f"spread {num(a.get('DispersionHorizontalRadius'))}×{num(a.get('DispersionVerticalRadius'))}"),
+            ("stress", lambda w, a: f"stress {num(a.get('StressDamage'))}"),
+            ("blast", lambda w, a: f"blast {num(a.get('HealthAOERadius'))}"),
+            ("cover", lambda w, a: f"ignores cover {num(a.get('IgnoreCover'))}"),
+            ("targets", lambda w, a: f"targets {int(float(a.get('TargetType') or 0))}"),
+            ("move", lambda w, a: "fires on the move" if w.get("CanShootOnTheMove") else "no fire on the move"),
+            ("tier", tier),
+        ]
+        base = {"dmg", "range", "pen", "mag", "tier"}
+        raw_names = {"LowerVerticalAngle": "gun depression", "UpperVerticalAngles": "gun elevation", "VerticalRotationSpeed": "elevation speed",
+                     "ShortGroundAttackBurst": "ground-attack bursts", "NormalGroundAttackBurst": "ground-attack bursts",
+                     "LongGroundAttackBurst": "ground-attack bursts", "Type": "weapon type", "CanBeMerged": "merge flag",
+                     "FlashPerShot": "muzzle flash", "HasPriorityOnChassis": "hull priority", "MuzzleVelocity": "muzzle velocity",
+                     "VfxCountPerShotMax": "effects", "VfxCountPerShot": "effects", "HUDMultiplier": "card ammo multiplier"}
+        ents: list[dict[str, Any]] = []
         for members in groups.values():
-            weapon_ids = sorted({w for w, _ in members})
-            ammo_ids = sorted({a for _, a in members})
             weapon_id, ammo_id = min(members, key=lambda m: (m[1], m[0]))
             weapon, ammo = self.weapons[weapon_id], self.ammos[ammo_id]
             carriers = set().union(*(users.get(m, set()) for m in members))
-            live = sorted(u for u in carriers if u in in_game)
-            tier = re.search(r"\bT(\d)\b", str(ammo.get("Name") or ""))
-            pen = float(ammo.get("PenetrationAtMinRange") or 0)
-            bits = [f"dmg {float(ammo.get('Damage') or 0)}", card_range_text(ammo).replace("range ", "", 1).strip(),
-                    f"pen {pen}" if pen else "", f"T{tier.group(1)}" if tier else "",
-                    f"{len(live)} unit{'' if len(live) == 1 else 's'}" if live else "not in any deck"]
-            label = (f"{ammo.get('HUDName') or ammo.get('Name')} [{'/'.join(map(str, ammo_ids))}] — "
-                     f"{weapon.get('HUDName') or weapon.get('Name')} [{'/'.join(map(str, weapon_ids))}] · " + " · ".join(b for b in bits if b))
-            names = sorted((self.unit_label(u) if u in self.units else f"unit {u}") for u in (live or sorted(carriers)))
-            tip = ", ".join(names) + (f"  ·  same stats except supply: ammo {', '.join(map(str, ammo_ids))}" if len(ammo_ids) > 1 else "")
-            entries.append({"label": label, "weapon_id": weapon_id, "ammo_id": ammo_id, "live": bool(live), "tip": tip})
-            for w, a in members:
+            ents.append({"members": members, "weapon_ids": sorted({w for w, _ in members}), "ammo_ids": sorted({a for _, a in members}),
+                         "weapon_id": weapon_id, "ammo_id": ammo_id, "weapon": weapon, "ammo": ammo, "carriers": carriers,
+                         "live": sorted(u for u in carriers if u in in_game),
+                         "name": (str(ammo.get("HUDName") or ammo.get("Name")), str(weapon.get("HUDName") or weapon.get("Name"))),
+                         "vals": [fn(weapon, ammo) for _, fn in items]})
+        siblings: dict[tuple[str, str], list[dict[str, Any]]] = defaultdict(list)
+        for e in ents:
+            siblings[e["name"]].append(e)
+        skip_raw = {"Id", "_v", "Name", "SupplyCost", "ResupplyTime"}
+        entries: list[dict[str, Any]] = []
+        aliases: dict[str, str] = {}
+        for e in ents:
+            others = siblings[e["name"]]
+            if len(others) > 1:
+                bits = [e["vals"][i] for i in range(len(items)) if len({o["vals"][i] for o in others}) > 1 and e["vals"][i]]
+                if not bits:
+                    raw = []
+                    for src in ("weapon", "ammo"):
+                        for k in sorted(set().union(*(o[src].keys() for o in others)) - skip_raw):
+                            if len({repr(o[src].get(k)) for o in others}) > 1 and not any(isinstance(o[src].get(k), str) for o in others):
+                                name = raw_names.get(k, k)
+                                if name not in raw:
+                                    raw.append(name)
+                    bits = ["differs in " + ", ".join(raw[:3]) if raw else "same stats"]
+            else:
+                bits = [e["vals"][i] for i, (key, _) in enumerate(items) if key in base and e["vals"][i]]
+            live = e["live"]
+            bits.append(f"{len(live)} unit{'' if len(live) == 1 else 's'}" if live else "not in any deck")
+            ammo, weapon = e["ammo"], e["weapon"]
+            label = (f"{ammo.get('HUDName') or ammo.get('Name')} [{'/'.join(map(str, e['ammo_ids']))}] — "
+                     f"{weapon.get('HUDName') or weapon.get('Name')} [{'/'.join(map(str, e['weapon_ids']))}] · " + " · ".join(b for b in bits if b))
+            names = sorted((self.unit_label(u) if u in self.units else f"unit {u}") for u in (live or sorted(e["carriers"])))
+            tip = ", ".join(names) + (f"  ·  same stats except supply: ammo {', '.join(map(str, e['ammo_ids']))}" if len(e["ammo_ids"]) > 1 else "")
+            entries.append({"label": label, "weapon_id": e["weapon_id"], "ammo_id": e["ammo_id"], "live": bool(live), "tip": tip})
+            for w, a in e["members"]:
                 aliases[f"{self.ammo_label(a)} — {self.weapon_label(w)}"] = label
+            aliases[label.split(" · ")[0]] = label
         entries.sort(key=lambda e: e["label"].lower())
         return entries, aliases
 

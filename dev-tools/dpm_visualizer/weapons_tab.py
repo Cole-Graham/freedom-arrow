@@ -209,6 +209,10 @@ class WeaponsTab:
         row = self.rows.pop()
         row["frame"].destroy()
 
+    def _canon(self, label: str) -> str:
+        """Current label for an older one: the plain "ammo [id] — weapon [id]" form, or an earlier stats label by its "… [ids] — … [ids]" part."""
+        return self._aliases.get(label) or self._aliases.get(label.split(" · ")[0]) or label
+
     def _resolve_pair(self, label: str) -> tuple[dict[str, Any], dict[str, Any], str]:
         catalog = self.app.catalog
         assert catalog is not None
@@ -548,8 +552,10 @@ class WeaponsTab:
             known = set(self.weapon_names) | set(self.app.custom_weapons) | set(self._pair_index)
             for row, saved in zip(self.rows, rows):
                 weapon = saved.get("weapon") or ""
-                if weapon and weapon in known:
-                    row["weapon"].set(weapon if weapon in self.app.custom_weapons else self._aliases.get(weapon, weapon))
+                if weapon in self.app.custom_weapons:
+                    row["weapon"].set(weapon)
+                elif weapon and (weapon in known or self._canon(weapon) in self._pair_index):
+                    row["weapon"].set(self._canon(weapon))
                 row["visible"].set(bool(saved.get("visible", True)))
                 if saved.get("qty") is not None:
                     try:

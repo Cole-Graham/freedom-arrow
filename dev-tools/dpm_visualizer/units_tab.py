@@ -180,7 +180,7 @@ class UnitsTab:
         pair = SearchableCombobox(line, values=self._weapon_choices(), width=60)
         pair.set_values(self._weapon_choices(), self._tips)
         pair.pack(side=tk.LEFT)
-        pair.set(self._aliases.get(label, label))
+        pair.set(self._aliases.get(label) or self._aliases.get(label.split(" · ")[0]) or label)
         number = tk.IntVar(value=count)
         ttk.Spinbox(line, from_=0, to=50, textvariable=number, width=4).pack(side=tk.LEFT, padx=4)
         item = {"frame": line, "pair": pair, "count": number}
