@@ -18,6 +18,17 @@ Requested by Osama, 25 November 2026: <https://discord.com/channels/156696962774
 - **Unload:** install the normal dev build from `codex/development`. It is gameplay-only, so only the gameplay file (about 211 MB) downloads again.
 - **Merge into live:** only when Osama approves. The ROC rows keep their IDs.
 
+## Test build 0.9.7-roc4 (build 366), 26 November 2026
+
+**On the dev launcher as a test build: gameplay `0.9.7-roc4` + Models & music `0.2.104-roc4`. Osama approved it and asked for it to be built on his PC (Vengeance) to spare the deck.**
+
+- Gameplay: <https://freedomarrow.app/gameplay/FreedomArrow-0.9.7-roc4.bamod> (sha256 582473dd…, 234 MB). Models & music: file list <https://freedomarrow.app/assets/index/FreedomArrow-Assets-0.2.104-roc4.files.json> (13,716 files, 443 new on R2).
+- Contents: 0.9.7 + development (f2f93318) + ROC spec 60 (48 cards, ROC squads and weapons), 21 ROC vehicle and aircraft models, 7 infantry bodies, the T91 rifle, ROC FAModels (reads infantry-bodies-*.json, accepts 5000-5999).
+- Checks: 6,449 batch checks; queued changes, multiplayer equipment, battle triangles, slots, fields, swap prices, mounts, squad HP, infantry armour and model carry all pass.
+- ROC-branch packager changes: a -rocN build names its models 0.2.104-rocN (never a live number); the version check tolerates the suffix; -rocN sorts just after its base; the DLL version check reads a 10-character version (re.S). The ROC receipt stays out of the shared out/receipts.
+- Built on Vengeance under /home/sam/tars (scratch, kept for the next ROC build): zip and pycryptodome in a scratch venv; inputs copied with rsync at idle priority while Broken Arrow was running.
+
 ## Document change log
 
 - 2026-11-25 01:0x PST (America/Los_Angeles) — Branch created: empty `roc.py`, reserved ID blocks, load/unload notes.
+- 2026-11-26 04:31 PST (America/Los_Angeles) — Test build 0.9.7-roc4 (build 366) built on Vengeance and published to the dev launcher.
