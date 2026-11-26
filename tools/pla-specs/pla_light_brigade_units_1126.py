@@ -23,7 +23,9 @@ MOVES = [  # (card row, unit, HUDName, from spec, to spec)
     (2013297, 1187, 'Beijing Swords 蓝剑', PLAN, LIGHT), (2013270, 1186, 'Mountain Leopards 高原雪豹', PLAN, LIGHT),
     (2013204, 1184, 'Whistling Arrows 响箭', PLAN, LIGHT), (2008264, 1252, 'WZ-8', PLAN, LIGHT), (2008222, 935, 'FK-2000', MEDIUM, PLAN),
     (2013175, 1183, 'Blood Wolves 朱日和之狼', PLAN, LIGHT), (2013239, 1185, 'Falcons 猎鹰', PLAN, LIGHT), (2013107, 1181, 'Godswords 东方神剑', PLAN, LIGHT),
-    (2013140, 1182, 'PAP Snow Leopards 雪豹', PLAN, LIGHT)]
+    (2013140, 1182, 'PAP Snow Leopards 雪豹', PLAN, LIGHT),
+    # 02:4x "J-36, MD-22 moved to Light CAB. J-31 moved from medium cab to light CAB" (Air tab)
+    (2014507, 929, 'J-36', PLAN, LIGHT), (2008268, 976, 'MD-22', PLAN, LIGHT), (2014513, 1251, 'J-31', MEDIUM, LIGHT)]
 SEA_DRAGONS = 1191
 LIGHT_UI = 'PLAGF Light Combined Arms Brigade 陆军轻型合成旅'
 
