@@ -7,7 +7,7 @@ import tkinter as tk
 from tkinter import filedialog, messagebox, ttk
 from typing import Any
 
-from .calculations import Cover, building_box, card_range_text, carried_ammo_share, cover_multiplier, hit_chance, interpolate_dpm, sample_dpm, sum_series, time_to_kill_s
+from .calculations import Cover, building_box, burn_delay_s, burn_text, card_range_text, carried_ammo_share, cover_multiplier, hit_chance, interpolate_dpm, sample_dpm, sum_series, time_to_kill_s
 from .chart_panel import ChartPanel
 from .constants import CARD_RANGE_MULTIPLIER, FACE_FIELDS, FACES, LAUNCHER_MODES
 from .ui_components import ArmorPicker, CoverControls, SearchableCombobox
@@ -707,7 +707,11 @@ class UnitsTab:
             ranked.append((dpm, meta))
         ranked.sort(key=lambda item: item[0], reverse=True)
         for dpm, meta in ranked:
-            ttk_s = time_to_kill_s(meta["hp"], dpm if not self.normalize.get() else dpm * meta["cost"])
+            # Burning rounds deliver their damage after they land: the unit's delay is the DPM-weighted mean of its weapons' burn delays.
+            weapon_dpm = [(interpolate_dpm(w["series"], card), burn_delay_s(w["ammo"])) for w in meta["weapons"]]
+            total_dpm = sum(d for d, _ in weapon_dpm)
+            delay = sum(d * lag for d, lag in weapon_dpm) / total_dpm if total_dpm > 0 else 0.0
+            ttk_s = time_to_kill_s(meta["hp"], dpm if not self.normalize.get() else dpm * meta["cost"], delay)
             ttk_txt = f"{ttk_s:.1f}s TTK" if ttk_s is not None else "no TTK"
             versus = f"  vs {meta['versus']}" if meta.get("versus") else ""
             lines.append(f"\n{meta['label']}{versus}  cost {meta['cost']}  DPM {dpm:.1f}  {ttk_txt}")
@@ -723,6 +727,8 @@ class UnitsTab:
                     hit_txt += f"  through cover {weapon_meta['cover']:.0%}"
                 range_txt = card_range_text(ammo)
                 range_part = f"  {range_txt}" if range_txt else ""
+                if burn_text(ammo):
+                    range_part += f"  ({burn_text(ammo)})"
                 lines.append(
                     f"  {weapon.get('HUDName')}: {ammo.get('HUDName')}{range_part}  "
                     f"DPM {wdpm:.1f}  dmg {ammo.get('Damage')}  "
