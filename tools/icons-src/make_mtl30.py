@@ -1,4 +1,4 @@
-"""MTL-30 HUD icon v3 (25 Nov 20:3x Osama "change the magazine and grip": grip + trigger guard and magazine re-measured from the photo). v2, higher-fidelity pass (Osama 25 Nov 2026 20:1x, bugs thread 1573561286803980289: "can you to a higher fidelity pass on
+"""MTL-30 HUD icon v4 (Osama 21:5x "redo the grip, needs to look like a pistol grip": slim backward-raked AR-style grip). v3 (25 Nov 20:3x Osama "change the magazine and grip": grip + trigger guard and magazine re-measured from the photo). v2, higher-fidelity pass (Osama 25 Nov 2026 20:1x, bugs thread 1573561286803980289: "can you to a higher fidelity pass on
 this icon"). Re-traced from 2x zoomed crops of ref/mtl30.png (photo coordinates, muzzle right): skeleton stock (butt pad, rear upright, bottom
 bar with lightening holes, diagonal strut, arched web to the receiver), receiver with rounded nose, top rail, handguard with two vent rows and the
 raised upper panel, muzzle stub, angled pistol grip with finger grooves, trigger guard, slanted magazine, and the optic: two bells, focus ring,
@@ -30,9 +30,9 @@ poly([(440, 200), (1295, 201), (1300, 212), (1297, 298), (1288, 306), (980, 307)
       (428, 290), (425, 250), (430, 214)])
 poly([(1298, 228), (1312, 228), (1312, 244), (1298, 244)])                                    # muzzle stub
 # --- grip + trigger guard, magazine: v3 outlines measured from the photo (dark grip and tan magazine against the white display)
-poly([(446, 333), (515, 333), (512, 350), (522, 364), (556, 402), (549, 418), (546, 432), (534, 444), (531, 456), (520, 468),
-      (512, 484), (496, 489), (462, 481), (449, 469), (452, 455), (470, 428), (486, 404), (470, 374), (447, 350)])
-thick([(521, 336), (527, 378), (548, 390), (576, 388), (586, 336)], 6)                       # trigger guard
+poly([(448, 333), (517, 333), (510, 360), (512, 376), (505, 396), (497, 422), (488, 452), (481, 474), (474, 486), (460, 491),
+      (440, 489), (428, 481), (426, 468), (432, 444), (441, 414), (449, 386), (455, 364), (446, 352), (440, 342), (446, 334)])  # v4 AR-style pistol grip
+thick([(520, 336), (524, 372), (546, 388), (578, 386), (588, 336)], 6)                       # trigger guard
 poly([(636, 331), (806, 331), (792, 352), (788, 372), (781, 400), (779, 535), (770, 546), (645, 546), (641, 538), (637, 400)])
 # --- optic
 poly([(484, 84), (500, 81), (500, 171), (484, 168)])                                        # rear bell
@@ -74,7 +74,7 @@ C(546, 338, 4)                                                                  
 L((432, 228), (440, 220)); L((427, 290), (436, 300))                                         # nose bevel
 # grip / magazine
 L((534, 340), (540, 372))                                                                     # trigger
-L((537, 436), (548, 430)); L((522, 460), (534, 452))                                          # finger grooves
+for k in range(4): L((452 - 7 * k, 400 + 22 * k), (490 - 7 * k, 404 + 22 * k))              # grip stipple bands
 L((637, 400), (781, 400)); L((642, 528), (779, 528))                                          # magwell seam + base plate
 for y in range(420, 520, 20): L((660, y), (760, y))                                          # magazine ribs
 # optic
