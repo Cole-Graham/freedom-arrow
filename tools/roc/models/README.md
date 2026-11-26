@@ -45,6 +45,26 @@ Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `inf
 6. `pipe_body.sh KEY RIGS`: atlas (`roc_` prefix), `decimate_fas.py` LODs, `_0_b` battle texture copies and `.fat` files.
 7. `pose_sheet.sh KEY RIGS`: rest pose plus a test pose (arms, legs, head, spine).
 
+## New models and fixes (26 November 2026)
+
+**4 more cards have ROC models: AH-64E, F-CK-1, C-130HE and Chung Hsiang II (Shawn's 26 November uploads). The Antelope's 3 War Thunder-named textures are replaced by BA Codex's own. 20 vehicle and aircraft cards now have ROC models. They are not yet in a game build.**
+
+- **AH-64E:** 30.1k triangles (battle 28.9k, LODs 17.3k / 9.8k), 16.4 m. The 8 Hellfires, 2 rocket pods and 2 Hellfire rails are dropped (the game draws stores on its own pylons). Rotors are static (Shawn: proceed).
+- **F-CK-1:** from the new FBX (the .max import was unusable). 55.1k (battle 47.5k, LODs 28.4k / 14.2k), 14.21 m. TC-1, TC-2 and drop tanks dropped; landing gear kept, as on the F-16V (dropping it left open gear bays).
+- **C-130HE:** 26.8k (LODs 16.0k / 9.4k), 29.79 m long, 39.7 m span. The mesh is the game's own C-130J (`ROC__Transport_C130J_LOD0`) with Shawn's ROC textures.
+- **Chung Hsiang II:** 11.0k (LODs 6.6k / 3.8k), 6.6 m as modelled.
+- **Antelope:** `antelope_own_tex.py` draws new headlight, cab-glass and wire-grille textures in the same layout (only the lamp positions are read from the old sheet). Old files are kept in `veh/ante_own/orig/`.
+- **UH-60M and CM-21:** kept as converted (Shawn 26 November: proceed; the UH-60M rotor does not spin).
+
+---
+
+**Gotchas found on 26 November**
+- `plane_prep.py` guesses "up" from the canopy. On the AH-64E and the F-CK-1 the cockpit sits below the model's middle, so both came out upside down; `UPSIGN=1` fixes it. It also takes the longest extent as the fuselage: use `LONG=1` for aircraft wider than long.
+- `famconv.py` measures `--length` along the longer flat axis. The C-130 and the UAV were scaled by their wingspan (C-130: 22 m span) until `FCX=--turn` was passed through `finish_one.sh`.
+- `fbx2glb.py` sets a material to BLEND when its colour map has an alpha channel, and it can pair a material with another material's opacity map. The AH-64E and F-CK-1 hulls looked hollow; `glb_alpha.py` sets them OPAQUE (canopy: MASK).
+- `conv.py` (fat) skips files that already exist: move the old `.fat` away before rebuilding a texture.
+- `stage_roc.py` now also stages the infantry bodies, `infantry-bodies-roc.json` and the T91 rifle, because it empties the stage folder first.
+
 ## Document change log
 
 - 2026-11-25 03:4x PST (America/Los_Angeles) — T91 rifle converted; recipe and first grip offset.
@@ -52,3 +72,4 @@ Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `inf
 - 2026-11-25 10:4x PST (America/Los_Angeles) — 6 ROC infantry bodies rigged with LODs; add-on body rules and FAModels ROC range recorded.
 - 2026-11-25 11:2x PST (America/Los_Angeles) — SF Scout recoloured to ROC camo; SF Section waits for ROC SF2.
 - 2026-11-25 13:5x PST (America/Los_Angeles) — SF Scout camo rebuilt from real ROC fabric; SF 1 arm-fit fix (shape keys); matte previews.
+- 2026-11-26 02:51 PST (America/Los_Angeles) — AH-64E, F-CK-1, C-130HE and Chung Hsiang II converted; Antelope textures replaced; stage includes infantry and T91.

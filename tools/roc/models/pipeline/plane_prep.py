@@ -10,7 +10,8 @@ for o in ms:
     mw=o.matrix_world.copy();o.parent=None;o.matrix_world=mw
 for o in [o for o in bpy.data.objects if o.type!='MESH']:bpy.data.objects.remove(o,do_unlink=True)
 P=np.array([tuple(o.matrix_world@v.co) for o in ms for v in o.data.vertices]);mn,mx=P.min(0),P.max(0);ext=mx-mn
-L=int(np.argmax(ext));lo,hi=mn[L],mx[L];span=hi-lo
+L=int(os.environ['LONG']) if os.environ.get('LONG') else int(np.argmax(ext));   # LONG: fuselage axis when the wingspan is longer (C-130, UAVs)
+lo,hi=mn[L],mx[L];span=hi-lo
 others=[i for i in range(3) if i!=L]
 def width(s):q=P[s];return float(np.ptp(q[:,others[0]])+np.ptp(q[:,others[1]]))
 nose=1 if width(P[:,L]>hi-0.1*span)<width(P[:,L]<lo+0.1*span) else -1

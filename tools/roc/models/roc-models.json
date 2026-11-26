@@ -142,5 +142,41 @@
    "m_roc_uh60m_lo_static_l1.fam",
    "m_roc_uh60m_lo_static_l2.fam"
   ]
+ },
+ "ROC AH-64E": {
+  "file": "m_roc_ah64e_static.fam",
+  "battle": "m_roc_ah64e_lo_static.fam",
+  "align": false,
+  "lods": [
+   "m_roc_ah64e_lo_static_l1.fam",
+   "m_roc_ah64e_lo_static_l2.fam"
+  ]
+ },
+ "ROC F-CK-1": {
+  "file": "m_roc_fck1_static.fam",
+  "battle": "m_roc_fck1_lo_static.fam",
+  "align": false,
+  "lods": [
+   "m_roc_fck1_lo_static_l1.fam",
+   "m_roc_fck1_lo_static_l2.fam"
+  ]
+ },
+ "ROC C-130HE": {
+  "file": "m_roc_c130_static.fam",
+  "battle": "m_roc_c130_lo_static.fam",
+  "align": false,
+  "lods": [
+   "m_roc_c130_lo_static_l1.fam",
+   "m_roc_c130_lo_static_l2.fam"
+  ]
+ },
+ "ROC Chung Hsiang II": {
+  "file": "m_roc_chx2_static.fam",
+  "battle": "m_roc_chx2_lo_static.fam",
+  "align": false,
+  "lods": [
+   "m_roc_chx2_lo_static_l1.fam",
+   "m_roc_chx2_lo_static_l2.fam"
+  ]
  }
 }
