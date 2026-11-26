@@ -77,5 +77,8 @@ def apply(t, g, ok, rec):
     g.add('WeaponAmmunitionsJson', ta[0], {'WeaponId': QJS161, 'AmmunitionId': QJS161_A, 'Quantity': 400})
     ok({r['WeaponId'] for r in rows('SquadWeaponsJson', UnitId=TAISHAN)} == carried == {r['WeaponId'] for r in rows('WeaponAmmunitionsJson', UnitId=TAISHAN)}
        and sum(r['PrimaryWeaponId'] == QJS161 for r in rows('SquadMembersJson', UnitId=TAISHAN)) == 3, 'Taishan Eagles: 3 QJS-161, card + ammo = carried')
+    # 26 Nov 10:5x "zzzc-06 moved to PLAN Navy": ZZC-06 (1420, Recon tab) card row 2018376 (4 cards) Heavy CAB (18) -> PLAN.
+    ok(U[1420]['HUDName'] == 'ZZC-06' and SA[2018376]['UnitId'] == 1420 and SA[2018376]['SpecializationId'] == 18 and len(rows('SpecializationAvailabilitiesJson', UnitId=1420)) == 1, 'ZZC-06: one Heavy CAB card row')
+    g.put('SpecializationAvailabilitiesJson', 2018376, {'SpecializationId': PLAN})
     rec['pla_light_brigade_late_1126'] = {'mountaineers': PATROL, 'zbd04_plan_cards': src[0]['MaxAvailabilityXp0']}
     print('PLA LIGHT BRIGADE LATE', rec['pla_light_brigade_late_1126'])
