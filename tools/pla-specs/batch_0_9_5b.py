@@ -969,6 +969,8 @@ import aps_two_charges_1125;aps_two_charges_1125.apply(t,g,ok,rec)
 import ztz99_lsdw_1125;ztz99_lsdw_1125.apply(t,g,ok,rec)
 # ---------- Thunder Gods second QJS-161 (Osama 25 Nov 2026 18:2x PST, bugs thread). See thunder_gods_qjs2_1125.py.
 import thunder_gods_qjs2_1125;thunder_gods_qjs2_1125.apply(t,g,ok,rec)
+# ---------- PAP Snow Leopards: one QCQ-171 -> QBS-09 (Osama 25 Nov 2026 18:3x PST, bugs thread). See snow_leopards_qbs_1125.py.
+import snow_leopards_qbs_1125;snow_leopards_qbs_1125.apply(t,g,ok,rec)
 # ---------- ZTQ-15, ZTQ-15 Recon, ZTQ-15 Light 25 points cheaper (Osama 25 Nov 2026 11:3x PST). See ztq15_cost_1125.py.
 import ztq15_cost_1125;ztq15_cost_1125.apply(t,g,ok,rec)
 # ---------- Z-20S 0 -> 4 seats, MH-60M SOAR Recon 60 -> 65 pts (Lateralus 25 Nov 2026 18:0x PST). See recon_helo_1125.py.
