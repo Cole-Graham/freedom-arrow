@@ -1014,6 +1014,8 @@ import weapon_coverage_check;rec['weapon_coverage_rows']=weapon_coverage_check.c
 # owner did not make (mod/id-reservations.json), or if a section after this line makes rows. New sections go above the disposable-launcher check.
 # ---------- Back-pocket China weapons, no squad yet: QJY-88, QBZ-192 MLOK, VQX191, QBU-202 (Osama 25 Nov 13:3x). See backpocket_weapons_1125.py.
 import backpocket_weapons_1125;backpocket_weapons_1125.apply(t,g,ok,rec)
+# ---------- (after the back-pocket weapons so their row ids stay) Sig Spear Shorty, back pocket: M7 Spear stat clone with its own suppressed icon (Osama 26 Nov 2026 01:5x). See spear_shorty_1126.py.
+import spear_shorty_1126;spear_shorty_1126.apply(t,g,ok,rec)
 import roc_hook;roc_hook.apply(t,g,ok,rec,recheck=lambda:(disposable_launchers_1123.check(t,ok,a.vanilla),weapon_coverage_check.check(t,patches,ok)))
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
