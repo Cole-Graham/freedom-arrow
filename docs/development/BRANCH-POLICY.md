@@ -59,6 +59,8 @@ Do not create a new branch for every dev/build number, texture attempt or loggin
 
 ## Version identity and publishing
 
+**Playtest numbers after 0.9.9 (Lateralus, 26 November 2026):** after 0.9.9 the numbers go on to 0.9.10, 0.9.11, 0.9.12 … or to 0.10.0, 0.10.1, 0.10.2 …. **1.0.0 is kept for the larger "beta" release on the roadmap**; do not use it for an ordinary playtest. Version order is numeric per part (`tools/pla-specs/fa_version.py`), so 0.9.10 sorts after 0.9.9. That helper accepts only a leading `0.` today; it must be extended before 1.0.0.
+
 Use immutable tags for named snapshots: `gameplay/0.7.0-dev.55`, `pla/build-27`, `assets/0.1.15`, and `launcher/<actual-version>`. Test versions can use `tests/0.7.0-devtest.lat.17`. These names are proposed; existing tag names and collisions must be checked before creating any.
 
 For each published package record its stream, full source commit, version, file SHA256, download URL, and test/deployment status. A tag or source merge does not publish an artifact. No GitHub Release is created without a release request. Keep the current manifest/profile pins until Sam or Lateralus changes the lock.
@@ -104,3 +106,4 @@ Work that is built on its own branch and merged later gets its own block of row 
 - 2026-11-19 06:4x PST (America/Los_Angeles) — 0.9.1 designated: `codex/0.9.1-development` created at `bc085f2d`; `codex/0.9-development` frozen; playtests 0.9.1, 0.9.2, … and dev builds 0.9.1-dev.N (Lateralus).
 - 2026-11-24 19:5x PST (America/Los_Angeles) — Two streams (Osama 19:42): gameplay = `codex/development`, models = `codex/models` (created at `f285615d`); `codex/assets-development` superseded.
 - 2026-11-25 00:5x PST (America/Los_Angeles) — Reserved ID blocks (`mod/id-reservations.json`, guard in `pla_graph.Graph` and `roc_hook`); first block for the ROC specialization branch `codex/batch/shawn/roc` (Osama, 25 Nov 00:5x).
+- 2026-11-26 10:2x PST (America/Los_Angeles) — Playtest numbering after 0.9.9 (0.9.10… or 0.10.0…); 1.0.0 reserved for the roadmap beta (Lateralus).
