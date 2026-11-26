@@ -109,6 +109,9 @@ class UnitsTab:
         self.chart = ChartPanel(right, "Unit DPM vs range", self._on_pin_and_save)
         self.info = tk.Text(right, height=12, wrap=tk.WORD)
         self.info.pack(fill=tk.BOTH, expand=False, pady=(6, 0))
+        # Lateralus 26 Nov 2026: in the DPM and DPM x1 values, the unit's highest is green text and the second yellow, each ranked on its own.
+        self.info.tag_configure("top1", foreground="#15803d")
+        self.info.tag_configure("top2", foreground="#ca8a04")
 
         self._build_custom(parent)
 
@@ -167,13 +170,17 @@ class UnitsTab:
         self.clone_weapons_frame.pack(fill=tk.X)
         self.clone_weapons: list[dict[str, Any]] = []
         self._pair_index: dict[str, tuple[int, int]] = {}
+        self._aliases: dict[str, str] = {}
+        self._tips: dict[str, str] = {}
+        self._shown_pairs: list[str] = []
 
     def _add_custom_weapon(self, label: str = "", count: int = 1) -> None:
         line = ttk.Frame(self.clone_weapons_frame)
         line.pack(fill=tk.X, pady=1)
         pair = SearchableCombobox(line, values=self._weapon_choices(), width=60)
+        pair.set_values(self._weapon_choices(), self._tips)
         pair.pack(side=tk.LEFT)
-        pair.set(label)
+        pair.set(self._aliases.get(label) or self._aliases.get(label.split(" · ")[0]) or label)
         number = tk.IntVar(value=count)
         ttk.Spinbox(line, from_=0, to=50, textvariable=number, width=4).pack(side=tk.LEFT, padx=4)
         item = {"frame": line, "pair": pair, "count": number}
@@ -182,7 +189,7 @@ class UnitsTab:
 
     def _weapon_choices(self) -> list[str]:
         """Game weapon + ammo pairs, then the profile's custom weapons (Lateralus 25 Nov 2026: custom weapons in custom units)."""
-        return sorted(self._pair_index) + sorted(self.app.custom_weapons)
+        return list(self._shown_pairs) + sorted(self.app.custom_weapons)
 
     def _remove_custom_weapon(self, item: dict[str, Any]) -> None:
         item["frame"].destroy()
@@ -194,7 +201,8 @@ class UnitsTab:
 
     def _pair_label(self, weapon_id: int, ammo_id: int) -> str:
         catalog = self.app.catalog
-        return f"{catalog.ammo_label(ammo_id)} — {catalog.weapon_label(weapon_id)}"
+        old = f"{catalog.ammo_label(ammo_id)} — {catalog.weapon_label(weapon_id)}"
+        return self._aliases.get(old, old)
 
     def _set_custom_armor(self, armor: dict[str, Any]) -> None:
         for field, var in self.clone_armor_vars.items():
@@ -315,10 +323,16 @@ class UnitsTab:
         self.target_unit.set_values(self.unit_names)
         self.target_armor.set_values(self.armor_names)
         self.clone_from.set_values(self.unit_names)
-        self._pair_index = {label: (w, a) for label, w, a in catalog.weapon_ammo_labels()}
+        # Same weapon list as the Weapons tab (Lateralus 26 Nov 2026): stats, unit count, identical rows merged, old labels resolve.
+        entries, self._aliases = catalog.weapon_ammo_entries()
+        self._pair_index = {e["label"]: (e["weapon_id"], e["ammo_id"]) for e in entries}
+        for old, new in self._aliases.items():
+            self._pair_index.setdefault(old, self._pair_index[new])
+        self._tips = {e["label"]: e["tip"] for e in entries}
+        self._shown_pairs = [e["label"] for e in entries if e["live"] or not self.app.deck_only.get()]
         self.clone_armor.set_values(self.armor_names)
         for item in self.clone_weapons:
-            item["pair"].set_values(self._weapon_choices())
+            item["pair"].set_values(self._weapon_choices(), self._tips)
         self.cover_ctl.update_info()
         if self.unit_names and not self.rows[0]["unit"].get():
             self.rows[0]["unit"].set(self.unit_names[0])
@@ -712,7 +726,7 @@ class UnitsTab:
             self.info.insert(tk.END, "Click the chart to pin a range.")
             return
         world = card / CARD_RANGE_MULTIPLIER
-        lines = [f"Pinned {card:.0f} card m ({world:.0f} world m)\n"]
+        lines: list[list[tuple[str, str]]] = [[(f"Pinned {card:.0f} card m ({world:.0f} world m)\n", "")]]
         ranked = []
         for meta in self._series_meta:
             dpm = interpolate_dpm(meta["series"], card)
@@ -726,7 +740,19 @@ class UnitsTab:
             ttk_s = time_to_kill_s(meta["hp"], dpm if not self.normalize.get() else dpm * meta["cost"], delay)
             ttk_txt = f"{ttk_s:.1f}s TTK" if ttk_s is not None else "no TTK"
             versus = f"  vs {meta['versus']}" if meta.get("versus") else ""
-            lines.append(f"\n{meta['label']}{versus}  cost {meta['cost']}  DPM {dpm:.1f}  {ttk_txt}")
+            lines.append([(f"\n{meta['label']}{versus}  cost {meta['cost']}  DPM {dpm:.1f}  {ttk_txt}", "")])
+
+            def per_gun(w: dict, d: float) -> float:
+                return d / w["gun_count"] if w["gun_count"] else 0.0
+
+            def rank(values: list[float]) -> list[float]:
+                return sorted((v for v in values if v > 0), reverse=True)
+
+            def top_tag(value: float, top: list[float]) -> str:
+                return "top1" if value > 0 and value == top[0] else "top2" if value > 0 and len(top) > 1 and value == top[1] else ""
+
+            top_dpm = rank([d for d, _ in weapon_dpm])
+            top_x1 = rank([per_gun(w, d) for w, (d, _) in zip(meta["weapons"], weapon_dpm)])
             for weapon_meta in meta["weapons"]:
                 wdpm = interpolate_dpm(weapon_meta["series"], card)
                 ammo = weapon_meta["ammo"]
@@ -741,15 +767,23 @@ class UnitsTab:
                 range_part = f"  {range_txt}" if range_txt else ""
                 if burn_text(ammo):
                     range_part += f"  ({burn_text(ammo)})"
-                lines.append(
-                    f"  {weapon.get('HUDName')}: {ammo.get('HUDName')}{range_part}  "
-                    f"DPM {wdpm:.1f}  dmg {ammo.get('Damage')}  "
+                x1 = per_gun(weapon_meta, wdpm)
+                lines.append([
+                    (f"  {weapon.get('HUDName')}: {ammo.get('HUDName')}{range_part}  ", ""),
+                    (f"DPM {wdpm:.1f}", top_tag(wdpm, top_dpm)),
+                    ("  ", ""),
+                    (f"DPM x1 {x1:.1f}", top_tag(x1, top_x1)),
+                    (f"  dmg {ammo.get('Damage')}  "
                     f"pen {ammo.get('PenetrationAtMinRange')}→{ammo.get('PenetrationAtGroundRange')}  "
                     f"guns {weapon_meta['gun_count']}  carried {weapon_meta['carried']}"
                     f"{hit_txt}"
-                    + (f"  ammo-limited to {weapon_meta['ammo_share']:.0%} of a minute" if weapon_meta.get("ammo_share", 1.0) < 1.0 else "")
-                )
-        self.info.insert(tk.END, "\n".join(lines))
+                    + (f"  ammo-limited to {weapon_meta['ammo_share']:.0%} of a minute" if weapon_meta.get("ammo_share", 1.0) < 1.0 else ""), ""),
+                ])
+        for i, segments in enumerate(lines):
+            if i:
+                self.info.insert(tk.END, "\n")
+            for text, tag in segments:
+                self.info.insert(tk.END, text, tag or ())
 
     def export_png(self) -> None:
         path = filedialog.asksaveasfilename(defaultextension=".png", filetypes=[("PNG", "*.png")])

@@ -1029,6 +1029,14 @@ import pla_light_brigade_troopers_1126;pla_light_brigade_troopers_1126.apply(t,g
 import pla_light_brigade_specs_1126;pla_light_brigade_specs_1126.apply(t,g,ok,rec)
 # ---------- PLA Light Brigade: HQ-22 (HQ-9A copy) + J-50 into PLAN, new PLAGF Light CAB spec with the SX2121 (Osama 26 Nov 01:4x). New rows use the
 # 'plb' reserved ID block (mod/id-reservations.json).
+# Lateralus's infantry-tier section from codex/development, placed before the plb scope (rows after the scope are refused).
+# ---------- Infantry weapons: one name, one set of stats; M240L T3, PKP-N, PKP 2.1, PKM 1.8, M249 -> M249E3, M249 Para 2.4, R-20 Rahe T1,
+# HK 416A5 Zaliukai; unused variants removed (Lateralus 26 Nov 2026 13:1x). Makes one round: keep it the last row-making section before
+# the ROC hook so no other ID moves. See lateralus/infantry_tiers_1126.py.
+import infantry_tiers_1126;infantry_tiers_1126.apply(t,g,ok,rec,patches)
+# ---------- Gvardii Motostrelki 60 -> 65, Motopekhota 55 -> 60, Shturmoviki 50 -> 55 points; VDV PKP RPG-7D3 ammo 4 -> 6 (Lateralus 26 Nov 2026 15:1x).
+# Existing rows only. See lateralus/infantry_prices_1126.py.
+import infantry_prices_1126;infantry_prices_1126.apply(t,g,ok,rec)
 import pla_light_brigade_units_1126
 import pla_light_brigade_jiaolong_1126
 # Jiaolong CQC (Osama 26 Nov 02:0x): QBZ URGI (Mk18 copy) + Sea Dragons CQC kit; same 'plb' scope, after the Test SF copy.

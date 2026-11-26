@@ -45,7 +45,7 @@ public sealed partial class Prototype
             }
             lastShot[weapon.GetHashCode()]=now;
             // dev.37: set the squad reload before the shot is logged, so timing.reload shows the value the game will use.
-            try{SquadReloadShot(w);}catch(Exception e){if(++squadReloadLogged<=5)MelonLogger.Warning("FREEDOM_ARROW_SQUAD_RELOAD failed: "+e.Message);}
+            try{SquadReloadShot(weapon,w);}catch(Exception e){if(++squadReloadLogged<=5)MelonLogger.Warning("FREEDOM_ARROW_SQUAD_RELOAD failed: "+e.Message);}
             LogShot(weapon,w,ammo.Name);
         }
         catch(Exception e) { fireOff=true;MelonLogger.Error("FREEDOM_ARROW_FIRE_STATS_FAILED: counting off for this session. "+e.Message); }
