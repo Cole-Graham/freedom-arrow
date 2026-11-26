@@ -26,6 +26,7 @@ Requested by Osama, 25 November 2026: <https://discord.com/channels/156696962774
 - Contents: 0.9.7 + development (f2f93318) + ROC spec 60 (48 cards, ROC squads and weapons), 21 ROC vehicle and aircraft models, 7 infantry bodies, the T91 rifle, ROC FAModels (reads infantry-bodies-*.json, accepts 5000-5999).
 - Checks: 6,449 batch checks; queued changes, multiplayer equipment, battle triangles, slots, fields, swap prices, mounts, squad HP, infantry armour and model carry all pass.
 - ROC-branch packager changes: a -rocN build names its models 0.2.104-rocN (never a live number); the version check tolerates the suffix; -rocN sorts just after its base; the DLL version check reads a 10-character version (re.S). The ROC receipt stays out of the shared out/receipts.
+- **Build number clash:** the Light Brigade thread also used 366 (0.9.7l-dev.4) while this built; the ROC receipt is kept out of the shared receipts, so they did not see it. Versions are distinct and nothing reads the number for loading; the next ROC build takes a fresh number.
 - Built on Vengeance under /home/sam/tars (scratch, kept for the next ROC build): zip and pycryptodome in a scratch venv; inputs copied with rsync at idle priority while Broken Arrow was running.
 
 ## Document change log
