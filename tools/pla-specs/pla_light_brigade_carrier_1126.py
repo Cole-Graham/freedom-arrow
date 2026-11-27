@@ -32,6 +32,7 @@ def apply(t, g, ok, rec):
     g.add('TurretWeaponsJson', agl, {'TurretId': tb, 'WeaponId': AGL, 'Order': 0})
     g.add('TurretWeaponsJson', agl, {'TurretId': tb, 'WeaponId': HMG, 'Order': 1})
     g.put('TurretUnitsJson', tu['Id'], {'TurretId': tb})
+    g.add('TurretUnitsJson', tu, {'TurretId': tur})   # the option turret is linked too, as the Leopard 2A8's three (audit_mp_equipment)
     wa = rows('WeaponAmmunitionsJson', UnitId=c)[0]
     g.add('WeaponAmmunitionsJson', wa, {'WeaponId': HMG, 'AmmunitionId': HMG_A, 'Quantity': HMG_N, 'Order': 0})
     # loadout (Leopard 2A8 MG pattern)
@@ -50,5 +51,6 @@ def apply(t, g, ok, rec):
     ok(sorted(x['Order'] for x in rows('TurretWeaponsJson', TurretId=tur)) == [0, 1, 2] and sorted(x['Order'] for x in rows('TurretWeaponsJson', TurretId=tb)) == [0, 1], 'orders 0..n-1, within the BMD-2 tower 3 points')
     ok(sorted((r['WeaponId'], r['Quantity']) for r in rows('WeaponAmmunitionsJson', UnitId=c)) == sorted([(AGL, 480), (HJ8H, 4), (HMG, HMG_N)]), 'carrier ammo')
     ok(U[c]['Cost'] == COST and O[o2]['Cost'] == ATGM_COST, 'price 45, HJ-8H +10')
+    ok([r['TurretId'] for r in rows('TurretUnitsJson', UnitId=c)] == [tb, tur], 'both turrets linked, default first')
     rec['pla_light_brigade_carrier_1126'] = {'carrier': c, 'cost': COST, 'default': lay(tb), 'hj8h_option': (o2, ATGM_COST, lay(tur))}
     print('PLA LIGHT BRIGADE CARRIER', rec['pla_light_brigade_carrier_1126'])
