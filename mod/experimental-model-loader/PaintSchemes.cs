@@ -31,7 +31,8 @@ public partial class Mod
         ["Mix"] = "Mixed camo", ["dig"] = "Digital", ["Yellow"] = "Yellow", ["YellowMix"] = "Yellow mix", ["Yellowmix"] = "Yellow mix",
         ["Green"] = "Green", ["Navy"] = "Navy grey", ["Black"] = "Black", ["Army"] = "Army green", ["Grey"] = "Grey", ["GreenMix"] = "Green mix",
         ["Camo1"] = "Camo 1", ["Camo2"] = "Camo 2", ["Mix1"] = "Mix 1", ["Mix2"] = "Mix 2",
-        ["GreyCamo"] = "Grey camo",   // ROC Mirage 2000-5 second skin (Shawn 26 Nov 2026)
+        ["GreyCamo"] = "Grey camo",
+        ["Mosaic"] = "Mosaic camo",   // ROC CM-34 MAISAIKE set (Shawn 27 Nov 2026)   // ROC Mirage 2000-5 second skin (Shawn 26 Nov 2026)
     };
     static string PaintLabel(string s) => s == "" ? "Default" : PaintNames.TryGetValue(s, out var n) ? n : s;
     static string ChoicesFile => Path.Combine(MelonLoader.Utils.MelonEnvironment.UserDataDirectory, "FAModels-paint-choices.json");

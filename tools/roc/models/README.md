@@ -152,6 +152,11 @@ Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `inf
 - **Ghillie sleeves (Shawn: "make sure the arm and the hand in ROC SF 4 are align with the Ghillie suit's"):** the ghillie was modelled in a T-pose (sleeves level at z 1.45 m out to 0.80 m) while the soldier's arms hang in an A-pose. `ghillie_pose.py` bends each sleeve onto the arm's centre line (coat + arm slices) by arc length, keeping its cross-section, and writes `ROC SF 4 posed.blend`. Measured on the source: coat sleeve to ghillie 9.8 → 1.5 cm (median), forearm 28 → 3.9 cm, hand 36 → 12.6 cm (the hands come out of the sleeves). The arm landmarks were measured from the T-posed sleeves before; they now follow the real arms (hand at z 1.10 m instead of 1.51 m). Re-rigged and re-built (27.9k / 7.0k / 3.0k).
 - **SF Section 5045 = ROC SF2** (`JGSF_soldier_01`, 10.6k triangles, Japanese-gunner style textures). The file is 1.62 m tall, so it is scaled to 1.83 m like the other ROC bodies (`scale` 0.01128). One mesh, fitted with ArmFit and measured landmarks; LODs 10.6k / 7.0k / 3.0k.
 
+## TK-III cab fixed; CM-34 Desert and Mosaic paint (27 November 2026, ~02:30)
+
+- **Tien Kung III cab (Shawn's screenshot: the cab looked open/broken):** the cab material (`chetou1`) was alpha BLEND, because its colour map carries the window cut-outs in its alpha (6.5 % of the sheet), so the whole cab drew as see-through and sorted wrongly. `canopy_split.py` moves the 30 window faces (alpha < 0.5) to their own glass part, the cab is OPAQUE (`glb_alpha.py`), and `tint_glass.py` makes the windows dark tinted glass (0.10, 0.12, 0.13, opacity 0.80). Rebuilt: 21.0k triangles (LODs 12.6k / 7.4k), 14.0 m, Arsenal textures 7.4 Mpx. Old files in `veh/x/tk3/pre-glass/`.
+- **CM-34 paint (Shawn: "add more paint options to CM34"):** his folder has two more colour sets beside the default green: `SHAMO` (desert) and `MAISAIKE` (mosaic). They become the paint schemes `Dust` ("Desert") and `Mosaic` ("Mosaic camo"), 12 `@Scheme` textures (hull, wheels, gun; Arsenal and battle) at the shipped sizes, made with the same LANCZOS resizes as the default (the default matched its source exactly).
+
 ## Document change log
 
 - 2026-11-25 03:4x PST (America/Los_Angeles) — T91 rifle converted; recipe and first grip offset.
@@ -171,3 +176,4 @@ Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `inf
 - 2026-11-27 01:06 PST (America/Los_Angeles) — New T91 model; Kestrel-1 model and 4 launcher hand rules.
 - 2026-11-27 01:46 PST (America/Los_Angeles) — SF Scout = ROC SF 4 ghillie body with cut-out; AN/TWQ-1 card.
 - 2026-11-27 01:50 PST (America/Los_Angeles) — SF 4 ghillie sleeves bent onto the arms; SF Section = ROC SF2 body.
+- 2026-11-27 02:15 PST (America/Los_Angeles) — TK-III cab glass fixed; CM-34 Desert and Mosaic paint schemes.

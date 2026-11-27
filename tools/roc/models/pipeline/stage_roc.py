@@ -34,7 +34,8 @@ json.dump(models,open(H+'/stage/roc-models.json','w'),indent=1,ensure_ascii=Fals
 # paint-schemes-roc.json is an add-on read by the ROC-branch FAModels; button swatches = 256x144 crop of the armory colour texture centre
 from PIL import Image
 PAINT={'ROC Mirage 2000-5':('m_roc_mirage_static_tex0',['GreyCamo']),
-       'ROC Hsiung Feng IIE':('m_roc_hf2e_static_tex4',['Camo'])}   # Shawn 26 Nov 21:5x: optional Woodland camo (camo_hf2e.py)
+       'ROC Hsiung Feng IIE':('m_roc_hf2e_static_tex4',['Camo']),
+       'ROC CM-34':('m_roc_cm34_static_tex0',['Dust','Mosaic'])}   # Shawn 27 Nov 02:1x: the SHAMO (desert) and MAISAIKE (mosaic) sets from his folder   # Shawn 26 Nov 21:5x: optional Woodland camo (camo_hf2e.py)
 os.makedirs(S+'/paint',exist_ok=True)
 def swatch(f):
     im=Image.open(f).convert('RGB');w,h=im.size;cw,ch=int(w*0.5),int(w*0.5*144/256);x,y=(w-cw)//2,(h-ch)//2;return im.crop((x,y,x+cw,y+ch)).resize((256,144),Image.LANCZOS)
@@ -42,7 +43,7 @@ pf=lambda u:''.join(c if c.isalnum() else '_' for c in u)
 for u,(tex,schemes) in PAINT.items():
     swatch(f'{V}/models/{tex}.png').save(f'{S}/paint/{pf(u)}@Default.png')
     for sc in schemes:
-        assert os.path.exists(f'{S}/{tex}@{sc}.fat'),(tex,sc);swatch((glob.glob(f'{V}/x/*/scheme*/out/{tex}@{sc}.png')+glob.glob(f'{V}/x/*/camo_maps/{tex}@{sc}.png'))[0]).save(f'{S}/paint/{pf(u)}@{sc}.png')
+        assert os.path.exists(f'{S}/{tex}@{sc}.fat'),(tex,sc);swatch((glob.glob(f'{V}/x/*/scheme*/out/{tex}@{sc}.png')+glob.glob(f'{V}/x/*/camo_maps/{tex}@{sc}.png')+glob.glob(f'{V}/x/*/schemes/{tex}@{sc}.png'))[0]).save(f'{S}/paint/{pf(u)}@{sc}.png')
 json.dump({u:sc for u,(t,sc) in PAINT.items()},open(S+'/paint-schemes-roc.json','w'),indent=1)
 mb=sum(os.path.getsize(f'{S}/{f}') for f in os.listdir(S))/1e6
 print('ROC stage',n,'files',round(mb,1),'MB;',len(models),'card entries:',', '.join(models))
