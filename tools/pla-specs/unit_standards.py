@@ -10,8 +10,9 @@ carry.
 
 check(): fails the batch when a squad in a deck breaks a rule:
 - a reusable launcher (type 62, magazine 1) with 3+ carriers in one squad: SquadReload.cs fixes the rate only for 1 (10/min) and 2 (15/min);
-- one infantry weapon name firing one round name at different damage on different squads (Lateralus 26 Nov: "one name, one set of stats").
-  KNOWN lists the cases already in the game, with their exact damage sets: a new squad that adds another damage, or a new weapon, fails.
+- one infantry weapon name firing one round name at different damage on different squads in decks (Lateralus 26 Nov: "one name, one set of
+  stats"). No exceptions: after the 26 Nov standardisation every deck squad already passes. Squads in no deck are not checked (vanilla keeps
+  hidden tier variants there, e.g. Ksp 58B 2.25 on Gelezinis Vilkas 434, M249 Para 2.05/3.1 on 435/437).
 The one-round-per-carrier rule for disposables is disposable_launchers_1123.check; weapon rows need ammo rows: weapon_coverage_check."""
 import collections
 import json
@@ -19,8 +20,6 @@ from pathlib import Path
 
 CONTRACT = Path(__file__).resolve().parents[2] / 'mod/squad-rof-contract.json'
 REUSABLE_TYPE, REUSABLE_RATES = 62, (1, 2)
-# Infantry weapons still firing tiered damage on different squads (26 Nov 2026, after the M240L/PKP/PKM/M249/R-20/HK 416A5 standardisation).
-KNOWN = {('Ksp 58B', '7.62x51mm'): {1.8, 2.25}, ('M249 Para', '5.56x45mm'): {2.05, 2.4, 3.1}}
 
 
 def _live(t, tab):
@@ -73,9 +72,8 @@ def check(t, ok, rec):
     for r in _live(t, 'WeaponAmmunitionsJson'):
         if r['UnitId'] in deck and car.get((r['UnitId'], r['WeaponId'])):
             dmg[(W[r['WeaponId']]['HUDName'], A[r['AmmunitionId']].get('HUDName'))].add(A[r['AmmunitionId']]['Damage'])
-    tiered = {k: v for k, v in dmg.items() if len(v) > 1}
-    new = {k: sorted(v) for k, v in tiered.items() if KNOWN.get(k) != v}
-    ok(not new, ('infantry weapon: one name, one damage on every squad (unit_standards.KNOWN lists the old exceptions)', new))
+    tiered = {k: sorted(v) for k, v in dmg.items() if len(v) > 1}
+    ok(not tiered, ('infantry weapon: one name, one damage on every squad in a deck', tiered))
     table = squad_reload_table(t)
-    rec['unit_standards'] = {'deck_units': len(deck), 'disposable_squad_rates': len(table['squads']), 'tiered_known': sorted(map(list, tiered))}
+    rec['unit_standards'] = {'deck_units': len(deck), 'disposable_squad_rates': len(table['squads']), 'tiered': tiered}
     return table

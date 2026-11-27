@@ -13,7 +13,7 @@ Every rule below is checked on each run of `tools/pla-specs/batch_0_9_5b.py`, in
 
 ## Infantry weapons
 
-- **One name, one set of stats** (Lateralus 26 Nov). An infantry weapon fires the same round, at the same damage, on every squad. Do not make per-squad tier variants (the vanilla T1/T2/T3 pattern). Vehicle-mounted weapons may differ. Check: `unit_standards.check`. `unit_standards.KNOWN` lists the cases already in the game (Ksp 58B; M249 Para T1/T2/T3), with their exact damages. Adding another damage to them also fails.
+- **One name, one set of stats** (Lateralus 26 Nov). An infantry weapon fires the same round, at the same damage, on every squad. Do not make per-squad tier variants (the vanilla T1/T2/T3 pattern). Vehicle-mounted weapons may differ. Check: `unit_standards.check`, on every squad in a deck, with no exceptions. Squads in no deck are not checked; vanilla keeps hidden tier variants there.
 - **Reuse rows.** Link existing weapon, round and ability rows when the stats are the same. Copy a row only when the stats really differ, and say why in the commit. No `[TEST]` copies (Lateralus 26 Nov).
 
 ## Data the game needs
@@ -23,3 +23,4 @@ Every rule below is checked on each run of `tools/pla-specs/batch_0_9_5b.py`, in
 ## Document change log
 
 - 2026-11-26 17:3x PST (America/Los_Angeles) — Created: launcher and infantry weapon standards, enforced by the batch (`unit_standards.py`); the disposable squad rate table is now rebuilt from the data each build.
+- 2026-11-26 17:4x PST (America/Los_Angeles) — Removed the KNOWN exceptions: in decks, Ksp 58B (1.8) and M249 Para (2.4) already have one damage; the other values are on squads in no deck.
