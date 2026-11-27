@@ -1115,6 +1115,8 @@ import z21_air_escort_1126;z21_air_escort_1126.apply(t,g,ok,rec)
 import osama_tanks_1127;osama_tanks_1127.apply(t,g,ok,rec)
 # ---------- J-7IIH 90 -> 120 (Osama 27 Nov 04:1x "J-7 +30 points"). See osama_j7_1127.py.
 import osama_j7_1127;osama_j7_1127.apply(t,g,ok,rec)
+# ---------- HQ-16 range 1,850 -> 1,950 m low and high, 150 -> 165 pts (Osama 27 Nov 04:3x). See osama_hq16_1127.py.
+import osama_hq16_1127;osama_hq16_1127.apply(t,g,ok,rec)
 import unit_standards
 import roc_hook;roc_hook.apply(t,g,ok,rec,recheck=lambda:(disposable_launchers_1123.check(t,ok,a.vanilla),weapon_coverage_check.check(t,patches,ok),unit_standards.check(t,ok,rec)))
 # Unit standards on the final data (docs/development/UNIT-STANDARDS.md, Lateralus 26 Nov 2026): fails on a new squad that breaks the launcher or
