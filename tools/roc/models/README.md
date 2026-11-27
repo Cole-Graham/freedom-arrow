@@ -109,6 +109,7 @@ Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `inf
 - **Source:** Shawn's FBX with 7 PBR texture sets (UE export: `lambertNN` / `WorldGridMaterial58` files; mapped to the FBX materials `standardSurface1_Inst*` by matching the textures packed in his .blend). UE normals are DirectX: green flipped. The ORM maps are split into AO, roughness and metallic. Two tiny `WorldGridMaterial` parts (UE grid placeholder) are dropped.
 - **Size:** 9.3 m as modelled, 4 launch tubes. Arsenal 120k triangles (cut from 146k; 12 detailed wheels are about 100k), battle 49.7k, LODs 29.9k / 18.3k. Arsenal textures fitted to the budget: 8.0 Mpx. Battle textures not budgeted (needs Osama's go). No separate glass (the cab windows are painted).
 - **Weathering (`pipeline/weather_hf2e.py`):** `pipeline/bake_geo.py` bakes per material, on Vengeance, the height and up-facing direction (and with `EDGE=1`, 2 cm bevel edges). Mud: full below about 0.25 m and gone by 0.9 m, with fractal noise, plus crevices (AO) below 1.3 m; the wheels get an even lighter coat; mud is rough and not metallic. Upper body (above about 0.8 m): bare metal on baked edges (about 1-2 % of the surface), small dark paint chips (about 1 %), and light dust on up-facing surfaces. Unweathered textures stay in `veh/x/hf2e/tex/`.
+- **Lighter pass (Shawn 26 Nov 20:2x: "looks fine, but can be a bit lighter"):** mud opacity 0.72 → 0.55 (wheels 0.6 → 0.45), mud gone by 0.75 m instead of 0.9 m, worn metal 0.9 → 0.65, chips 0.7 → 0.5, dust 0.16 → 0.10. Mud now covers about 11 % of the main body (was 23 %). The first pass is kept in `veh/x/hf2e/texw-v1/`.
 
 ## Document change log
 
@@ -122,3 +123,4 @@ Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `inf
 - 2026-11-26 12:54 PST (America/Los_Angeles) — F-16A and Mirage 2000-5 converted; Mirage second skin as a paint scheme through a ROC paint add-on file.
 - 2026-11-26 14:52 PST (America/Los_Angeles) — French-preview finish on all 7 ROC planes; vanilla F-16 glass on the 5 fighters.
 - 2026-11-26 20:11 PST (America/Los_Angeles) — Hsiung Feng IIE converted and weathered; card 5048 added.
+- 2026-11-26 20:30 PST (America/Los_Angeles) — Hsiung Feng IIE weathering made lighter (Shawn).
