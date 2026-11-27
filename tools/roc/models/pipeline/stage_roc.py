@@ -4,11 +4,12 @@ entries to the live models.json. usage: python3 stage_roc.py"""
 import os,json,glob,shutil
 H=os.path.dirname(os.path.abspath(__file__))+'/..';V=H+'/veh';S=H+'/stage/UserData/FAModels'
 CARD={'cm34':'ROC CM-34','cm33':'ROC CM-33','cm22':'ROC CM-22','cm11':'ROC CM-11','antelope':'ROC Antelope','m41d':'ROC M41D',
-      'tb2000':'ROC Thunderbolt-2000','kf6':'ROC Kung Feng VI','tk3':'ROC Tien Kung III','cm26':None,
+      'tb2000':'ROC Thunderbolt-2000','kf6':'ROC Kung Feng VI','tk3':'ROC Tien Kung III',   # CM-26 removed from the ROC set (Shawn 27 Nov 00:0x)
       'cm21':'ROC CM-21','cm32':'ROC CM-32','lsw2':'ROC Land Sword II','f16v':'ROC F-16V','f5f':'ROC F-5F','m110a2':'ROC M110A2','uh60m':'ROC UH-60M',
       'ah64e':'ROC AH-64E','m60a3':'ROC M60A3 TTS','fck1':'ROC F-CK-1','c130':'ROC C-130HE','chx2':'ROC Chung Hsiang II',   # Shawn's 26 Nov uploads
       'f16a':'ROC F-16A','mirage':'ROC Mirage 2000-5',
-      'hf2e':'ROC Hsiung Feng IIE'}   # F-16A, Mirage: 26 Nov 12:4x; HF-IIE: 26 Nov 19:56 (weathered). CM-26 has no card yet (role unknown)
+      'hf2e':'ROC Hsiung Feng IIE',
+      'cm12':'ROC CM-12'}   # Shawn 27 Nov 00:0x: the CM-12.zip model (file CM11.fbx) is the right CM-12
 shutil.rmtree(H+'/stage',ignore_errors=True);os.makedirs(S)
 models={};n=0
 for s,card in CARD.items():
