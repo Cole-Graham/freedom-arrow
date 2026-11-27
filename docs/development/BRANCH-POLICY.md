@@ -50,6 +50,12 @@ These are the maintained branch names. Package source commits remain the immutab
 
 Use `codex/batch/lateralus/<topic>` for a coherent Lateralus batch that is not ready for 0.8 development integration. Reuse the same branch across commits and test builds. Independent batches use independent branches. Promote the whole batch only when approved, or selected self-contained commits; keep unfinished work on the batch branch. Active and explicitly held batches are excluded from cleanup regardless of age. Updating the batch from development does not merge the batch into development.
 
+**Merging batches (Lateralus, 26 Nov 2026: "decide for yourself").**
+- **Merge, never rebase, a pushed branch.** A rebase needs a force-push (forbidden) and orphans the test-build tags and package receipts that point at batch commits. Rebase only local commits that are not pushed yet.
+- **Direction.** Merge `codex/development` into a batch to keep its test builds current. The batch goes into `codex/development` once, with one merge commit, when its owner, Osama or Lateralus says it is ready (`git revert -m 1` undoes it).
+- **One home per fix.** A fix that both branches need is committed on `codex/development` only; the batch gets it at its next update merge. No second copy on the batch branch.
+- **Conflicts are handled when they happen.** IDs cannot clash (reserved blocks, below). The usual conflict is two sections added at the end of `batch_0_9_5b.py`: keep both, in commit order, and run the batch check before the merge commit is pushed.
+
 - `codex/feature/0.8/<topic>`, `codex/feature/assets/<topic>` or `codex/feature/launcher/<topic>`: one concrete change or coherent batch, based on the appropriate stream.
 - `codex/test/0.7/<experiment>`: isolated tests such as SPAAG speed versus dispersion. Record the exact base commit and the fields being varied. Never merge an entire experiment merely because one part performed well; promote the selected changes.
 - `codex/fix/0.7/<topic>`: urgent gameplay fixes. Branch from the affected public source when needed, then carry the fix into the appropriate development stream.
@@ -115,3 +121,4 @@ Work that is built on its own branch and merged later gets its own block of row 
 - 2026-11-25 00:5x PST (America/Los_Angeles) — Reserved ID blocks (`mod/id-reservations.json`, guard in `pla_graph.Graph` and `roc_hook`); first block for the ROC specialization branch `codex/batch/shawn/roc` (Osama, 25 Nov 00:5x).
 - 2026-11-26 10:2x PST (America/Los_Angeles) — Playtest numbering after 0.9.9 (0.9.10… or 0.10.0…); 1.0.0 reserved for the roadmap beta (Lateralus).
 - 2026-11-26 15:5x PST (America/Los_Angeles) — Next dev build 0.9.8-dev.1; Osama and Lateralus share main dev builds, heavy asset work on its own branch; old dev builds pruned at every live release (Lateralus).
+- 2026-11-26 18:1x PST (America/Los_Angeles) — Merging batches: merge not rebase, direction, one home per fix, conflicts handled when they happen (Lateralus left it to BA Codex).
