@@ -84,7 +84,6 @@ static partial class RankedMenu
             h.Patch(gep,postfix:new HarmonyMethod(typeof(RankedMenu),nameof(Epaulet)));
         }
         catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_RANKED: vanilla epaulet pick not read ("+e.Message+"); default set US Army");}
-        try{EloInstall(h);}catch(Exception e){MelonLogger.Error("FREEDOM_ARROW_ELO_FAILED: not installed. "+e.Message);}
         MelonLogger.Msg($"FREEDOM_ARROW_RANKED installed: saved set {(set<0?"vanilla pick":SetNames[set])}, hub {(TestHub?TestHubRoot:"live")}");
     }
     static Texture2D Load(string file,string name)
@@ -303,7 +302,7 @@ static partial class RankedMenu
     static void DeckAfterReconnect(){var l=fLink?.GetValue(null);if(l!=null&&!ReferenceEquals(l,lastLink)){lastLink=l;lastDeckReport="";}}
     public static void Tick()
     {
-        try{var t=Time.unscaledTime;DeckAfterReconnect();HoldRotation();LobbyTick(t);EloTick(t);ResultTick(t);PlayLayoutTick(t);ReportDeck(t);}catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_RANKED tick: "+e.Message);}
+        try{var t=Time.unscaledTime;DeckAfterReconnect();HoldRotation();LobbyTick(t);ResultTick(t);PlayLayoutTick(t);ReportDeck(t);}catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_RANKED tick: "+e.Message);}
         PageTick();
         if(open&&(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name!="Hangar_Scene"))Close("menu scene left");
         if(open)try{if(pInLobby.GetValue(null) is true)Close("joined a lobby");}catch{}
