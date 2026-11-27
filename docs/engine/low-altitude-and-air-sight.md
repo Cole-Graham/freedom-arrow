@@ -182,6 +182,8 @@ How long a line stays in the layer depends on the geometry. Take an AA eye about
 
 This is the "extra margin above the trees": the forest blocks sight as if it were 15 world units (30 m) tall and grows denser the deeper the line goes into it. The tree models are not used.
 
+**Deepest straight line through forest (calculated, Lateralus 27 Nov 2026).** The step cost grows with depth, so a larger sight budget buys little extra forest. Longest all-forest line under the 15-unit layer for a given budget (the formula range; FA's `SpottingCap.cs` caps it at the tier's vanilla ground optics): 875 raw (Good) → 67 units (134 m on the card); 1000 (Very Good) → 70 (140 m); 1200 (Exceptional, also the FA cap) → 75 (150 m). A quiet infantry target: vanilla 343 → 48 (96 m), FA 467 → 54 (108 m). So BA has a soft ceiling of about 150 card m. Wargame: Red Dragon, per vLern's community workbook "Cover penetration/Line of sight (LOS) length calculator", counts each metre of cover as 10 metres against the observer's spotting cap (3500 m; 4200 m for Exceptional) and lists a "LOS cap in cover" of 320 m (380 m Exceptional); those caps are entered constants in the sheet, not derived, and their source is not stated.
+
 ### 3d-2. A helicopter spotting quiet units deep in a forest (calculated, Lateralus 26 November 2026)
 
 **Short answer.** For a helicopter with Exceptional optics at 40.5 world units (81 m, the height in Lateralus's 19 Nov LoS-tool screenshot), the forest walk decides the range, not the optics formula. Calculated card ranges, not measured: infantry 252 m in vanilla and 286 m in FA; vehicles 314 m in vanilla and 372 m in FA. At 25 units up: 164 / 180 m and 198 / 232 m.
@@ -361,3 +363,4 @@ Ways to make AA placement easier (not implemented, not tested):
 - 2026-11-26 23:5x PST (America/Los_Angeles) — Section 3d-2: helicopter vs quiet units deep in forest, vanilla and FA; IgnoreTerrainCosts only for plane/projectile targets (Lateralus).
 - 2026-11-27 10:1x PST (America/Los_Angeles) — Section 2a: plane high-altitude optics 7250 raw from 0.9.8 (Lateralus).
 - 2026-11-27 12:5x PST (America/Los_Angeles) — Section 3f: what the LoS tool's red line, red area and green line are (Lateralus).
+- 2026-11-27 13:1x PST (America/Los_Angeles) — Deepest straight forest line per sight budget, and the Wargame LOS-in-cover cap from vLern's workbook (Lateralus).
