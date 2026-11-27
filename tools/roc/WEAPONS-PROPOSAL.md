@@ -21,6 +21,7 @@ Each new ROC weapon is a renamed copy of the nearest vanilla weapon, with the va
 - **CM-32:** T91 40 mm AGL (default) or M2. **CM-33:** T91 40 mm AGL. **CM-34:** Mk44 Bushmaster with the T74 coax (default). Javelin options removed.
 - **Chung Hsiang II, MQ-9B:** unarmed. MQ-9B price 100 → 80; Chung Hsiang II keeps 50 (Shawn 26 Nov: both prices OK).
 - **CM-22:** M30 107 mm in place of the M121 120 mm, with the 120 mm data. 107 mm HE damage 9.0 → 7.2 (−20 %, Shawn 26 Nov); smoke unchanged. Options: 35x 107mm smoke + 35x 107mm HE, or 70x 107mm smoke.
+- **M1A2T (26 Nov evening, Shawn's sheet: "M1A2 SEP v3 (no APS)"):** the 3 APS options (Trophy APS, TUSK APS, TUSK2 APS) are removed from the ROC card. Default, TUSK armor and TUSK2 armor stay. Price 250 unchanged.
 - **Hsiung Feng IIE (added 26 Nov evening, unit 5048):** HF-IIE, a renamed copy of the Iskander-K cruise missile (weapons 317/318, ammo 9M728), same range. Options: 2x HF-IIE (default) or 4x HF-IIE (+50). The ballistic Iskander-M HE and cluster options are removed. Price 225, as the Iskander.
 
 ## 📋 The proposal (25 November)
@@ -82,3 +83,4 @@ AH-64E, F-16V, CM-21, CM-25, M1167, JLTV, M1A2T, M109A5, M109A7, OH-58D, CH-47SD
 - 2026-11-26 01:04 PST (America/Los_Angeles) — Shawn's answers applied; stage 3 built in the data and checked.
 - 2026-11-26 02:47 PST (America/Los_Angeles) — CM-22 107 mm (−20 % HE damage) done; MQ-9B and Chung Hsiang II prices confirmed by Shawn.
 - 2026-11-26 20:09 PST (America/Los_Angeles) — Hsiung Feng IIE card and HF-IIE weapon added (Shawn 26 Nov 19:56).
+- 2026-11-26 23:19 PST (America/Los_Angeles) — M1A2T APS options removed (sheet row 30).

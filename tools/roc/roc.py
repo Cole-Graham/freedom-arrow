@@ -9,7 +9,7 @@ vanilla US unit in the sheet's template column, with its loadout options; it sti
 the infantry and M1A2T, which take Shawn's card files. Weapons, squad sizes and models come in later stages.
 Left out: CM-26 (role not known). Hsiung Feng IIE was left out on 25 Nov and added last on 26 Nov (evening). DLC templates are replaced by non-DLC ones (review 25 Nov)."""
 
-import json, os
+import json, os, re
 from pathlib import Path
 SPEC_TEMPLATE = 3          # USMC
 # Sheet name: (HUDName, parent unit id, parent HUDName, cost or None = parent's)
@@ -262,6 +262,8 @@ VEH = {
     # Hsiung Feng IIE (sheet: "HF-IIE Land-Attack Cruise Missile", Iskander as the ground-strike proxy): the Iskander-K cruise options only,
     # renamed; the ballistic Iskander-M HE and cluster options go. Ranges and round counts stay the Iskander-K's (the stage 3 missile rule).
     'ROC Hsiung Feng IIE': {'rename': {317: 'HF-IIE', 318: 'HF-IIE'}, 'ammo': {'9M728': 'HF-IIE'}, 'drop': {316, 711}, 'ui_auto': True},
+    # Shawn's sheet row 30: "M1A2 SEP v3 (no APS)" - the Trophy / TUSK APS options go; Default, TUSK armor and TUSK2 armor stay.
+    'ROC M1A2T': {'drop_options': r'APS'},
     'ROC Chung Hsiang II': {'unarmed': True},
     'ROC MQ-9B': {'unarmed': True, 'cost_factor': 0.8},
 }
@@ -298,6 +300,7 @@ def vehicles(t, g, ok, res, rows):
         for m in rows('ModificationsJson', UnitId=uid):
             os_ = rows('OptionsJson', ModificationId=m['Id'])
             gone = [o for o in os_ if any(w in drop for f in tfields if o.get(f) for w in tw(o[f]))]
+            if spec.get('drop_options'): gone += [o for o in os_ if o not in gone and re.search(spec['drop_options'], o['UIName'] or '')]
             for o in gone: g.remove('OptionsJson', o['Id'])
             left = [o for o in os_ if o not in gone]
             if not left: g.remove('ModificationsJson', m['Id']); continue
