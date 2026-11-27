@@ -1105,6 +1105,8 @@ import cv9035_spike_1126;cv9035_spike_1126.apply(t,g,ok,rec)
 import ztz99_front_1126;ztz99_front_1126.apply(t,g,ok,rec)
 # ---------- PGZ-95 + Lynx SPAAG 8 QW-2; Lynx 81mm Mortar range 2,600 m (Osama 26 Nov 22:58). See qw2_lynx81_1126.py.
 import qw2_lynx81_1126;qw2_lynx81_1126.apply(t,g,ok,rec)
+# ---------- Z-21 'Air escort' loadout +50 -> +90 (Osama 26 Nov 23:1x). See z21_air_escort_1126.py.
+import z21_air_escort_1126;z21_air_escort_1126.apply(t,g,ok,rec)
 import unit_standards
 import roc_hook;roc_hook.apply(t,g,ok,rec,recheck=lambda:(disposable_launchers_1123.check(t,ok,a.vanilla),weapon_coverage_check.check(t,patches,ok),unit_standards.check(t,ok,rec)))
 # Unit standards on the final data (docs/development/UNIT-STANDARDS.md, Lateralus 26 Nov 2026): fails on a new squad that breaks the launcher or
