@@ -5,7 +5,9 @@ import bpy,sys,os,numpy as np
 a=sys.argv[sys.argv.index('--')+1:];glb,out,N=a[0],a[1],int(a[2]);os.makedirs(out,exist_ok=True)
 bpy.ops.wm.read_factory_settings(use_empty=True);bpy.ops.import_scene.gltf(filepath=glb)
 buf={}
-for o in [o for o in bpy.data.objects if o.type=='MESH']:
+import re
+SKIP=os.environ.get('SKIP','^$')   # objects to leave out (interior, rotors, gear ...): their texels stay empty
+for o in [o for o in bpy.data.objects if o.type=='MESH' and not re.search(SKIP,o.name)]:
     me=o.data;me.calc_loop_triangles();uv=me.uv_layers.active.data;M=o.matrix_world;R=M.to_3x3().inverted().transposed()
     P=np.array([tuple(M@v.co) for v in me.vertices]);
     for t in me.loop_triangles:

@@ -223,5 +223,14 @@
    "m_roc_cm12_lo_static_l1.fam",
    "m_roc_cm12_lo_static_l2.fam"
   ]
+ },
+ "ROC EC225": {
+  "file": "m_roc_ec225_static.fam",
+  "battle": "m_roc_ec225_lo_static.fam",
+  "align": false,
+  "lods": [
+   "m_roc_ec225_lo_static_l1.fam",
+   "m_roc_ec225_lo_static_l2.fam"
+  ]
  }
 }

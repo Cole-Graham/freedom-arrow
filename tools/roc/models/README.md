@@ -123,6 +123,13 @@ Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `inf
 - **CM-26:** it never had a card. It is no longer staged (`stage_roc.py`); its converted files stay in `veh/` only.
 - **Hsiung Feng IIE size:** kept at 9.3 m as modelled (Shawn: "happy with Hsiung Feng IIE size for now").
 
+## EC225 Super Puma in ROC SAR paint; HEMTT, Patriot PAC-2, PAC-3 MSE and RQ-7 cards (27 November 2026, after midnight)
+
+**Five new ROC cards (units 5049-5053). The EC225 has its own model, repainted in the ROC Air Force SAR scheme from Shawn's two photos; the other four use the current Freedom Arrow models and data, as Shawn asked. Not yet in a game build.**
+
+- **EC225:** Shawn's model (H225 game model, 46.5k triangles, 16.4 m), one 2048 sheet with AO / roughness / metal (`mga_orm`: R AO, G roughness, B metal). The 30 window parts shared the body material and its alpha map: `ec225_glass.py` gives them their own glass part and the body is OPAQUE; `tint_glass.py` makes them dark tinted (0.10, 0.12, 0.13, opacity 0.65). Battle uses the full model (46.5k, under the 60k cap), LODs 27.8k / 16.4k.
+- **Paint (`livery_ec225.py`):** laid out in 3D from `uvpos.py` (body only: interior, rotors, gear and glass left out with `SKIP`). Sky blue cabin, dark blue engine deck and fin cap, white belly and tail boom, yellow tail-boom band, black nose radome; on both sides a red cross on a white disc behind the last window and the ROC roundel (blue disc, white 12-ray sun). Only the seller's navy / white / red livery texels change; a faint smooth noise keeps the paint from looking flat. The "2251" numbers are not drawn.
+
 ## Document change log
 
 - 2026-11-25 03:4x PST (America/Los_Angeles) — T91 rifle converted; recipe and first grip offset.
@@ -138,3 +145,4 @@ Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `inf
 - 2026-11-26 20:30 PST (America/Los_Angeles) — Hsiung Feng IIE weathering made lighter (Shawn).
 - 2026-11-26 22:08 PST (America/Los_Angeles) — Hsiung Feng IIE: dark tinted cab glass and optional Woodland camo (paint scheme); size question recorded.
 - 2026-11-27 00:05 PST (America/Los_Angeles) — CM-12 converted from Shawn's file; CM-26 removed from the ROC stage.
+- 2026-11-27 00:33 PST (America/Los_Angeles) — EC225 converted and repainted in ROC SAR colours; 5 new cards noted.

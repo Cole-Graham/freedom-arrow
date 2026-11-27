@@ -9,7 +9,8 @@ CARD={'cm34':'ROC CM-34','cm33':'ROC CM-33','cm22':'ROC CM-22','cm11':'ROC CM-11
       'ah64e':'ROC AH-64E','m60a3':'ROC M60A3 TTS','fck1':'ROC F-CK-1','c130':'ROC C-130HE','chx2':'ROC Chung Hsiang II',   # Shawn's 26 Nov uploads
       'f16a':'ROC F-16A','mirage':'ROC Mirage 2000-5',
       'hf2e':'ROC Hsiung Feng IIE',
-      'cm12':'ROC CM-12'}   # Shawn 27 Nov 00:0x: the CM-12.zip model (file CM11.fbx) is the right CM-12
+      'cm12':'ROC CM-12',   # Shawn 27 Nov 00:0x: the CM-12.zip model (file CM11.fbx) is the right CM-12
+      'ec225':'ROC EC225'}   # Shawn 27 Nov 00:2x, ROC SAR paint (livery_ec225.py)
 shutil.rmtree(H+'/stage',ignore_errors=True);os.makedirs(S)
 models={};n=0
 for s,card in CARD.items():

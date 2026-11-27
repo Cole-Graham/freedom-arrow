@@ -67,6 +67,14 @@ CARDS = {
     'ROC SF Snipers M107': ('SF Snipers M107', 340, 'Army Snipers', 85),
     # Shawn 26 Nov 19:56 PST "Please procced with Hsiung Feng IIE" (sheet row 20: template 9K720 Iskander). Added last, so earlier unit IDs stay.
     'ROC Hsiung Feng IIE': ('Hsiung Feng IIE', 226, '9K720 Iskander', None),
+    # Shawn 27 Nov 00:2x: "add HEMTT, PAC2/3 MSE, RQ-7 to ROC deck? use the vanilla Freedom Arrow data and models for now. Please add EC225 ... pick up
+    # any transport helicopter you think is the best fit as template". EC225 template = Mi-38T: unarmed medium transport like the EC225 (11 t, 19-24
+    # seats; Mi-38T 30 seats, UH-60M 13 seats and door guns). Added last, so earlier unit IDs stay.
+    'ROC HEMTT': ('HEMTT', 242, 'HEMTT', None),
+    'ROC Patriot PAC-2': ('Patriot PAC-2', 163, 'Patriot PAC-2', None),
+    'ROC Patriot PAC-3 MSE': ('Patriot PAC-3 MSE', 448, 'Patriot PAC-3 MSE', None),
+    'ROC RQ-7 Shadow': ('RQ-7 Shadow', 447, 'RQ-7 Shadow', None),
+    'ROC EC225': ('EC225 Super Puma', 268, 'Mi-38T', None),
 }
 SPEC_NAME = 'ROC Joint Arms Coastal'
 SPEC_UI = 'Joint Arms Battalion and Coastal Operations Command 聯合兵種營及濱海作戰指揮部'
