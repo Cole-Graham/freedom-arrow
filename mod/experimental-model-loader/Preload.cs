@@ -22,8 +22,41 @@ public partial class Mod
             foreach (var kv in JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(File.ReadAllText(cf)) ?? new())
                 if (kv.Value.ValueKind == JsonValueKind.Object && kv.Value.TryGetProperty("Name", out var n) && n.ValueKind == JsonValueKind.String && map.ContainsKey(n.GetString()!))
                     unitNames[int.Parse(kv.Key)] = n.GetString()!;
+        LoadSpecTables();
         SharedPlayerDeck.add_OnSetDeck(new System.Action<int, IDeckDataModel, IDeckHelper>(OnSetDeck));
-        MelonLogger.Msg($"FAMODELS preload installed: {unitNames.Count} mapped unit id(s)");
+        MelonLogger.Msg($"FAMODELS preload installed: {unitNames.Count} mapped unit id(s), {specUnits.Count} spec(s) known, {swapsOf.Count} unit(s) with loadout swaps");
+    }
+    // native-preload branch (Osama 27 Nov 2026 02:1x: "make a version of the game that preloads models natively like we do in vanilla").
+    // Player logs of 26/27 Nov show OnSetDeck queuing models only for the local player: every other player's deck arrives with no slots,
+    // so their FA models were read and built the first time a unit of that type appeared in battle. A deck with no slots now queues every
+    // mapped unit its two specializations can field (cards, their transports and their loadout swaps), from the Freedom Arrow constants.
+    // Loadout swap units (ReplaceUnitId) are queued for the local deck too; before, a swap loadout loaded on its first spawn.
+    static readonly Dictionary<int, HashSet<int>> specUnits = new();
+    static readonly Dictionary<int, List<int>> swapsOf = new();
+    static Dictionary<string, JsonElement> ReadConstants(string name)
+    {
+        var f = Path.Combine(MelonLoader.Utils.MelonEnvironment.UserDataDirectory, "FreedomArrow", "constants", name + ".json");
+        return File.Exists(f) ? JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(File.ReadAllText(f)) ?? new() : new();
+    }
+    static int Int(JsonElement e, string k) => e.ValueKind == JsonValueKind.Object && e.TryGetProperty(k, out var v) && v.ValueKind == JsonValueKind.Number ? v.GetInt32() : 0;
+    static void LoadSpecTables()
+    {
+        var cardSpec = new Dictionary<int, int>();
+        foreach (var kv in ReadConstants("specialization_availabilities"))
+        {
+            int spec = Int(kv.Value, "SpecializationId"), unit = Int(kv.Value, "UnitId");
+            if (spec == 0 || unit == 0) continue;
+            cardSpec[int.Parse(kv.Key)] = spec;
+            if (!specUnits.TryGetValue(spec, out var set)) specUnits[spec] = set = new();
+            set.Add(unit);
+        }
+        foreach (var kv in ReadConstants("transport_availabilities"))
+            if (cardSpec.TryGetValue(Int(kv.Value, "SpecializationAvailabilityId"), out var spec) && Int(kv.Value, "UnitId") is int u && u != 0) specUnits[spec].Add(u);
+        var modUnit = new Dictionary<int, int>();
+        foreach (var kv in ReadConstants("modifications")) if (Int(kv.Value, "UnitId") is int u && u != 0) modUnit[int.Parse(kv.Key)] = u;
+        foreach (var kv in ReadConstants("options"))
+            if (modUnit.TryGetValue(Int(kv.Value, "ModificationId"), out var u) && Int(kv.Value, "ReplaceUnitId") is int r && r != 0 && r != u)
+            { if (!swapsOf.TryGetValue(u, out var l)) swapsOf[u] = l = new(); if (!l.Contains(r)) l.Add(r); }
     }
     // 0.3.34 (Osama 17 Nov 2026: "we should preload all the models before the game loads so there's no stuttering on model loading"). The
     // 5v5 detail log showed the one-per-frame preload as 10 s of 50-107 ms frames right after deployment began. Now the whole queue is built in
@@ -36,12 +69,20 @@ public partial class Mod
         try
         {
             float now = Time.realtimeSinceStartup;
-            if (now - lastSetDeck > 30f) { preloadSeen.Clear(); preloadHeavy.Clear(); heavyBuilt = 0; MelonLogger.Msg("FAMODELS preload: new match, cache list reset"); }
+            if (now - lastSetDeck > 30f) { preloadSeen.Clear(); preloadHeavy.Clear(); heavyBuilt = 0; ResetCurtainHold(); MelonLogger.Msg("FAMODELS preload: new match, cache list reset"); }
             lastSetDeck = now; burst = true;
-            int added = 0, readOnly = 0;
+            int added = 0, readOnly = 0, slotCount = 0;
+            var ids = new List<int>();
             foreach (var slots in deck.GetSlots.Values)
-                foreach (var s in slots)
-                    foreach (var id in new[] { s.UnitID, s.TransportID })
+                foreach (var s in slots) { slotCount++; ids.Add(s.UnitID); ids.Add(s.TransportID); }
+            string source = "deck";
+            if (slotCount == 0)
+            {
+                source = $"specs {deck.Spec1ID}+{deck.Spec2ID} (deck has no slots)";
+                foreach (var spec in new[] { deck.Spec1ID, deck.Spec2ID }) if (specUnits.TryGetValue(spec, out var set)) ids.AddRange(set);
+            }
+            foreach (var u in ids.ToList()) if (swapsOf.TryGetValue(u, out var l)) ids.AddRange(l);
+            foreach (var id in ids.Distinct())
                     {
                         if (unitNames.TryGetValue(id, out var name) && map.TryGetValue(name, out var e) && e.file != "")
                         {
@@ -63,7 +104,7 @@ public partial class Mod
                         foreach (var r in weaponRules.Where(r => r.unitId == id))
                         { var f = r.battle != "" ? r.battle : r.file; if (f != "" && preloadSeen.Add(f)) { preload.Enqueue(f); Prefetch(f); added++; } }
                     }
-            MelonLogger.Msg($"FAMODELS preload deck of player {player}: {added} lightest battle level(s), bodies and infantry weapons queued; {readOnly} heavier level(s) to build during deployment");
+            MelonLogger.Msg($"FAMODELS preload deck of player {player} from {source}, curtain {(curtainUp ? "up" : "down")}: {added} lightest battle level(s), bodies and infantry weapons queued; {readOnly} heavier level(s) to build during deployment");
         }
         catch (Exception ex) { MelonLogger.Error("FAMODELS preload deck: " + ex.Message); }
     }
@@ -71,6 +112,19 @@ public partial class Mod
     static void TickPreload()
     {
         if (preload.Count == 0) { burst = false; return; }
+        if (burst && curtainUp && Time.realtimeSinceStartup - lastSetDeck > 0.3f)
+        {
+            // native-preload: under the loading screen, build within CurtainBudgetMs per frame so the screen keeps animating.
+            long t0 = System.Diagnostics.Stopwatch.GetTimestamp(); int built = 0;
+            while (preload.Count > 0 && SinceMs(t0) < CurtainBudgetMs)
+            {
+                var b = preload.Dequeue();
+                try { if (b.StartsWith("body:")) PreloadBody(b.Substring(5)); else LoadFam(b, out _); built++; }
+                catch (Exception ex) { MelonLogger.Warning($"FAMODELS preload {b}: {ex.Message}"); }
+            }
+            if (preload.Count == 0) { burst = false; MelonLogger.Msg($"FAMODELS preload: battle models built under the loading screen ({Time.realtimeSinceStartup - lastSetDeck:F1} s after the decks)"); }
+            return;
+        }
         if (burst && Time.realtimeSinceStartup - lastSetDeck > 0.3f)
         {
             burst = false;
@@ -107,14 +161,14 @@ public partial class Mod
         if (heavyBuilt == 0) heavyT = Time.realtimeSinceStartup;
         for (int tries = preloadHeavy.Count; tries > 0 && preloadHeavy.Count > 0; tries--)
         {
-            if (SinceMs(budgetStart) > ModelBudgetMs) return;
+            if (SinceMs(budgetStart) > (curtainUp ? CurtainBudgetMs : ModelBudgetMs)) return;
             var f = preloadHeavy.Dequeue();
             if (KeptFam(f)) continue;
             if (!StreamReady(f)) { preloadHeavy.Enqueue(f); continue; }
             try { LoadFam(f, out _); heavyBuilt++; }
             catch (Exception ex) { MelonLogger.Warning($"FAMODELS preload level {f}: {ex.Message}"); }
-            if (preloadHeavy.Count == 0) MelonLogger.Msg($"FAMODELS preload: {heavyBuilt} heavier detail level(s) built in {Time.realtimeSinceStartup - heavyT:F1} s after the burst");
-            return;   // at most one level per frame
+            if (preloadHeavy.Count == 0) MelonLogger.Msg($"FAMODELS preload: {heavyBuilt} heavier detail level(s) built in {Time.realtimeSinceStartup - heavyT:F1} s after the burst{(curtainUp ? " (under the loading screen)" : "")}");
+            if (!curtainUp) return;   // at most one level per frame in the match; under the loading screen, as many as the budget allows
         }
     }
 }
