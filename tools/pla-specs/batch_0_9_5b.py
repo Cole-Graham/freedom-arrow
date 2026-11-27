@@ -1130,6 +1130,8 @@ import osama_arty_smoke_1127;osama_arty_smoke_1127.apply(t,g,ok,rec)
 osama_ztz99_split_1127.finish(t,g,ok,rec)
 # ---------- Hidden: ZSD-89 family and J-10S; ZSD-05 ZZC shown as ZZC-05 (Osama 27 Nov 04:2x-04:4x). See osama_hide_1127.py.
 import osama_hide_1127;osama_hide_1127.apply(t,g,ok,rec)
+# ---------- Plane high-altitude optics 16,000 -> 14,500 m (sensor 6, 8000 -> 7250 raw) (Lateralus 27 Nov 2026 10:0x). See lateralus/plane_high_optics_1127.py.
+import plane_high_optics_1127;plane_high_optics_1127.apply(t,g,ok,rec)
 import unit_standards
 import roc_hook;roc_hook.apply(t,g,ok,rec,recheck=lambda:(disposable_launchers_1123.check(t,ok,a.vanilla),weapon_coverage_check.check(t,patches,ok),unit_standards.check(t,ok,rec)))
 # Unit standards on the final data (docs/development/UNIT-STANDARDS.md, Lateralus 26 Nov 2026): fails on a new squad that breaks the launcher or
