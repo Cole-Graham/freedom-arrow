@@ -55,3 +55,4 @@ Maps that shipped before these checks and break one are listed by name in `commo
 - 2026-11-23 12:5x PST (America/Los_Angeles) — [5v5] Airport, Oil Rush, Cold Harbor renamed [4v4]; maps.json map list added (Lateralus).
 - 2026-11-23 21:3x PST (America/Los_Angeles) — [2v2] Coal Mountain 0.1 added; [2v2] Highway of Death 0.3 and [1v1] Dead Center 0.3 (new zone values); "Adding a map" checklist and the build checks behind it (Lateralus).
 - 2026-11-23 21:2x PST (America/Los_Angeles) — Map overviews on the website: where the layout and background images come from.
+- 2026-11-27 06:5x PST (America/Los_Angeles) — [1v1] Below the Mountain 0.1 added (End's Workshop map 3846746484, all zones +1); `C.add_team_cameras(ground=True)` puts a camera between a team's ground spawns (End).

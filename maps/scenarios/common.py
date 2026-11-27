@@ -499,14 +499,16 @@ def face_spawns_to_objectives(objects,team=None):
         if o.get('_type')!=10 or (team is not None and o['team']['id']!=team):continue
         half=math.atan2(cx-o['pos']['X'],cz-o['pos']['Z'])/2
         o['rotate']=dict(X=0.0,Y=math.sin(half),Z=0.0,W=math.cos(half))
-def add_team_cameras(objects):
+def add_team_cameras(objects,ground=False):
+    """One start camera per team over the middle of its spawns, looking 1200 m toward the centre of the zones.
+    ground: use only the ground spawns (End 27 Nov 2026: "the starting camera location between their two respective ground spawns")."""
     import math
     assert not any(o.get('_type')==18 for o in objects),'Existing cameras need explicit reconciliation'
     zones=[o['pos'] for o in objects if o.get('_type')==15]
     cx=sum(p['X'] for p in zones)/len(zones);cz=sum(p['Z'] for p in zones)/len(zones)
     for team,name in [('Alpha team','Camera alpha'),('Bravo team','Camera bravo')]:
         tid=next(o['_uid'] for o in objects if o.get('_type')==3 and o['_dname']==team)
-        ps=[o['pos'] for o in objects if o.get('_type')==10 and o['team']['id']==tid]
+        ps=[o['pos'] for o in objects if o.get('_type')==10 and o['team']['id']==tid and not (ground and 5 in o.get('spawnType2',[]))]
         assert ps,team
         x=sum(p['X'] for p in ps)/len(ps);z=sum(p['Z'] for p in ps)/len(ps);y=sum(p['Y'] for p in ps)/len(ps)
         d=math.hypot(cx-x,cz-z);assert d>1200,team
