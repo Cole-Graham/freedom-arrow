@@ -37,6 +37,8 @@ static class MapSizes
     public static int PlayersPerTeam(string size)=>size switch{"1v1"=>1,"2v2"=>2,"3v3"=>3,"4v4"=>5,_=>-1};
     // Base names of the ranked maps of this size, in list order.
     public static IEnumerable<string> RankedBases(string size)=>All().Values.Where(e=>e.Ranked&&!e.Skirmish&&e.Size==size).Select(e=>e.Base);
+    // True for a multiplayer map in the ranked pool (the RANKED tag in the Create a lobby map window, MapLabels.cs).
+    public static bool IsRanked(string scenario)=>scenario!=null&&All().TryGetValue(scenario.Trim(),out var e)&&e.Ranked&&!e.Skirmish;
     // The installed ranked map of this size and base name (multiplayer version), or null.
     public static Entry Ranked(string size,string baseName)=>All().Values.FirstOrDefault(e=>!e.Skirmish&&e.Size==size&&e.Base.Equals(baseName,StringComparison.OrdinalIgnoreCase));
 }

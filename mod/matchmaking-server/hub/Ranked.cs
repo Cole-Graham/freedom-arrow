@@ -78,7 +78,10 @@ static class Ranked
     // Lateralus 23 Nov 2026: map size from data, not the [NvN] tag ("its super important the game can clearly keep track of which version
     // belongs to which game size"). maps.json is the file the build ships as UserData/FreedomArrow/maps.json (copy it to the ranked dir or
     // set FAQUEUE_MAPS when the hub is deployed). Exact scenario name -> (size, base) for every multiplayer map, ranked or not.
-    static readonly Dictionary<string, (string size, string bas)> MapList = new(StringComparer.Ordinal);
+    // Lateralus 27 Nov 2026 ("How can we address these gaps?"): the hub re-reads maps.json within a minute when the file changes, so a new
+    // ranked pool needs no restart. A file that does not parse keeps the last good list.
+    static Dictionary<string, (string size, string bas)> MapList = new(StringComparer.Ordinal);
+    static string _mapsPath = ""; static DateTime _mapsStamp; static int _mapsTick;
     // Team formats smaller than the largest wait this long for more players (Lateralus 23 Nov 2026: "the 20 s gather time is ok").
     public const double GatherSec = 20;
     const int MaxTeam = 4;
@@ -114,21 +117,24 @@ static class Ranked
         try
         {
             if (!File.Exists(path)) { _log?.LogWarning("ranked maps: {p} not found; built-in pools, map size from the name tag", path); return; }
+            var stamp = File.GetLastWriteTimeUtc(path);
             var rows = JsonNode.Parse(File.ReadAllText(path))!["maps"]!.AsArray();
             var pools = new Dictionary<string, List<string>>();
+            var list = new Dictionary<string, (string size, string bas)>(StringComparer.Ordinal);
             foreach (var r in rows)
             {
                 if (r!["skirmish"]!.GetValue<bool>()) continue;
                 string name = r["name"]!.GetValue<string>(), size = r["size"]!.GetValue<string>(), bas = r["base"]!.GetValue<string>();
-                MapList[name] = (size, bas);
+                list[name] = (size, bas);
                 if (r["ranked"]!.GetValue<bool>()) (pools.TryGetValue(size, out var l) ? l : pools[size] = new()).Add(bas);
             }
+            MapList = list; _mapsStamp = stamp;
             foreach (var f in Formats.Keys.ToArray())
                 if (pools.TryGetValue(f, out var p) && p.Count > 0) Formats[f] = (Formats[f].size, Formats[f].ladder, p.ToArray());
                 else _log?.LogWarning("ranked maps: no {f} map in {p}; built-in pool kept", f, path);
             _log?.LogInformation("ranked maps: {n} maps from {p}; pools {pools}", MapList.Count, path, string.Join("; ", Formats.Select(f => f.Key + ": " + string.Join(", ", f.Value.pool))));
         }
-        catch (Exception e) { MapList.Clear(); _log?.LogError("ranked maps: {p} unreadable ({e}); built-in pools", path, e.Message); }
+        catch (Exception e) { _log?.LogError("ranked maps: {p} unreadable ({e}); {n} maps from the last good list kept", path, e.Message, MapList.Count); }
     }
     // The exact multiplayer scenario of a format and base map from maps.json, or null (the client then matches by name).
     static string? ScenarioFor(string format, string bas) => MapList.FirstOrDefault(x => x.Value.size == format && x.Value.bas.Equals(bas, StringComparison.OrdinalIgnoreCase)).Key;
@@ -145,7 +151,8 @@ static class Ranked
             if (File.Exists(f)) foreach (var r in JsonSerializer.Deserialize<List<RankedRating>>(File.ReadAllText(f)) ?? new()) Ladders[lad][r.SteamId] = r;
         }
         _log.LogInformation("ranked season {s} ({n}): {a} 1v1 and {b} team ratings loaded from {d}", Season, SeasonName, Ladders["1v1"].Count, Ladders["team"].Count, dir);
-        LoadMaps(Environment.GetEnvironmentVariable("FAQUEUE_MAPS") is { Length: > 0 } mp ? mp : Path.Combine(dir, "maps.json"));
+        _mapsPath = Environment.GetEnvironmentVariable("FAQUEUE_MAPS") is { Length: > 0 } mp ? mp : Path.Combine(dir, "maps.json");
+        LoadMaps(_mapsPath);
         _timer = new Timer(_ => Tick(), null, 1000, 1000);
     }
     static string RatingsFile(string ladder) => Path.Combine(_dir, $"season-{Season}-{ladder}.json");
@@ -237,6 +244,7 @@ static class Ranked
         {
             lock (Store.Lock)
             {
+                if (++_mapsTick % 60 == 0 && File.Exists(_mapsPath) && File.GetLastWriteTimeUtc(_mapsPath) != _mapsStamp) LoadMaps(_mapsPath);
                 foreach (var f in Formats.Keys) while (TryMatch(f)) { }   // 4v4 first, so a full 8 is not split into 3v3 + 2 waiting
                 ResolveTimeouts();
                 Phases();
