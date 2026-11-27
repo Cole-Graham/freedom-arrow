@@ -55,7 +55,7 @@ public class Runtime : MelonMod
         try { conquest.OnInitializeMelon(); }
         catch (Exception e) { LoggerInstance.Error("FREEDOM_ARROW_CONQUEST_FAILED: "+e); }
     }
-    public override void OnUpdate() { conquest?.OnUpdate(); MirrorSkin.Tick(); ChinaVoice.Tick(); LogUpload.Tick(); MenuArt.Tick(); DeckReorder.Tick(); MultiplayerToModLobbies.Tick(); MemoryCleanup.Tick(); RankedMenu.Tick(); WebsiteButton.Tick(); PartySizeWarning.Tick(); NationLayout.Tick(); LobbyFlags.Tick(); }
+    public override void OnUpdate() { conquest?.OnUpdate(); MirrorSkin.Tick(); ChinaVoice.Tick(); LogUpload.Tick(); MenuArt.Tick(); DeckReorder.Tick(); DeckCodes.Tick(); MultiplayerToModLobbies.Tick(); MemoryCleanup.Tick(); RankedMenu.Tick(); WebsiteButton.Tick(); PartySizeWarning.Tick(); NationLayout.Tick(); LobbyFlags.Tick(); }
     public override void OnLateUpdate()
     {
         DiagnosticLog.Heartbeat();
@@ -214,6 +214,8 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_MUSIC_ON_LAUNCH_FAILED: not installed; the Music slider keeps the player's value. "+e.Message); }
         try { DeckReorder.Install(HarmonyInstance); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_DECK_REORDER_FAILED: not installed; deck units keep their order. "+e.Message); }
+        try { DeckCodes.Install(HarmonyInstance); }   // Osama 26 Nov 2026: Wargame-style deck codes (DeckCodes.cs)
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_DECK_CODES_FAILED: not installed; decks are unchanged. " + e.Message); }
         try { MenuArt.Install(Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_MENU_ART_FAILED: not installed; vanilla start screen. "+e.Message); }
         try { MirrorSkin.Install(HarmonyInstance,Root); }
