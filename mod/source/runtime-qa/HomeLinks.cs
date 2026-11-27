@@ -11,12 +11,17 @@ namespace FreedomArrow;
 // card is a copy of Feedback (vanilla look and hover), its OpenURL removed and its UiButton given our own click that opens our page, our picture on its "image",
 // its TextTarget components removed (they would re-read the localization key) and our texts set. The copies take the Campaign and
 // Scenarios places in the layout; those two are hidden, and kept hidden if the game switches them back on.
+// Under each title a smaller line says what the page covers (Osama 27 Nov 13:4x: "add more description about what the guides cover and tools cover").
 static class HomeLinks
 {
-    sealed class Card{public string Name,Replaces,Link,Pic,Kick,KickZh,Title,TitleZh;public Sprite Sprite;}
+    sealed class Card{public string Name,Replaces,Link,Pic,Kick,KickZh,Title,TitleZh,Desc,DescZh;public Sprite Sprite;}
     static readonly Card[] cards={
-        new Card{Name="FA Guides Card",Replaces="Play Campaign Button",Link="https://freedomarrow.app/#guides",Pic="home-guides.png",Kick="Guides",KickZh="指南",Title="How Freedom Arrow plays",TitleZh="自由之箭的玩法"},
-        new Card{Name="FA Tools Card",Replaces="ScenariosButton",Link="https://freedomarrow.app/#tools",Pic="home-tools.png",Kick="Tools",KickZh="工具",Title="Armory, DPM and price check",TitleZh="军械库、DPM 与价格查询"}};
+        new Card{Name="FA Guides Card",Replaces="Play Campaign Button",Link="https://freedomarrow.app/#guides",Pic="home-guides.png",Kick="Guides",KickZh="指南",Title="How Freedom Arrow plays",TitleZh="自由之箭的玩法",
+            Desc="Vehicle damage, penetration, HEAT, cover, income, scoring, coordinated strikes, ECM and flares",
+            DescZh="载具伤害、穿深、破甲、掩体、收入、计分、协同打击、电子干扰与干扰弹"},
+        new Card{Name="FA Tools Card",Replaces="ScenariosButton",Link="https://freedomarrow.app/#tools",Pic="home-tools.png",Kick="Tools",KickZh="工具",Title="Armory, DPM and price check",TitleZh="军械库、DPM 与价格查询",
+            Desc="Every unit vs vanilla, DPM by range, damage and crit calculator, price check, maps and build changelog",
+            DescZh="全部单位与原版对比、按距离的 DPM、伤害与暴击计算器、价格对比、地图和版本更新记录"}};
     static readonly List<Il2CppSystem.Action<GameObject,UnityEngine.EventSystems.PointerEventData.InputButton>> keep=new();
     static Transform bar; static float next;
     public static void Install()
@@ -69,7 +74,7 @@ static class HomeLinks
         var img=go.transform.Find("image")?.GetComponent<Image>();
         if(img!=null){img.sprite=c.Sprite;img.color=Color.white;img.preserveAspect=false;}
         var kick=go.transform.Find("Texts/GUIDE")?.GetComponent<Il2CppTMPro.TextMeshProUGUI>();if(kick!=null)kick.SetText(zh?c.KickZh:c.Kick);
-        var title=go.transform.Find("Texts/Text")?.GetComponent<Il2CppTMPro.TextMeshProUGUI>();if(title!=null)title.SetText(zh?c.TitleZh:c.Title);
+        var title=go.transform.Find("Texts/Text")?.GetComponent<Il2CppTMPro.TextMeshProUGUI>();if(title!=null){title.enableWordWrapping=true;title.richText=true;title.SetText((zh?c.TitleZh:c.Title)+"\n<size=58%><color=#C4C9D0>"+(zh?c.DescZh:c.Desc)+"</color></size>");var trt=title.rectTransform;MelonLogger.Msg($"FREEDOM_ARROW_HOME_LINKS text rect {trt.rect.width:0}x{trt.rect.height:0} font {title.fontSize:0} auto {title.enableAutoSizing} overflow {title.overflowMode} align {title.alignment}");}
         var ort=old.GetComponent<RectTransform>();var rt=go.GetComponent<RectTransform>();
         // The hidden Feedback card is placed by hand (the layout group skips it), so the copy takes the replaced card's exact rect.
         if(ort!=null&&rt!=null){rt.anchorMin=ort.anchorMin;rt.anchorMax=ort.anchorMax;rt.pivot=ort.pivot;rt.sizeDelta=ort.sizeDelta;rt.anchoredPosition=ort.anchoredPosition;}
