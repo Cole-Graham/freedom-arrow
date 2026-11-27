@@ -1120,6 +1120,8 @@ import osama_j7_1127;osama_j7_1127.apply(t,g,ok,rec)
 import osama_hq16_1127;osama_hq16_1127.apply(t,g,ok,rec)
 # ---------- Sprut-SD 55 -> 80, Sprut-SDM 70 -> 95 (Osama 27 Nov 03:1x "+25 across the board"). See osama_sprut_1127.py.
 import osama_sprut_1127;osama_sprut_1127.apply(t,g,ok,rec)
+# ---------- CJ-10 held back (card removed, hidden) for model quality (Osama 27 Nov 04:4x). See cj10_held_1127.py.
+import cj10_held_1127;cj10_held_1127.apply(t,g,ok,rec)
 import unit_standards
 import roc_hook;roc_hook.apply(t,g,ok,rec,recheck=lambda:(disposable_launchers_1123.check(t,ok,a.vanilla),weapon_coverage_check.check(t,patches,ok),unit_standards.check(t,ok,rec)))
 # Unit standards on the final data (docs/development/UNIT-STANDARDS.md, Lateralus 26 Nov 2026): fails on a new squad that breaks the launcher or
