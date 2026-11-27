@@ -1030,6 +1030,9 @@ import infantry_prices_1126;infantry_prices_1126.apply(t,g,ok,rec)
 # ---------- Reserve Marines M72A7 LAW ammo 5 -> 8 = 3 more LAW carriers (disposable: one round each) (Lateralus 26 Nov 2026 17:0x). Existing rows
 # only. Its squad-reload.json entry is rewritten below with the build. See lateralus/reserve_marines_law_1126.py.
 import reserve_marines_law_1126;reserve_marines_law_1126.apply(t,g,ok,rec)
+# ---------- Reserve Marines 65 -> 70, Standard loadout 75 -> 85 with 2 M240L (die last) in place of 2 M27 IAR; China Marines 65 -> 60 points
+# (Lateralus 26 Nov 2026 17:3x). See lateralus/marines_prices_1126.py.
+import marines_prices_1126;marines_prices_1126.apply(t,g,ok,rec)
 import unit_standards
 import roc_hook;roc_hook.apply(t,g,ok,rec,recheck=lambda:(disposable_launchers_1123.check(t,ok,a.vanilla),weapon_coverage_check.check(t,patches,ok),unit_standards.check(t,ok,rec)))
 # Unit standards on the final data (docs/development/UNIT-STANDARDS.md, Lateralus 26 Nov 2026): fails on a new squad that breaks the launcher or
