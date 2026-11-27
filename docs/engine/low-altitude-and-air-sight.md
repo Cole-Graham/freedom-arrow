@@ -213,6 +213,18 @@ Lateralus's screenshot (19 November) shows the tool's forest layer top at about 
 
 The eye point (`UnitColliderCenter`) is read only by the vision code (`FogOfWarHelper.TryGetEntityEyePoint`, called from `FogOfWarUnit.AddFilterTasks` and `PreUpdate` and a debug drawer) and by the LoS tool (`FOWToolScript.InitializeUnitOptics` reads its height). No aiming, damage or hitbox code was found using it. This is from a scan of every function that fetches `FogOfWarComponent`; a whole-struct copy elsewhere cannot be ruled out entirely (code).
 
+### 3f. What the LoS tool's red line, red area and green line are (traced 27 November 2026, Lateralus)
+
+**Short answer.** The tool casts rays out from the unit and walks each one with the same terrain and forest costs as real spotting (3c). It keeps two budgets along each ray. The **red line** is where the main budget, the view distance, runs out; the **red area** is drawn outside it. The **green line** is where a second budget runs out: the view distance ÷ the tool's stealth value (the stealth the player picks, saved as `last_los_stealth`; default `FOWToolConfig.LosToolDefaultStealthMax`). So red = a stealth-1 target, green = a stealthier one.
+
+From `FOWToolService.Filter` (1.2.2.1 RVA `0x6BBFB0`, code):
+- Each step outside a terrain layer costs 1. Inside, it costs `Opacity + Multiplier × count`, at least 1, as in 3c.
+- On forest steps (terrain type 2) the two budgets use their own multipliers: `FOWToolConfig.MainLineForestVisibleMultiplier` (`+0xE0`) for red and `GreenLineForestVisibleMultiplier` (`+0xE4`) for green (`0x6BC56A`–`0x6BC592`).
+- Green: when its total passes `MaxVisionDistance / LosToolDefaultStealthMax` (task `+0x1C` / `+0x28`), the point is stored as `VisionEndStealthMax` (`0x6BC5E8`–`0x6BC644`). Red: when the main total passes `MaxVisionDistance`, the walk stops at `VisionEndPosition` (`0x6BC648`).
+- `MaxVisionDistance` comes from `StartVisualTools(center, maxDistance, airMode)`: the selected unit's optics, or `LosToolDefaultOptics` with nothing selected; low/high-altitude optics in air mode. Not traced: whether the caller folds in radar or anything else.
+
+**Not the same as real spotting:** the tool shows only the sight-line cost. Real spotting also divides by the target's cover (forest 3.0, buildings 4.0 in FA) and multiplies by its flash and spotted state (2a, 3d-2). The two forest multipliers' values in the 1.2.2.1 config asset are not read yet; if they are not 1, the tool's forest is thinner or thicker than the real walk.
+
 ## 4. Firing: a stricter rule than seeing
 
 `FogOfWarHelper.IsTargetShootable(FilterTask task, bool unitCheck)` (RVA `0x69EB30`) decides whether a unit may fire at a target (code):
@@ -348,3 +360,4 @@ Ways to make AA placement easier (not implemented, not tested):
 - 2026-11-26 23:2x PST (America/Los_Angeles) — Section 2a: traced the air spotting formula (flash and stealth count, no 1.5 cap) with the F-22 example (Lateralus).
 - 2026-11-26 23:5x PST (America/Los_Angeles) — Section 3d-2: helicopter vs quiet units deep in forest, vanilla and FA; IgnoreTerrainCosts only for plane/projectile targets (Lateralus).
 - 2026-11-27 10:1x PST (America/Los_Angeles) — Section 2a: plane high-altitude optics 7250 raw from 0.9.8 (Lateralus).
+- 2026-11-27 12:5x PST (America/Los_Angeles) — Section 3f: what the LoS tool's red line, red area and green line are (Lateralus).
