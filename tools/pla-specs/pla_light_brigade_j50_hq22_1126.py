@@ -8,7 +8,7 @@ codex/batch/osama/pla-light-brigade only; inside g.scope('plb'), after the units
   - Stealth 0.4545 (card 2.2 = 1 / 0.4545, the J-36's value; was 0.5 = 2.0).
   - loadouts: the J-50's own modification, 7 options, 24 turret links and 14 ammo rows go; it gets copies of the J-20S's (10 options, same names, costs
     and turrets).
-- "large flare value": every PL-16 weapon (5 rows) FlashPerShot 1.0 -> 3.5, the highest AAM value in the data (PL-17, PL-21, R-37, AIM-260). It changes
+- "large flare value": every PL-16 weapon (5 rows) FlashPerShot 1.0 -> 2.2 (3.5 until 26 Nov; 2.2 is the FA flash cap), the highest AAM value in the data (PL-17, PL-21, R-37, AIM-260). It changes
   every aircraft that carries the PL-16 in this build (J-20, J-20S, J-31, J-35, J-36, J-50, MD-22, FH-97A). How FlashPerShot reveals a firing plane
   is not yet read in game code: theoretical, not yet proven in a game.
 - 03:0x "HQ-22 2200 (armory) range": the HQ-22 (6000) fires its own copy of the HQ-9B missile (2014535: Low/High-alt 1175, card 2350) with Low/High-alt
@@ -16,7 +16,7 @@ codex/batch/osama/pla-light-brigade only; inside g.scope('plb'), after the units
 - 03:0x "Y-8 moved to light CAB": card row 2008955 (2 cards) PLAN -> Light CAB."""
 J50, J20S, ARMOR_J20S, ABIL_J20S, TURN800 = 944, 966, 65, 2001399, 2002006
 HQ22, HQ9B_MISSILE, Y8, Y8_ROW, PLAN = 6000, 2014535, 1102, 2008955, 20
-PL16_AMMO, FLASH = 2017953, 3.5
+PL16_AMMO, FLASH = 2017953, 2.2  # was 3.5; 2.2 = the FA flash cap, as the other long-range AAMs (Lateralus 26 Nov 2026)
 
 
 def apply(t, g, ok, rec):
@@ -55,7 +55,7 @@ def apply(t, g, ok, rec):
     # PL-16 flash
     pl16 = sorted({r['WeaponId'] for r in WA.values() if r and r['AmmunitionId'] == PL16_AMMO})
     ok(len(pl16) == 5 and all(W[w]['HUDName'] == 'PL-16' and W[w]['FlashPerShot'] == 1.0 for w in pl16) and max(w.get('FlashPerShot', 0) for w in W.values() if w and w.get('Type') == 87) == FLASH,
-       ('PL-16 weapons at 1.0; AAM max 3.5', pl16))
+       ('PL-16 weapons at 1.0; AAM max 2.2', pl16))
     for w in pl16: g.put('WeaponsJson', w, {'FlashPerShot': FLASH})
     carriers = sorted({U[r['UnitId']]['HUDName'] for r in WA.values() if r and r['WeaponId'] in pl16})
     # HQ-22

@@ -489,8 +489,10 @@ rec['ifv_700_class']={'rows_700':list(_700),'xm30_ke':[300,200],'t80u_profile_to
 # and isn't invisible anymore"; "BVM base stays modern, QN-506 autocannon keeps helo range ... Other parked, hold for now").
 # (a) The 140-penetration top-attack ATGMs (Javelin, Spike LR, TOW-2B, HJ-16, HJ-16 IIR, HJ-12E, GAM-102LR, Blue Dragon KSTAM) 10.5 -> 11 damage, and HJ-12 also 130 -> 140 penetration:
 #     11 x 140^2 / (140^2 + 100^2) = 7.28 per hit, 2 hits = 14.6 > 14 HP on top armour 100. RBS 56 and Sokol-V already kill in 2 and keep 10.5.
-# (b) FlashPerShot 1.0 -> 3.5 on every long-range AAM launcher (R-37, JATM / AIM-260, PL-17, PL-21): one shot takes the shooter's WeaponFlash from 1 to the
-#     FogOfWarConfig cap 4.5 (it decays 0.15 per second). Whether and how far air detection uses WeaponFlash is not verified in code: check in game.
+# (b) FlashPerShot 1.0 -> 2.2 on every long-range AAM launcher (R-37, JATM / AIM-260, PL-17, PL-21): one shot takes the shooter's WeaponFlash to the
+#     FA cap MaxFlashValue 2.2 (detection-config.json; vanilla 4.5), so any value above 2.2 is clipped. It was 3.5 until 26 Nov 2026 (Lateralus 23:3x:
+#     "change Osama's 3.5 change value to 2.2, just for consistency ... I tested it and the spotting range is still fine at 2.2"). Air spotting uses
+#     flash: docs/engine/low-altitude-and-air-sight.md section 2a.
 _TA=[i for i,a_ in A.items() if a_ and a_.get('IsTopArmorArmorAttack') and a_.get('Seeker') and a_.get('ArmorTargeted')==2 and a_.get('Damage')==10.5
      and a_.get('PenetrationAtMinRange') in (130.0,140.0) and any(r.get('AmmunitionId')==i and U.get(r.get('UnitId'),{}).get('DisplayInArmory') for r in WA.values())]
 _tan=sorted({(A[i].get('HUDName') or '').strip() for i in _TA})
@@ -503,9 +505,9 @@ ok(all(A[i]['Damage']==11.0 and A[i]['PenetrationAtMinRange']==A[i]['Penetration
 ok(all(math.ceil(14/(11*140**2/(140**2+a_**2))-1e-9)==2 for a_ in (60,80,100)),'2 hits on every tank top')
 ok(A[572]['Damage']==10.5 and A[2000161]['Damage']==10.5,'RBS 56 and Sokol-V unchanged')
 _LR={437:'R-37',675:'JATM',2001659:'JATM',2016472:'PL-17',2016476:'PL-21',2016482:'PL-17',2016509:'PL-17',2017635:'PL-17'}
-for w_,n_ in _LR.items():ok(W[w_]['HUDName']==n_ and W[w_]['FlashPerShot']==1.0,(w_,n_,W[w_].get('FlashPerShot')));g.put('WeaponsJson',w_,{'FlashPerShot':3.5})
+for w_,n_ in _LR.items():ok(W[w_]['HUDName']==n_ and W[w_]['FlashPerShot']==1.0,(w_,n_,W[w_].get('FlashPerShot')));g.put('WeaponsJson',w_,{'FlashPerShot':2.2})
 ok(not [w_ for w_,x in W.items() if x and (x.get('HUDName') or '') in ('R-37','JATM','PL-17','PL-21','AIM-260') and w_ not in _LR],'every long-range AAM launcher covered')
-rec['top_attack_and_aam_flash']={'top_attack_rounds':_TA,'damage':[10.5,11.0],'hj12_pen':[130,140],'aam_flash':{str(k):[1.0,3.5] for k in _LR}}
+rec['top_attack_and_aam_flash']={'top_attack_rounds':_TA,'damage':[10.5,11.0],'hj12_pen':[130,140],'aam_flash':{str(k):[1.0,2.2] for k in _LR}}
 # ---------- 18. Split-loadout cards show in the Arsenal again (Osama 21 Nov 2026 15:3x PST: "we lost our American Airborne, not the NGSW. We need both in US
 # air"). 0.9.0-dev.11 turned the Rangers / Airborne / Mech. Riflemen squad-loadout swaps into separate cards (new specialization rows), but the variant units kept
 # Units.IsUnitModification = True, the flag for "reached only through a loadout option". With the options gone, those cards were hidden. Clear the flag on every
@@ -1060,7 +1062,7 @@ import pla_light_brigade_transports_1126   # Moto. Riflemen -> Light CAB, ZBL-08
 import pla_light_brigade_tiger_1126   # Tiger Brigade (Marines Assault) 80 pts, PTL-02 + CSK-131/CSK-181 to Light CAB (Osama 26 Nov 02:3x-02:4x)
 import pla_light_brigade_falcons_1126   # Falcons take the 'Falcons New' kit: 2 MGs -> QLZ-87 + QBZ-192, QMK -> QBZ-192 (Osama 26 Nov 02:4x, 04:1x)
 import pla_light_brigade_transports2_1126   # ZSL-191 off Light CAB (Medium CAB), ZBD-05/ZSD-05 off Light CAB (PLAN) (Osama 26 Nov 02:5x)
-import pla_light_brigade_j50_hq22_1126   # J-50 = J-20S clone (turn800, stealth 2.2, 275), PL-16 flash 3.5, HQ-22 range 2200 card / 125 pts, Y-8 -> Light CAB (Osama 26 Nov 03:0x)
+import pla_light_brigade_j50_hq22_1126   # J-50 = J-20S clone (turn800, stealth 2.2, 275), PL-16 flash 2.2, HQ-22 range 2200 card / 125 pts, Y-8 -> Light CAB (Osama 26 Nov 03:0x)
 import pla_light_brigade_names_1126   # Beijing Swords -> Flying Tigers (Osama 26 Nov 03:0x)
 import pla_light_brigade_sf_1126   # Flying Tigers kit (SIG 516, SPAS-12, MP5SD, ARWEN 37) + icon, Marine Scouts (Osama 26 Nov 03:2x-03:3x)
 import pla_light_brigade_pap_1126   # Moto. Riflemen -> PAP Rifle Patrol; PAP AA Patrol copy with QW-2 (Osama 26 Nov 03:4x)
