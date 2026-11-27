@@ -656,8 +656,7 @@
    "set": "Vehicle/Regular"
   },
   "6008": {
-   "set": "Vehicle/Regular",
-   "unit": "PGL-625"
+   "set": "Vehicle/Regular"
   }
  },
  "fallback": {
