@@ -8,7 +8,7 @@ using Il2CppBrokenArrow.DataBase.Models;
 using System.Text.Json;
 using Il2CppBrokenArrow.Shared.Ecs.MemoryController;
 
-[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.51", "Freedom Arrow")]
+[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.51-np.1", "Freedom Arrow")]
 [assembly: MelonGame(null, "BrokenArrow")]
 namespace FAModels;
 
@@ -36,6 +36,7 @@ public partial class Mod : MelonMod
         LoadBodyRules();
         Verbose = File.Exists(Path.Combine(dir, "verbose.txt"));
         try { InstallPreload(); } catch (Exception ex) { MelonLogger.Error("FAMODELS preload not installed: " + ex.Message); }
+        try { InstallCurtain(HarmonyInstance); } catch (Exception ex) { MelonLogger.Error("FAMODELS loading-screen hold not installed; models build in the match as before: " + ex.Message); }
         try { InstallPaintSchemes(HarmonyInstance); } catch (Exception ex) { MelonLogger.Error("FAMODELS_PAINT not installed; models keep their default colours: " + ex.Message); }
         try { InstallLowSettings(); } catch (Exception ex) { MelonLogger.Error("FAMODELS low-settings switch not installed; armory keeps full models: " + ex.Message); }
         var m = typeof(UnitBuilder).GetMethods().First(x => x.Name == "InitView" && x.GetParameters().Length == 4 && x.GetParameters()[1].ParameterType == typeof(Units));
