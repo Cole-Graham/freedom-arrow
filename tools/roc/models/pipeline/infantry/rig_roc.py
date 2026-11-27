@@ -1,7 +1,7 @@
 """rig_roc.py (25 Nov 2026, Shawn 10:2x "Can you start to work on infantry?"): ROC infantry bodies on the 40-bone BA soldier skeleton, by
 rig_f1.py's method (ArmFit from the source rig's arm bones onto the native Ranger arms, native Ranger surface weights, rigid parts).
 One body per run, chosen by KEY from roc_bodies.json. usage: blender -b -P rig_roc.py -- KEY CONFIG.json DONOR.glb OUT"""
-import json,struct,sys
+import json,struct,sys,os
 from pathlib import Path
 import bpy,numpy as np
 from mathutils import Vector
@@ -84,7 +84,7 @@ for k,v in LM.items():   # landmark check picture, before the arm fit moves anyt
     bpy.ops.mesh.primitive_uv_sphere_add(radius=.012,location=v);d=bpy.context.object;mt=bpy.data.materials.new('dot');mt.diffuse_color=(1,0,0,1) if 'arm' in k or 'hand' in k else (0,.4,1,1);d.data.materials.append(mt);dots.append(d)
 s.display.shading.color_type='MATERIAL'
 for i,(loc,tgt) in enumerate((((0,-4,1.25),(0,0,1.25)),((0,0,5),(0,0,1.25)))):
-    cam.location=loc;cam.rotation_euler=(Vector(tgt)-cam.location).to_track_quat('-Z','Y').to_euler();s.render.filepath=str(out/KEY/f'landmarks{i}.png');bpy.ops.render.render(write_still=True)
+    cam.location=loc;cam.rotation_euler=(Vector(tgt)-cam.location).to_track_quat('-Z','Y').to_euler();s.render.filepath=str(out/KEY/f'landmarks{i}.png');(os.environ.get('NORENDER') or bpy.ops.render.render(write_still=True))   # NORENDER=1: no diagnostic renders (renders run on Vengeance, 26 Nov)
 s.display.shading.color_type='TEXTURE'
 for d in dots:bpy.data.objects.remove(d,do_unlink=True)
 bpy.data.objects.remove(cam,do_unlink=True)
@@ -133,5 +133,5 @@ bpy.ops.wm.save_as_mainfile(filepath=str(folder/'rig.blend'))
 s.render.resolution_x=700;s.render.resolution_y=900
 cam=bpy.data.objects.new('cam',bpy.data.cameras.new('cam'));bpy.context.collection.objects.link(cam);s.camera=cam;cam.data.type='ORTHO';cam.data.ortho_scale=2.2
 for i,loc in enumerate(((2.2,-5,1.2),(-2.5,4.5,1.2))):
-    cam.location=loc;cam.rotation_euler=(Vector((0,0,.95))-cam.location).to_track_quat('-Z','Y').to_euler();s.render.filepath=str(folder/f'rest{i}.png');bpy.ops.render.render(write_still=True)
+    cam.location=loc;cam.rotation_euler=(Vector((0,0,.95))-cam.location).to_track_quat('-Z','Y').to_euler();s.render.filepath=str(folder/f'rest{i}.png');(os.environ.get('NORENDER') or bpy.ops.render.render(write_still=True))
 print('RIGDONE',json.dumps({k:audit[k] for k in ('triangles','materials','z')}))

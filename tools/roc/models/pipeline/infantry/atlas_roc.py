@@ -1,6 +1,6 @@
 """Atlas FAS materials without changing geometry or normalized skin weights."""
 from pathlib import Path
-import argparse,io,json,struct,math
+import argparse,io,json,struct,math,os
 from PIL import Image
 import numpy as np
 from functools import lru_cache
@@ -11,7 +11,9 @@ def ws(f,t):b=t.encode();f.write(struct.pack('<i',len(b))+b)
 audit=[]
 @lru_cache(maxsize=160)
 def texture(path,size):
- return Image.open(path).convert('RGB').convert('RGBA').resize((size,size),Image.Resampling.LANCZOS)
+ im=Image.open(path)
+ if not (os.environ.get('ALPHA') and im.mode in ('RGBA','LA')):im=im.convert('RGB')   # ALPHA=1 (SF Scout ghillie, 27 Nov): keep cut-out alpha for FAModels 'cutout' bodies
+ return im.convert('RGBA').resize((size,size),Image.Resampling.LANCZOS)
 for c in json.loads((a.rigs/'configurations.json').read_text()):
  for level,size in [(0,2048),(1,1024),(2,512)]:
   f=io.BytesIO((a.rigs/c['key']/f'lod{level}.fas').read_bytes());assert f.read(4)==b'FAS1';bones=[s(f) for _ in range(n(f))];parts=[]

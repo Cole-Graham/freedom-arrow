@@ -338,5 +338,89 @@
    0
   ],
   "landmarks": "auto"
+ },
+ "sf4": {
+  "source": "/home/sam/tars/work/ba-dev/replicas/codex/work/roc-20261125/x/ROC SF 4/ROC SF 4.blend",
+  "texdir": "/home/sam/tars/work/ba-dev/replicas/codex/work/roc-20261125/x/ROC SF 4",
+  "scale": 0.01,
+  "ground": true,
+  "landmarks": "auto",
+  "meshes": [
+   "SM_CC_Arm",
+   "SM_PMC_shoes_01",
+   "SM_TWCoat",
+   "SM_twhead",
+   "SM_TWPants",
+   "SM_vestHeadGear.001",
+   "JiLiFu",
+   "SM_gear_pla_bnvd_up",
+   "SM_pla_goggles_down"
+  ],
+  "tex": {
+   "M_CC_Arm_T_CC_Arm_color": [
+    "T_CC_Arm_color",
+    "T_CC_Arm_Normal"
+   ],
+   "M_PMC_shoes_01_T_PMC_shoes_01_Color": [
+    "T_PMC_shoes_01_Color",
+    "T_PMC_shoes_01_normal"
+   ],
+   "M_TWCoat_T_TWCoat_Color": [
+    "T_TWCoat_Color",
+    "T_TWCoat_Normal"
+   ],
+   "M_twhead_T_twhead_color": [
+    "T_twhead_color",
+    "T_twhead_normal"
+   ],
+   "M_TWPants_T_TWPants_Color": [
+    "T_TWPants_Color",
+    "T_TWPants_Normal"
+   ],
+   "M_vestHeadGear_T_vestHeadGear_Color": [
+    "T_vestHeadGear_Color",
+    "T_vestHeadGear_Normal"
+   ],
+   "JiLiFu": [
+    "M_Ghillie_01_D",
+    "M_Ghillie_01_N"
+   ],
+   "M_headgear_b": [
+    "headgear_b_co",
+    "FLAT"
+   ],
+   "M_pvs31_a": [
+    "pvs31_a_co",
+    "FLAT"
+   ],
+   "M_pvs31_alpha": [
+    "pvs31_alpha_co",
+    "FLAT"
+   ],
+   "M_goggleglass": [
+    "goggleglass_co",
+    "FLAT"
+   ],
+   "M_goggles": [
+    "goggles_co",
+    "FLAT"
+   ],
+   "M_goggles_a": [
+    "goggles_a_co",
+    "FLAT"
+   ]
+  },
+  "rigid": {
+   "SM_twhead": "Head",
+   "SM_vestHeadGear.001": "Head",
+   "SM_gear_pla_bnvd_up": "Head",
+   "SM_pla_goggles_down": "Head"
+  },
+  "fit": [
+   "SM_CC_Arm",
+   "SM_TWCoat",
+   "JiLiFu"
+  ],
+  "units": "SF Scout 5044 (Shawn 27 Nov 01:4x: ROC SF 4 with ghillie suit)"
  }
 }

@@ -139,6 +139,14 @@ Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `inf
 - **Kestrel hand rules (4):** slot `special` (FAModels' launcher slot), weapon 2900002 (Kestrel-1, from the ROC report), on Marine AT 5035, Marine 5038, Mech. Riflemen T112 5039 and Reserver Kestrel 5043. Offset `[0, -0.16, 0.07]` puts the pistol grip where the rifles' grip sits; adjust from in-game screenshots.
 - `stage_roc.py` now stages every `w_roc_*` weapon. `roc-weapon-rules.json` (13 rules) is the copy in this folder.
 
+## SF Scout from ROC SF 4 (ghillie), AN/TWQ-1 card (27 November 2026, ~02:00)
+
+**SF Scout now uses Shawn's ROC SF 4 body: the ROC Infantry soldier in a ghillie suit, with a night-vision helmet and goggles. The ghillie's see-through strips are kept with a new cut-out option in the ROC FAModels. SF Section keeps the ROC SF 1 body (no ROC SF2 file was ever uploaded). AN/TWQ-1 Avenger card added (unit 5054). Not yet in a game build.**
+
+- **Body `sf4`** (`roc_bodies.json`): ROC SF 4.blend (cgmodel 781683 family, 37.6k triangles, 9 meshes). Head, helmet, NVG and goggles rigid on Head; arms, coat and ghillie (`JiLiFu`) fitted with ArmFit; measured landmarks. `rig_roc.py` with `NORENDER=1` (no diagnostic renders on the deck); `ALPHA=1 pipe_body.sh sf4 rigs_sf4` keeps the alpha of the ghillie texture in the atlas (9.5 % of the sheet is see-through). LODs 27.9k / 7.0k / 3.0k.
+- **Cut-out:** `infantry-bodies-roc.json` rule 5044 has `"cutout": true`; the ROC FAModels (`InfantryBodies.cs`) draws such bodies with alpha MASK, cutoff 0.5 (double-sided, as every FAModels material). Other bodies are unchanged.
+- `stage_roc.py` stages only the bodies a rule uses, so the old `roc_sfscout` recolour is no longer shipped (kept in `inf/`).
+
 ## Document change log
 
 - 2026-11-25 03:4x PST (America/Los_Angeles) — T91 rifle converted; recipe and first grip offset.
@@ -156,3 +164,4 @@ Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `inf
 - 2026-11-27 00:05 PST (America/Los_Angeles) — CM-12 converted from Shawn's file; CM-26 removed from the ROC stage.
 - 2026-11-27 00:33 PST (America/Los_Angeles) — EC225 converted and repainted in ROC SAR colours; 5 new cards noted.
 - 2026-11-27 01:06 PST (America/Los_Angeles) — New T91 model; Kestrel-1 model and 4 launcher hand rules.
+- 2026-11-27 01:46 PST (America/Los_Angeles) — SF Scout = ROC SF 4 ghillie body with cut-out; AN/TWQ-1 card.

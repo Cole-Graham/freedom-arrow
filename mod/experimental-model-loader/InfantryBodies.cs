@@ -6,12 +6,14 @@ using Il2CppBrokenArrow.Client.Ecs.Spawn;
 namespace FAModels;
 public partial class Mod
 {
-    class BodyRule { public int unitId {get;set;} public string[] lods {get;set;} = Array.Empty<string>(); public float[] offset {get;set;} = new float[3]; public bool anchorHands {get;set;} }
+    class BodyRule { public int unitId {get;set;} public string[] lods {get;set;} = Array.Empty<string>(); public float[] offset {get;set;} = new float[3]; public bool anchorHands {get;set;} public bool cutout {get;set;} }
     class BodyOffset { public Transform source; public Transform visual; public Vector3 offset; }
     static readonly Dictionary<int,BodyOffset> bodyOffsets=new();
     class BodyView { public UnitModelInfo model; public int unitId; public bool battle; public float created=Time.realtimeSinceStartup; public readonly HashSet<int> applied=new(); public readonly HashSet<int> failed=new(); public float lastDiagnostic; public bool done; }
     class BodyMesh { public Mesh mesh; public Material[] materials; public BodyMesh(Mesh m,Material[] a){mesh=m;materials=a;} }
     static List<BodyRule> bodyRules=new();
+    // ROC SF Scout ghillie suit (27 Nov 2026): a rule with "cutout": true draws its body texture's alpha as a 0.5 cut-out (alpha MASK).
+    static readonly HashSet<string> cutoutBodies=new();
     static readonly List<BodyView> bodyViews=new();
     static readonly Dictionary<string,BodyMesh> bodyCache=new();
     static readonly Dictionary<int,Dictionary<int,int>> lodLevels=new();
@@ -30,7 +32,7 @@ public partial class Mod
                 try { var add=ReadBodyRules(extra);rules.AddRange(add);MelonLogger.Msg($"FAMODELS body add-on {Path.GetFileName(extra)}: {add.Count} unit(s)"); }
                 catch(Exception e){MelonLogger.Error($"FAMODELS body add-on {Path.GetFileName(extra)} rejected: "+e.Message);}
             }
-            bodyRules=rules;bodyOffsetsOn=File.Exists(Path.Combine(dir,"body-offset-on.txt"));MelonLogger.Msg($"FAMODELS body offsets {(bodyOffsetsOn?"on":"off")} (body-offset-on.txt)");MelonLogger.Msg($"FAMODELS body prototype ready: {rules.Count} unit(s); native animation and attachments retained");
+            bodyRules=rules;cutoutBodies.Clear();foreach(var r in rules)if(r.cutout)foreach(var l in r.lods)cutoutBodies.Add(l);bodyOffsetsOn=File.Exists(Path.Combine(dir,"body-offset-on.txt"));MelonLogger.Msg($"FAMODELS body offsets {(bodyOffsetsOn?"on":"off")} (body-offset-on.txt)");MelonLogger.Msg($"FAMODELS body prototype ready: {rules.Count} unit(s); native animation and attachments retained");
         } catch(Exception e){bodyRules.Clear();MelonLogger.Error("FAMODELS body rules rejected: "+e.Message);}
     }
     static List<BodyRule> ReadBodyRules(string file)
@@ -101,7 +103,7 @@ public partial class Mod
         var b=Path.GetFileNameWithoutExtension(tex)+"_b"+Path.GetExtension(tex);
         return TexExists(b)?b:tex;
     }
-    static Material BodyMat(string tex,bool battle)=>Mat(BodyTex(tex,battle),new Color(1,1,1,1),new MatP{metallic=0,smoothness=.25f});
+    static Material BodyMat(string tex,bool battle,bool cut=false)=>Mat(BodyTex(tex,battle),new Color(1,1,1,1),cut?new MatP{metallic=0,smoothness=.25f,alpha="MASK",cutoff=.5f}:new MatP{metallic=0,smoothness=.25f});
     static ParsedBody ParseBody(string file)
     {
         if(parsedBodies.TryGetValue(file,out var done))return done;
@@ -131,7 +133,7 @@ public partial class Mod
         parsedBodies[file]=body;return body;
     }
     // Before the match: read the body file and make its materials (GPU textures), so the first squad of a type does no file work.
-    static void PreloadBody(string file){var b=ParseBody(file);foreach(var sub in b.subs)BodyMat(sub.tex,true);}
+    static void PreloadBody(string file){var b=ParseBody(file);foreach(var sub in b.subs)BodyMat(sub.tex,true,cutoutBodies.Contains(file));}
     static List<string> BodyFiles(int unitId){var l=new List<string>();foreach(var r in bodyRules)if(r.unitId==unitId)l.AddRange(r.lods);return l;}
     static BodyMesh ReadBody(string file,SkinnedMeshRenderer native,bool battle)
     {
@@ -163,7 +165,7 @@ public partial class Mod
             }
             pos.AddRange(sub.pos);normals.AddRange(sub.nrm);uv.AddRange(sub.uv);
             var ix=new int[sub.idx.Length];for(int k=0;k<ix.Length;k++)ix[k]=sub.idx[k]+start;indices.Add(ix);
-            materials.Add(BodyMat(sub.tex,battle));
+            materials.Add(BodyMat(sub.tex,battle,cutoutBodies.Contains(file)));
         }
         var mesh=new Mesh{name="FAM_BODY_"+file,indexFormat=UnityEngine.Rendering.IndexFormat.UInt32,hideFlags=HideFlags.DontUnloadUnusedAsset};
         mesh.vertices=new Il2CppStructArray<Vector3>(pos.ToArray());mesh.normals=new Il2CppStructArray<Vector3>(normals.ToArray());mesh.uv=new Il2CppStructArray<Vector2>(uv.ToArray());mesh.boneWeights=new Il2CppStructArray<BoneWeight>(weights.ToArray());mesh.bindposes=original.bindposes;mesh.subMeshCount=ns;

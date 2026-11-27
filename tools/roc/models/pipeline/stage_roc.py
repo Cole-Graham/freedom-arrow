@@ -22,7 +22,8 @@ for s,card in CARD.items():
     if card:models[card]={'file':f'{st}_static.fam','battle':f'{st}_lo_static.fam','align':False,'lods':lods}
 # infantry bodies (inf/, 25-26 Nov) and their add-on rules; the T91 rifle (t91/) and its hand rules
 WT='/home/sam/tars/work/ba-dev/replicas/codex/work/roc-wt/tools/roc/models'
-inf=glob.glob(H+'/inf/lod/roc_*.fas')+glob.glob(H+'/inf/fat/roc_*.fat')+[WT+'/infantry-bodies-roc.json']
+BODY={l.rsplit('_',1)[0]+'_' for r in json.load(open(WT+'/infantry-bodies-roc.json')) for l in r['lods']}   # only bodies a rule uses (27 Nov: SF Scout -> roc_sf4)
+inf=[f for f in glob.glob(H+'/inf/lod/roc_*.fas')+glob.glob(H+'/inf/fat/roc_*.fat') if any(os.path.basename(f).startswith(b) for b in BODY)]+[WT+'/infantry-bodies-roc.json']
 t91=[f for f in glob.glob(H+'/t91/models/w_roc_*') if f.endswith(('.fam','.mat.json'))]+glob.glob(H+'/t91/fat/w_roc_*.fat')   # T91 + Kestrel-1 (27 Nov)
 for f in inf+t91:shutil.copy(f,S);n+=1
 for r in json.load(open(WT+'/infantry-bodies-roc.json')):

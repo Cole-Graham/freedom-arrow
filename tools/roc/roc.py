@@ -75,6 +75,8 @@ CARDS = {
     'ROC Patriot PAC-3 MSE': ('Patriot PAC-3 MSE', 448, 'Patriot PAC-3 MSE', None),
     'ROC RQ-7 Shadow': ('RQ-7 Shadow', 447, 'RQ-7 Shadow', None),
     'ROC EC225': ('EC225 Super Puma', 268, 'Mi-38T', None),
+    # Shawn 27 Nov 01:4x: "Add AN/TWQ-1 to ROC deck and duplicate data from latest Freedom Arrow". Added last.
+    'ROC AN/TWQ-1 Avenger': ('AN/TWQ-1 Avenger', 10, 'AN/TWQ-1 Avenger', None),
 }
 SPEC_NAME = 'ROC Joint Arms Coastal'
 SPEC_UI = 'Joint Arms Battalion and Coastal Operations Command 聯合兵種營及濱海作戰指揮部'
