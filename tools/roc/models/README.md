@@ -167,6 +167,13 @@ Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `inf
 - **EC225 (Shawn: "looks like a toy"):** `livery_ec225.py` v2 adds per-part detail, panel cavities from the normal map and exhaust soot, then light weathering (K 0.45, `MUD_TOP` 0.5).
 - **Infantry PBR (Shawn: follow the latest Chinese paratroopers):** `pipeline/infantry/atlas_pbr.py` builds all 7 ROC bodies with area-weighted atlas tiles, a PBR mask from ORM / roughness+metallic / GTA `_spec_` maps, AO in the colour and light sharpening. Old atlases in `inf/lod/old-pbr/` and `inf/fat/old-pbr/`.
 
+## CM-32 v3 and the FBX pack (27 November 2026, ~04:00)
+
+- **CM-32 v3:** the v2 previews showed near-white roof hatches and vision-block frames (the seller's `Interior_Color` material, colour 0.71) and mid-grey tyres (0.154). `cm32_uv.py` now puts the interior parts on the camo sheet too (58,486 painted faces) and makes the tyres rubber (0.03, rough 0.9); Seat, Net and Text stay OPAQUE (`glb_alpha.py`). Rebuilt with `finish_one.sh cm32 7.0 60000 31000` (60.9k / 32.4k, LODs 20.2k / 14.8k), new position map, the three schemes and weathering again. v2 files in `veh/x/cm32/v2/`.
+- **Preview fix:** `render_fam_alpha.py` now multiplies a texture by its sub-mesh colour, as FAModels does (`_BaseColor` × map).
+- **FBX pack for Shawn:** `export_fam_fbx.py MODEL.fam OUTDIR NAME` writes the Arsenal mesh as FBX with PNG textures (2048 from `tex_full/` where present; colour tints baked in; `_mask` split into Metallic/Roughness). Pack: Tien Kung III, Land Sword II, Thunderbolt 2000, EC225, CM-32 (+ Desert/Mosaic maps), on Sam's Drive, link-shared, file `1N3VgWNIATBO-fRq1u-zJBWpH54ueh0Cs`.
+- **Infantry preview:** `infantry/render_fas_pbr.py` renders a `.fas` with its normal map and PBR mask.
+
 ## Document change log
 
 - 2026-11-25 03:4x PST (America/Los_Angeles) — T91 rifle converted; recipe and first grip offset.
@@ -188,3 +195,4 @@ Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `inf
 - 2026-11-27 01:50 PST (America/Los_Angeles) — SF 4 ghillie sleeves bent onto the arms; SF Section = ROC SF2 body.
 - 2026-11-27 02:15 PST (America/Los_Angeles) — TK-III cab glass fixed; CM-34 Desert and Mosaic paint schemes.
 - 2026-11-27 03:36 PST (America/Los_Angeles) — CM-33 removed; weathering on TK-III, TB2000, LSW2, CM-21, CM-22, EC225; CM-22/CM-21 woodland; CM-32 UV + 3 schemes; CM-21 opaque; PBR infantry atlases.
+- 2026-11-27 03:59 PST (America/Los_Angeles) — CM-32 v3 (interior parts on the camo sheet, rubber tyres); preview tint fix; FBX + PNG pack for Shawn.
