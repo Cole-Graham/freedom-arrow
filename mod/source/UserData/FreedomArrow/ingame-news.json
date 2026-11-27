@@ -1,0 +1,8 @@
+[
+ {"id":"guides","title":"Guides: how Freedom Arrow plays","title_zh":"指南：自由之箭的玩法","text":"Vehicle damage, penetration, cover, income, scoring, air defence and ECM, explained with pictures.","text_zh":"载具伤害、穿深、掩体、收入、计分、防空与电子干扰，图解说明。","url":"https://freedomarrow.app/#guides","image":"/site/news/news-guides.jpg","date":"2026-11-27"},
+ {"id":"patch","title":"Patch notes","title_zh":"更新说明","text":"Every change in each playtest, unit by unit, with old and new values.","text_zh":"每次测试版本的全部改动，逐个单位列出新旧数值。","url":"https://freedomarrow.app/#patch","image":"/site/news/news-patch.jpg","date":"2026-11-27"},
+ {"id":"tools","title":"Tools: Armory, DPM and price check","title_zh":"工具：军械库、DPM 与价格查询","text":"Compare any unit or weapon, damage per minute and deck prices in your browser.","text_zh":"在浏览器中比较任意单位或武器、每分钟伤害和卡组价格。","url":"https://freedomarrow.app/#tools","image":"/site/news/news-tools.jpg","date":"2026-11-27"},
+ {"id":"roadmap","title":"Roadmap","title_zh":"路线图","text":"What we are building next, in order, up to the open beta.","text_zh":"我们接下来按顺序要做的内容，直到公开测试。","url":"https://freedomarrow.app/#roadmap","image":"/site/news/news-roadmap.jpg","date":"2026-11-27"},
+ {"id":"stats","title":"Ranked and live statistics","title_zh":"排位与实时统计","text":"Players online, most-played specializations, unit win rates and recent matches.","text_zh":"在线人数、最常用专精、单位胜率和最近的对局。","url":"https://freedomarrow.app/#stats","image":"/site/news/news-ranked.jpg","date":"2026-11-27"},
+ {"id":"discord","title":"Join our Discord","title_zh":"加入我们的 Discord","text":"Find players, report bugs and help build Freedom Arrow. We are looking for volunteers.","text_zh":"找队友、报告问题、一起开发自由之箭。我们正在招募志愿者。","url":"https://discord.gg/9myDMUF6E","image":"/site/news/news-discord.jpg","date":"2026-11-27"}
+]
