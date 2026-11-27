@@ -6,7 +6,7 @@
   "text": "Vehicle damage, penetration, cover, income, scoring, air defence and ECM, explained with pictures.",
   "text_zh": "载具伤害、穿深、掩体、收入、计分、防空与电子干扰，图解说明。",
   "url": "https://freedomarrow.app/#guides",
-  "image": "/site/news/news-guides-v4.jpg",
+  "image": "/site/news/news-guides-v5.jpg",
   "date": "2026-11-27"
  },
  {
@@ -16,7 +16,7 @@
   "text": "Every change in each playtest, unit by unit, with old and new values.",
   "text_zh": "每次测试版本的全部改动，逐个单位列出新旧数值。",
   "url": "https://freedomarrow.app/#patch",
-  "image": "/site/news/news-patch-v4.jpg",
+  "image": "/site/news/news-patch-v5.jpg",
   "date": "2026-11-27"
  },
  {
@@ -26,7 +26,7 @@
   "text": "Compare any unit or weapon, damage per minute and deck prices in your browser.",
   "text_zh": "在浏览器中比较任意单位或武器、每分钟伤害和卡组价格。",
   "url": "https://freedomarrow.app/#tools",
-  "image": "/site/news/news-tools-v4.jpg",
+  "image": "/site/news/news-tools-v5.jpg",
   "date": "2026-11-27"
  },
  {
@@ -36,7 +36,7 @@
   "text": "What we are building next, in order, up to the open beta.",
   "text_zh": "我们接下来按顺序要做的内容，直到公开测试。",
   "url": "https://freedomarrow.app/#roadmap",
-  "image": "/site/news/news-roadmap-v4.jpg",
+  "image": "/site/news/news-roadmap-v5.jpg",
   "date": "2026-11-27"
  },
  {
@@ -46,7 +46,7 @@
   "text": "Ranked 1v1 and team queues, Elo, the ladder and live statistics.",
   "text_zh": "排位 1v1 与团队匹配、Elo、排行榜和实时统计。",
   "url": "https://freedomarrow.app/#stats",
-  "image": "/site/news/news-ranked-v4.jpg",
+  "image": "/site/news/news-ranked-v5.jpg",
   "date": "2026-11-27"
  },
  {
@@ -56,7 +56,7 @@
   "text": "Find players, report bugs and help build Freedom Arrow. We are looking for volunteers.",
   "text_zh": "找队友、报告问题、一起开发自由之箭。我们正在招募志愿者。",
   "url": "https://discord.gg/9myDMUF6E",
-  "image": "/site/news/news-discord-v4.jpg",
+  "image": "/site/news/news-discord-v5.jpg",
   "date": "2026-11-27"
  }
 ]
