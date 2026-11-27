@@ -113,6 +113,7 @@ Read from `FogOfWarUnit.CalculateVisionRangeForTarget` (1.2.2.1 RVA `0x69FE20`, 
 - After one 1.0-flash missile (flash 2.0) or while spotted: 8000 raw = 16,000 m, the full optics range.
 - At the 2.2 cap: 8800 raw from the formula, but the 8000 scan bound limits it to 16,000 m. So for a 0.5-stealth plane at high altitude, more flash than 2.0 changes nothing.
 - F-22 low: quiet 1000 raw = 2,000 m; at 2.2, 2200 raw = 4,400 m.
+- **From 0.9.8 (27 Nov, 1c160bc4):** sensor 6 high-altitude optics 8000 → 7250 raw. F-22 high: quiet 7,250 m; flash 2.0 or spotted 14,500 m (the bound).
 
 ## 3. How the sight line is checked
 
@@ -346,3 +347,4 @@ Ways to make AA placement easier (not implemented, not tested):
 - 2026-11-25 22:2x PST (America/Los_Angeles) — Section 1c rewritten: spawn altitude, flight altitude and the Low/High state separated (Lateralus).
 - 2026-11-26 23:2x PST (America/Los_Angeles) — Section 2a: traced the air spotting formula (flash and stealth count, no 1.5 cap) with the F-22 example (Lateralus).
 - 2026-11-26 23:5x PST (America/Los_Angeles) — Section 3d-2: helicopter vs quiet units deep in forest, vanilla and FA; IgnoreTerrainCosts only for plane/projectile targets (Lateralus).
+- 2026-11-27 10:1x PST (America/Los_Angeles) — Section 2a: plane high-altitude optics 7250 raw from 0.9.8 (Lateralus).
