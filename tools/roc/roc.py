@@ -7,7 +7,7 @@ Stage 1 (25 Nov 02:1x, Shawn 02:0x "go on with the others"): spec "Joint Arms Ba
 and one card per row of Shawn's sheet "Freedom Arrow_ROC Deck" (1uSs2Ti-ix4nVDT8-uEouP3pe-Xfqt4deouh-mLWoe38). Each card is a full copy of the
 vanilla US unit in the sheet's template column, with its loadout options; it still looks and fights like that unit. Prices are the parent's, except
 the infantry and M1A2T, which take Shawn's card files. Weapons, squad sizes and models come in later stages.
-Left out: Hsiung Feng IIE (Shawn: "leave Hsiung Feng IIE"), CM-26 (role not known). DLC templates are replaced by non-DLC ones (review 25 Nov)."""
+Left out: CM-26 (role not known). Hsiung Feng IIE was left out on 25 Nov and added last on 26 Nov (evening). DLC templates are replaced by non-DLC ones (review 25 Nov)."""
 
 import json, os
 from pathlib import Path
@@ -65,6 +65,8 @@ CARDS = {
     'ROC SF Section': ('SF Section', 276, 'Pararescue', 100),
     'ROC SF Snipers': ('SF Snipers', 278, 'Army Snipers', 70),
     'ROC SF Snipers M107': ('SF Snipers M107', 340, 'Army Snipers', 85),
+    # Shawn 26 Nov 19:56 PST "Please procced with Hsiung Feng IIE" (sheet row 20: template 9K720 Iskander). Added last, so earlier unit IDs stay.
+    'ROC Hsiung Feng IIE': ('Hsiung Feng IIE', 226, '9K720 Iskander', None),
 }
 SPEC_NAME = 'ROC Joint Arms Coastal'
 SPEC_UI = 'Joint Arms Battalion and Coastal Operations Command 聯合兵種營及濱海作戰指揮部'
@@ -257,6 +259,9 @@ VEH = {
     # Shawn 26 Nov 02:3x: "CM-22 just keeps the data as 120mm but rename the weapon by 107mm and reduce the damage value by around 20%"
     'ROC CM-22': {'rename_hud': {'M121': 'M30 107mm'}, 'ammo': {'120mm HE': '107mm HE', '120mm smoke': '107mm smoke'},
                   'ammo_scale': {'107mm HE': {'Damage': 0.8}}, 'ui_auto': True},
+    # Hsiung Feng IIE (sheet: "HF-IIE Land-Attack Cruise Missile", Iskander as the ground-strike proxy): the Iskander-K cruise options only,
+    # renamed; the ballistic Iskander-M HE and cluster options go. Ranges and round counts stay the Iskander-K's (the stage 3 missile rule).
+    'ROC Hsiung Feng IIE': {'rename': {317: 'HF-IIE', 318: 'HF-IIE'}, 'ammo': {'9M728': 'HF-IIE'}, 'drop': {316, 711}, 'ui_auto': True},
     'ROC Chung Hsiang II': {'unarmed': True},
     'ROC MQ-9B': {'unarmed': True, 'cost_factor': 0.8},
 }

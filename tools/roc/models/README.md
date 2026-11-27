@@ -102,6 +102,14 @@ Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `inf
 - **F-5F, F-CK-1, C-130HE, Chung Hsiang II:** no metal or gloss maps came with them, so they get the Rafale's middle values on every part: metallic 0.40, smoothness 0.55. The F-5F's untextured parts had been metallic 1 / smoothness 1 (mirror-like).
 - Originals: `veh/x/<slug>/pre-matfix/`. Recipe: `pipeline/plane_finish.py` (reads the originals, so a rerun does not squeeze the UVs twice). `render_fam_alpha.py` now shows the remaps and the donor glass (as a grey tint).
 
+## Hsiung Feng IIE, weathered (26 November 2026, evening)
+
+**The Hsiung Feng IIE has its ROC model and a new card (unit 5048, Iskander template, as Shawn's sheet says). Its textures have moderate mud low down and light wear high up (Shawn: "do not make it look too old or overly damaged"). Not yet in a game build.**
+
+- **Source:** Shawn's FBX with 7 PBR texture sets (UE export: `lambertNN` / `WorldGridMaterial58` files; mapped to the FBX materials `standardSurface1_Inst*` by matching the textures packed in his .blend). UE normals are DirectX: green flipped. The ORM maps are split into AO, roughness and metallic. Two tiny `WorldGridMaterial` parts (UE grid placeholder) are dropped.
+- **Size:** 9.3 m as modelled, 4 launch tubes. Arsenal 120k triangles (cut from 146k; 12 detailed wheels are about 100k), battle 49.7k, LODs 29.9k / 18.3k. Arsenal textures fitted to the budget: 8.0 Mpx. Battle textures not budgeted (needs Osama's go). No separate glass (the cab windows are painted).
+- **Weathering (`pipeline/weather_hf2e.py`):** `pipeline/bake_geo.py` bakes per material, on Vengeance, the height and up-facing direction (and with `EDGE=1`, 2 cm bevel edges). Mud: full below about 0.25 m and gone by 0.9 m, with fractal noise, plus crevices (AO) below 1.3 m; the wheels get an even lighter coat; mud is rough and not metallic. Upper body (above about 0.8 m): bare metal on baked edges (about 1-2 % of the surface), small dark paint chips (about 1 %), and light dust on up-facing surfaces. Unweathered textures stay in `veh/x/hf2e/tex/`.
+
 ## Document change log
 
 - 2026-11-25 03:4x PST (America/Los_Angeles) — T91 rifle converted; recipe and first grip offset.
@@ -113,3 +121,4 @@ Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `inf
 - 2026-11-26 03:11 PST (America/Los_Angeles) — M60A3 TTS converted; canopy glass fixed on 4 aircraft; LOD material files; Armory texture budget on 13 models.
 - 2026-11-26 12:54 PST (America/Los_Angeles) — F-16A and Mirage 2000-5 converted; Mirage second skin as a paint scheme through a ROC paint add-on file.
 - 2026-11-26 14:52 PST (America/Los_Angeles) — French-preview finish on all 7 ROC planes; vanilla F-16 glass on the 5 fighters.
+- 2026-11-26 20:11 PST (America/Los_Angeles) — Hsiung Feng IIE converted and weathered; card 5048 added.
