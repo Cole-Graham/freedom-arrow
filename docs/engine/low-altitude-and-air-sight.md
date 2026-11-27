@@ -181,6 +181,18 @@ How long a line stays in the layer depends on the geometry. Take an AA eye about
 
 This is the "extra margin above the trees": the forest blocks sight as if it were 15 world units (30 m) tall and grows denser the deeper the line goes into it. The tree models are not used.
 
+### 3d-2. A helicopter spotting quiet units deep in a forest (calculated, Lateralus 26 November 2026)
+
+**Short answer.** For a helicopter with Exceptional optics at 40.5 world units (81 m, the height in Lateralus's 19 Nov LoS-tool screenshot), the forest walk decides the range, not the optics formula. Calculated card ranges, not measured: infantry 252 m in vanilla and 286 m in FA; vehicles 314 m in vanilla and 372 m in FA. At 25 units up: 164 / 180 m and 198 / 232 m.
+
+How (code and data, flat-ground model, target eye 1 unit up, every line step under 15 units is forest):
+- The forest walk is not skipped for ground targets. `CreateFilterTaskForTarget` (1.2.2.1 RVA `0x6A03F0`) sets `IgnoreTerrainCosts` only when the target's `Units.Type` is 16 (plane) or has a bit in `0x780` (projectiles and similar). `IgnoreForestCostOnly` is 0 (code at `0x6A05D8`–`0x6A06A5`).
+- Formula range (ground path): ground optics × clamp(stealth × max(1, flash, spotted) ÷ forest cover, ε, 1.5). Exceptional ground optics: vanilla 1200 raw, FA 2800 raw, capped by `SpottingCap.cs` at the vanilla 1200. Quiet and not spotted gives 1.
+  - Vanilla: infantry 1200 × 0.571 ÷ 2 = 343 raw (685 m); vehicle 1200 ÷ 2 = 600 (1,200 m).
+  - FA: infantry 2800 × 0.5 ÷ 3 = 467 (933 m); vehicle 2800 ÷ 3 = 933 (1,867 m).
+- Walk: the last D × 14 / 39.5 units of the line are inside the forest layer. Those steps cost max(1, −15 + 0.75k) (3c/3d). The target is seen while the total is at most the formula range: about 45–66 forest steps.
+- Not included: the open question in 3e of whether forest pixels hold the treetop height, which would make the layer higher and the ranges shorter; real terrain; smoke.
+
 ### 3e. What the step's height is measured from, and the in-game LoS tool
 
 The 15 units are added to the **map pixel height** (`MapPixel.Height`). The game does not use the rendered terrain. Pixels come from a baked map texture (`MapMetaData.ConvertPixel`, RVA `0x3CE610`). Each pixel holds a height and a terrain type (code).
@@ -333,3 +345,4 @@ Ways to make AA placement easier (not implemented, not tested):
 - 2026-11-25 22:3x PST (America/Los_Angeles) — Added section 1c: spawn altitude, fly preset override and low-default, and who writes `PlaneHighAltOverride` (Lateralus).
 - 2026-11-25 22:2x PST (America/Los_Angeles) — Section 1c rewritten: spawn altitude, flight altitude and the Low/High state separated (Lateralus).
 - 2026-11-26 23:2x PST (America/Los_Angeles) — Section 2a: traced the air spotting formula (flash and stealth count, no 1.5 cap) with the F-22 example (Lateralus).
+- 2026-11-26 23:5x PST (America/Los_Angeles) — Section 3d-2: helicopter vs quiet units deep in forest, vanilla and FA; IgnoreTerrainCosts only for plane/projectile targets (Lateralus).
