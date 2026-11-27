@@ -251,6 +251,17 @@ if m>=key('0.9.5-dev.34'):
         if _tab=='SquadMembersJson.json' and m>=key('0.9.7-dev.1'):_want.pop('2015623',None)
         # Osama 25 Nov 2026 18:3x (snow_leopards_qbs_1125.py 077d648c, checked there): PAP Snow Leopards QCQ-171 man 2015311 now a QBS-09, priority 2.
         if _tab=='SquadMembersJson.json' and m>=key('0.9.7-dev.22'):_want.pop('2015311',None)
+        # PLA Light Brigade branch (Osama 26 Nov 2026 02:0x, pla_light_brigade_jiaolong_1126.py, checked there): Sea Dragons 1191 re-kitted as Jiaolong CQC.
+        if _tab=='SquadMembersJson.json' and m>=key('0.9.7l-dev.1'):[_want.pop(str(i),None) for i in range(2015385,2015393)]
+        # PLA Light Brigade branch (Osama 26 Nov 2026 03:2x, pla_light_brigade_sf_1126.py, checked there): Flying Tigers 1187 re-kitted (SIG 516 / SPAS-12 / MP5SD / ARWEN 37); its card rows are new.
+        if m>=key('0.9.7l-dev.2'):[_want.pop(str(i),None) for i in range(2015373,2015385)]
+        # PLA Light Brigade branch (Osama 26 Nov 2026 04:1x, pla_light_brigade_falcons_1126.py, checked there): Falcons 1185 take the QLZ-87 / QBZ-192 kit; card rows are new.
+        if m>=key('0.9.7l-dev.6'):[_want.pop(str(i),None) for i in range(2018062,2018067)]
+        # PLA Light Brigade branch (Osama 26 Nov 2026 04:5x, pla_light_brigade_late_1126.py, checked there): Taishan Eagles 1203 QTS-11 / QBU-191 card rows gone (3 QJS-161).
+        if m>=key('0.9.7l-dev.13'):[_want.pop(str(i),None) for i in (2015561,2015563,2015565)]
+        # PLA Light Brigade branch (Osama 26 Nov 2026 10:4x, pla_light_brigade_order_1126.py, checked there): weapon list order and death priority
+        # re-set by the vanilla rule for the squads the branch re-kitted (Sea Dragons, Flying Tigers, Falcons, Taishan Eagles, Airborne, QLU-11 Team, Mountaineers).
+        if m>=key('0.9.7l-dev.14'):_want={i:f for i,f in _want.items() if (_t.get(int(i)) or {}).get('UnitId') not in (1191,1187,1185,1203,1136,1140,1196)}
         bad+=[f'{_tab} {i} {k}={(_t.get(int(i)) or {}).get(k)} (want {v}, infantry_order_1122.py)' for i,f in _want.items() for k,v in f.items() if (_t.get(int(i)) or {}).get(k)!=v]
     # Lateralus 22 Nov 17:1x: QCW-05 = the KNT MP5SD6 amount (160), QBU-191 100 (infantry_ammo_1122.py).
     _wa=merged('WeaponAmmunitionsJson.json','weapon_ammunitions.json')

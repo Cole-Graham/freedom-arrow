@@ -24,14 +24,24 @@ public partial class Mod
     {
         var file=Path.Combine(dir,"infantry-bodies.json"); if(!File.Exists(file))return;
         try {
-            var rules=JsonSerializer.Deserialize<List<BodyRule>>(File.ReadAllText(file))??new();
-            foreach(var r in rules) {
-                if(!InfantryBodyIdentity.IsSupported(r.unitId) || r.lods.Length!=3)throw new InvalidDataException("Body rule must use an approved PLA infantry unit and three LODs");
-                if(r.offset.Length!=3 || r.offset.Any(x=>!float.IsFinite(x)||Math.Abs(x)>.15f))throw new InvalidDataException("Invalid body-only offset");
-                foreach(var f in r.lods)if(Path.GetFileName(f)!=f || !File.Exists(Path.Combine(dir,f)))throw new InvalidDataException("Missing/unsafe body asset");
+            var rules=ReadBodyRules(file);
+            // Add-on packs (ROC, 25 Nov 2026) bring their own infantry-bodies-<pack>.json. A bad add-on file is skipped alone.
+            foreach(var extra in Directory.GetFiles(dir,"infantry-bodies-*.json").OrderBy(x=>x,StringComparer.Ordinal)) {
+                try { var add=ReadBodyRules(extra);rules.AddRange(add);MelonLogger.Msg($"FAMODELS body add-on {Path.GetFileName(extra)}: {add.Count} unit(s)"); }
+                catch(Exception e){MelonLogger.Error($"FAMODELS body add-on {Path.GetFileName(extra)} rejected: "+e.Message);}
             }
             bodyRules=rules;bodyOffsetsOn=File.Exists(Path.Combine(dir,"body-offset-on.txt"));MelonLogger.Msg($"FAMODELS body offsets {(bodyOffsetsOn?"on":"off")} (body-offset-on.txt)");MelonLogger.Msg($"FAMODELS body prototype ready: {rules.Count} unit(s); native animation and attachments retained");
         } catch(Exception e){bodyRules.Clear();MelonLogger.Error("FAMODELS body rules rejected: "+e.Message);}
+    }
+    static List<BodyRule> ReadBodyRules(string file)
+    {
+        var rules=JsonSerializer.Deserialize<List<BodyRule>>(File.ReadAllText(file))??new();
+        foreach(var r in rules) {
+            if(!InfantryBodyIdentity.IsSupported(r.unitId) || r.lods.Length!=3)throw new InvalidDataException("Body rule must use an approved infantry unit and three LODs");
+            if(r.offset.Length!=3 || r.offset.Any(x=>!float.IsFinite(x)||Math.Abs(x)>.15f))throw new InvalidDataException("Invalid body-only offset");
+            foreach(var f in r.lods)if(Path.GetFileName(f)!=f || !File.Exists(Path.Combine(dir,f)))throw new InvalidDataException("Missing/unsafe body asset");
+        }
+        return rules;
     }
     static void QueueBodies(UnitModelInfo model,int unitId,bool battle)
     {

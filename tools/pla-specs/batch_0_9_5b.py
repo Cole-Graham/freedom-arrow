@@ -1020,6 +1020,16 @@ import weapon_coverage_check;rec['weapon_coverage_rows']=weapon_coverage_check.c
 import backpocket_weapons_1125;backpocket_weapons_1125.apply(t,g,ok,rec)
 # ---------- (after the back-pocket weapons so their row ids stay) Sig Spear Shorty, back pocket: M7 Spear stat clone with its own suppressed icon (Osama 26 Nov 2026 01:5x). See spear_shorty_1126.py.
 import spear_shorty_1126;spear_shorty_1126.apply(t,g,ok,rec)
+# ---------- PLA Light Brigade build (branch codex/batch/osama/pla-light-brigade only): QJY-201 gunners -> QJY-88, QJY-201 = VDV PKP-M stat copy
+# (Osama 26 Nov 2026 01:2x PST). See pla_light_brigade_mg_1126.py.
+import pla_light_brigade_mg_1126;pla_light_brigade_mg_1126.apply(t,g,ok,rec)
+# ---------- PLA Light Brigade: Troopers AA one M240L -> M4A1, mixed loadout one M-25 man fewer; Troopers 70, Moto. Riflemen 75 (Osama 26 Nov 01:3x).
+import pla_light_brigade_troopers_1126;pla_light_brigade_troopers_1126.apply(t,g,ok,rec)
+# ---------- PLA Light Brigade: ZTQ-15 + ZTL-11 Medium CAB -> China marines (PLAN 20); ZTQ-15 Recon Heavy -> Medium CAB (Osama 26 Nov 01:4x).
+import pla_light_brigade_specs_1126;pla_light_brigade_specs_1126.apply(t,g,ok,rec)
+# ---------- PLA Light Brigade: HQ-22 (HQ-9A copy) + J-50 into PLAN, new PLAGF Light CAB spec with the SX2121 (Osama 26 Nov 01:4x). New rows use the
+# 'plb' reserved ID block (mod/id-reservations.json).
+# Lateralus's infantry-tier section from codex/development, placed before the plb scope (rows after the scope are refused).
 # ---------- Infantry weapons: one name, one set of stats; M240L T3, PKP-N, PKP 2.1, PKM 1.8, M249 -> M249E3, M249 Para 2.4, R-20 Rahe T1,
 # HK 416A5 Zaliukai; unused variants removed (Lateralus 26 Nov 2026 13:1x). Makes one round: keep it the last row-making section before
 # the ROC hook so no other ID moves. See lateralus/infantry_tiers_1126.py.
@@ -1033,6 +1043,41 @@ import reserve_marines_law_1126;reserve_marines_law_1126.apply(t,g,ok,rec)
 # ---------- Reserve Marines 65 -> 70, Standard loadout 75 -> 85 with 2 M240L (die last) in place of 2 M27 IAR; China Marines 65 -> 60 points
 # (Lateralus 26 Nov 2026 17:3x). See lateralus/marines_prices_1126.py.
 import marines_prices_1126;marines_prices_1126.apply(t,g,ok,rec)
+# ---------- PLA Light Brigade (Osama), merged into codex/development for 0.9.8-dev.1 (Lateralus 26 Nov 2026 18:4x). Its rows are in the reserved
+# 'plb' ID block, so they keep the IDs of the 0.9.7l test builds. The development sections run before it (no live row after the block).
+import pla_light_brigade_units_1126
+import pla_light_brigade_jiaolong_1126
+# Jiaolong CQC (Osama 26 Nov 02:0x): QBZ URGI (Mk18 copy) + Sea Dragons CQC kit; same 'plb' scope, after the Test SF copy.
+import pla_light_brigade_transports_1126   # Moto. Riflemen -> Light CAB, ZBL-08 for PLAN, WZ-551 for Light CAB (Osama 26 Nov 02:2x)
+import pla_light_brigade_tiger_1126   # Tiger Brigade (Marines Assault) 80 pts, PTL-02 + CSK-131/CSK-181 to Light CAB (Osama 26 Nov 02:3x-02:4x)
+import pla_light_brigade_falcons_1126   # Falcons take the 'Falcons New' kit: 2 MGs -> QLZ-87 + QBZ-192, QMK -> QBZ-192 (Osama 26 Nov 02:4x, 04:1x)
+import pla_light_brigade_transports2_1126   # ZSL-191 off Light CAB (Medium CAB), ZBD-05/ZSD-05 off Light CAB (PLAN) (Osama 26 Nov 02:5x)
+import pla_light_brigade_j50_hq22_1126   # J-50 = J-20S clone (turn800, stealth 2.2, 275), PL-16 flash 3.5, HQ-22 range 2200 card / 125 pts, Y-8 -> Light CAB (Osama 26 Nov 03:0x)
+import pla_light_brigade_names_1126   # Beijing Swords -> Flying Tigers (Osama 26 Nov 03:0x)
+import pla_light_brigade_sf_1126   # Flying Tigers kit (SIG 516, SPAS-12, MP5SD, ARWEN 37) + icon, Marine Scouts (Osama 26 Nov 03:2x-03:3x)
+import pla_light_brigade_pap_1126   # Moto. Riflemen -> PAP Rifle Patrol; PAP AA Patrol copy with QW-2 (Osama 26 Nov 03:4x)
+import pla_light_brigade_skywolf_1126   # Test SF -> Sky Wolf Commandos, long-range PF-98, PF-98A names -> PF-98, J-11BS/BHG -> Light CAB (Osama 26 Nov 03:4x)
+import pla_light_brigade_zsl92_1126   # ZSL-92 / ZSL-92B transports, HQ-17A + PHL-03 -> Light CAB (Osama 26 Nov 03:5x)
+import pla_light_brigade_late_1126   # PAP Rifle Patrol -> Mountaineers, ZBD-04 card in PLAN (Osama 26 Nov 04:0x)
+import pla_light_brigade_transport_rules_1126   # ZBL-191 / ZSL-191 Medium CAB only, ZBL-08 PLAN + Medium CAB only (Osama 26 Nov 04:2x)
+import pla_light_brigade_late4_1126   # Airborne QBU-10 -> QBU-202 (Osama 26 Nov 18:3x)
+import pla_light_brigade_late3_1126   # QLU-11 Team 65; Tank Hunters 55 pts, no DZT-98, 8 PF-98A, QMK rifles (Osama 26 Nov 18:3x)
+import pla_light_brigade_late2_1126   # ZZC-06 back to Heavy CAB; Marine Scouts sniper stealth 3.0 (Osama 26 Nov 16:3x)
+import pla_light_brigade_df15_1126   # DF-15 range 10000 -> 8000 card m, the Tochka-U's (Osama 26 Nov 15:5x)
+import pla_light_brigade_fk3000_1126   # FK-3000 out of the Medium CAB, Light CAB card only (Osama 26 Nov 15:5x)
+import pla_light_brigade_pf98a_1126   # PF-98A 700 m (the Sky Wolf long-range PF-98) for Tank Hunters; Tank Hunters card PLAAF -> PLAN (Osama 26 Nov 12:5x)
+import pla_light_brigade_smoke_1126   # Flying Tigers ARWEN 37 Smoke: tiny 10 s cloud, one shot per 10 s (Osama 26 Nov 12:0x)
+import pla_light_brigade_order_1126   # vanilla weapon list order + death priority for the re-kitted squads (Osama 26 Nov 10:4x)
+import pla_light_brigade_qlu11_1126   # PLAAF QLU-11 Team 4 men, 2 QLU-11, 60 pts (Osama 26 Nov 02:1x)
+import pla_light_brigade_zsd05hj10_1126   # ZSD-05 HJ-10 for the Marines: Heavy CAB HJ-10 copy on the ZSD-05 chassis (Osama 26 Nov 13:3x)
+import pla_light_brigade_zsd05zzc_1126   # ZSD-05 ZZC: ZZC-06 copy on the ZSD-05 chassis, PLAN (Osama 26 Nov 13:4x)
+import pla_light_brigade_spec_icon_1126   # Light CAB spec icon FA_CHINA_LIGHT: SOF badge sword + lightning (Osama 26 Nov 15:5x)
+import pla_light_brigade_hq13_1126   # HQ-13 SHORAD for PLAN: PGL-625 FB-10 only (8) on the ZSD-05 chassis (Osama 26 Nov 16:2x)
+with g.scope('plb'):pla_light_brigade_units_1126.apply(t,g,ok,rec);pla_light_brigade_jiaolong_1126.apply(t,g,ok,rec);pla_light_brigade_qlu11_1126.apply(t,g,ok,rec);pla_light_brigade_transports_1126.apply(t,g,ok,rec);pla_light_brigade_tiger_1126.apply(t,g,ok,rec);pla_light_brigade_falcons_1126.apply(t,g,ok,rec);pla_light_brigade_transports2_1126.apply(t,g,ok,rec);pla_light_brigade_j50_hq22_1126.apply(t,g,ok,rec);pla_light_brigade_names_1126.apply(t,g,ok,rec);pla_light_brigade_sf_1126.apply(t,g,ok,rec);pla_light_brigade_pap_1126.apply(t,g,ok,rec);pla_light_brigade_skywolf_1126.apply(t,g,ok,rec);pla_light_brigade_zsl92_1126.apply(t,g,ok,rec);pla_light_brigade_late_1126.apply(t,g,ok,rec);pla_light_brigade_transport_rules_1126.apply(t,g,ok,rec);pla_light_brigade_order_1126.apply(t,g,ok,rec);pla_light_brigade_smoke_1126.apply(t,g,ok,rec);pla_light_brigade_pf98a_1126.apply(t,g,ok,rec);pla_light_brigade_zsd05hj10_1126.apply(t,g,ok,rec);pla_light_brigade_zsd05zzc_1126.apply(t,g,ok,rec);pla_light_brigade_spec_icon_1126.apply(t,g,ok,rec);pla_light_brigade_hq13_1126.apply(t,g,ok,rec);pla_light_brigade_fk3000_1126.apply(t,g,ok,rec);pla_light_brigade_df15_1126.apply(t,g,ok,rec);pla_light_brigade_late2_1126.apply(t,g,ok,rec);pla_light_brigade_late3_1126.apply(t,g,ok,rec);pla_light_brigade_late4_1126.apply(t,g,ok,rec)
+# ---------- QLZ-87 icon from Osama's photo (26 Nov 2026 02:2x); stats already = QLZ-04, min range 25 for Lateralus. See qlz87_icon_1126.py.
+import qlz87_icon_1126;qlz87_icon_1126.apply(t,g,ok,rec)
+# PLARF tripod QLZ-87 named 'QLZ-87 (tripod)'; the hand-held squad copy keeps 'QLZ-87' (Osama 26 Nov 10:4x). See pla_light_brigade_qlz87_tripod_1126.py.
+import pla_light_brigade_qlz87_tripod_1126;pla_light_brigade_qlz87_tripod_1126.apply(t,g,ok,rec)
 import unit_standards
 import roc_hook;roc_hook.apply(t,g,ok,rec,recheck=lambda:(disposable_launchers_1123.check(t,ok,a.vanilla),weapon_coverage_check.check(t,patches,ok),unit_standards.check(t,ok,rec)))
 # Unit standards on the final data (docs/development/UNIT-STANDARDS.md, Lateralus 26 Nov 2026): fails on a new squad that breaks the launcher or
