@@ -1101,6 +1101,8 @@ import osprey_gau17_1126;osprey_gau17_1126.apply(t,g,ok,rec)
 import osama_fixes_1126;osama_fixes_1126.apply(t,g,ok,rec)
 # ---------- CV-9035 Mk.IV Spike LR ammo 2 -> 4 (Lateralus 26 Nov 2026 20:3x). Existing row only. See lateralus/cv9035_spike_1126.py.
 import cv9035_spike_1126;cv9035_spike_1126.apply(t,g,ok,rec)
+# ---------- ZTZ-99A front armour 850 / 1075 -> 750 / 950 (Osama 26 Nov 22:5x). See ztz99a_front_1126.py.
+import ztz99a_front_1126;ztz99a_front_1126.apply(t,g,ok,rec)
 import unit_standards
 import roc_hook;roc_hook.apply(t,g,ok,rec,recheck=lambda:(disposable_launchers_1123.check(t,ok,a.vanilla),weapon_coverage_check.check(t,patches,ok),unit_standards.check(t,ok,rec)))
 # Unit standards on the final data (docs/development/UNIT-STANDARDS.md, Lateralus 26 Nov 2026): fails on a new squad that breaks the launcher or
