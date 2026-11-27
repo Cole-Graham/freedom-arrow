@@ -98,6 +98,9 @@ NEEDED_FIELDS = (
     "OptionsJson",
     "UnitArmorsJson",
     "CountriesJson",
+    "SpecializationsJson",  # deck filter (Catalog.deck_units)
+    "SpecializationAvailabilitiesJson",
+    "TransportAvailabilitiesJson",
 )
 
 LINE_COLORS = (

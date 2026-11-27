@@ -274,8 +274,7 @@
    "set": "Infantry/SF"
   },
   "1187": {
-   "set": "Infantry/SF",
-   "unit": "Beijing_Swords"
+   "set": "Special/FlyingTigers"
   },
   "1183": {
    "set": "Infantry/English",
@@ -286,16 +285,14 @@
    "unit": "Falcons"
   },
   "1181": {
-   "set": "Infantry/English",
-   "unit": "Godswords_EN"
+   "set": "Special/Godswords"
   },
   "1186": {
    "set": "Infantry/SF",
    "unit": "Mountain_Leopards"
   },
   "1182": {
-   "set": "Infantry/SF",
-   "unit": "Snow_Leopards"
+   "set": "Special/SnowLeopards"
   },
   "1142": {
    "set": "Infantry/SF"
@@ -641,6 +638,28 @@
   "1448": {
    "set": "Vehicle/LynxAirborne",
    "unit": "Lynx_ATV"
+  },
+  "6000": {
+   "set": "Vehicle/Regular",
+   "unit": "HQ-9"
+  },
+  "6001": {
+   "set": "Infantry/SF"
+  },
+  "6002": {
+   "set": "Infantry/SF"
+  },
+  "6005": {
+   "set": "Infantry/Regular"
+  },
+  "6006": {
+   "set": "Vehicle/Regular"
+  },
+  "6008": {
+   "set": "Vehicle/Regular"
+  },
+  "6009": {
+   "set": "Artillery/Regular"
   }
  },
  "fallback": {

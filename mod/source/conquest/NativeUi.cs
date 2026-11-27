@@ -285,22 +285,39 @@ public sealed partial class Prototype
     static float onlineHoldStart=-1;
     static IntPtr onlineHoldSession;
     static int onlineHoldRestores;
-    static bool onlineHoldDone,onlineHoldFailed;
+    static bool onlineHoldDone,onlineHoldFailed,onlineHoldSkipLogged;
     static bool OnlineDeployMap(string name)=>name!=null&&config.MapZoneWeights.ContainsKey(name)&&!name.Contains(" Skirmish ");
     static void OnlineDeployFrame()
     {
         if(onlineHoldFailed)return;
         try
         {
+            // BattleRunning() also records the room status and sets sawPreview on the "BATTLE STARTS IN" screen, so it runs first and on
+            // every frame. Before 27 Nov 2026 it sat last in the chain below: on the preview screen an earlier test failed, sawPreview was
+            // never set, and the hold skipped itself silently in every online match (no FREEDOM_ARROW_DEPLOY_HOLD line in any 0.9.6/0.9.7
+            // log; Osama 26 Nov 23:1x, a player moving 90 s into the deployment of [4v4] Airport 0.2).
+            bool running=BattleRunning();
             var session=GameController.Instance?.GameSession;
-            if(session==null||economyOnlineGuard?.Invoke()!=true
-                ||!OnlineDeployMap(Il2CppBrokenArrow.MissionEditor.MissionResolver.ScenariosService.ActiveScenario?.Name)||!BattleRunning())
+            string scenario=Il2CppBrokenArrow.MissionEditor.MissionResolver.ScenariosService.ActiveScenario?.Name;
+            bool guard=economyOnlineGuard?.Invoke()==true,map=OnlineDeployMap(scenario);
+            if(session==null||!guard||!map||!running)
             {
+                if(running&&!onlineHoldSkipLogged&&(map||guard))
+                {
+                    onlineHoldSkipLogged=true;
+                    MelonLogger.Msg($"FREEDOM_ARROW_DEPLOY_HOLD not started: session {(session!=null)}, online guard {guard}, online FA map {map} ('{scenario}')");
+                }
+                if(!running)onlineHoldSkipLogged=false;
                 onlineHoldStart=-1;onlineHoldDone=false;onlineHoldRestores=0;return;
             }
             if(onlineHoldStart<0||session.Pointer!=onlineHoldSession)
             {
-                if(!sawPreview){onlineHoldDone=true;onlineHoldStart=Time.unscaledTime;onlineHoldSession=session.Pointer;return;}
+                if(!sawPreview)
+                {
+                    onlineHoldDone=true;onlineHoldStart=Time.unscaledTime;onlineHoldSession=session.Pointer;
+                    MelonLogger.Msg("FREEDOM_ARROW_DEPLOY_HOLD not started: no preview screen seen (rejoin into a running match)");
+                    return;
+                }
                 sawPreview=false;
                 onlineHoldStart=Time.unscaledTime;onlineHoldSession=session.Pointer;onlineHoldRestores=0;onlineHoldDone=false;
                 Log("online_deploy_hold_started",new{paused=session.IsPaused,config.OnlineDeploySeconds});

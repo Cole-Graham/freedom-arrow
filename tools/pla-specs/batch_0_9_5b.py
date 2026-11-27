@@ -6,7 +6,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2];REL=ROOT/'mod';SRC=REL/'source';sys.path[:0]=[str(ROOT),str(REL),str(Path(__file__).parent),str(Path(__file__).parent/'lateralus')]
 from pipeline.tables import FIELD_TO_FILE
 from pla_graph import Graph
-V='0.9.7-roc4';PREV='0.9.3'
+V='0.9.8-dev.2-roc5';PREV='0.9.3'
 # 0.9.3 (build 242, the playtest released 20 Nov 2026) was built in out/local-093r242.
 BASE=json.loads((REL/f'out/receipts/FreedomArrow-{PREV}.json').read_text())['complete']['sha256']   # the one record of builds (repo cleanup step 1)
 p=argparse.ArgumentParser(description=__doc__);p.add_argument('--vanilla',type=Path,required=True);p.add_argument('--check',action='store_true',help='run the checks, write nothing');a=p.parse_args()
@@ -489,8 +489,10 @@ rec['ifv_700_class']={'rows_700':list(_700),'xm30_ke':[300,200],'t80u_profile_to
 # and isn't invisible anymore"; "BVM base stays modern, QN-506 autocannon keeps helo range ... Other parked, hold for now").
 # (a) The 140-penetration top-attack ATGMs (Javelin, Spike LR, TOW-2B, HJ-16, HJ-16 IIR, HJ-12E, GAM-102LR, Blue Dragon KSTAM) 10.5 -> 11 damage, and HJ-12 also 130 -> 140 penetration:
 #     11 x 140^2 / (140^2 + 100^2) = 7.28 per hit, 2 hits = 14.6 > 14 HP on top armour 100. RBS 56 and Sokol-V already kill in 2 and keep 10.5.
-# (b) FlashPerShot 1.0 -> 3.5 on every long-range AAM launcher (R-37, JATM / AIM-260, PL-17, PL-21): one shot takes the shooter's WeaponFlash from 1 to the
-#     FogOfWarConfig cap 4.5 (it decays 0.15 per second). Whether and how far air detection uses WeaponFlash is not verified in code: check in game.
+# (b) FlashPerShot 1.0 -> 2.2 on every long-range AAM launcher (R-37, JATM / AIM-260, PL-17, PL-21): one shot takes the shooter's WeaponFlash to the
+#     FA cap MaxFlashValue 2.2 (detection-config.json; vanilla 4.5), so any value above 2.2 is clipped. It was 3.5 until 26 Nov 2026 (Lateralus 23:3x:
+#     "change Osama's 3.5 change value to 2.2, just for consistency ... I tested it and the spotting range is still fine at 2.2"). Air spotting uses
+#     flash: docs/engine/low-altitude-and-air-sight.md section 2a.
 _TA=[i for i,a_ in A.items() if a_ and a_.get('IsTopArmorArmorAttack') and a_.get('Seeker') and a_.get('ArmorTargeted')==2 and a_.get('Damage')==10.5
      and a_.get('PenetrationAtMinRange') in (130.0,140.0) and any(r.get('AmmunitionId')==i and U.get(r.get('UnitId'),{}).get('DisplayInArmory') for r in WA.values())]
 _tan=sorted({(A[i].get('HUDName') or '').strip() for i in _TA})
@@ -503,9 +505,9 @@ ok(all(A[i]['Damage']==11.0 and A[i]['PenetrationAtMinRange']==A[i]['Penetration
 ok(all(math.ceil(14/(11*140**2/(140**2+a_**2))-1e-9)==2 for a_ in (60,80,100)),'2 hits on every tank top')
 ok(A[572]['Damage']==10.5 and A[2000161]['Damage']==10.5,'RBS 56 and Sokol-V unchanged')
 _LR={437:'R-37',675:'JATM',2001659:'JATM',2016472:'PL-17',2016476:'PL-21',2016482:'PL-17',2016509:'PL-17',2017635:'PL-17'}
-for w_,n_ in _LR.items():ok(W[w_]['HUDName']==n_ and W[w_]['FlashPerShot']==1.0,(w_,n_,W[w_].get('FlashPerShot')));g.put('WeaponsJson',w_,{'FlashPerShot':3.5})
+for w_,n_ in _LR.items():ok(W[w_]['HUDName']==n_ and W[w_]['FlashPerShot']==1.0,(w_,n_,W[w_].get('FlashPerShot')));g.put('WeaponsJson',w_,{'FlashPerShot':2.2})
 ok(not [w_ for w_,x in W.items() if x and (x.get('HUDName') or '') in ('R-37','JATM','PL-17','PL-21','AIM-260') and w_ not in _LR],'every long-range AAM launcher covered')
-rec['top_attack_and_aam_flash']={'top_attack_rounds':_TA,'damage':[10.5,11.0],'hj12_pen':[130,140],'aam_flash':{str(k):[1.0,3.5] for k in _LR}}
+rec['top_attack_and_aam_flash']={'top_attack_rounds':_TA,'damage':[10.5,11.0],'hj12_pen':[130,140],'aam_flash':{str(k):[1.0,2.2] for k in _LR}}
 # ---------- 18. Split-loadout cards show in the Arsenal again (Osama 21 Nov 2026 15:3x PST: "we lost our American Airborne, not the NGSW. We need both in US
 # air"). 0.9.0-dev.11 turned the Rangers / Airborne / Mech. Riflemen squad-loadout swaps into separate cards (new specialization rows), but the variant units kept
 # Units.IsUnitModification = True, the flag for "reached only through a loadout option". With the options gone, those cards were hidden. Clear the flag on every
@@ -975,6 +977,10 @@ import snow_leopards_qbs_1125;snow_leopards_qbs_1125.apply(t,g,ok,rec)
 import mtl30_1125;mtl30_1125.apply(t,g,ok,rec)
 # ---------- PGL-625 main gun 7 damage/s (Osama 25 Nov 2026 23:0x PST, bugs thread). See pgl625_dps_1125.py.
 import pgl625_dps_1125;pgl625_dps_1125.apply(t,g,ok,rec)
+# ---------- PGZ-95 QW-2 on the guns' turret, slot 0 (Osama 26 Nov 2026 10:5x PST, bugs thread). See pgz95_missiles_1126.py.
+import pgz95_missiles_1126;pgz95_missiles_1126.apply(t,g,ok,rec)
+# ---------- M-ATV Javelin smoke x1 (Osama 26 Nov 2026 13:4x PST, bugs thread). See matv_javelin_smoke_1126.py.
+import matv_javelin_smoke_1126;matv_javelin_smoke_1126.apply(t,g,ok,rec)
 # ---------- ZTQ-15, ZTQ-15 Recon, ZTQ-15 Light 25 points cheaper (Osama 25 Nov 2026 11:3x PST). See ztq15_cost_1125.py.
 import ztq15_cost_1125;ztq15_cost_1125.apply(t,g,ok,rec)
 # ---------- Z-20S 0 -> 4 seats, MH-60M SOAR Recon 60 -> 65 pts (Lateralus 25 Nov 2026 18:0x PST). See recon_helo_1125.py.
@@ -1016,12 +1022,110 @@ import weapon_coverage_check;rec['weapon_coverage_rows']=weapon_coverage_check.c
 import backpocket_weapons_1125;backpocket_weapons_1125.apply(t,g,ok,rec)
 # ---------- (after the back-pocket weapons so their row ids stay) Sig Spear Shorty, back pocket: M7 Spear stat clone with its own suppressed icon (Osama 26 Nov 2026 01:5x). See spear_shorty_1126.py.
 import spear_shorty_1126;spear_shorty_1126.apply(t,g,ok,rec)
-import roc_hook;roc_hook.apply(t,g,ok,rec,recheck=lambda:(disposable_launchers_1123.check(t,ok,a.vanilla),weapon_coverage_check.check(t,patches,ok)))
+# ---------- PLA Light Brigade build (branch codex/batch/osama/pla-light-brigade only): QJY-201 gunners -> QJY-88, QJY-201 = VDV PKP-M stat copy
+# (Osama 26 Nov 2026 01:2x PST). See pla_light_brigade_mg_1126.py.
+import pla_light_brigade_mg_1126;pla_light_brigade_mg_1126.apply(t,g,ok,rec)
+# ---------- PLA Light Brigade: Troopers AA one M240L -> M4A1, mixed loadout one M-25 man fewer; Troopers 70, Moto. Riflemen 75 (Osama 26 Nov 01:3x).
+import pla_light_brigade_troopers_1126;pla_light_brigade_troopers_1126.apply(t,g,ok,rec)
+# ---------- PLA Light Brigade: ZTQ-15 + ZTL-11 Medium CAB -> China marines (PLAN 20); ZTQ-15 Recon Heavy -> Medium CAB (Osama 26 Nov 01:4x).
+import pla_light_brigade_specs_1126;pla_light_brigade_specs_1126.apply(t,g,ok,rec)
+# ---------- PLA Light Brigade: HQ-22 (HQ-9A copy) + J-50 into PLAN, new PLAGF Light CAB spec with the SX2121 (Osama 26 Nov 01:4x). New rows use the
+# 'plb' reserved ID block (mod/id-reservations.json).
+# Lateralus's infantry-tier section from codex/development, placed before the plb scope (rows after the scope are refused).
+# ---------- Infantry weapons: one name, one set of stats; M240L T3, PKP-N, PKP 2.1, PKM 1.8, M249 -> M249E3, M249 Para 2.4, R-20 Rahe T1,
+# HK 416A5 Zaliukai; unused variants removed (Lateralus 26 Nov 2026 13:1x). Makes one round: keep it the last row-making section before
+# the ROC hook so no other ID moves. See lateralus/infantry_tiers_1126.py.
+import infantry_tiers_1126;infantry_tiers_1126.apply(t,g,ok,rec,patches)
+# ---------- Gvardii Motostrelki 60 -> 65, Motopekhota 55 -> 60, Shturmoviki 50 -> 55 points; VDV PKP RPG-7D3 ammo 4 -> 6 (Lateralus 26 Nov 2026 15:1x).
+# Existing rows only. See lateralus/infantry_prices_1126.py.
+import infantry_prices_1126;infantry_prices_1126.apply(t,g,ok,rec)
+# ---------- Reserve Marines M72A7 LAW ammo 5 -> 8 = 3 more LAW carriers (disposable: one round each) (Lateralus 26 Nov 2026 17:0x). Existing rows
+# only. Its squad-reload.json entry is rewritten below with the build. See lateralus/reserve_marines_law_1126.py.
+import reserve_marines_law_1126;reserve_marines_law_1126.apply(t,g,ok,rec)
+# ---------- Reserve Marines 65 -> 70, Standard loadout 75 -> 85 with 2 M240L (die last) in place of 2 M27 IAR; China Marines 65 -> 60 points
+# (Lateralus 26 Nov 2026 17:3x). See lateralus/marines_prices_1126.py.
+import marines_prices_1126;marines_prices_1126.apply(t,g,ok,rec)
+# ---------- Troopers AA Standard without the M-25 CDTE, Mixed 55 -> 70; Mech. Riflemen AA 45 -> 40, 4 M4A1 + 2 M249E3, Stinger 5 -> 6; QJY-201 =
+# PKP-N stats (Lateralus 26 Nov 2026 18:4x). After the Light Brigade Troopers AA and MG sections. See lateralus/aa_squads_qjy_1126.py.
+import aa_squads_qjy_1126;aa_squads_qjy_1126.apply(t,g,ok,rec)
+# ---------- QJB-201 2.55 -> 2.4 damage, pen 20 -> 10; QJY-201 = Mk.48 stats; QJY-88 = PKM stats (Lateralus 26 Nov 2026 19:4x). See
+# lateralus/china_mg_clones_1126.py.
+import china_mg_clones_1126;china_mg_clones_1126.apply(t,g,ok,rec)
+# ---------- Troopers AA Multipurpose (Mixed) 8 -> 9 men, M4A1 x7 -> x8 (Lateralus 26 Nov 2026 19:5x). See lateralus/troopers_aa_mixed_1126.py.
+import troopers_aa_mixed_1126;troopers_aa_mixed_1126.apply(t,g,ok,rec)
+# ---------- PLA Light Brigade (Osama), merged into codex/development for 0.9.8-dev.1 (Lateralus 26 Nov 2026 18:4x). Its rows are in the reserved
+# 'plb' ID block, so they keep the IDs of the 0.9.7l test builds. The development sections run before it (no live row after the block).
+import pla_light_brigade_units_1126
+import pla_light_brigade_jiaolong_1126
+# Jiaolong CQC (Osama 26 Nov 02:0x): QBZ URGI (Mk18 copy) + Sea Dragons CQC kit; same 'plb' scope, after the Test SF copy.
+import pla_light_brigade_transports_1126   # Moto. Riflemen -> Light CAB, ZBL-08 for PLAN, WZ-551 for Light CAB (Osama 26 Nov 02:2x)
+import pla_light_brigade_tiger_1126   # Tiger Brigade (Marines Assault) 80 pts, PTL-02 + CSK-131/CSK-181 to Light CAB (Osama 26 Nov 02:3x-02:4x)
+import pla_light_brigade_falcons_1126   # Falcons take the 'Falcons New' kit: 2 MGs -> QLZ-87 + QBZ-192, QMK -> QBZ-192 (Osama 26 Nov 02:4x, 04:1x)
+import pla_light_brigade_transports2_1126   # ZSL-191 off Light CAB (Medium CAB), ZBD-05/ZSD-05 off Light CAB (PLAN) (Osama 26 Nov 02:5x)
+import pla_light_brigade_j50_hq22_1126   # J-50 = J-20S clone (turn800, stealth 2.2, 275), PL-16 flash 2.2, HQ-22 range 2200 card / 125 pts, Y-8 -> Light CAB (Osama 26 Nov 03:0x)
+import pla_light_brigade_names_1126   # Beijing Swords -> Flying Tigers (Osama 26 Nov 03:0x)
+import pla_light_brigade_sf_1126   # Flying Tigers kit (SIG 516, SPAS-12, MP5SD, ARWEN 37) + icon, Marine Scouts (Osama 26 Nov 03:2x-03:3x)
+import pla_light_brigade_pap_1126   # Moto. Riflemen -> PAP Rifle Patrol; PAP AA Patrol copy with QW-2 (Osama 26 Nov 03:4x)
+import pla_light_brigade_skywolf_1126   # Test SF -> Sky Wolf Commandos, long-range PF-98, PF-98A names -> PF-98, J-11BS/BHG -> Light CAB (Osama 26 Nov 03:4x)
+import pla_light_brigade_zsl92_1126   # ZSL-92 / ZSL-92B transports, HQ-17A + PHL-03 -> Light CAB (Osama 26 Nov 03:5x)
+import pla_light_brigade_late_1126   # PAP Rifle Patrol -> Mountaineers, ZBD-04 card in PLAN (Osama 26 Nov 04:0x)
+import pla_light_brigade_transport_rules_1126   # ZBL-191 / ZSL-191 Medium CAB only, ZBL-08 PLAN + Medium CAB only (Osama 26 Nov 04:2x)
+import pla_light_brigade_h6_1126   # H-6K high altitude only (Osama 26 Nov 21:0x)
+import pla_light_brigade_z20ka_1126   # Z-20KA off the 10 PLAAF infantry cards as a transport (Osama 26 Nov 20:5x)
+import pla_light_brigade_carrier_1126   # Airborne Tracked Carrier 45 pts, AGL + QJC-88 12.7 mm, +10 HJ-8H option (Osama 26 Nov 20:4x)
+import pla_light_brigade_late5_1126   # Mountain Leopards 100 -> 110 (Osama 26 Nov 20:4x)
+import pla_light_brigade_zbd86_1126   # ZBD-86 transport on PLARF infantry (<= 8 men), 8 HP (Osama 26 Nov 20:3x)
+import pla_light_brigade_z20s_1126   # Z-20S card copied to PLAN (Osama 26 Nov 20:1x)
+import pla_light_brigade_late4_1126   # Airborne QBU-10 -> QBU-202 (Osama 26 Nov 18:3x)
+import pla_light_brigade_late3_1126   # QLU-11 Team 65; Tank Hunters 55 pts, no DZT-98, 8 PF-98A, QMK rifles (Osama 26 Nov 18:3x)
+import pla_light_brigade_late2_1126   # ZZC-06 back to Heavy CAB; Marine Scouts sniper stealth 3.0 (Osama 26 Nov 16:3x)
+import pla_light_brigade_df15_1126   # DF-15 range 10000 -> 8000 card m, the Tochka-U's (Osama 26 Nov 15:5x)
+import pla_light_brigade_fk3000_1126   # FK-3000 out of the Medium CAB, Light CAB card only (Osama 26 Nov 15:5x)
+import pla_light_brigade_pf98a_1126   # PF-98A 700 m (the Sky Wolf long-range PF-98) for Tank Hunters; Tank Hunters card PLAAF -> PLAN (Osama 26 Nov 12:5x)
+import pla_light_brigade_smoke_1126   # Flying Tigers ARWEN 37 Smoke: tiny 10 s cloud, one shot per 10 s (Osama 26 Nov 12:0x)
+import pla_light_brigade_order_1126   # vanilla weapon list order + death priority for the re-kitted squads (Osama 26 Nov 10:4x)
+import pla_light_brigade_qlu11_1126   # PLAAF QLU-11 Team 4 men, 2 QLU-11, 60 pts (Osama 26 Nov 02:1x)
+import pla_light_brigade_zsd05hj10_1126   # ZSD-05 HJ-10 for the Marines: Heavy CAB HJ-10 copy on the ZSD-05 chassis (Osama 26 Nov 13:3x)
+import pla_light_brigade_zsd05zzc_1126   # ZSD-05 ZZC: ZZC-06 copy on the ZSD-05 chassis, PLAN (Osama 26 Nov 13:4x)
+import pla_light_brigade_spec_icon_1126   # Light CAB spec icon FA_CHINA_LIGHT: SOF badge sword + lightning (Osama 26 Nov 15:5x)
+import pla_light_brigade_fk3000_out_1126   # FK-3000 out of the game: its last card (Light CAB) removed (Osama 26 Nov 20:1x)
+import pla_light_brigade_cj10_1126   # CJ-10 in the Medium CAB: Iskander cruise launcher copy, 3 missiles, 250 pts (Osama 26 Nov 19:1x)
+import pla_light_brigade_vut10_para_1126   # VU-T10 (ZRZ-100 copy) in the Light CAB; Airborne Tracked Carrier (ZBD-251 copy, AGL + 4 HJ-8H, airborne transport) (Osama 26 Nov 19:3x)
+import pla_light_brigade_hq13_1126   # HQ-13 SHORAD for PLAN: PGL-625 FB-10 only (8) on the ZSD-05 chassis (Osama 26 Nov 16:2x)
+with g.scope('plb'):pla_light_brigade_units_1126.apply(t,g,ok,rec);pla_light_brigade_jiaolong_1126.apply(t,g,ok,rec);pla_light_brigade_qlu11_1126.apply(t,g,ok,rec);pla_light_brigade_transports_1126.apply(t,g,ok,rec);pla_light_brigade_tiger_1126.apply(t,g,ok,rec);pla_light_brigade_falcons_1126.apply(t,g,ok,rec);pla_light_brigade_transports2_1126.apply(t,g,ok,rec);pla_light_brigade_j50_hq22_1126.apply(t,g,ok,rec);pla_light_brigade_names_1126.apply(t,g,ok,rec);pla_light_brigade_sf_1126.apply(t,g,ok,rec);pla_light_brigade_pap_1126.apply(t,g,ok,rec);pla_light_brigade_skywolf_1126.apply(t,g,ok,rec);pla_light_brigade_zsl92_1126.apply(t,g,ok,rec);pla_light_brigade_late_1126.apply(t,g,ok,rec);pla_light_brigade_transport_rules_1126.apply(t,g,ok,rec);pla_light_brigade_order_1126.apply(t,g,ok,rec);pla_light_brigade_smoke_1126.apply(t,g,ok,rec);pla_light_brigade_pf98a_1126.apply(t,g,ok,rec);pla_light_brigade_zsd05hj10_1126.apply(t,g,ok,rec);pla_light_brigade_zsd05zzc_1126.apply(t,g,ok,rec);pla_light_brigade_spec_icon_1126.apply(t,g,ok,rec);pla_light_brigade_hq13_1126.apply(t,g,ok,rec);pla_light_brigade_fk3000_1126.apply(t,g,ok,rec);pla_light_brigade_df15_1126.apply(t,g,ok,rec);pla_light_brigade_late2_1126.apply(t,g,ok,rec);pla_light_brigade_late3_1126.apply(t,g,ok,rec);pla_light_brigade_late4_1126.apply(t,g,ok,rec);pla_light_brigade_cj10_1126.apply(t,g,ok,rec);pla_light_brigade_fk3000_out_1126.apply(t,g,ok,rec);pla_light_brigade_vut10_para_1126.apply(t,g,ok,rec);pla_light_brigade_z20s_1126.apply(t,g,ok,rec);pla_light_brigade_zbd86_1126.apply(t,g,ok,rec);pla_light_brigade_late5_1126.apply(t,g,ok,rec);pla_light_brigade_carrier_1126.apply(t,g,ok,rec);pla_light_brigade_z20ka_1126.apply(t,g,ok,rec);pla_light_brigade_h6_1126.apply(t,g,ok,rec)
+# ---------- QLZ-87 icon from Osama's photo (26 Nov 2026 02:2x); stats already = QLZ-04, min range 25 for Lateralus. See qlz87_icon_1126.py.
+import qlz87_icon_1126;qlz87_icon_1126.apply(t,g,ok,rec)
+# PLARF tripod QLZ-87 named 'QLZ-87 (tripod)'; the hand-held squad copy keeps 'QLZ-87' (Osama 26 Nov 10:4x). See pla_light_brigade_qlz87_tripod_1126.py.
+import pla_light_brigade_qlz87_tripod_1126;pla_light_brigade_qlz87_tripod_1126.apply(t,g,ok,rec)
+# ---------- MV-22B Osprey GAU-17 loadout +5 -> +10, the CV-22B's (Osama 26 Nov 19:4x). See osprey_gau17_1126.py.
+import osprey_gau17_1126;osprey_gau17_1126.apply(t,g,ok,rec)
+# ---------- Type 74 preview cards out; Leopard 2A8 PSO Trophy APS x2 (Osama 26 Nov 20:2x). See osama_fixes_1126.py.
+import osama_fixes_1126;osama_fixes_1126.apply(t,g,ok,rec)
+# ---------- CV-9035 Mk.IV Spike LR ammo 2 -> 4 (Lateralus 26 Nov 2026 20:3x). Existing row only. See lateralus/cv9035_spike_1126.py.
+import cv9035_spike_1126;cv9035_spike_1126.apply(t,g,ok,rec)
+# ---------- ZTZ-99 front armour 700 / 850 -> 750 / 950 (Osama 26 Nov 22:5x, corrected 22:58 from the 99A). See ztz99_front_1126.py.
+import ztz99_front_1126;ztz99_front_1126.apply(t,g,ok,rec)
+# ---------- PGZ-95 + Lynx SPAAG 8 QW-2; Lynx 81mm Mortar range 2,600 m (Osama 26 Nov 22:58). See qw2_lynx81_1126.py.
+import qw2_lynx81_1126;qw2_lynx81_1126.apply(t,g,ok,rec)
+# ---------- Z-21 'Air escort' loadout +50 -> +90 (Osama 26 Nov 23:1x). See z21_air_escort_1126.py.
+import z21_air_escort_1126;z21_air_escort_1126.apply(t,g,ok,rec)
+# ---------- ZTZ-99A / ZTZ-96 family availability, armour, prices, 96B speed; HJ-10 120 + NLOS +60; M1A2 SEP v2 220 (Osama 27 Nov 00:0x). See osama_tanks_1127.py.
+import osama_tanks_1127;osama_tanks_1127.apply(t,g,ok,rec)
+import unit_standards
+import roc_hook;roc_hook.apply(t,g,ok,rec,recheck=lambda:(disposable_launchers_1123.check(t,ok,a.vanilla),weapon_coverage_check.check(t,patches,ok),unit_standards.check(t,ok,rec)))
+# Unit standards on the final data (docs/development/UNIT-STANDARDS.md, Lateralus 26 Nov 2026): fails on a new squad that breaks the launcher or
+# one-name-one-damage rules, and rebuilds the disposable-launcher squad rate table (squad-reload.json) from this build's squads.
+squad_reload=unit_standards.check(t,ok,rec)
+_old=json.loads(z.read('UserData/FreedomArrow/squad-reload.json'))['squads'];_new=squad_reload['squads']
+print('SQUAD RELOAD',len(_old),'->',len(_new),'entries; changed',sorted(k for k in _old if k in _new and _old[k]!=_new[k]),'added',len(set(_new)-set(_old)),'gone',sorted(set(_old)-set(_new)))
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
 for tab,fn in FIELD_TO_FILE.items():save('UserData/FreedomArrow/constants/'+fn,patches[tab])
+# squad-reload.json (SquadReload.cs disposable rate per squad): rebuilt from this build's data by unit_standards (Lateralus 26 Nov 2026); before,
+# it came unchanged from the 0.9.3 base. package.py takes it from mod/source when it differs from the base.
+(SRC/'UserData/FreedomArrow/squad-reload.json').write_text(json.dumps(squad_reload,indent=1,sort_keys=True)+'\n')
 # Type 100 CSV CH-901 round (zbd100.py, Osama 22 Nov 13:5x "Give its CH-901 60mm penetration"): an own copy of 2018448 keeps the NLOS seeker lock
 # only if nlos.json lists it. The previous build's copy id (type100_ch901) is replaced, so a shifted row id never leaves a stale entry.
 _nf=SRC/'UserData/FreedomArrow/nlos.json';_nl=json.loads(_nf.read_text());_old=_nl.get('type100_ch901');_new=rec['zbd100']['ch901_round']

@@ -50,6 +50,12 @@ These are the maintained branch names. Package source commits remain the immutab
 
 Use `codex/batch/lateralus/<topic>` for a coherent Lateralus batch that is not ready for 0.8 development integration. Reuse the same branch across commits and test builds. Independent batches use independent branches. Promote the whole batch only when approved, or selected self-contained commits; keep unfinished work on the batch branch. Active and explicitly held batches are excluded from cleanup regardless of age. Updating the batch from development does not merge the batch into development.
 
+**Merging batches (Lateralus, 26 Nov 2026: "decide for yourself").**
+- **Merge, never rebase, a pushed branch.** A rebase needs a force-push (forbidden) and orphans the test-build tags and package receipts that point at batch commits. Rebase only local commits that are not pushed yet.
+- **Direction.** Merge `codex/development` into a batch to keep its test builds current. The batch goes into `codex/development` once, with one merge commit, when its owner, Osama or Lateralus says it is ready (`git revert -m 1` undoes it).
+- **One home per fix.** A fix that both branches need is committed on `codex/development` only; the batch gets it at its next update merge. No second copy on the batch branch.
+- **Conflicts are handled when they happen.** IDs cannot clash (reserved blocks, below). The usual conflict is two sections added at the end of `batch_0_9_5b.py`: keep both, in commit order, and run the batch check before the merge commit is pushed.
+
 - `codex/feature/0.8/<topic>`, `codex/feature/assets/<topic>` or `codex/feature/launcher/<topic>`: one concrete change or coherent batch, based on the appropriate stream.
 - `codex/test/0.7/<experiment>`: isolated tests such as SPAAG speed versus dispersion. Record the exact base commit and the fields being varied. Never merge an entire experiment merely because one part performed well; promote the selected changes.
 - `codex/fix/0.7/<topic>`: urgent gameplay fixes. Branch from the affected public source when needed, then carry the fix into the appropriate development stream.
@@ -58,6 +64,15 @@ Use `codex/batch/lateralus/<topic>` for a coherent Lateralus batch that is not r
 Do not create a new branch for every dev/build number, texture attempt or logging run. Resume work on the maintained stream or the existing feature branch. A resumed historical task must start from the current relevant stream and must not silently recreate a retired branch.
 
 ## Version identity and publishing
+
+**Shared main dev builds from 0.9.8 (Lateralus, 26 November 2026):** "next dev build should be 0.9.8-dev.1 ... If Osama is still doing heavy asset work or anything that requires long build times, it should stay on a separate branch, otherwise we can both work on the main dev builds now".
+- The next `codex/development` build is **0.9.8-dev.1** (`tools/pla-specs/batch_0_9_5b.py` `V`).
+- Osama's and Lateralus's gameplay changes both go on `codex/development` and its dev builds.
+- Heavy asset work, or anything with long build times (model builds, new model sets such as the Light Brigade or ROC), stays on its own `codex/batch/<person>/<topic>` branch until it is ready to merge.
+
+**Old dev builds are pruned at every live release (Lateralus, 26 November 2026):** `bin/ba-publish-manifest` runs `bin/ba-prune-dev-builds --apply`. It drops dev builds of earlier versions and releases older than the previous one from the dev launcher list (files stay on R2), and deletes those dev builds' folders on the deck. Releases, test builds (`l`, `-roc`, notes with "test build"), `out/0.8` and `out/receipts` are never touched. Ledger: `work/build-install/pruned-builds.log`.
+
+**Playtest numbers after 0.9.9 (Lateralus, 26 November 2026):** after 0.9.9 the numbers go on to 0.9.10, 0.9.11, 0.9.12 … or to 0.10.0, 0.10.1, 0.10.2 …. **1.0.0 is kept for the larger "beta" release on the roadmap**; do not use it for an ordinary playtest. Version order is numeric per part (`tools/pla-specs/fa_version.py`), so 0.9.10 sorts after 0.9.9. That helper accepts only a leading `0.` today; it must be extended before 1.0.0.
 
 Use immutable tags for named snapshots: `gameplay/0.7.0-dev.55`, `pla/build-27`, `assets/0.1.15`, and `launcher/<actual-version>`. Test versions can use `tests/0.7.0-devtest.lat.17`. These names are proposed; existing tag names and collisions must be checked before creating any.
 
@@ -104,3 +119,6 @@ Work that is built on its own branch and merged later gets its own block of row 
 - 2026-11-19 06:4x PST (America/Los_Angeles) — 0.9.1 designated: `codex/0.9.1-development` created at `bc085f2d`; `codex/0.9-development` frozen; playtests 0.9.1, 0.9.2, … and dev builds 0.9.1-dev.N (Lateralus).
 - 2026-11-24 19:5x PST (America/Los_Angeles) — Two streams (Osama 19:42): gameplay = `codex/development`, models = `codex/models` (created at `f285615d`); `codex/assets-development` superseded.
 - 2026-11-25 00:5x PST (America/Los_Angeles) — Reserved ID blocks (`mod/id-reservations.json`, guard in `pla_graph.Graph` and `roc_hook`); first block for the ROC specialization branch `codex/batch/shawn/roc` (Osama, 25 Nov 00:5x).
+- 2026-11-26 10:2x PST (America/Los_Angeles) — Playtest numbering after 0.9.9 (0.9.10… or 0.10.0…); 1.0.0 reserved for the roadmap beta (Lateralus).
+- 2026-11-26 15:5x PST (America/Los_Angeles) — Next dev build 0.9.8-dev.1; Osama and Lateralus share main dev builds, heavy asset work on its own branch; old dev builds pruned at every live release (Lateralus).
+- 2026-11-26 18:1x PST (America/Los_Angeles) — Merging batches: merge not rebase, direction, one home per fix, conflicts handled when they happen (Lateralus left it to BA Codex).

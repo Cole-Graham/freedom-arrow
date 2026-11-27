@@ -18,7 +18,7 @@ class Graph:
  @contextmanager
  def scope(self,owner):
   """Rows created inside take IDs from the owner's reserved block. After it, no section may create rows (live sections go above the hook)."""
-  assert not self.sealed and any(b['owner']==owner for b in BLOCKS),owner
+  assert self.owner is None and any(b['owner']==owner for b in BLOCKS),owner   # ROC branch 27 Nov: one owner block may follow another (plb, then roc); live rows stay sealed
   self.owner=owner
   try:yield
   finally:self.owner=None;self.sealed=True
@@ -29,7 +29,7 @@ class Graph:
  def put(self,table,uid,fields):
   if uid not in self.t[table]:
    o=reserved_owner(table,uid)
-   assert not self.sealed,(table,uid,'new row after the reserved-ID hook: put live sections above roc_hook')
+   assert not (self.sealed and self.owner is None),(table,uid,'new row after the reserved-ID hook: put live sections above roc_hook')
    assert o==self.owner,(table,uid,f'reserved for {o}' if o else f'outside the {self.owner} block','see mod/id-reservations.json')
    if o:self.owned.add((table,uid))
   self.t[table].setdefault(uid,{'Id':uid}).update(copy.deepcopy(fields))

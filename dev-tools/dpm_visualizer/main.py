@@ -44,6 +44,9 @@ class DPMVisualizerApp:
         ttk.Button(chrome, text="Load Freedom Arrow package…", command=self._pick_package).pack(side=tk.LEFT, padx=4)
         self.source = "vanilla"
         self.package = ""
+        # Lateralus 26 Nov 2026: when ticked, weapon lists show only weapons a unit in a deck carries (Catalog.deck_units).
+        self.deck_only = tk.BooleanVar(value=True)
+        ttk.Checkbutton(chrome, text="Only weapons in decks", variable=self.deck_only, command=self._deck_only_changed).pack(side=tk.LEFT, padx=8)
         self.status_var = tk.StringVar(value="Nothing loaded")
         ttk.Label(chrome, textvariable=self.status_var).pack(side=tk.LEFT, padx=8)
 
@@ -69,6 +72,12 @@ class DPMVisualizerApp:
             "<<NotebookTabChanged>>",
             lambda _e: (SearchableCombobox.close_all_dropdowns(), self.auto_save_state()),
         )
+
+    def _deck_only_changed(self) -> None:
+        if self.catalog:
+            self.units_tab.refresh_lists()
+            self.weapons_tab.refresh_lists()
+        self.auto_save_state()
 
     def _try_autoload(self) -> None:
         self.load_data(self.source)
@@ -161,6 +170,7 @@ class DPMVisualizerApp:
         self.package = data.get("package") or ""
         self.source = "mod" if data.get("source") == "mod" and self.package else "vanilla"
         self.profiles = data.get("profiles") or {"default": {"custom_units": {}, "custom_weapons": {}}}
+        self.deck_only.set(bool(data.get("deck_only", not data.get("all_weapons"))))
         self.current_profile = data.get("current_profile") or "default"
         if self.current_profile not in self.profiles:
             self.current_profile = "default"
@@ -223,6 +233,7 @@ class DPMVisualizerApp:
             "source": self.source,
             "package": self.package,
             "current_profile": self.current_profile,
+            "deck_only": self.deck_only.get(),
             "profiles": self.profiles,
             "geometry": ui_state["window_geometry"],
             "ui_state": ui_state,

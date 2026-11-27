@@ -6,6 +6,10 @@ Vanilla never does this. 53 of the 54 vanilla transport units have armory option
 
 Source: the 1.2.2.1 game code (`work/game-1.2.2.1/GameAssembly.dll`, il2cpp dump `work/port-1.2.2.1/il2cppdump/dump.cs`), the vanilla tables and the 0.9.7 package data. The link from this mismatch to the reported symptoms is theoretical, not yet proven in a game.
 
+**Measured root cause (focolate, 26 Nov 2026; supersedes "The code" section below as the explanation).** `UnitsInfoService.ApplyReplaceModification` takes the cached, already-resolved template of the swap unit (`GetCachedUnit(1417/1418/1419)`), writes the base unit into its `BaseUnit`, and gives that same object to the base unit as `ReplaceUnit`. The shop card and every spawned vehicle therefore share one `Units` object. `SpawnService.SpawnUnit` writes the carried squad's id into `UnitToSpawn.OwnerInfantryID`, so the independent shop card now looks like an attached transport: the next order asks the card's empty transport slot ("Deck has no transport ID!", NullReferenceException in `ShopService.CheckAndOrderUnit`) and the card stops deploying. focolate measured this in an isolated client with the reporter's deck: map counts 2, 1, 1, 2 for the four loadouts before the fix and 2, 2, 2, 2 after. Two-player online play was not part of that test.
+
+**Fix:** `mod/source/runtime-qa/Type100ShopFix.cs` (focolate's code, ported on Osama's go): a prefix on `ApplyReplaceModification` that, for transport 1416 with one of options 31361/31362/31363, gives the caller its own `MemberwiseClone` of the resolved template. A batch check pins those IDs. Unit-swap loadouts on a transport are still non-vanilla; prefer the vanilla option pattern below for new units.
+
 ---
 
 ## The case: Type 100 CSV (0.9.5 to 0.9.7)
@@ -56,3 +60,4 @@ On the US_M2A3 (Bradley) body, two FA turret rows that do not fill all 3 Bradley
 ## Document change log
 
 - 2026-11-26 01:26 PST (America/Los_Angeles) — New page: transport unit-swap mismatch, from the Type 100 CSV availability reports.
+- 2026-11-26 10:28 PST (America/Los_Angeles) — Added focolate's measured root cause (shared cached template) and the ported fix; the GetTransportUnitData theory is superseded.

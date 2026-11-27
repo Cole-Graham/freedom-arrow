@@ -98,6 +98,22 @@ The unit's sensor row (`Sensors`) has three ranges: `OpticsGround`, `OpticsLowAl
 
 The target's altitude state picks which one applies: Ground, Low or High. Helicopters always use the low-altitude optics, and so do planes below the threshold above. This is inferred from the matching names and from weapon ranges, which pick Ground/Low/High range by the same `GlobalAltitudeLevel` (`BattleSystemHelpers.GetAmmoShootingDistance`, RVA `0x7D69B0`). The exact read in the vision code is **not traced yet**.
 
+### 2a. Air spotting range, with flash (traced 26 November 2026, Lateralus)
+
+**Short answer.** For an air target the game uses: range = observer low- or high-altitude optics × the observer's radar optics multiplier × the target's stealth (raw) × max(flash, spotted penalty). Flash counts for aircraft, as on the ground. Unlike the ground path, there is no 1.5× visibility cap and no terrain cover. The candidate scan radius (the larger of the observer's optics and its longest weapon range) still bounds the result.
+
+Read from `FogOfWarUnit.CalculateVisionRangeForTarget` (1.2.2.1 RVA `0x69FE20`, code):
+- `0x69FFDE`–`0x6A0002`: s = the larger of the target's `SpottedPenalty` (FOW `+0x14`) and `WeaponFlash` (`+0x10`), computed before the ground/air split.
+- Air branch (`0x6A0016` falls through when the target is not a ground-type entity): radar multipliers default to 1.0 and are read from the observer's active radar (`+0xC` low, `+0x10` high). The target's altitude state picks high (`DistanceHighAlt`, observer FOW `+0x8`) or low (`DistanceLowAlt`, `+0x4`).
+- `0x6A0111`–`0x6A0126`: range = optics × radar multiplier × s × `AntiVisible` (target FOW `+0xC`, raw stealth), then a jump to `0x6A02F5`, past the ground path's `MaxAntiVisible` clamp at `0x6A02D6`–`0x6A02F0`.
+- After that, an optional observer-side component (`+0x24`) can still adjust the value. It is not identified.
+
+**Worked example (calculated, not measured in a game).** Every fighter in the 26 Nov data has sensor 6: high-altitude optics 8000 raw (16,000 m on the card scale), low-altitude 2000 raw. The F-22 has stealth 0.5, or 0.4545 with option 31104. Its longest weapon is 5500 raw, so the scan bound for an F-22 seen by a fighter is 8000 raw.
+- F-22 high, quiet (flash 1): 4000 raw = 8,000 m (0.4545: 7,272 m).
+- After one 1.0-flash missile (flash 2.0) or while spotted: 8000 raw = 16,000 m, the full optics range.
+- At the 2.2 cap: 8800 raw from the formula, but the 8000 scan bound limits it to 16,000 m. So for a 0.5-stealth plane at high altitude, more flash than 2.0 changes nothing.
+- F-22 low: quiet 1000 raw = 2,000 m; at 2.2, 2200 raw = 4,400 m.
+
 ## 3. How the sight line is checked
 
 Each observer runs `FogOfWarUnit` (`Update` RVA `0x6A2CC0`) on a timer. Each check of a target has two independent tests. **Both must pass** (code).
@@ -164,6 +180,18 @@ Sensor low-altitude optics are mostly about 800–2,000 world units (data, senso
 How long a line stays in the layer depends on the geometry. Take an AA eye about 1.5 units above the forest floor, and a target at height `H` and distance `D` on flat ground. The line stays under 15 units for the first `D × 13.5 / (H − 1.5)` units of its length. Example: a helicopter 25 units up at 600 units away keeps the line inside the layer for the first 345 units. If those 345 units are woods, the line is blocked. If the AA stands 60+ units clear of the tree line, only the far part of the line crosses forest. That part is higher than 15 units over the trees unless the target itself is low (calculated, flat-ground model).
 
 This is the "extra margin above the trees": the forest blocks sight as if it were 15 world units (30 m) tall and grows denser the deeper the line goes into it. The tree models are not used.
+
+### 3d-2. A helicopter spotting quiet units deep in a forest (calculated, Lateralus 26 November 2026)
+
+**Short answer.** For a helicopter with Exceptional optics at 40.5 world units (81 m, the height in Lateralus's 19 Nov LoS-tool screenshot), the forest walk decides the range, not the optics formula. Calculated card ranges, not measured: infantry 252 m in vanilla and 286 m in FA; vehicles 314 m in vanilla and 372 m in FA. At 25 units up: 164 / 180 m and 198 / 232 m.
+
+How (code and data, flat-ground model, target eye 1 unit up, every line step under 15 units is forest):
+- The forest walk is not skipped for ground targets. `CreateFilterTaskForTarget` (1.2.2.1 RVA `0x6A03F0`) sets `IgnoreTerrainCosts` only when the target's `Units.Type` is 16 (plane) or has a bit in `0x780` (projectiles and similar). `IgnoreForestCostOnly` is 0 (code at `0x6A05D8`–`0x6A06A5`).
+- Formula range (ground path): ground optics × clamp(stealth × max(1, flash, spotted) ÷ forest cover, ε, 1.5). Exceptional ground optics: vanilla 1200 raw, FA 2800 raw, capped by `SpottingCap.cs` at the vanilla 1200. Quiet and not spotted gives 1.
+  - Vanilla: infantry 1200 × 0.571 ÷ 2 = 343 raw (685 m); vehicle 1200 ÷ 2 = 600 (1,200 m).
+  - FA: infantry 2800 × 0.5 ÷ 3 = 467 (933 m); vehicle 2800 ÷ 3 = 933 (1,867 m).
+- Walk: the last D × 14 / 39.5 units of the line are inside the forest layer. Those steps cost max(1, −15 + 0.75k) (3c/3d). The target is seen while the total is at most the formula range: about 45–66 forest steps.
+- Not included: the open question in 3e of whether forest pixels hold the treetop height, which would make the layer higher and the ranges shorter; real terrain; smoke.
 
 ### 3e. What the step's height is measured from, and the in-game LoS tool
 
@@ -286,7 +314,7 @@ Ways to make AA placement easier (not implemented, not tested):
 
 ## 6. Not verified
 
-- **Optics selection:** the exact code that picks `DistanceLowAlt` / `DistanceHighAlt` from the target's state, and any stealth, flash or spotted multipliers on it, is inferred, not traced.
+- **Optics selection:** traced on 26 Nov (section 2a). Still open: the end-of-path observer component (`+0x24`), and whether the scan bound is the maximum over all optics domains (from the 4 Nov ground study).
 - **Map grid:** the terrain-grid cell size per map (`MapMetaData`), and so how many grid cells one world-unit step crosses on each map.
 - **Visible tree heights:** no tree heights were measured in a map, so the margin above the visible trees is not quantified in metres.
 - **Helicopter heights:** actual helicopter flying heights were not read, so the worked example's 25 units is an example, not game data.
@@ -316,3 +344,5 @@ Ways to make AA placement easier (not implemented, not tested):
 - 2026-11-25 09:21 PST (America/Los_Angeles) — Section 5e: radar only on loadouts with a radar weapon; HHQ-10 and SeaRAM use SA radar (Lateralus).
 - 2026-11-25 22:3x PST (America/Los_Angeles) — Added section 1c: spawn altitude, fly preset override and low-default, and who writes `PlaneHighAltOverride` (Lateralus).
 - 2026-11-25 22:2x PST (America/Los_Angeles) — Section 1c rewritten: spawn altitude, flight altitude and the Low/High state separated (Lateralus).
+- 2026-11-26 23:2x PST (America/Los_Angeles) — Section 2a: traced the air spotting formula (flash and stealth count, no 1.5 cap) with the F-22 example (Lateralus).
+- 2026-11-26 23:5x PST (America/Los_Angeles) — Section 3d-2: helicopter vs quiet units deep in forest, vanilla and FA; IgnoreTerrainCosts only for plane/projectile targets (Lateralus).

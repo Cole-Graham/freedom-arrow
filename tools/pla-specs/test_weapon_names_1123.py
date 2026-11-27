@@ -1,9 +1,11 @@
-"""Blue Dragon and Euro preview weapons marked as test stand-ins (Osama 23 Nov 2026 23:5x PST, thread "China cosmetic work": "can you replace all the
+"""RETIRED 26 Nov 2026 (Lateralus): no [TEST] labels and no copies; the module now only keeps the IDs the copies used to take.
+Was: Blue Dragon and Euro preview weapons marked as test stand-ins (Osama 23 Nov 2026 23:5x PST, thread "China cosmetic work": "can you replace all the
 BD and Euro weapons with TEST or something like Standin ... maybe add [TEST] in each weapon and ammo").
 Scope: every unit in Blue Dragon (Testing Preview) 23, France (Preview) 24 and Germany (Preview) 25, plus the units their loadout options swap in
 (ReplaceUnitId). Every weapon and round those units can show gets '[TEST] ' in front of its Name and HUDName:
 - a weapon / round / turret used ONLY by these units is renamed in place;
-- one also used by any other unit (the US parents these cards were copied from) gets an own copy for these units, so no US or other card changes.
+- a weapon or turret also used by any other unit (the US parents these cards were copied from) gets an own copy for these units, so no US or other card
+  changes; a round also used by other units is shared as it is (Lateralus 26 Nov 2026: no label-only round copies).
 Turret copies keep their weapons' order and child-turret links; the units' turret links, option turret slots, ammunition rows and squad weapons
 point at the copies. Runs LAST in the batch."""
 SPECS = (23, 24, 25)
@@ -76,57 +78,18 @@ def apply(t, g, ok, rec):
     for r in live('WeaponAmmunitionsJson'): a_users.setdefault(r['AmmunitionId'], set()).add(r['UnitId'])
     tgt_w = {w for w, us in w_users.items() if us & tgt}
     tgt_a = {a for a, us in a_users.items() if us & tgt}
-    tag = lambda s: s if (s or '').startswith(TAG) else TAG + (s or '')
-    wmap, amap, tmap, st = {}, {}, {}, {'w_renamed': 0, 'w_copied': 0, 'a_renamed': 0, 'a_copied': 0, 't_copied': 0}
-    for w in sorted(tgt_w):
-        new = {'Name': tag(W[w]['Name']), 'HUDName': tag(W[w].get('HUDName'))}
-        if w_users[w] <= tgt: g.put('WeaponsJson', w, new); wmap[w] = w; st['w_renamed'] += 1
-        else: wmap[w] = g.add('WeaponsJson', W[w], new); st['w_copied'] += 1
-    for a in sorted(tgt_a):
-        new = {'Name': tag(A[a]['Name']), 'HUDName': tag(A[a].get('HUDName'))}
-        if a_users[a] <= tgt: g.put('AmmunitionsJson', a, new); amap[a] = a; st['a_renamed'] += 1
-        else: amap[a] = g.add('AmmunitionsJson', A[a], new); st['a_copied'] += 1
-    # turrets: shared with other units -> copy (its weapon links point at the [TEST] weapons); target-only -> relink weapons in place
-    for tid in sorted(tgt_tur):
-        if tur_users[tid] <= tgt: tmap[tid] = tid
-        else: tmap[tid] = g.add('TurretsJson', T[tid], {'Name': (T[tid].get('Name') or '') + ' [TEST]'}); st['t_copied'] += 1
-    for tid in sorted(tgt_tur):
-        nt = tmap[tid]; p = T[tid].get('ParentTurretId')
-        if nt != tid and p in tmap: g.put('TurretsJson', nt, {'ParentTurretId': tmap[p]})
-        for r in sorted([r for r in live('TurretWeaponsJson') if r['TurretId'] == tid], key=lambda r: r['Id']):
-            if nt == tid: g.put('TurretWeaponsJson', r['Id'], {'WeaponId': wmap[r['WeaponId']]})
-            else: g.add('TurretWeaponsJson', r, {'TurretId': nt, 'WeaponId': wmap[r['WeaponId']]})
-    for r in live('TurretUnitsJson'):
-        if r['UnitId'] in tgt and tmap.get(r['TurretId'], r['TurretId']) != r['TurretId']: g.put('TurretUnitsJson', r['Id'], {'TurretId': tmap[r['TurretId']]})
-    for o in live('OptionsJson'):
-        if mod_unit.get(o['ModificationId']) in tgt:
-            ch = {k: tmap[o[k]] for k in tslots(o) if tmap.get(o[k], o[k]) != o[k]}
-            if ch: g.put('OptionsJson', o['Id'], ch)
-    for r in live('WeaponAmmunitionsJson'):
-        if r['UnitId'] in tgt: g.put('WeaponAmmunitionsJson', r['Id'], {'WeaponId': wmap.get(r['WeaponId'], r['WeaponId']), 'AmmunitionId': amap[r['AmmunitionId']]})
-    for r in live('SquadWeaponsJson'):
-        if r['UnitId'] in tgt: g.put('SquadWeaponsJson', r['Id'], {'WeaponId': wmap[r['WeaponId']]})
-    for r in live('SquadMembersJson'):
-        if r['UnitId'] in tgt:
-            ch = {k: wmap[r[k]] for k in ('PrimaryWeaponId', 'SpecialWeaponId') if r.get(k)}
-            if ch: g.put('SquadMembersJson', r['Id'], ch)
-    # checks: every weapon/round a target unit shows is [TEST]; nothing a non-target unit shows changed
-    shown_w = set()
-    for u in tgt:
-        tids = {r['TurretId'] for r in live('TurretUnitsJson') if r['UnitId'] == u} | {o[k] for o in live('OptionsJson') if mod_unit.get(o['ModificationId']) == u for k in tslots(o)}
-        shown_w |= {r['WeaponId'] for r in live('TurretWeaponsJson') if r['TurretId'] in tids}
-        shown_w |= {r['WeaponId'] for r in live('SquadWeaponsJson') if r['UnitId'] == u}
-    shown_a = {r['AmmunitionId'] for r in live('WeaponAmmunitionsJson') if r['UnitId'] in tgt}
-    ok(all(W[w]['HUDName'].startswith(TAG) for w in shown_w), 'all BD/Euro weapons [TEST]')
-    ok(all(A[a]['HUDName'].startswith(TAG) for a in shown_a), 'all BD/Euro rounds [TEST]')
-    other_w = {r['WeaponId'] for r in live('TurretWeaponsJson') if (tur_users.get(r['TurretId'], set()) - tgt)} - set(wmap.values())
-    ok(not any(W[w]['HUDName'].startswith(TAG) for w in other_w if w in W and w not in tgt_w), 'no [TEST] on other units')
+    # Lateralus 26 Nov 2026 (thread 1572962048705429598): "There is no need for the test label ... its a preview and everything is subject to
+    # change" and, for the weapon and turret copies, "Yes do it". The preview units keep the shared weapons, rounds and turrets with their own
+    # names; nothing is copied or renamed. The IDs the copies used to take stay unused (g.next advances by the same count), so every row the
+    # batch makes later keeps its ID.
+    w_copies = sum(1 for w in tgt_w if not w_users[w] <= tgt)
+    a_copies = sum(1 for a in tgt_a if not a_users[a] <= tgt)
+    t_copies = [tid for tid in tgt_tur if not tur_users[tid] <= tgt]
+    tw_copies = sum(1 for r in live('TurretWeaponsJson') if r['TurretId'] in set(t_copies))
+    g.next += w_copies + a_copies + len(t_copies) + tw_copies
     after = shown(others)
-    bad = [u for u in others if before[u] != after[u]]
-    ok(not bad, ('other units unchanged', len(others), bad[:5]))
-    tafter = shown(tgt)
-    ok(all(len(tbefore[u][0]) == len(tafter[u][0]) and len(tbefore[u][1]) == len(tafter[u][1]) and all(x.startswith(TAG) for x in tafter[u][0] + tafter[u][1]) for u in tgt),
-       'BD/Euro units keep the same weapon/round count, all [TEST]')
-    ok(all([x[len(TAG):] if x.startswith(TAG) else x for x in tbefore[u][0]] == sorted(x[len(TAG):] for x in tafter[u][0]) for u in tgt), 'BD/Euro weapon names same after the tag')
-    rec['test_weapon_names'] = {'units': len(tgt), **st, 'weapons_shown': len(shown_w), 'rounds_shown': len(shown_a)}
-    print('TEST NAMES', rec['test_weapon_names'])
+    ok(all(before[u] == after[u] for u in others), 'other units unchanged')
+    ok(shown(tgt) == tbefore, 'BD/Euro units keep their weapons and rounds as they are')
+    rec['test_weapon_names'] = {'units': len(tgt), 'ids_kept_unused': w_copies + a_copies + len(t_copies) + tw_copies,
+                                'weapon_copies_not_made': w_copies, 'round_copies_not_made': a_copies, 'turret_copies_not_made': len(t_copies)}
+    print('TEST NAMES (off)', rec['test_weapon_names'])

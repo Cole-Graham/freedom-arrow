@@ -49,9 +49,9 @@ AMMO = {
 # China and preview rows: weapon -> reference weapon, round -> reference round (values copied from the reference's ActualArrow values)
 COPY_W = {**{w: 241 for w in (2009279, 2009297, 2009315, 2009399, 2009417, 2009777, 2009997, 2011443)},   # 30 mm aircraft cannon / GSh-30-1
           **{w: 483 for w in (2011479, 2011509, 2011521, 2011539, 2018695, 2018699, 2018704, 2018708)},   # Type 23 cannon; A333 users
-          2009351: 486, 2020855: 88}                                                                       # H-6K tail gun; [TEST] M61
+          2009351: 486}   # the [TEST] M61 weapon copy 2020855 is gone: preview uses 88 (26 Nov)                                                                       # H-6K tail gun; [TEST] M61
 COPY_A = {**{m: 90 for m in (2009283, 2009301, 2009319, 2009403, 2009421, 2009781, 2010001, 2011447)},
-          **{m: 333 for m in (2011483, 2011513, 2011525, 2011543)}, 2009355: 292, 2020909: 295}
+          **{m: 333 for m in (2011483, 2011513, 2011525, 2011543)}, 2009355: 292}   # the [TEST] M61 round copy 2020909 is gone: preview uses 295 (26 Nov)
 GUN_TYPES = {114, 115, 116, 28, 29}
 
 
