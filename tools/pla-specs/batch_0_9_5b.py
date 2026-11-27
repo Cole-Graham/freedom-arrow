@@ -6,7 +6,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2];REL=ROOT/'mod';SRC=REL/'source';sys.path[:0]=[str(ROOT),str(REL),str(Path(__file__).parent),str(Path(__file__).parent/'lateralus')]
 from pipeline.tables import FIELD_TO_FILE
 from pla_graph import Graph
-V='0.9.8-dev.1';PREV='0.9.3'
+V='0.9.7l-dev.25';PREV='0.9.3'
 # 0.9.3 (build 242, the playtest released 20 Nov 2026) was built in out/local-093r242.
 BASE=json.loads((REL/f'out/receipts/FreedomArrow-{PREV}.json').read_text())['complete']['sha256']   # the one record of builds (repo cleanup step 1)
 p=argparse.ArgumentParser(description=__doc__);p.add_argument('--vanilla',type=Path,required=True);p.add_argument('--check',action='store_true',help='run the checks, write nothing');a=p.parse_args()
@@ -1068,6 +1068,12 @@ import pla_light_brigade_skywolf_1126   # Test SF -> Sky Wolf Commandos, long-ra
 import pla_light_brigade_zsl92_1126   # ZSL-92 / ZSL-92B transports, HQ-17A + PHL-03 -> Light CAB (Osama 26 Nov 03:5x)
 import pla_light_brigade_late_1126   # PAP Rifle Patrol -> Mountaineers, ZBD-04 card in PLAN (Osama 26 Nov 04:0x)
 import pla_light_brigade_transport_rules_1126   # ZBL-191 / ZSL-191 Medium CAB only, ZBL-08 PLAN + Medium CAB only (Osama 26 Nov 04:2x)
+import pla_light_brigade_h6_1126   # H-6K high altitude only (Osama 26 Nov 21:0x)
+import pla_light_brigade_z20ka_1126   # Z-20KA off the 10 PLAAF infantry cards as a transport (Osama 26 Nov 20:5x)
+import pla_light_brigade_carrier_1126   # Airborne Tracked Carrier 45 pts, AGL + QJC-88 12.7 mm, +10 HJ-8H option (Osama 26 Nov 20:4x)
+import pla_light_brigade_late5_1126   # Mountain Leopards 100 -> 110 (Osama 26 Nov 20:4x)
+import pla_light_brigade_zbd86_1126   # ZBD-86 transport on PLARF infantry (<= 8 men), 8 HP (Osama 26 Nov 20:3x)
+import pla_light_brigade_z20s_1126   # Z-20S card copied to PLAN (Osama 26 Nov 20:1x)
 import pla_light_brigade_late4_1126   # Airborne QBU-10 -> QBU-202 (Osama 26 Nov 18:3x)
 import pla_light_brigade_late3_1126   # QLU-11 Team 65; Tank Hunters 55 pts, no DZT-98, 8 PF-98A, QMK rifles (Osama 26 Nov 18:3x)
 import pla_light_brigade_late2_1126   # ZZC-06 back to Heavy CAB; Marine Scouts sniper stealth 3.0 (Osama 26 Nov 16:3x)
@@ -1080,8 +1086,11 @@ import pla_light_brigade_qlu11_1126   # PLAAF QLU-11 Team 4 men, 2 QLU-11, 60 pt
 import pla_light_brigade_zsd05hj10_1126   # ZSD-05 HJ-10 for the Marines: Heavy CAB HJ-10 copy on the ZSD-05 chassis (Osama 26 Nov 13:3x)
 import pla_light_brigade_zsd05zzc_1126   # ZSD-05 ZZC: ZZC-06 copy on the ZSD-05 chassis, PLAN (Osama 26 Nov 13:4x)
 import pla_light_brigade_spec_icon_1126   # Light CAB spec icon FA_CHINA_LIGHT: SOF badge sword + lightning (Osama 26 Nov 15:5x)
+import pla_light_brigade_fk3000_out_1126   # FK-3000 out of the game: its last card (Light CAB) removed (Osama 26 Nov 20:1x)
+import pla_light_brigade_cj10_1126   # CJ-10 in the Medium CAB: Iskander cruise launcher copy, 3 missiles, 250 pts (Osama 26 Nov 19:1x)
+import pla_light_brigade_vut10_para_1126   # VU-T10 (ZRZ-100 copy) in the Light CAB; Airborne Tracked Carrier (ZBD-251 copy, AGL + 4 HJ-8H, airborne transport) (Osama 26 Nov 19:3x)
 import pla_light_brigade_hq13_1126   # HQ-13 SHORAD for PLAN: PGL-625 FB-10 only (8) on the ZSD-05 chassis (Osama 26 Nov 16:2x)
-with g.scope('plb'):pla_light_brigade_units_1126.apply(t,g,ok,rec);pla_light_brigade_jiaolong_1126.apply(t,g,ok,rec);pla_light_brigade_qlu11_1126.apply(t,g,ok,rec);pla_light_brigade_transports_1126.apply(t,g,ok,rec);pla_light_brigade_tiger_1126.apply(t,g,ok,rec);pla_light_brigade_falcons_1126.apply(t,g,ok,rec);pla_light_brigade_transports2_1126.apply(t,g,ok,rec);pla_light_brigade_j50_hq22_1126.apply(t,g,ok,rec);pla_light_brigade_names_1126.apply(t,g,ok,rec);pla_light_brigade_sf_1126.apply(t,g,ok,rec);pla_light_brigade_pap_1126.apply(t,g,ok,rec);pla_light_brigade_skywolf_1126.apply(t,g,ok,rec);pla_light_brigade_zsl92_1126.apply(t,g,ok,rec);pla_light_brigade_late_1126.apply(t,g,ok,rec);pla_light_brigade_transport_rules_1126.apply(t,g,ok,rec);pla_light_brigade_order_1126.apply(t,g,ok,rec);pla_light_brigade_smoke_1126.apply(t,g,ok,rec);pla_light_brigade_pf98a_1126.apply(t,g,ok,rec);pla_light_brigade_zsd05hj10_1126.apply(t,g,ok,rec);pla_light_brigade_zsd05zzc_1126.apply(t,g,ok,rec);pla_light_brigade_spec_icon_1126.apply(t,g,ok,rec);pla_light_brigade_hq13_1126.apply(t,g,ok,rec);pla_light_brigade_fk3000_1126.apply(t,g,ok,rec);pla_light_brigade_df15_1126.apply(t,g,ok,rec);pla_light_brigade_late2_1126.apply(t,g,ok,rec);pla_light_brigade_late3_1126.apply(t,g,ok,rec);pla_light_brigade_late4_1126.apply(t,g,ok,rec)
+with g.scope('plb'):pla_light_brigade_units_1126.apply(t,g,ok,rec);pla_light_brigade_jiaolong_1126.apply(t,g,ok,rec);pla_light_brigade_qlu11_1126.apply(t,g,ok,rec);pla_light_brigade_transports_1126.apply(t,g,ok,rec);pla_light_brigade_tiger_1126.apply(t,g,ok,rec);pla_light_brigade_falcons_1126.apply(t,g,ok,rec);pla_light_brigade_transports2_1126.apply(t,g,ok,rec);pla_light_brigade_j50_hq22_1126.apply(t,g,ok,rec);pla_light_brigade_names_1126.apply(t,g,ok,rec);pla_light_brigade_sf_1126.apply(t,g,ok,rec);pla_light_brigade_pap_1126.apply(t,g,ok,rec);pla_light_brigade_skywolf_1126.apply(t,g,ok,rec);pla_light_brigade_zsl92_1126.apply(t,g,ok,rec);pla_light_brigade_late_1126.apply(t,g,ok,rec);pla_light_brigade_transport_rules_1126.apply(t,g,ok,rec);pla_light_brigade_order_1126.apply(t,g,ok,rec);pla_light_brigade_smoke_1126.apply(t,g,ok,rec);pla_light_brigade_pf98a_1126.apply(t,g,ok,rec);pla_light_brigade_zsd05hj10_1126.apply(t,g,ok,rec);pla_light_brigade_zsd05zzc_1126.apply(t,g,ok,rec);pla_light_brigade_spec_icon_1126.apply(t,g,ok,rec);pla_light_brigade_hq13_1126.apply(t,g,ok,rec);pla_light_brigade_fk3000_1126.apply(t,g,ok,rec);pla_light_brigade_df15_1126.apply(t,g,ok,rec);pla_light_brigade_late2_1126.apply(t,g,ok,rec);pla_light_brigade_late3_1126.apply(t,g,ok,rec);pla_light_brigade_late4_1126.apply(t,g,ok,rec);pla_light_brigade_cj10_1126.apply(t,g,ok,rec);pla_light_brigade_fk3000_out_1126.apply(t,g,ok,rec);pla_light_brigade_vut10_para_1126.apply(t,g,ok,rec);pla_light_brigade_z20s_1126.apply(t,g,ok,rec);pla_light_brigade_zbd86_1126.apply(t,g,ok,rec);pla_light_brigade_late5_1126.apply(t,g,ok,rec);pla_light_brigade_carrier_1126.apply(t,g,ok,rec);pla_light_brigade_z20ka_1126.apply(t,g,ok,rec);pla_light_brigade_h6_1126.apply(t,g,ok,rec)
 # ---------- QLZ-87 icon from Osama's photo (26 Nov 2026 02:2x); stats already = QLZ-04, min range 25 for Lateralus. See qlz87_icon_1126.py.
 import qlz87_icon_1126;qlz87_icon_1126.apply(t,g,ok,rec)
 # PLARF tripod QLZ-87 named 'QLZ-87 (tripod)'; the hand-held squad copy keeps 'QLZ-87' (Osama 26 Nov 10:4x). See pla_light_brigade_qlz87_tripod_1126.py.
