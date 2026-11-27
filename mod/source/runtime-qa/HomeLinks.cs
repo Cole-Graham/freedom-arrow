@@ -15,7 +15,7 @@ namespace FreedomArrow;
 // Guides title (Osama 27 Nov 13:5x): "say learn what's different with FA along that line".
 static class HomeLinks
 {
-    sealed class Card{public string Name,Replaces,Link,Pic,Kick,KickZh,Title,TitleZh,Desc,DescZh;public Sprite Sprite;}
+    sealed class Card{public string Name,Replaces,Link,Pic,Kick,KickZh,Title,TitleZh,Desc,DescZh;public Sprite Sprite,SpriteZh;}
     static readonly Card[] cards={
         new Card{Name="FA Guides Card",Replaces="Play Campaign Button",Link="https://freedomarrow.app/#guides",Pic="home-guides.png",Kick="Guides",KickZh="指南",Title="Learn what's different in Freedom Arrow",TitleZh="了解自由之箭的不同之处",
             Desc="Vehicle damage, penetration, HEAT, cover, income, scoring, coordinated strikes, ECM and flares",
@@ -30,11 +30,17 @@ static class HomeLinks
         var dir=Path.Combine(MelonEnvironment.GameRootDirectory,"UserData","FreedomArrow","menu-art");
         foreach(var c in cards)
         {
-            var t=new Texture2D(2,2,TextureFormat.RGBA32,false){name="FA_"+c.Pic,hideFlags=HideFlags.DontUnloadUnusedAsset};
-            if(!ImageConversion.LoadImage(t,File.ReadAllBytes(Path.Combine(dir,c.Pic)),true))throw new InvalidDataException(c.Pic+" did not load");
-            c.Sprite=Sprite.Create(t,new Rect(0,0,t.width,t.height),new Vector2(0.5f,0.5f),100f);c.Sprite.hideFlags=HideFlags.DontUnloadUnusedAsset;
+            c.Sprite=Load(dir,c.Pic);
+            // Chinese picture (home-guides-zh.png: the site's Chinese slides and tool pages); without it the English one is used.
+            var zh=Path.GetFileNameWithoutExtension(c.Pic)+"-zh.png";c.SpriteZh=File.Exists(Path.Combine(dir,zh))?Load(dir,zh):c.Sprite;
         }
         MelonLogger.Msg("FREEDOM_ARROW_HOME_LINKS installed: Campaign -> Guides, Scenarios -> Tools on the Home page");
+    }
+    static Sprite Load(string dir,string pic)
+    {
+        var t=new Texture2D(2,2,TextureFormat.RGBA32,false){name="FA_"+pic,hideFlags=HideFlags.DontUnloadUnusedAsset};
+        if(!ImageConversion.LoadImage(t,File.ReadAllBytes(Path.Combine(dir,pic)),true))throw new InvalidDataException(pic+" did not load");
+        var sp=Sprite.Create(t,new Rect(0,0,t.width,t.height),new Vector2(0.5f,0.5f),100f);sp.hideFlags=HideFlags.DontUnloadUnusedAsset;return sp;
     }
     // From WebsiteButton.Build (the Home page was just found) and every second from Tick while that page lives.
     public static void Apply(Transform page)
@@ -73,7 +79,7 @@ static class HomeLinks
             new Action<GameObject,UnityEngine.EventSystems.PointerEventData.InputButton>((o,b)=>{if(b!=UnityEngine.EventSystems.PointerEventData.InputButton.Left)return;Application.OpenURL(link);MelonLogger.Msg("FREEDOM_ARROW_HOME_LINKS opened "+link);}));
             keep.Add(d);btn.add_ClickEvent(d);}
         var img=go.transform.Find("image")?.GetComponent<Image>();
-        if(img!=null){img.sprite=c.Sprite;img.color=Color.white;img.preserveAspect=false;}
+        if(img!=null){img.sprite=zh?c.SpriteZh:c.Sprite;img.color=Color.white;img.preserveAspect=false;}
         var kick=go.transform.Find("Texts/GUIDE")?.GetComponent<Il2CppTMPro.TextMeshProUGUI>();if(kick!=null)kick.SetText(zh?c.KickZh:c.Kick);
         var title=go.transform.Find("Texts/Text")?.GetComponent<Il2CppTMPro.TextMeshProUGUI>();if(title!=null){title.enableWordWrapping=true;title.richText=true;title.SetText((zh?c.TitleZh:c.Title)+"\n<size=58%><color=#C4C9D0>"+(zh?c.DescZh:c.Desc)+"</color></size>");var trt=title.rectTransform;MelonLogger.Msg($"FREEDOM_ARROW_HOME_LINKS text rect {trt.rect.width:0}x{trt.rect.height:0} font {title.fontSize:0} auto {title.enableAutoSizing} overflow {title.overflowMode} align {title.alignment}");}
         var ort=old.GetComponent<RectTransform>();var rt=go.GetComponent<RectTransform>();
