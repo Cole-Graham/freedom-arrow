@@ -1030,16 +1030,21 @@ import infantry_prices_1126;infantry_prices_1126.apply(t,g,ok,rec)
 # ---------- Reserve Marines M72A7 LAW ammo 5 -> 8 = 3 more LAW carriers (disposable: one round each) (Lateralus 26 Nov 2026 17:0x). Existing rows
 # only. Its squad-reload.json entry is rewritten below with the build. See lateralus/reserve_marines_law_1126.py.
 import reserve_marines_law_1126;reserve_marines_law_1126.apply(t,g,ok,rec)
-import roc_hook;roc_hook.apply(t,g,ok,rec,recheck=lambda:(disposable_launchers_1123.check(t,ok,a.vanilla),weapon_coverage_check.check(t,patches,ok)))
+import unit_standards
+import roc_hook;roc_hook.apply(t,g,ok,rec,recheck=lambda:(disposable_launchers_1123.check(t,ok,a.vanilla),weapon_coverage_check.check(t,patches,ok),unit_standards.check(t,ok,rec)))
+# Unit standards on the final data (docs/development/UNIT-STANDARDS.md, Lateralus 26 Nov 2026): fails on a new squad that breaks the launcher or
+# one-name-one-damage rules, and rebuilds the disposable-launcher squad rate table (squad-reload.json) from this build's squads.
+squad_reload=unit_standards.check(t,ok,rec)
+_old=json.loads(z.read('UserData/FreedomArrow/squad-reload.json'))['squads'];_new=squad_reload['squads']
+print('SQUAD RELOAD',len(_old),'->',len(_new),'entries; changed',sorted(k for k in _old if k in _new and _old[k]!=_new[k]),'added',len(set(_new)-set(_old)),'gone',sorted(set(_old)-set(_new)))
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
 for tab,fn in FIELD_TO_FILE.items():save('UserData/FreedomArrow/constants/'+fn,patches[tab])
-# squad-reload.json (SquadReload.cs disposable rate per squad) came unchanged from the 0.9.3 base until now. Only the entries a section changed
-# are rewritten (Reserve Marines LAW 5 -> 8 carriers, 26 Nov 2026); package.py takes the file from mod/source when it differs from the base.
-_sr=json.loads(z.read('UserData/FreedomArrow/squad-reload.json'));_sr['squads']['407:1019']=rec['reserve_marines_law_1126']['squad_reload']
-(SRC/'UserData/FreedomArrow/squad-reload.json').write_text(json.dumps(_sr,indent=1,sort_keys=True)+'\n')
+# squad-reload.json (SquadReload.cs disposable rate per squad): rebuilt from this build's data by unit_standards (Lateralus 26 Nov 2026); before,
+# it came unchanged from the 0.9.3 base. package.py takes it from mod/source when it differs from the base.
+(SRC/'UserData/FreedomArrow/squad-reload.json').write_text(json.dumps(squad_reload,indent=1,sort_keys=True)+'\n')
 # Type 100 CSV CH-901 round (zbd100.py, Osama 22 Nov 13:5x "Give its CH-901 60mm penetration"): an own copy of 2018448 keeps the NLOS seeker lock
 # only if nlos.json lists it. The previous build's copy id (type100_ch901) is replaced, so a shifted row id never leaves a stale entry.
 _nf=SRC/'UserData/FreedomArrow/nlos.json';_nl=json.loads(_nf.read_text());_old=_nl.get('type100_ch901');_new=rec['zbd100']['ch901_round']
