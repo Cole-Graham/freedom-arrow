@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.9 (China)",
-  "version": "0.9.7l-dev.25",
+  "version": "0.9.8-dev.2",
   "type": "modpack",
-  "description": "Freedom Arrow 0.9.7l-dev.25: PLA Light Brigade TEST build (branch codex/batch/osama/pla-light-brigade): new PLAGF Light CAB spec, SOF moved out of PLAN, QJY-88 / QJY-201, HQ-22, Jiaolong CQC, Tiger Brigade, Sky Wolf Commandos, Flying Tigers, Marine Scouts, PAP patrols, J-50 rework, Flying Tigers smoke launcher, PF-98A, Marines PF-98, ZSD-05 HJ-10 / ZZC / HQ-13 models, 0.9.8-dev.1 data + MV-22B GAU-17 + VU-T10 / airborne carrier / CJ-10, with local models (dev.24 + every staged model fix). Not a playtest build. Needs Freedom Arrow — Models and Music 0.2.108.",
+  "description": "Freedom Arrow 0.9.8-dev.2: next-patch dev build (codex/development) with the PLA Light Brigade merged. See the 0.9.8 patch-notes draft. Needs Freedom Arrow — Models and Music (version in the receipt). Needs Freedom Arrow — Models and Music 0.2.109.",
   "repo": "Cole-Graham/freedom-arrow"
 }
