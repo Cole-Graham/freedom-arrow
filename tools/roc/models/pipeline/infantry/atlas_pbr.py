@@ -1,7 +1,7 @@
 """ROC infantry atlas v2 (Shawn 27 Nov 03:1x: "enhance the texture of all infantry PBR textures by following the latest Chinese paratroopers").
 Same output names as atlas_roc.py (roc_<key>_<lod>.fas/.png/_n.png) plus a PBR mask, roc_<key>_<lod>_mask.png (HDRP: R metallic, G AO,
 B 0, A smoothness), which FAModels already reads beside any texture. Changes against atlas_roc.py:
-  - texel space by surface: each part's tile is sized by the square root of its 3D surface area (shelf-packed), instead of equal grid cells,
+  - texel space by surface: each part's tile is sized by the square root of its 3D surface area (skyline-packed, then grown into the free space), instead of equal grid cells,
     so coat, trousers and vest get several times the pixels of goggles or straps;
   - the sources' own roughness / metal / AO maps are used: UE ORM (R AO, G rough, B metal), separate _Roughness/_Metallic, or GTA _spec_
     (specular -> smoothness); parts without them get matte cloth defaults;
@@ -66,22 +66,32 @@ for c in json.loads((a.rigs/'configurations.json').read_text()):
    P=np.frombuffer(raw,dtype=np.float32).reshape(-1,16);uv=P[:,6:8];X=P[:,0:3]
    ranges.append((min(0,float(uv[:,0].min())),max(1,float(uv[:,0].max())),min(0,float(uv[:,1].min())),max(1,float(uv[:,1].max()))))
    T=np.array(ix).reshape(-1,3);areas.append(0.5*np.linalg.norm(np.cross(X[T[:,1]]-X[T[:,0]],X[T[:,2]]-X[T[:,0]]),axis=1).sum()+1e-6)
-  # tile side ~ sqrt(area) * k, largest k whose shelf packing fits in size x size
-  def pack(k):
-   sides=[max(32,int(math.sqrt(A)*k)//8*8) for A in areas];order=sorted(range(len(parts)),key=lambda j:-sides[j]);rects={};x=y=rowh=0
-   for j in order:
-    w=sides[j]
+  # tile side ~ sqrt(area) * k, largest k whose skyline packing fits in size x size; then each tile (largest area first) grows in 8 px steps
+  # while everything still fits, so the sheet has little empty space (27 Nov v2: shelf packing left 23-42 % of the sheet empty)
+  def pack(sides):
+   rects={};H=np.zeros(size,np.int32)
+   for j in sorted(range(len(sides)),key=lambda j:-sides[j]):
+    w=sides[j];best=None
     if w>size:return None
-    if x+w>size:x=0;y+=rowh;rowh=0
-    if y+w>size:return None
-    rects[j]=(x,y,w);x+=w;rowh=max(rowh,w)
+    for x in range(0,size-w+1,8):
+     y=int(H[x:x+w].max())
+     if y+w<=size and (best is None or y<best[1]):best=(x,y)
+    if best is None:return None
+    rects[j]=(best[0],best[1],w);H[best[0]:best[0]+w]=best[1]+w
    return rects
+  sd=lambda k:[max(32,int(math.sqrt(A)*k*size/2048)//8*8) for A in areas]
   lo_,hi_=1.0,size*4.0
   for _ in range(40):
    mid=(lo_+hi_)/2
-   if pack(mid):lo_=mid
+   if pack(sd(mid)):lo_=mid
    else:hi_=mid
-  rects=pack(lo_)
+  sides=sd(lo_)
+  for j in sorted(range(len(sides)),key=lambda j:-areas[j]):
+   while True:
+    t=list(sides);t[j]+=8
+    if pack(t):sides=t
+    else:break
+  rects=pack(sides)
   for suffix,field,default in [('', 'base',(70,80,60,255)),('_n','normal',(128,128,255,255)),('_mask',None,(0,255,0,77))]:
    atlas=Image.new('RGBA',(size,size),default)
    for j,(mat,_,_) in enumerate(parts):

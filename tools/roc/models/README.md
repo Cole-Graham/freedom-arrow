@@ -173,6 +173,7 @@ Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `inf
 - **Preview fix:** `render_fam_alpha.py` now multiplies a texture by its sub-mesh colour, as FAModels does (`_BaseColor` × map).
 - **FBX pack for Shawn:** `export_fam_fbx.py MODEL.fam OUTDIR NAME` writes the Arsenal mesh as FBX with PNG textures (2048 from `tex_full/` where present; colour tints baked in; `_mask` split into Metallic/Roughness). Pack: Tien Kung III, Land Sword II, Thunderbolt 2000, EC225, CM-32 (+ Desert/Mosaic maps), on Sam's Drive, link-shared, file `1N3VgWNIATBO-fRq1u-zJBWpH54ueh0Cs`.
 - **Infantry preview:** `infantry/render_fas_pbr.py` renders a `.fas` with its normal map and PBR mask.
+- **Infantry atlas v2 (`atlas_pbr.py`):** the shelf packing left 23-42 % of each sheet empty. Tiles are now skyline-packed and then grown (largest surface first, 8 px steps) into the free space. Sheet use: reservist 58 → 85 %, infantry 66 → 94 %, infantry2 65 → 75 %, marine 75 → 89 %, marine SF 77 → 91 %, SF 4 77 → 99 %, SF2 71 → 70 % (two parts, no room to grow). No tile got smaller. All 7 bodies rebuilt and staged; v1 files in `inf/lod/old-pbr1/`.
 
 ## Document change log
 
@@ -196,3 +197,4 @@ Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `inf
 - 2026-11-27 02:15 PST (America/Los_Angeles) — TK-III cab glass fixed; CM-34 Desert and Mosaic paint schemes.
 - 2026-11-27 03:36 PST (America/Los_Angeles) — CM-33 removed; weathering on TK-III, TB2000, LSW2, CM-21, CM-22, EC225; CM-22/CM-21 woodland; CM-32 UV + 3 schemes; CM-21 opaque; PBR infantry atlases.
 - 2026-11-27 03:59 PST (America/Los_Angeles) — CM-32 v3 (interior parts on the camo sheet, rubber tyres); preview tint fix; FBX + PNG pack for Shawn.
+- 2026-11-27 04:13 PST (America/Los_Angeles) — Infantry atlas v2: skyline packing with tile growth; 7 bodies rebuilt.
