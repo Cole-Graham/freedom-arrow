@@ -12,7 +12,7 @@ def apply(t, g, ok, rec):
     ok(U[Z20KA]['HUDName'] == 'Z-20KA', 'Z-20KA row')
     tr = rows('TransportAvailabilitiesJson', UnitId=Z20KA)
     cards = [SA[r['SpecializationAvailabilityId']] for r in tr]
-    ok(len(tr) == 10 and all(c['SpecializationId'] == 17 and U[c['UnitId']].get('CategoryType') == 1 for c in cards), ('Z-20KA on 10 PLAAF infantry cards', len(tr)))
+    ok(len(tr) == 10 and all(c['SpecializationId'] == 17 and U[c['UnitId']].get('Type') == 2 for c in cards), ('Z-20KA on 10 PLAAF infantry cards', len(tr)))
     for r in tr: g.remove('TransportAvailabilitiesJson', r['Id'])
     ok(not rows('TransportAvailabilitiesJson', UnitId=Z20KA) and all(rows('TransportAvailabilitiesJson', SpecializationAvailabilityId=c['Id']) for c in cards), 'Z-20KA gone, every card keeps a transport')
     rec['pla_light_brigade_z20ka_1126'] = {'removed_from': [U[c['UnitId']]['HUDName'] for c in cards]}
