@@ -3,6 +3,6 @@
   "name": "Freedom Arrow — 0.9 (China)",
   "version": "0.9.8-dev.2-roc5",
   "type": "modpack",
-  "description": "Freedom Arrow 0.9.8-dev.2: next-patch dev build (codex/development) with the PLA Light Brigade merged. See the 0.9.8 patch-notes draft. Needs Freedom Arrow — Models and Music (version in the receipt). Needs Freedom Arrow — Models and Music 0.2.109.",
+  "description": "Freedom Arrow 0.9.8-dev.2-roc5: ROC TEST build (Shawn1989, branch codex/batch/shawn/roc) = 0.9.8-dev.2 + ROC spec 60 with ROC models. Not a live dev build. Needs Freedom Arrow — Models and Music (version in the receipt). Needs Freedom Arrow — Models and Music 0.2.109-roc5.",
   "repo": "Cole-Graham/freedom-arrow"
 }
