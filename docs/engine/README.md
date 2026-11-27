@@ -16,6 +16,7 @@ How a detonation becomes health loss, a roof hit, or stress. The notes are the g
 - [Cargo capacity](cargo-capacity.md) explains why a truck's supply and a helicopter's lift are `MobilityJson.HeavyLiftWeight` on the mobility row the unit actually uses (armory options with `MobilityId` replace it), why the HMV3 Cargo 15000 change failed three times, and how to change cargo safely.
 - [Menu fly-in animation](ui-fly-in-animation.md) explains why a GalaxyUI card ends where it was before the layout ran (FlyFadeIn saves, flies, snaps back), and how the Play tab keeps layout and resting position together.
 - [FAModels model loading](model-loading.md) explains when FAModels swaps a unit's model, how its detail levels (LOD0 most detailed) switch, and the 0.3.45 lightest-level-first loading with a 6 ms per-frame limit.
+- [FAModels canopy glass](model-glass.md) explains borrowed cockpit glass (`cockpitDonor`), the stand-in used until the game loads it, and the 0.3.50 `preserveSpecular` option that keeps the stand-in reflective.
 - [Transports and unit-swap loadouts](transport-unit-swaps.md) explains why a transport must not use `ReplaceUnitId` loadouts: the deck builds the transport without following the swap, so the shop counts a different unit from the one on the map (Type 100 CSV availability bug).
 
 ## Document change log
@@ -24,3 +25,4 @@ How a detonation becomes health loss, a roof hit, or stress. The notes are the g
 - 2026-11-25 18:5x PST (America/Los_Angeles) — Added the damage-over-time page.
 - 2026-11-26 01:26 PST (America/Los_Angeles) — Added the transport unit-swap page.
 - 2026-11-26 16:3x PST (America/Los_Angeles) — Missile flight entry: reload wait.
+- 2026-11-26 21:4x PST (America/Los_Angeles) — Added the FAModels canopy glass page.

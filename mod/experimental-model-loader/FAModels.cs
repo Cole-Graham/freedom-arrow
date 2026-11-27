@@ -8,7 +8,7 @@ using Il2CppBrokenArrow.DataBase.Models;
 using System.Text.Json;
 using Il2CppBrokenArrow.Shared.Ecs.MemoryController;
 
-[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.49-plb.1", "Freedom Arrow")]
+[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.50", "Freedom Arrow")]
 [assembly: MelonGame(null, "BrokenArrow")]
 namespace FAModels;
 
@@ -542,7 +542,7 @@ public partial class Mod : MelonMod
     }
     static string Str(BinaryReader f) { int n = f.ReadInt32(); return System.Text.Encoding.UTF8.GetString(f.ReadBytes(n)); }
 
-    public class MatP { public float[] metallicRemap { get; set; } public float[] smoothnessRemap { get; set; } public bool sourceCanopy { get; set; } public string cockpitDonor { get; set; } = ""; public float[] colorScale { get; set; } = new float[] { 1f, 1f, 1f }; public float metallic { get; set; } = 0.1f; public float smoothness { get; set; } = 0.3f; public string alpha { get; set; } = "OPAQUE"; public float cutoff { get; set; } = 0.5f; public float[] emissive { get; set; } = new float[3]; public bool unlit { get; set; } public bool clearGlass { get; set; } public float opacity { get; set; } = 0.025f; public MatP fallback { get; set; } }
+    public class MatP { public float[] metallicRemap { get; set; } public float[] smoothnessRemap { get; set; } public bool sourceCanopy { get; set; } public string cockpitDonor { get; set; } = ""; public float[] colorScale { get; set; } = new float[] { 1f, 1f, 1f }; public float metallic { get; set; } = 0.1f; public float smoothness { get; set; } = 0.3f; public string alpha { get; set; } = "OPAQUE"; public float cutoff { get; set; } = 0.5f; public float[] emissive { get; set; } = new float[3]; public bool unlit { get; set; } public bool clearGlass { get; set; } public float opacity { get; set; } = 0.025f; public bool preserveSpecular { get; set; } public MatP fallback { get; set; } }
     static string MatKey(string tex, Color c) => tex + "|" + string.Join(",", new[] { c.r, c.g, c.b, c.a }.Select(x => x.ToString("F4", System.Globalization.CultureInfo.InvariantCulture)));
     static Material Mat(string tex, Color col, MatP p)
     {
@@ -561,7 +561,7 @@ public partial class Mod : MelonMod
                 // give its own "fallback" look for the time the donor is not loaded (the KF-21s sit on the F-16 body, so the F-35 glass is
                 // only in memory once an F-35 has been shown); without one, the clear glass as before. Upgraded to the donor in place later.
                 p = p.fallback != null ? new MatP { metallic = p.fallback.metallic, smoothness = p.fallback.smoothness, alpha = p.fallback.alpha, cutoff = p.fallback.cutoff,
-                        colorScale = p.fallback.colorScale, clearGlass = p.fallback.clearGlass, opacity = p.fallback.opacity, emissive = p.fallback.emissive ?? new float[3] }
+                        colorScale = p.fallback.colorScale, clearGlass = p.fallback.clearGlass, opacity = p.fallback.opacity, emissive = p.fallback.emissive ?? new float[3], preserveSpecular = p.fallback.preserveSpecular }
                     : new MatP { clearGlass = true, opacity = 0.025f, alpha = "BLEND", metallic = 0f, smoothness = 0.95f };
             }
         }
@@ -571,7 +571,7 @@ public partial class Mod : MelonMod
         // Optional material-only livery adjustment; source textures and UVs stay intact.
         if (!clearGlass && p?.colorScale is { Length: 3 } scale && scale.All(x => float.IsFinite(x) && x >= 0f && x <= 4f))
             col = new Color(col.r * scale[0], col.g * scale[1], col.b * scale[2], col.a);
-        string key = tex + col + (p == null ? "" : $"{p.metallic}/{p.smoothness}/{p.alpha}/{p.cutoff}/{string.Join(",", p.emissive)}/{p.clearGlass}/{p.opacity}/{p.sourceCanopy}/{(p.metallicRemap == null ? "" : string.Join(",", p.metallicRemap))}/{(p.smoothnessRemap == null ? "" : string.Join(",", p.smoothnessRemap))}");
+        string key = tex + col + (p == null ? "" : $"{p.metallic}/{p.smoothness}/{p.alpha}/{p.cutoff}/{string.Join(",", p.emissive)}/{p.clearGlass}/{p.opacity}/{p.sourceCanopy}/{(p.metallicRemap == null ? "" : string.Join(",", p.metallicRemap))}/{(p.smoothnessRemap == null ? "" : string.Join(",", p.smoothnessRemap))}/{p.preserveSpecular}");
         if (mats.TryGetValue(key, out var m) && m != null) { fallbackDonor = null; return m; }
         // Debug: UserData/FAModels/flat.txt present -> every part plain light grey, no textures, to judge geometry alone.
         if (File.Exists(Path.Combine(dir, "flat.txt"))) { tex = ""; col = new Color(0.6f, 0.6f, 0.6f, 1f); key = "FLAT"; if (mats.TryGetValue(key, out var fm) && fm != null) return fm; }
@@ -591,7 +591,10 @@ public partial class Mod : MelonMod
             m.SetFloat("_SurfaceType", 1f); m.SetFloat("_BlendMode", 0f);
             // Osama 9 Nov (F-14 canopy): HDRP keeps full-strength reflections on transparent surfaces by default
             // ("preserve specular lighting"), so clear glass looked milky white. Let reflections fade with alpha.
-            m.SetFloat("_EnableBlendModePreserveSpecularLighting", 0f); m.DisableKeyword("_BLENDMODE_PRESERVE_SPECULAR_LIGHTING");
+            // 0.3.50 (Osama 26 Nov 21:3x, J-20 canopy "wasn't reflective" in the Arsenal before an F-35B had loaded its donor glass): a
+            // .mat.json entry (or its cockpit "fallback") may set "preserveSpecular": true to keep full reflections on tinted glass.
+            if (p.preserveSpecular) { m.SetFloat("_EnableBlendModePreserveSpecularLighting", 1f); m.EnableKeyword("_BLENDMODE_PRESERVE_SPECULAR_LIGHTING"); }
+            else { m.SetFloat("_EnableBlendModePreserveSpecularLighting", 0f); m.DisableKeyword("_BLENDMODE_PRESERVE_SPECULAR_LIGHTING"); }
         }
         if (p.emissive != null && p.emissive.Length == 3 && p.emissive.Max() > 0) m.SetColor("_EmissiveColor", new Color(p.emissive[0], p.emissive[1], p.emissive[2]) * 1000f);
         // The source materials are double-sided (thin panels, mirrored halves); single-sided rendering left see-through gaps.
