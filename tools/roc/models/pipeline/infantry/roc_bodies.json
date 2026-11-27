@@ -141,7 +141,7 @@
   "rigid": {
    "SM_twhead": "Head",
    "SM_vestHeadGear.001": "Head",
-   "SM_vestHeadGear": "Spine2"
+   "SM_vestHeadGear": "torso"
   },
   "fit": [
    "SM_CC_Arm",
@@ -150,7 +150,7 @@
   "units": "ROC Infantry body (Mech. Riflemen, T112, DMS per Shawn sheet)"
  },
  "infantry2": {
-  "source": "/home/sam/tars/work/ba-dev/replicas/codex/work/roc-20261125/x/ROC Infantry 2/ROC Infantry 2/ROC SF 3.blend",
+  "source": "/home/sam/tars/work/ba-dev/replicas/codex/work/roc-20261125/x/ROC Infantry 2/ROC Infantry 2/ROC SF 3 shoulders.blend",
   "texdir": "/home/sam/tars/work/ba-dev/replicas/codex/work/roc-20261125/x/ROC Infantry 2/ROC Infantry 2/textures",
   "ground": true,
   "height": 1.8,
@@ -232,7 +232,7 @@
   },
   "rigid": {
    "mesh_rep_0_ori_repair_quad": "Head",
-   "s_m_y_marine_03_model_001": "Spine2",
+   "s_m_y_marine_03_model_001": "torso",
    "s_m_y_marine_03_model_005": "Head"
   },
   "fit": [
@@ -285,7 +285,7 @@
   },
   "rigid": {
    "mesh_rep_0_ori_repair_quad": "Head",
-   "s_m_y_marine_03_model_001": "Spine2",
+   "s_m_y_marine_03_model_001": "torso",
    "SM_Hat_FisherMan": "Head"
   },
   "fit": [
@@ -424,7 +424,7 @@
   "units": "SF Scout 5044 (Shawn 27 Nov 01:4x: ROC SF 4 with ghillie suit)"
  },
  "sf2": {
-  "source": "/home/sam/tars/work/ba-dev/replicas/codex/work/roc-20261125/x/sf2/ROC SF2/ROC SF 2.blend",
+  "source": "/home/sam/tars/work/ba-dev/replicas/codex/work/roc-20261125/x/sf2/ROC SF2/ROC SF 2 shoulders.blend",
   "texdir": "/home/sam/tars/work/ba-dev/replicas/codex/work/roc-20261125/x/sf2/ROC SF2/textures",
   "scale": 0.01128,
   "ground": true,

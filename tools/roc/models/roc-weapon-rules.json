@@ -177,7 +177,7 @@
   "weaponId": 2900002,
   "file": "w_roc_kestrel.fam",
   "battle": "w_roc_kestrel_lo.fam",
-  "scale": 1,
+  "scale": 0.75,
   "offset": [
    0,
    -0.16,
@@ -196,7 +196,7 @@
   "weaponId": 2900002,
   "file": "w_roc_kestrel.fam",
   "battle": "w_roc_kestrel_lo.fam",
-  "scale": 1,
+  "scale": 0.75,
   "offset": [
    0,
    -0.16,
@@ -215,7 +215,7 @@
   "weaponId": 2900002,
   "file": "w_roc_kestrel.fam",
   "battle": "w_roc_kestrel_lo.fam",
-  "scale": 1,
+  "scale": 0.75,
   "offset": [
    0,
    -0.16,
@@ -234,7 +234,7 @@
   "weaponId": 2900002,
   "file": "w_roc_kestrel.fam",
   "battle": "w_roc_kestrel_lo.fam",
-  "scale": 1,
+  "scale": 0.75,
   "offset": [
    0,
    -0.16,

@@ -175,6 +175,13 @@ Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `inf
 - **Infantry preview:** `infantry/render_fas_pbr.py` renders a `.fas` with its normal map and PBR mask.
 - **Infantry atlas v2 (`atlas_pbr.py`):** the shelf packing left 23-42 % of each sheet empty. Tiles are now skyline-packed and then grown (largest surface first, 8 px steps) into the free space. Sheet use: reservist 58 → 85 %, infantry 66 → 94 %, infantry2 65 → 75 %, marine 75 → 89 %, marine SF 77 → 91 %, SF 4 77 → 99 %, SF2 71 → 70 % (two parts, no room to grow). No tile got smaller. All 7 bodies rebuilt and staged; v1 files in `inf/lod/old-pbr1/`.
 
+## Infantry fixes from Shawn's in-game check; test build roc6 (27 November 2026, afternoon)
+
+- **ROC Infantry black belly patch and Marine / Marine SF grey side flap:** both vests were rigid on Spine2. In the rifle stance the chest turns against the hips, so the vest's lower edge swung out (Marine: side strap by the arm; ROC Infantry: a gap showing the dark inside). `rig_roc.py` now has a `torso` rigid mode: body weights transferred from the game soldier, minus arm, hand and head bones (vest belly now Spine 93 % / Spine1 5 % instead of Spine2 100 %). Used for `SM_vestHeadGear` (infantry) and `s_m_y_marine_03_model_001` (marine, marinesf).
+- **SF2 and Infantry 2 shoulder "wings":** the JGSDF vest shoulders and flaps stood up to 7 cm above the sleeves. `infantry/shoulder_flaps.py` presses everything above a shoulder line (sleeve top, sloping 2 % of the height up to the collar edge) toward it (K 0.15), on new `... shoulders.blend` sources; head, helmet, headset and collar unchanged.
+- **Kestrel-1:** scale 0.75 on all 4 rules (units 5035, 5038, 5039, 5043).
+- Rebuilt and staged: infantry, marine, marinesf, sf2, infantry2 (old files in `inf/lod/old-pbr2`, rigs in `inf/rigs_*.pre-1127`).
+
 ## Document change log
 
 - 2026-11-25 03:4x PST (America/Los_Angeles) — T91 rifle converted; recipe and first grip offset.
@@ -198,3 +205,5 @@ Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `inf
 - 2026-11-27 03:36 PST (America/Los_Angeles) — CM-33 removed; weathering on TK-III, TB2000, LSW2, CM-21, CM-22, EC225; CM-22/CM-21 woodland; CM-32 UV + 3 schemes; CM-21 opaque; PBR infantry atlases.
 - 2026-11-27 03:59 PST (America/Los_Angeles) — CM-32 v3 (interior parts on the camo sheet, rubber tyres); preview tint fix; FBX + PNG pack for Shawn.
 - 2026-11-27 04:13 PST (America/Los_Angeles) — Infantry atlas v2: skyline packing with tile growth; 7 bodies rebuilt.
+
+- 2026-11-27 14:38 PST (America/Los_Angeles) — Vest torso weights (infantry, marines), JP shoulder press, Kestrel 75 %; test build roc6.

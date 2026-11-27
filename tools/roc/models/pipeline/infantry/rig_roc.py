@@ -96,6 +96,13 @@ for o in parts:
     for g in donor.vertex_groups:o.vertex_groups.new(name=g.name)
     m=o.modifiers.new('w','DATA_TRANSFER');m.object=donor;m.use_vert_data=True;m.data_types_verts={'VGROUP_WEIGHTS'};m.vert_mapping='POLYINTERP_NEAREST';m.layers_vgroup_select_src='ALL';m.layers_vgroup_select_dst='NAME';bpy.ops.object.modifier_apply(modifier=m.name)
     rigid=RIGID.get(o.name)
+    if rigid=='torso':   # 27 Nov (Shawn's in-game shots): a vest rigid on Spine2 kept its lower edge with the chest while the hips turned, so it
+        # swung out (marine side flap) or opened a black gap at the belly (ROC Infantry). Body weights, but never arm, hand or head bones.
+        drop=[g for g in o.vertex_groups if any(k in g.name for k in ('Arm','Hand','Thumb','Index','Middle','Ring','Pinky','Head'))]
+        for g in drop:o.vertex_groups.remove(g)
+        lone=[v.index for v in o.data.vertices if not any(x.weight>0 for x in v.groups)]
+        if lone:(o.vertex_groups.get('Spine2') or o.vertex_groups.new(name='Spine2')).add(lone,1,'REPLACE')
+        rigid=None
     if rigid:
         for g in o.vertex_groups:g.remove(list(range(len(o.data.vertices))))
         o.vertex_groups[rigid].add(list(range(len(o.data.vertices))),1,'REPLACE')
