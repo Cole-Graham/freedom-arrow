@@ -182,6 +182,18 @@ Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `inf
 - **Kestrel-1:** scale 0.75 on all 4 rules (units 5035, 5038, 5039, 5043).
 - Rebuilt and staged: infantry, marine, marinesf, sf2, infantry2 (old files in `inf/lod/old-pbr2`, rigs in `inf/rigs_*.pre-1127`).
 
+## Shawn's second and third in-game lists; test build roc7 (27 November 2026, afternoon)
+
+- **CM-34 card:** `flatten` in roc.py: no custom-option rows (the 30mm "Dragoon" turret is the fixed weapon, SRAT/Trophy gone), 40 pts, name "CM-34 Clouded Leopard". Model turned 180° (`yaw` in roc-models.json; it faced backwards).
+- **CM-32 rebuilt (`cm32_kitbash.py`):** CM-34 hull and wheels (turned 180°, CM-34 textures and Dust/Mosaic files), the CM-32's 3 rear antennas and tail box, and the vanilla Stryker ICV Mk19 station (prefab US_STRYKER_ICV_MK19: turret_0/weapon_0 part of mesh ICV, its pedestal, Mk19 gun; packed normal map unpacked) on the roof where the old station stood.
+- **CM-22** uses the CM-21 model (alias in stage_roc.py). **M41D** ×1.4 (`scale`; it was 5.8 m with the gun, the real M41 is 8.2 m and 3.2 m wide).
+- **CM-11 / CM-12 shadows:** their normal maps were DirectX-style. `normal_convention.py` (curl test; the M60A3 maps flipped by hand on 26 Nov read OpenGL) — green channel flipped for cm11/cm12. Other models that read DirectX (CM-34, M110A2, F-CK-1, TK-III, TB2000, EC225, Mirage, F-16A...) are listed for Shawn, not changed.
+- **Glass:** Kung Feng VI, HF-IIE, Antelope and Land Sword II cabs use the vanilla 9K51 Grad glass (new FAModels cockpit token RU_BM_21_Grad_glass); Antelope door windows (`antelope_windows.py`) and Land Sword II windows (`split_windows.py`, boxes in camo/lsw2_windows.json) split from painted body faces; F-CK-1 windscreen (`fck1_windscreen.py`) and the C-130HE use the vanilla F-16 glass. Chung Hsiang II has no glass part.
+- **Dust streaks:** `weather_fam.py STREAK=fine` (~5 cm wide, ~30 cm long, fainter) on TB2000, TK-III and Land Sword II.
+- **F-16V:** Arsenal model gets the F-16A's landing gear and is lifted 0.62 m (`f16v_gear.py`); battle model unchanged (gear up).
+- **EC225:** real ROC Blue Sky White Sun on both sides (`ec225_roundel.py`: 12 straight rays, ring and disc 30:17:15).
+- **Infantry:** shoulders shaped to a smooth curve after rigging (`infantry/fas_shoulders.py`; Infantry 2 flatter, rise 0.015).
+
 ## Document change log
 
 - 2026-11-25 03:4x PST (America/Los_Angeles) — T91 rifle converted; recipe and first grip offset.
@@ -207,3 +219,4 @@ Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `inf
 - 2026-11-27 04:13 PST (America/Los_Angeles) — Infantry atlas v2: skyline packing with tile growth; 7 bodies rebuilt.
 
 - 2026-11-27 14:38 PST (America/Los_Angeles) — Vest torso weights (infantry, marines), JP shoulder press, Kestrel 75 %; test build roc6.
+- 2026-11-27 15:15 PST (America/Los_Angeles) — Second and third in-game lists (CM-34 card, CM-32 rebuild, glass, M41D, CM-22, CM-11 normals, F-16V gear, EC225 roundel, streaks); test build roc7.

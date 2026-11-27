@@ -27,7 +27,7 @@ CARDS = {
     'ROC CM-25': ('CM-25 TOW', 187, 'M901A3', None),
     'ROC CM-32': ('CM-32 Clouded Leopard', 22, 'Stryker ICV', None),
     'ROC CM-33': ('CM-33 Clouded Leopard', 22, 'Stryker ICV', None),
-    'ROC CM-34': ('CM-34 Clouded Leopard IFV', 22, 'Stryker ICV', None),             # sheet: CV-9035 (DLC)
+    'ROC CM-34': ('CM-34 Clouded Leopard', 22, 'Stryker ICV', None),                 # Shawn 27 Nov 14:4x: name without 'IFV'             # sheet: CV-9035 (DLC)
     'ROC F-5F': ('F-5F Tiger II', 285, 'F-16C Fighting Falcon', None),
     'ROC F-16V': ('F-16V Viper', 284, 'F-16V Viper', None),
     'ROC F-16A': ('F-16A Fighting Falcon', 285, 'F-16C Fighting Falcon', None),
@@ -272,7 +272,7 @@ VEH = {
     'ROC CM-11': {'drop': {649}}, 'ROC CM-12': {'drop': {649}}, 'ROC M60A3 TTS': {'drop': {649}},
     'ROC CM-32': {'rename': {21: 'T91 40mm AGL'}, 'drop': {76, 23}, 'default': 21},
     'ROC CM-33': {'rename': {21: 'T91 40mm AGL'}, 'drop': {76, 23, 18}, 'default': 21},
-    'ROC CM-34': {'rename': {27: 'T74'}, 'drop': {76, 21, 18}, 'default': 23},
+    'ROC CM-34': {'rename': {27: 'T74'}, 'drop': {76, 21, 18}, 'default': 23, 'flatten': True},   # Shawn 27 Nov 14:4x: no option rows; 30mm fixed, no SRAT/Trophy
     # Shawn 26 Nov 02:3x: "CM-22 just keeps the data as 120mm but rename the weapon by 107mm and reduce the damage value by around 20%"
     'ROC CM-22': {'rename_hud': {'M121': 'M30 107mm'}, 'ammo': {'120mm HE': '107mm HE', '120mm smoke': '107mm smoke'},
                   'ammo_scale': {'107mm HE': {'Damage': 0.8}}, 'ui_auto': True},
@@ -410,6 +410,26 @@ def vehicles(t, g, ok, res, rows):
                 if n: g.put('OptionsJson', o['Id'], {'UIName': ', '.join(f'{q}x {h}' for h, q in n.items())})
         if spec.get('cost_factor'):
             c = int(round(t['Units'][uid]['Cost'] * spec['cost_factor'] / 5) * 5); g.put('Units', uid, {'Cost': c}); res[card]['cost'] = c
+        # 7. flatten (Shawn 27 Nov 14:4x, CM-34: "Remove both of them"): no custom-option rows at all. Each modification's default option
+        #    becomes the unit itself, like vanilla units without modifications (M1A2 SEP v2 TUA): its price joins the card cost, its abilities
+        #    stay, its armour and mobility are the unit's only armour/mobility rows, and the renaming option text (M1296 Dragoon) goes.
+        if spec.get('flatten'):
+            extra, keep, base = 0, set(), {}
+            for m in rows('ModificationsJson', UnitId=uid):
+                os_ = rows('OptionsJson', ModificationId=m['Id']); d = next((o for o in os_ if o['IsDefault']), os_[0])
+                extra += d.get('Cost') or 0; keep |= {d.get(f'Ability{i}Id') for i in (1, 2, 3)} - {None, 0}
+                for f, tab in (('ArmorId', 'ArmorsJson'), ('MobilityId', 'MobilityJson')):
+                    if d.get(f): base[f] = t[tab][d[f]]['Name'] + ' ' + card
+                for o in os_: g.remove('OptionsJson', o['Id'])
+                g.remove('ModificationsJson', m['Id'])
+            for tab, f, target in (('UnitArmorsJson', 'ArmorId', 'ArmorsJson'), ('UnitPropulsionsJson', 'MobilityId', 'MobilityJson')):
+                rs = rows(tab, UnitId=uid); hit = [r for r in rs if t[target][r[f]]['Name'] == base.get(f)]
+                ok(len(hit) == 1, (card, 'flatten base', tab, base.get(f)))
+                for r in rs:
+                    if r not in hit: g.remove(tab, r['Id'])
+            for r in rows('UnitAbilitiesJson', UnitId=uid):
+                if r['AbilityId'] not in keep: g.remove('UnitAbilitiesJson', r['Id'])
+            c = t['Units'][uid]['Cost'] + extra; g.put('Units', uid, {'Cost': c}); res[card]['cost'] = c
         after = sorted({W[r['WeaponId']]['HUDName'] for r in rows('WeaponAmmunitionsJson', UnitId=uid)})
         out[card] = {'before': before, 'after': after, 'options': [o.get('UIName') for o in opts(uid)], 'cost': t['Units'][uid]['Cost'],
                      'turrets_copied': len(tmap)}

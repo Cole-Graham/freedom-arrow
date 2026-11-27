@@ -6,16 +6,8 @@
   "lods": [
    "m_roc_cm34_lo_static_l1.fam",
    "m_roc_cm34_lo_static_l2.fam"
-  ]
- },
- "ROC CM-22": {
-  "file": "m_roc_cm22_static.fam",
-  "battle": "m_roc_cm22_lo_static.fam",
-  "align": false,
-  "lods": [
-   "m_roc_cm22_lo_static_l1.fam",
-   "m_roc_cm22_lo_static_l2.fam"
-  ]
+  ],
+  "yaw": 180
  },
  "ROC CM-11": {
   "file": "m_roc_cm11_static.fam",
@@ -42,7 +34,8 @@
   "lods": [
    "m_roc_m41d_lo_static_l1.fam",
    "m_roc_m41d_lo_static_l2.fam"
-  ]
+  ],
+  "scale": 1.4
  },
  "ROC Thunderbolt-2000": {
   "file": "m_roc_tb2000_static.fam",
@@ -222,6 +215,15 @@
   "lods": [
    "m_roc_ec225_lo_static_l1.fam",
    "m_roc_ec225_lo_static_l2.fam"
+  ]
+ },
+ "ROC CM-22": {
+  "file": "m_roc_cm21_static.fam",
+  "battle": "m_roc_cm21_lo_static.fam",
+  "align": false,
+  "lods": [
+   "m_roc_cm21_lo_static_l1.fam",
+   "m_roc_cm21_lo_static_l2.fam"
   ]
  }
 }

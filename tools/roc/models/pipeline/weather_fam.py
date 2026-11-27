@@ -50,7 +50,8 @@ for i,P in pos.items():
     H=(Qn[...,2]-z0)*sc;nz=Qn[...,5];N=Qn[...,3:6]
     Wp=(Qn[...,:3]-mn)*sc   # metres
     flat=Wp.reshape(-1,3)
-    n1=fbm(flat*1.3,0).reshape(Hd,Wd);n2=fbm(flat*6.0,3).reshape(Hd,Wd);streak=fbm(flat*np.array([7,7,0.8]),6).reshape(Hd,Wd)
+    n1=fbm(flat*1.3,0).reshape(Hd,Wd);n2=fbm(flat*6.0,3).reshape(Hd,Wd);FINE=os.environ.get('STREAK')=='fine'   # Shawn 27 Nov 14:4x (TB2000, TK-III): streaks too large/long -> narrower (~5 cm), shorter (~30 cm), fainter
+    streak=fbm(flat*(np.array([20,20,3.0]) if FINE else np.array([7,7,0.8])),6).reshape(Hd,Wd)
     nmask=f'{M}/{st}_mask.png';msk=np.asarray(load(f'{BK}/{st}_mask.png' if os.path.exists(f'{BK}/{st}_mask.png') else nmask).convert('RGBA'),np.float32)/255 if os.path.exists(nmask) else None
     if msk is not None and msk.shape[:2]!=(Hd,Wd):msk=np.asarray(Image.fromarray((msk*255).astype(np.uint8)).resize((Wd,Hd),Image.LANCZOS),np.float32)/255
     ao=msk[...,1] if msk is not None else np.ones((Hd,Wd),np.float32)
@@ -64,7 +65,7 @@ for i,P in pos.items():
     mud=np.clip((MT-H)/(MT*0.8),0,1)**1.3*(0.6+0.8*(n1-0.5))+(1-ao)*0.4*np.clip((MT+0.5-H)/1.0,0,1)
     mudA=ss(0.26,0.58,mud+(n2-0.5)*0.4)*0.72*K*ok
     mudc=np.stack([np.interp(n1,[0,1],[0.47,0.30]),np.interp(n1,[0,1],[0.40,0.24]),np.interp(n1,[0,1],[0.31,0.18])],-1)
-    grime=(np.clip(1-ao,0,1)*0.6+np.where(np.abs(nz)<0.4,ss(0.48,0.66,streak),0)*0.38+0.10*ss(0.3,0.8,n1))*K*ok      # crevices + streaks down vertical faces + overall dirt
+    grime=(np.clip(1-ao,0,1)*0.6+np.where(np.abs(nz)<0.4,ss(0.56,0.70,streak) if FINE else ss(0.48,0.66,streak),0)*(0.20 if FINE else 0.38)+0.10*ss(0.3,0.8,n1))*K*ok      # crevices + streaks down vertical faces + overall dirt
     dustA=np.clip((nz-0.5)/0.5,0,1)*0.22*(0.5+n1)*K*ok
     upper=ss(0.6,1.0,H)*ok
     wear=np.clip(edge*ss(0.45,0.7,n2),0,1)*upper*0.75*K

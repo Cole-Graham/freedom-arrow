@@ -30,7 +30,9 @@ public partial class Mod
         // (US_F35A_Glass); the token picks the US_F35A prefab.
         ["US_F35A_Glass"] = "usf35a",
         // 0.3.43 (Osama 23 Nov): the F-35B canopy, loaded with the US_F35B body the F-35B (ROKN/JASDF) cards stand on.
-        ["US_F35B_Glass"] = "usf35b"
+        ["US_F35B_Glass"] = "usf35b",
+        // ROC (Shawn 27 Nov 2026: Kung Feng VI glass "following the model of 9K51 Grad"; also HF-IIE and Antelope cabs): the 9K51 Grad cab glass.
+        ["RU_BM_21_Grad_glass"] = "rubm21grad"
     };
     static string Compact(string s) => new string(s.ToLowerInvariant().Where(char.IsLetterOrDigit).ToArray());
     static Material FindCockpitMaterial(string name) => Resources.FindObjectsOfTypeAll<Material>()

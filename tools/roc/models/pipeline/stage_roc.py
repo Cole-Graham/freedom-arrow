@@ -4,7 +4,7 @@ entries to the live models.json. usage: python3 stage_roc.py"""
 import os,json,glob,shutil
 H=os.path.dirname(os.path.abspath(__file__))+'/..';V=H+'/veh';S=H+'/stage/UserData/FAModels'
 CARD={'cm34':'ROC CM-34',   # CM-33 removed from the deck (Shawn 27 Nov 02:2x)
-     'cm22':'ROC CM-22','cm11':'ROC CM-11','antelope':'ROC Antelope','m41d':'ROC M41D',
+     'cm11':'ROC CM-11','antelope':'ROC Antelope','m41d':'ROC M41D',
       'tb2000':'ROC Thunderbolt-2000','kf6':'ROC Kung Feng VI','tk3':'ROC Tien Kung III',   # CM-26 removed from the ROC set (Shawn 27 Nov 00:0x)
       'cm21':'ROC CM-21','cm32':'ROC CM-32','lsw2':'ROC Land Sword II','f16v':'ROC F-16V','f5f':'ROC F-5F','m110a2':'ROC M110A2','uh60m':'ROC UH-60M',
       'ah64e':'ROC AH-64E','m60a3':'ROC M60A3 TTS','fck1':'ROC F-CK-1','c130':'ROC C-130HE','chx2':'ROC Chung Hsiang II',   # Shawn's 26 Nov uploads
@@ -30,6 +30,12 @@ for f in inf+t91:shutil.copy(f,S);n+=1
 for r in json.load(open(WT+'/infantry-bodies-roc.json')):
     for f in r['lods']:assert os.path.exists(f'{S}/{f}'),f
 shutil.copy(H+'/t91/rules.json',H+'/stage/roc-weapon-rules.json')
+# Shawn 27 Nov 14:4x in game: the CM-34 faced backwards (turret at the front); the M41D was ~70 % of its size (5.8 m with the gun; real M41 8.2 m
+# with the gun, 3.2 m wide; model 2.3 m wide). FAModels entries take yaw (degrees) and scale for both the Arsenal and battle models.
+# Shawn 27 Nov 15:0x: "CM-22 Model is too poor, replace it by the model of CM-21" (same M113-family hull; the CM-22's own files stay unshipped).
+if 'ROC CM-21' in models:models['ROC CM-22']=dict(models['ROC CM-21'])
+for card,extra in {'ROC CM-34':{'yaw':180},'ROC M41D':{'scale':1.4}}.items():
+    if card in models:models[card].update(extra)
 json.dump(models,open(H+'/stage/roc-models.json','w'),indent=1,ensure_ascii=False)
 # paint schemes (Shawn 26 Nov: "2 basecolor skins for Mirage 2000, make them options"): <tex>@<Scheme>.fat came with the fat/ glob above;
 # paint-schemes-roc.json is an add-on read by the ROC-branch FAModels; button swatches = 256x144 crop of the armory colour texture centre
@@ -37,7 +43,7 @@ from PIL import Image
 PAINT={'ROC Mirage 2000-5':('m_roc_mirage_static_tex0',['GreyCamo']),
        'ROC Hsiung Feng IIE':('m_roc_hf2e_static_tex4',['Camo']),
        'ROC CM-34':('m_roc_cm34_static_tex0',['Dust','Mosaic']),
-       'ROC CM-32':('m_roc_cm32_static_tex1',['Dust','Mosaic'])}   # Shawn 27 Nov 02:2x: CM-32 with the CM-34 sets (camo3d.py blocks)   # Shawn 27 Nov 02:1x: the SHAMO (desert) and MAISAIKE (mosaic) sets from his folder   # Shawn 26 Nov 21:5x: optional Woodland camo (camo_hf2e.py)
+       'ROC CM-32':('m_roc_cm34_static_tex0',['Dust','Mosaic'])}   # Shawn 27 Nov 02:2x: CM-32 with the CM-34 sets (camo3d.py blocks)   # Shawn 27 Nov 02:1x: the SHAMO (desert) and MAISAIKE (mosaic) sets from his folder   # Shawn 26 Nov 21:5x: optional Woodland camo (camo_hf2e.py)
 os.makedirs(S+'/paint',exist_ok=True)
 def swatch(f):
     im=Image.open(f).convert('RGB');w,h=im.size;cw,ch=int(w*0.5),int(w*0.5*144/256);x,y=(w-cw)//2,(h-ch)//2;return im.crop((x,y,x+cw,y+ch)).resize((256,144),Image.LANCZOS)
