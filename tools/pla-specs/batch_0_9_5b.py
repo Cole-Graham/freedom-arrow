@@ -6,7 +6,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2];REL=ROOT/'mod';SRC=REL/'source';sys.path[:0]=[str(ROOT),str(REL),str(Path(__file__).parent),str(Path(__file__).parent/'lateralus')]
 from pipeline.tables import FIELD_TO_FILE
 from pla_graph import Graph
-V='0.9.7l-dev.24';PREV='0.9.3'
+V='0.9.8-dev.1';PREV='0.9.3'
 # 0.9.3 (build 242, the playtest released 20 Nov 2026) was built in out/local-093r242.
 BASE=json.loads((REL/f'out/receipts/FreedomArrow-{PREV}.json').read_text())['complete']['sha256']   # the one record of builds (repo cleanup step 1)
 p=argparse.ArgumentParser(description=__doc__);p.add_argument('--vanilla',type=Path,required=True);p.add_argument('--check',action='store_true',help='run the checks, write nothing');a=p.parse_args()
@@ -1037,6 +1037,17 @@ import infantry_tiers_1126;infantry_tiers_1126.apply(t,g,ok,rec,patches)
 # ---------- Gvardii Motostrelki 60 -> 65, Motopekhota 55 -> 60, Shturmoviki 50 -> 55 points; VDV PKP RPG-7D3 ammo 4 -> 6 (Lateralus 26 Nov 2026 15:1x).
 # Existing rows only. See lateralus/infantry_prices_1126.py.
 import infantry_prices_1126;infantry_prices_1126.apply(t,g,ok,rec)
+# ---------- Reserve Marines M72A7 LAW ammo 5 -> 8 = 3 more LAW carriers (disposable: one round each) (Lateralus 26 Nov 2026 17:0x). Existing rows
+# only. Its squad-reload.json entry is rewritten below with the build. See lateralus/reserve_marines_law_1126.py.
+import reserve_marines_law_1126;reserve_marines_law_1126.apply(t,g,ok,rec)
+# ---------- Reserve Marines 65 -> 70, Standard loadout 75 -> 85 with 2 M240L (die last) in place of 2 M27 IAR; China Marines 65 -> 60 points
+# (Lateralus 26 Nov 2026 17:3x). See lateralus/marines_prices_1126.py.
+import marines_prices_1126;marines_prices_1126.apply(t,g,ok,rec)
+# ---------- Troopers AA Standard without the M-25 CDTE, Mixed 55 -> 70; Mech. Riflemen AA 45 -> 40, 4 M4A1 + 2 M249E3, Stinger 5 -> 6; QJY-201 =
+# PKP-N stats (Lateralus 26 Nov 2026 18:4x). After the Light Brigade Troopers AA and MG sections. See lateralus/aa_squads_qjy_1126.py.
+import aa_squads_qjy_1126;aa_squads_qjy_1126.apply(t,g,ok,rec)
+# ---------- PLA Light Brigade (Osama), merged into codex/development for 0.9.8-dev.1 (Lateralus 26 Nov 2026 18:4x). Its rows are in the reserved
+# 'plb' ID block, so they keep the IDs of the 0.9.7l test builds. The development sections run before it (no live row after the block).
 import pla_light_brigade_units_1126
 import pla_light_brigade_jiaolong_1126
 # Jiaolong CQC (Osama 26 Nov 02:0x): QBZ URGI (Mk18 copy) + Sea Dragons CQC kit; same 'plb' scope, after the Test SF copy.
@@ -1072,12 +1083,23 @@ with g.scope('plb'):pla_light_brigade_units_1126.apply(t,g,ok,rec);pla_light_bri
 import qlz87_icon_1126;qlz87_icon_1126.apply(t,g,ok,rec)
 # PLARF tripod QLZ-87 named 'QLZ-87 (tripod)'; the hand-held squad copy keeps 'QLZ-87' (Osama 26 Nov 10:4x). See pla_light_brigade_qlz87_tripod_1126.py.
 import pla_light_brigade_qlz87_tripod_1126;pla_light_brigade_qlz87_tripod_1126.apply(t,g,ok,rec)
-import roc_hook;roc_hook.apply(t,g,ok,rec,recheck=lambda:(disposable_launchers_1123.check(t,ok,a.vanilla),weapon_coverage_check.check(t,patches,ok)))
+# ---------- MV-22B Osprey GAU-17 loadout +5 -> +10, the CV-22B's (Osama 26 Nov 19:4x). See osprey_gau17_1126.py.
+import osprey_gau17_1126;osprey_gau17_1126.apply(t,g,ok,rec)
+import unit_standards
+import roc_hook;roc_hook.apply(t,g,ok,rec,recheck=lambda:(disposable_launchers_1123.check(t,ok,a.vanilla),weapon_coverage_check.check(t,patches,ok),unit_standards.check(t,ok,rec)))
+# Unit standards on the final data (docs/development/UNIT-STANDARDS.md, Lateralus 26 Nov 2026): fails on a new squad that breaks the launcher or
+# one-name-one-damage rules, and rebuilds the disposable-launcher squad rate table (squad-reload.json) from this build's squads.
+squad_reload=unit_standards.check(t,ok,rec)
+_old=json.loads(z.read('UserData/FreedomArrow/squad-reload.json'))['squads'];_new=squad_reload['squads']
+print('SQUAD RELOAD',len(_old),'->',len(_new),'entries; changed',sorted(k for k in _old if k in _new and _old[k]!=_new[k]),'added',len(set(_new)-set(_old)),'gone',sorted(set(_old)-set(_new)))
 rec['verified']='data checks only'
 if a.check:print('checks',checks,'(check only, nothing written)');sys.exit(0)
 rec.update(version=V,base=PREV,base_sha256=BASE,checks=checks,verified='data checks only')
 def save(n,d):f=SRC/n;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((json.dumps(d,indent=2,ensure_ascii=z.read(n).isascii() if n in z.namelist() else False)+'\n').encode())
 for tab,fn in FIELD_TO_FILE.items():save('UserData/FreedomArrow/constants/'+fn,patches[tab])
+# squad-reload.json (SquadReload.cs disposable rate per squad): rebuilt from this build's data by unit_standards (Lateralus 26 Nov 2026); before,
+# it came unchanged from the 0.9.3 base. package.py takes it from mod/source when it differs from the base.
+(SRC/'UserData/FreedomArrow/squad-reload.json').write_text(json.dumps(squad_reload,indent=1,sort_keys=True)+'\n')
 # Type 100 CSV CH-901 round (zbd100.py, Osama 22 Nov 13:5x "Give its CH-901 60mm penetration"): an own copy of 2018448 keeps the NLOS seeker lock
 # only if nlos.json lists it. The previous build's copy id (type100_ch901) is replaced, so a shifted row id never leaves a stale entry.
 _nf=SRC/'UserData/FreedomArrow/nlos.json';_nl=json.loads(_nf.read_text());_old=_nl.get('type100_ch901');_new=rec['zbd100']['ch901_round']

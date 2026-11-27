@@ -125,9 +125,49 @@ The motor values are `MaxSpeed`, `Acceleration` and `BurnTime`. Every missile ex
 
 **To give a missile more real reach,** raise `BurnTime` or `Acceleration` so that it burns for longer or reaches `MaxSpeed`, or raise `MaxSpeed`. The coast after burnout is always 5.4 s at most and `3.5 × MaxSpeed` long, so `MaxSpeed` sets the coast as well as the top speed.
 
+## Reload while the missile flies
+
+**Short answer:** a launcher reloads during the flight, except when its round has `PreventReloadWhileTracked` and `Seeker` 50 (terminal guidance) or 100 (semi-active). Then the reload timer stops until every missile the launcher guides has died: hit, shot down or out of speed. In 0.9.7l-dev.22, 103 ammunition rows have both, for example the TOW, Kornet, Konkurs, Metis, Hellfire and HJ-73. The CH-901 (ammo 2018448, `Seeker` 0, flag off) reloads during its flight.
+
+*Read from GameAssembly 1.2.2.1 (Lateralus 26 Nov 2026, thread 1568104480459722894: "check if the reload of the next missile starts while the previous missile is in flight"). Not measured in a game.*
+
+---
+
+| Method | RVA |
+| --- | ---: |
+| `ShootingSystem.WeaponForceFire` (guidance set after `SpawnMissile`, `0x8100E0`) | `0x80E4C0` |
+| `MagazineReloadingSystem.InternalUpdate` (reload stop, `0x7F4AB4`) | `0x7F4680` |
+| `MissilesHelper.UpdateDeadMissileWeapon` (guidance removed, `0x80B58F`) | `0x80B4D0` |
+
+1. **Launch.** After `SpawnMissile`, `WeaponForceFire` reads the round's `Seeker` (`Ammunitions` +0x108). For 50 or 100 it gives the weapon an `ActiveGuidanceComponent` (built from `Weapons.MultiTargetTracking` +0x5C and `SimultaneousTracking` +0x60) and adds the missile to it. Other seekers (0, 10 fire-and-forget, 200 SEAD, 300 laser) get none.
+2. **Reload.** Every frame of a reload, `MagazineReloadingSystem` checks the selected round's `PreventReloadWhileTracked` (`Ammunitions` +0x130). If it is set and the weapon has an `ActiveGuidanceComponent`, the method returns before it adds the frame time to the reload. The reload starts again from where it stopped.
+3. **Missile death.** `UpdateDeadMissileWeapon` removes the dead missile from the component. When no missile is left (`ActiveMissiles` 0), it removes the component, and the reload continues.
+
+So for a launcher with one round in its magazine, one cycle is the flight plus the reload. An infantry squad's shared weapon reloads faster with more carriers alive (the frame time is multiplied by `UsingAliveSoldierCount`), but the flight is not shortened.
+
+### DPM visualizer
+
+From 26 Nov 2026 (Lateralus), the web DPM visualizer (`dpm-core.js` on freedomarrow.app) counts missile flight:
+
+- **Flight time:** the straight line above, from a standing launch (launcher speed 0), for `TrajectoryType` 100, 110, 120, 200 and 600. A missile that cannot reach the distance shows "falls short" and the time to its death.
+- **TTK:** plus the flight to the pinned distance (and the burn delay of a burning round).
+- **DPM:** for a round that stops the reload, the flight to that distance is added to every magazine cycle. A squad's shared weapon divides only the reload by its carriers. Other rounds keep their DPM.
+- **Pin panels:** "flight N s, the reload waits for it" or "reloads during the flight".
+
+Calculated examples (0.9.7l-dev.22 data, theoretical, not yet proven in a game):
+
+- Humvee TOW-2 (reload 5–6 s, magazine 1): DPM 114.6 at every range before; now 68.9 at 800 card m and 55.4 at 1,600 card m (TOW flight 3.6 s and 5.9 s).
+- Blood Wolves CH-901: DPM unchanged (it reloads during the flight); TTK plus 5.2 s at 1,400 card m.
+- HJ-73 / HJ-73D (`MaxSpeed` 100, `Acceleration` 30, `BurnTime` 4): the straight-line reach is about 600 world units (1,200 card m). The vehicle rows have a table range of 650 (Type 86, ammo 2010905) and 800 (ZBD-03 / ZLC-2000, ammo 2011153), so from about 1,200 card m their missiles die before they arrive.
+
 ## Not covered
 
 - **Turning:** the pursuit path is longer than a straight line, and `RotationSpeed` limits the turn.
 - **Loft:** `LoftAngle` and `LoftHeight` make a longer path.
 - **Gravity:** the gravity on the speed vector before ignition is left out.
 - **Speed units:** the figures assume that a plane's speed and a missile's speed are in the same units.
+- **Launch rate while guiding:** whether `SimultaneousTracking` also stops a weapon with more than one round in its magazine from firing again was not traced.
+
+## Document change log
+
+- 2026-11-26 16:3x PST (America/Los_Angeles) — Added "Reload while the missile flies" (PreventReloadWhileTracked + Seeker 50/100 stop the reload until the missile dies), the DPM visualizer flight model, and the HJ-73 reach note (Lateralus).

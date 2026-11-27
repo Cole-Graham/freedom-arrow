@@ -7,7 +7,7 @@ How a detonation becomes health loss, a roof hit, or stress. The notes are the g
 - [Damage over time](damage-over-time.md): burning rounds deal no impact damage; their fire hits everything in `HealthAOERadius` every 0.5 s.
 - [Stress](stress.md) adds blast stress and a share of the health lost, then Shocked and Panicked scale the unit until the bar recovers.
 - [Target and ammunition selection](target-and-ammo-selection.md) scores each round and each target, and shows why a weapon fires at a target it can barely damage.
-- [Missile flight](missile-flight.md) explains how start speed, burn time, acceleration, top speed and the 30% death speed set a missile's real reach, and how that compares with its table range.
+- [Missile flight](missile-flight.md) explains how start speed, burn time, acceleration, top speed and the 30% death speed set a missile's real reach, and how that compares with its table range, and when a launcher's reload waits for its missile.
 - [Low altitude and air sight](low-altitude-and-air-sight.md) explains the Ground / Low / High states, which optics an air target is checked against, and the 15-unit forest layer that blocks sight lines above the visible trees.
 - [Infantry casualty and weapon order](infantry-casualty-and-weapon-order.md) explains which soldier dies first (`SquadMembers.DeathPriority`, highest first, ties random) and what `SquadWeapons.Order`, `WeaponChannel` and `WeaponPriority` do for infantry (list order only; no fire priority).
 - [Infantry soldiers with two weapons](infantry-dual-weapons.md): no shotgun switch; each weapon fires at its own rate × carriers, inside its own range, and a man aiming one weapon is skipped by the other for about 0.5 s.
@@ -23,3 +23,4 @@ How a detonation becomes health loss, a roof hit, or stress. The notes are the g
 - 2026-11-24 13:50 PST (America/Los_Angeles) — Added the FAModels model loading page.
 - 2026-11-25 18:5x PST (America/Los_Angeles) — Added the damage-over-time page.
 - 2026-11-26 01:26 PST (America/Los_Angeles) — Added the transport unit-swap page.
+- 2026-11-26 16:3x PST (America/Los_Angeles) — Missile flight entry: reload wait.
