@@ -78,6 +78,7 @@ CARDS = {
     # Shawn 27 Nov 01:4x: "Add AN/TWQ-1 to ROC deck and duplicate data from latest Freedom Arrow". Added last.
     'ROC AN/TWQ-1 Avenger': ('AN/TWQ-1 Avenger', 10, 'AN/TWQ-1 Avenger', None),
 }
+REMOVED = {'ROC CM-33'}   # out of the deck (see apply); keep the CARDS entry so later unit IDs do not move
 SPEC_NAME = 'ROC Joint Arms Coastal'
 SPEC_UI = 'Joint Arms Battalion and Coastal Operations Command 聯合兵種營及濱海作戰指揮部'
 
@@ -139,9 +140,15 @@ def apply(t, g, ok, rec):
                      'men': len(rows('SquadMembersJson', UnitId=uid))}
     stage2 = squads(t, g, ok, res, rows)
     stage3 = vehicles(t, g, ok, res, rows)
+    # Removed cards (Shawn 27 Nov 02:2x: "the CM-33 model quality is too poor, so just delete that unit"): the unit row stays, so every later
+    # ROC unit ID is unchanged, but it leaves the ROC spec and the Armory and carries nobody.
+    for name in REMOVED:
+        uid = res[name]['unit']; res[name]['removed'] = True
+        for r in rows('SpecializationAvailabilitiesJson', UnitId=uid): g.remove('SpecializationAvailabilitiesJson', r['Id'])
+        g.put('Units', uid, {'DisplayInArmory': False})
     # Transports: every ROC infantry card may ride in every ROC ground vehicle or helicopter whose seats fit the squad.
     carriers = {r['UnitId'] for r in TA.values() if r}                            # units the game already uses as transports
-    cars = [v['unit'] for v in res.values() if U[v['unit']].get('InfantrySlots', 0) > 0 and U[v['unit']]['Type'] != 2
+    cars = [v['unit'] for v in res.values() if not v.get('removed') and U[v['unit']].get('InfantrySlots', 0) > 0 and U[v['unit']]['Type'] != 2
             and int(v['parent'].rsplit('(', 1)[1][:-1]) in carriers]
     links = 0
     for v in res.values():
@@ -151,7 +158,7 @@ def apply(t, g, ok, rec):
         for c in cars:
             if U[c]['InfantrySlots'] >= v['men']:
                 g.add('TransportAvailabilitiesJson', next(iter(TA.values())), {'SpecializationAvailabilityId': sa['Id'], 'UnitId': c}); links += 1
-    ok(sorted(r['UnitId'] for r in SA.values() if r and r['SpecializationId'] == spec) == sorted(v['unit'] for v in res.values()), 'ROC spec = the ROC cards')
+    ok(sorted(r['UnitId'] for r in SA.values() if r and r['SpecializationId'] == spec) == sorted(v['unit'] for v in res.values() if not v.get('removed')), 'ROC spec = the ROC cards')
     ok(all(v['transports'] for v in res.values() if U[v['unit']]['Type'] == 2), ('every ROC squad has a transport', [k for k, v in res.items() if U[v['unit']]['Type'] == 2 and not v['transports']]))
     rec['roc'] = {'spec': spec, 'cards': res, 'transports': [U[c]['HUDName'] for c in cars], 'transport_links': links,
                   'dropped_swap_options': dropped, 'skipped_squad_weapons_without_ammo': unarmed, 'zero_round_rows': zero, 'stage2': stage2, 'stage3': stage3, 'live_edits': []}

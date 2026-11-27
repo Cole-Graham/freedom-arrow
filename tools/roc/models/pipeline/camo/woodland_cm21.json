@@ -1,0 +1,50 @@
+{
+ "about": "CM-21 camo redraw in the same CM-26 Woodland (Shawn 27 Nov 02:2x). Old = CM-21's own camo colours (k-means).",
+ "old": [
+  [
+   81,
+   94,
+   81
+  ],
+  [
+   76,
+   64,
+   61
+  ],
+  [
+   74,
+   79,
+   72
+  ]
+ ],
+ "radius": 20,
+ "pattern": "woodland",
+ "size": 1.4,
+ "colors": [
+  [
+   105,
+   96,
+   78
+  ],
+  [
+   68,
+   84,
+   58
+  ],
+  [
+   98,
+   70,
+   52
+  ],
+  [
+   42,
+   42,
+   40
+  ]
+ ],
+ "cover": [
+  0.35,
+  0.2,
+  0.15
+ ]
+}

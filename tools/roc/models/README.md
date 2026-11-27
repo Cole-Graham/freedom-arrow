@@ -157,6 +157,16 @@ Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `inf
 - **Tien Kung III cab (Shawn's screenshot: the cab looked open/broken):** the cab material (`chetou1`) was alpha BLEND, because its colour map carries the window cut-outs in its alpha (6.5 % of the sheet), so the whole cab drew as see-through and sorted wrongly. `canopy_split.py` moves the 30 window faces (alpha < 0.5) to their own glass part, the cab is OPAQUE (`glb_alpha.py`), and `tint_glass.py` makes the windows dark tinted glass (0.10, 0.12, 0.13, opacity 0.80). Rebuilt: 21.0k triangles (LODs 12.6k / 7.4k), 14.0 m, Arsenal textures 7.4 Mpx. Old files in `veh/x/tk3/pre-glass/`.
 - **CM-34 paint (Shawn: "add more paint options to CM34"):** his folder has two more colour sets beside the default green: `SHAMO` (desert) and `MAISAIKE` (mosaic). They become the paint schemes `Dust` ("Desert") and `Mosaic` ("Mosaic camo"), 12 `@Scheme` textures (hull, wheels, gun; Arsenal and battle) at the shipped sizes, made with the same LANCZOS resizes as the default (the default matched its source exactly).
 
+## CM-33 removed; weathering, camo and PBR infantry (27 November 2026, morning)
+
+- **CM-33 removed (Shawn: "the CM-33 model quality is too poor, so just delete that unit"):** `roc.py` `REMOVED` takes the card out of the ROC spec and the Arsenal (`DisplayInArmory` false); its model rule is gone from `roc-models.json`. Transports are now CM-21, CM-32 and CM-34.
+- **Weathering (`pipeline/weather_fam.py SLUG GLB LENGTH [K]`):** faded paint, crevice grime (AO), vertical streaks, dust on top faces, edge wear, small chips and mud below `MUD_TOP` m (mud keeps the surface detail and is written into the mask). It needs the texel position map from `pipeline/uvpos.py`. Applied to Tien Kung III, Thunderbolt 2000 and Land Sword II (M60A3/M110A2 look), CM-21, CM-22 and, lighter, the EC225. Unweathered textures stay in `veh/x/<slug>/pre-weather/`.
+- **Camo (`pipeline/camo3d.py SLUG GLB LENGTH SPEC.json [SCHEME]`):** paints a 3D woodland or block pattern on the texels near the model's old camo colours and keeps their shading. Specs in `pipeline/camo/`. CM-22 has the CM-26 woodland colours (tracks skipped); CM-21 is redrawn in the same woodland.
+- **CM-32:** the hull had no usable UVs and a flat cartoon colour. `cm32_uv.py` unwraps it to a 2048 sheet, `dilate_islands.py` fills the island gaps, and camo3d + weather_fam give Default (woodland), `Dust` ("Desert") and `Mosaic` schemes like the CM-34. No baked AO or normal detail yet (the source is untextured).
+- **CM-21 transparency (Shawn: "check if the CM21 model has any transparency issues"):** the whole body material was alpha BLEND; it is OPAQUE now in all 4 material files. CM-32 Seat/Net/Text parts are OPAQUE too.
+- **EC225 (Shawn: "looks like a toy"):** `livery_ec225.py` v2 adds per-part detail, panel cavities from the normal map and exhaust soot, then light weathering (K 0.45, `MUD_TOP` 0.5).
+- **Infantry PBR (Shawn: follow the latest Chinese paratroopers):** `pipeline/infantry/atlas_pbr.py` builds all 7 ROC bodies with area-weighted atlas tiles, a PBR mask from ORM / roughness+metallic / GTA `_spec_` maps, AO in the colour and light sharpening. Old atlases in `inf/lod/old-pbr/` and `inf/fat/old-pbr/`.
+
 ## Document change log
 
 - 2026-11-25 03:4x PST (America/Los_Angeles) — T91 rifle converted; recipe and first grip offset.
@@ -177,3 +187,4 @@ Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `inf
 - 2026-11-27 01:46 PST (America/Los_Angeles) — SF Scout = ROC SF 4 ghillie body with cut-out; AN/TWQ-1 card.
 - 2026-11-27 01:50 PST (America/Los_Angeles) — SF 4 ghillie sleeves bent onto the arms; SF Section = ROC SF2 body.
 - 2026-11-27 02:15 PST (America/Los_Angeles) — TK-III cab glass fixed; CM-34 Desert and Mosaic paint schemes.
+- 2026-11-27 03:36 PST (America/Los_Angeles) — CM-33 removed; weathering on TK-III, TB2000, LSW2, CM-21, CM-22, EC225; CM-22/CM-21 woodland; CM-32 UV + 3 schemes; CM-21 opaque; PBR infantry atlases.

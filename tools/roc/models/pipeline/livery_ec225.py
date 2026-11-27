@@ -31,6 +31,27 @@ sun=d2&((rr<0.11)|((rr<0.25)&(np.cos(12*ang)>0.35)))      # white sun with 12 ra
 col[sun]=WHITE
 rng=np.random.default_rng(5);nz=np.asarray(Image.fromarray(rng.normal(0,1,(H//32,W//32)).astype(np.float32),'F').resize((W,H),Image.BICUBIC))   # smooth, no blocks
 col=col*(1+0.015*nz[...,None])
+# v2 (Shawn 27 Nov 02:4x "EC225 ... looks like a toy, try your best to enhance the texture quality"): keep the seller's own surface detail
+# (panel lines, rivets, grime) as a brightness ratio to its local average, measured inside each old livery colour separately, so the old
+# navy / white boundaries leave no halo; plus a cavity darkening from the normal map and exhaust soot behind the engines.
+from PIL import ImageFilter
+cls=np.where((b>r+25)&(b>g+10),0,np.where((r>g+60)&(r>b+60),1,2))
+Lc=0.3*r+0.59*g+0.11*b
+def nblur(v,m,rad):
+    def k(x):
+        x=x.astype(np.float32)
+        for ax in (0,1):
+            c=np.cumsum(np.pad(x,[(rad+1,rad) if i==ax else (0,0) for i in range(2)],mode='edge'),axis=ax);x=(np.take(c,range(2*rad+1,c.shape[ax]),axis=ax)-np.take(c,range(0,c.shape[ax]-2*rad-1),axis=ax))/(2*rad+1)
+        return x
+    return k(v*m)/np.maximum(k(m.astype(np.float32)),1e-3)
+det=np.ones_like(Lc)
+for k_ in range(3):
+    mk=(cls==k_)&paint;loc=nblur(Lc,mk,6);det=np.where(mk,np.clip(Lc/np.maximum(loc,1),0.72,1.25),det)
+nm=np.asarray(Image.open(f'{TD}/ec225_H225_Normal.png').convert('RGB'),float)/255;tilt=np.sqrt((nm[...,0]-0.5)**2+(nm[...,1]-0.5)**2)*2
+cav=np.clip(np.asarray(Image.fromarray((tilt*255).astype(np.uint8)).filter(ImageFilter.MaxFilter(3)),float)/255*1.6,0,0.45)
+col=col*det[...,None]*(1-cav[...,None])
+soot=np.clip(1-(y-2.6)/4.0,0,1)*(y>2.6)*(z>2.85)*(z<3.7)*(np.abs(x)>0.45)*0.55*np.clip((np.abs(nx)-0.2)/0.4,0,1)
+col=col*(1-soot[...,None])+np.array([28,26,24.0])*soot[...,None]
 out=img.copy();out[paint]=col[paint]
 Image.fromarray(np.clip(out,0,255).round().astype(np.uint8)).save(f'{OD}/ec225_H225_BaseColor.png')
 print('LIVERY painted %.1f%% of the sheet; markings texels: cross disc %d, roundel %d'%(100*paint.mean(),d1.sum(),d2.sum()))

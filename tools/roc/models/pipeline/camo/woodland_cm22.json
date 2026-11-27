@@ -1,0 +1,68 @@
+{
+ "about": "CM-22 -> CM-26 Woodland (Shawn 27 Nov 02:2x). Old = CM-22's own camo colours (k-means); colours = CM-26 hull camo (sand base, green, brown, black), a little more saturated than the worn CM-26 medians. tex2 = the tracks, left as they are.",
+ "old": [
+  [
+   58,
+   67,
+   50
+  ],
+  [
+   39,
+   43,
+   47
+  ],
+  [
+   75,
+   61,
+   44
+  ],
+  [
+   79,
+   87,
+   68
+  ],
+  [
+   65,
+   66,
+   51
+  ],
+  [
+   61,
+   54,
+   46
+  ]
+ ],
+ "radius": 22,
+ "pattern": "woodland",
+ "size": 1.4,
+ "colors": [
+  [
+   105,
+   96,
+   78
+  ],
+  [
+   68,
+   84,
+   58
+  ],
+  [
+   98,
+   70,
+   52
+  ],
+  [
+   42,
+   42,
+   40
+  ]
+ ],
+ "cover": [
+  0.35,
+  0.2,
+  0.15
+ ],
+ "skip": [
+  2
+ ]
+}

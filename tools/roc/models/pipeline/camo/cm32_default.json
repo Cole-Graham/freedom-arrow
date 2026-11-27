@@ -1,0 +1,3 @@
+{"about": "CM-32 Default = CM-34 default green set (Shawn 27 Nov 02:2x). Colours from the CM-34 hull sheet clusters. Old = the placeholder grey of cm32_uv.py.",
+ "old": [[128,128,128]], "radius": 12, "pattern": "blocks", "block": 4.0, "size": 1.0,
+ "colors": [[84,93,72],[72,80,64],[60,62,58]], "weights": [0.5,0.2,0.3]}
