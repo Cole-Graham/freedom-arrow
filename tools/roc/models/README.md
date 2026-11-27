@@ -130,6 +130,15 @@ Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `inf
 - **EC225:** Shawn's model (H225 game model, 46.5k triangles, 16.4 m), one 2048 sheet with AO / roughness / metal (`mga_orm`: R AO, G roughness, B metal). The 30 window parts shared the body material and its alpha map: `ec225_glass.py` gives them their own glass part and the body is OPAQUE; `tint_glass.py` makes them dark tinted (0.10, 0.12, 0.13, opacity 0.65). Battle uses the full model (46.5k, under the 60k cap), LODs 27.8k / 16.4k.
 - **Paint (`livery_ec225.py`):** laid out in 3D from `uvpos.py` (body only: interior, rotors, gear and glass left out with `SKIP`). Sky blue cabin, dark blue engine deck and fin cap, white belly and tail boom, yellow tail-boom band, black nose radome; on both sides a red cross on a white disc behind the last window and the ROC roundel (blue disc, white 12-ray sun). Only the seller's navy / white / red livery texels change; a faint smooth noise keeps the paint from looking flat. The "2251" numbers are not drawn.
 
+## New T91 rifle and Kestrel-1 launcher models (27 November 2026, ~01:00)
+
+**Shawn's new T91 and Kestrel models replace the old T91 and give the Kestrel-1 its own model. Not yet in a game build; the Kestrel position in the hands is a first guess.**
+
+- **T91:** `T91战斗步枪.FBX` (14.6k triangles, 0.95 m, one 1024 colour map `Hui.jpg`, no normal map). `wconv.py ... 2617 0,0,90 Hui.jpg -` (muzzle was -X) → 2,587 triangles, `famconv --length 0.953 --tex-max 1024`. Same file names (`w_roc_t91*`), so the 9 T91 hand rules are unchanged (offset `[0, -0.19, 0.19]`). The old T91 files are kept in `t91/old-1125/`.
+- **Kestrel-1:** `火箭筒.obj` (cgmodel 732057, 229k triangles, 1.40 m, 4096 PBR TGA). `wconv.py ... 2617 0,0,-90` (muzzle +X; pistol grip behind the front grip) → 2,587 triangles, `famconv --length 1.40 --tex-max 1024`. The two loose rocket models are not used (the game's own projectile flies).
+- **Kestrel hand rules (4):** slot `special` (FAModels' launcher slot), weapon 2900002 (Kestrel-1, from the ROC report), on Marine AT 5035, Marine 5038, Mech. Riflemen T112 5039 and Reserver Kestrel 5043. Offset `[0, -0.16, 0.07]` puts the pistol grip where the rifles' grip sits; adjust from in-game screenshots.
+- `stage_roc.py` now stages every `w_roc_*` weapon. `roc-weapon-rules.json` (13 rules) is the copy in this folder.
+
 ## Document change log
 
 - 2026-11-25 03:4x PST (America/Los_Angeles) — T91 rifle converted; recipe and first grip offset.
@@ -146,3 +155,4 @@ Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `inf
 - 2026-11-26 22:08 PST (America/Los_Angeles) — Hsiung Feng IIE: dark tinted cab glass and optional Woodland camo (paint scheme); size question recorded.
 - 2026-11-27 00:05 PST (America/Los_Angeles) — CM-12 converted from Shawn's file; CM-26 removed from the ROC stage.
 - 2026-11-27 00:33 PST (America/Los_Angeles) — EC225 converted and repainted in ROC SAR colours; 5 new cards noted.
+- 2026-11-27 01:06 PST (America/Los_Angeles) — New T91 model; Kestrel-1 model and 4 launcher hand rules.

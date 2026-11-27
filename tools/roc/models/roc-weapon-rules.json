@@ -1,0 +1,249 @@
+[
+ {
+  "unitId": 5036,
+  "soldierIndex": -1,
+  "slot": "primary",
+  "weaponId": 2900003,
+  "file": "w_roc_t91.fam",
+  "battle": "w_roc_t91_lo.fam",
+  "scale": 1,
+  "offset": [
+   0,
+   -0.19,
+   0.19
+  ],
+  "rotation": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "unitId": 5037,
+  "soldierIndex": -1,
+  "slot": "primary",
+  "weaponId": 2900004,
+  "file": "w_roc_t91.fam",
+  "battle": "w_roc_t91_lo.fam",
+  "scale": 1,
+  "offset": [
+   0,
+   -0.19,
+   0.19
+  ],
+  "rotation": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "unitId": 5040,
+  "soldierIndex": -1,
+  "slot": "primary",
+  "weaponId": 2900010,
+  "file": "w_roc_t91.fam",
+  "battle": "w_roc_t91_lo.fam",
+  "scale": 1,
+  "offset": [
+   0,
+   -0.19,
+   0.19
+  ],
+  "rotation": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "unitId": 5042,
+  "soldierIndex": -1,
+  "slot": "primary",
+  "weaponId": 2900014,
+  "file": "w_roc_t91.fam",
+  "battle": "w_roc_t91_lo.fam",
+  "scale": 1,
+  "offset": [
+   0,
+   -0.19,
+   0.19
+  ],
+  "rotation": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "unitId": 5043,
+  "soldierIndex": -1,
+  "slot": "primary",
+  "weaponId": 2900014,
+  "file": "w_roc_t91.fam",
+  "battle": "w_roc_t91_lo.fam",
+  "scale": 1,
+  "offset": [
+   0,
+   -0.19,
+   0.19
+  ],
+  "rotation": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "unitId": 5044,
+  "soldierIndex": -1,
+  "slot": "primary",
+  "weaponId": 2900004,
+  "file": "w_roc_t91.fam",
+  "battle": "w_roc_t91_lo.fam",
+  "scale": 1,
+  "offset": [
+   0,
+   -0.19,
+   0.19
+  ],
+  "rotation": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "unitId": 5045,
+  "soldierIndex": -1,
+  "slot": "primary",
+  "weaponId": 2900003,
+  "file": "w_roc_t91.fam",
+  "battle": "w_roc_t91_lo.fam",
+  "scale": 1,
+  "offset": [
+   0,
+   -0.19,
+   0.19
+  ],
+  "rotation": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "unitId": 5046,
+  "soldierIndex": -1,
+  "slot": "primary",
+  "weaponId": 2900004,
+  "file": "w_roc_t91.fam",
+  "battle": "w_roc_t91_lo.fam",
+  "scale": 1,
+  "offset": [
+   0,
+   -0.19,
+   0.19
+  ],
+  "rotation": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "unitId": 5047,
+  "soldierIndex": -1,
+  "slot": "primary",
+  "weaponId": 2900004,
+  "file": "w_roc_t91.fam",
+  "battle": "w_roc_t91_lo.fam",
+  "scale": 1,
+  "offset": [
+   0,
+   -0.19,
+   0.19
+  ],
+  "rotation": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "unitId": 5035,
+  "soldierIndex": -1,
+  "slot": "special",
+  "weaponId": 2900002,
+  "file": "w_roc_kestrel.fam",
+  "battle": "w_roc_kestrel_lo.fam",
+  "scale": 1,
+  "offset": [
+   0,
+   -0.16,
+   0.07
+  ],
+  "rotation": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "unitId": 5038,
+  "soldierIndex": -1,
+  "slot": "special",
+  "weaponId": 2900002,
+  "file": "w_roc_kestrel.fam",
+  "battle": "w_roc_kestrel_lo.fam",
+  "scale": 1,
+  "offset": [
+   0,
+   -0.16,
+   0.07
+  ],
+  "rotation": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "unitId": 5039,
+  "soldierIndex": -1,
+  "slot": "special",
+  "weaponId": 2900002,
+  "file": "w_roc_kestrel.fam",
+  "battle": "w_roc_kestrel_lo.fam",
+  "scale": 1,
+  "offset": [
+   0,
+   -0.16,
+   0.07
+  ],
+  "rotation": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "unitId": 5043,
+  "soldierIndex": -1,
+  "slot": "special",
+  "weaponId": 2900002,
+  "file": "w_roc_kestrel.fam",
+  "battle": "w_roc_kestrel_lo.fam",
+  "scale": 1,
+  "offset": [
+   0,
+   -0.16,
+   0.07
+  ],
+  "rotation": [
+   0,
+   0,
+   0
+  ]
+ }
+]
