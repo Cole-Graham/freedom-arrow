@@ -115,6 +115,14 @@ Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `inf
   - **Camo (paint button, scheme `Camo` = "Woodland camo"):** colours are the M60A3 body texture's own camo colours (medians of its green 57,66,50, brown 87,71,62 and dark grey 47,50,57). `uvpos.py` rasterises the world position of every texel from the UVs (CPU, no render), and `camo_hf2e.py` lays a 3D noise pattern on it (patches about 1-2 m on the model), so the camo runs across UV seams. Only texels near each sheet's main paint colour change (blue-grey body, white cab), scaled by their own brightness so panel lines and shading stay; wheel hubs go plain green as in the photo. The lighter mud and wear are applied on top with the same noise, so they match the default. 14 `@Camo` textures (Arsenal and battle), swatches `paint/ROC_Hsiung_Feng_IIE@{Default,Camo}.png`, listed in `paint-schemes-roc.json`.
   - **Size (open question):** the model's wheels are 0.61 m across; a real truck wheel (315/80R22.5) is about 1.07 m. So the model is about 0.57 of real size (9.3 m; the real tractor and trailer are about 16 m). Not changed until Shawn or Osama say.
 
+## CM-12 converted, CM-26 out (27 November 2026, after midnight)
+
+**CM-12 has its own ROC model now, and CM-26 is out of the ROC set (Shawn: "Use the current model called CM-11 for CM-12 cuz I checked the model is correct, remove CM-26 from the deck"). 25 cards have ROC models. Not yet in a game build.**
+
+- **CM-12:** from `CM-12.zip` (cgmodel 680292; its file is named `CM11.fbx`, which Shawn confirmed is the right CM-12). Seller maps `_c` colour, `_n` normal, `_ao`, `_s` specular (turned into roughness 0.7 dull to 0.2 shiny), `_a` cut-outs (track, Browning, bullets and M60 are alpha MASK, `glb_alpha.py`). 9.3 m like the CM-11. Arsenal 119.9k triangles (from 147.6k), battle 59.1k, LODs 41.4k / 28.5k. Arsenal textures fitted to the budget: 7.1 Mpx.
+- **CM-26:** it never had a card. It is no longer staged (`stage_roc.py`); its converted files stay in `veh/` only.
+- **Hsiung Feng IIE size:** kept at 9.3 m as modelled (Shawn: "happy with Hsiung Feng IIE size for now").
+
 ## Document change log
 
 - 2026-11-25 03:4x PST (America/Los_Angeles) — T91 rifle converted; recipe and first grip offset.
@@ -129,3 +137,4 @@ Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `inf
 - 2026-11-26 20:11 PST (America/Los_Angeles) — Hsiung Feng IIE converted and weathered; card 5048 added.
 - 2026-11-26 20:30 PST (America/Los_Angeles) — Hsiung Feng IIE weathering made lighter (Shawn).
 - 2026-11-26 22:08 PST (America/Los_Angeles) — Hsiung Feng IIE: dark tinted cab glass and optional Woodland camo (paint scheme); size question recorded.
+- 2026-11-27 00:05 PST (America/Los_Angeles) — CM-12 converted from Shawn's file; CM-26 removed from the ROC stage.
