@@ -340,7 +340,7 @@
   "landmarks": "auto"
  },
  "sf4": {
-  "source": "/home/sam/tars/work/ba-dev/replicas/codex/work/roc-20261125/x/ROC SF 4/ROC SF 4.blend",
+  "source": "/home/sam/tars/work/ba-dev/replicas/codex/work/roc-20261125/x/ROC SF 4/ROC SF 4 posed.blend",
   "texdir": "/home/sam/tars/work/ba-dev/replicas/codex/work/roc-20261125/x/ROC SF 4",
   "scale": 0.01,
   "ground": true,
@@ -422,5 +422,30 @@
    "JiLiFu"
   ],
   "units": "SF Scout 5044 (Shawn 27 Nov 01:4x: ROC SF 4 with ghillie suit)"
+ },
+ "sf2": {
+  "source": "/home/sam/tars/work/ba-dev/replicas/codex/work/roc-20261125/x/sf2/ROC SF2/ROC SF 2.blend",
+  "texdir": "/home/sam/tars/work/ba-dev/replicas/codex/work/roc-20261125/x/sf2/ROC SF2/textures",
+  "scale": 0.01128,
+  "ground": true,
+  "landmarks": "auto",
+  "meshes": [
+   "JGSF_soldier_01"
+  ],
+  "tex": {
+   "japan_gunner_late_japan_gunner_late_Base_Color": [
+    "japan_gunner_late_Base_Color",
+    "japan_gunner_late_Normal"
+   ],
+   "japan_gunner_heads_japan_gunner_heads_Base_Color": [
+    "japan_gunner_heads_Base_Color",
+    "japan_gunner_heads_Normal"
+   ]
+  },
+  "rigid": {},
+  "fit": [
+   "JGSF_soldier_01"
+  ],
+  "units": "SF Section 5045 (Shawn 27 Nov 01:5x: ROC SF2); model is 1.62 m tall, scaled to 1.83 m like the other ROC bodies"
  }
 }
