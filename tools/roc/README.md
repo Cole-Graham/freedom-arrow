@@ -29,7 +29,14 @@ Requested by Osama, 25 November 2026: <https://discord.com/channels/156696962774
 - **Build number clash:** the Light Brigade thread also used 366 (0.9.7l-dev.4) while this built; the ROC receipt is kept out of the shared receipts, so they did not see it. Versions are distinct and nothing reads the number for loading; the next ROC build takes a fresh number.
 - Built on Vengeance under /home/sam/tars (scratch, kept for the next ROC build): zip and pycryptodome in a scratch venv; inputs copied with rsync at idle priority while Broken Arrow was running.
 
+## Test build 0.9.8-dev.2-roc5 (build 394), 27 November 2026
+**On the dev launcher as a test build: gameplay `0.9.8-dev.2-roc5` + Models & music `0.2.109-roc5`. Osama: "Build the Roc dev". The deck was idle, so it was packaged on the deck.**
+- Gameplay: <https://freedomarrow.app/gameplay/FreedomArrow-0.9.8-dev.2-roc5.bamod> (sha256 691dcf85…, 252 MB). Models & music: file list <https://freedomarrow.app/assets/index/FreedomArrow-Assets-0.2.109-roc5.files.json> (14,260 files, 388 new on R2).
+- Contents: 0.9.8-dev.2 + ROC (cb27b99d): ROC spec 60, 25 ROC model entries (27 Nov weathering/camo, CM-32 v3, EC225 livery v2, CM-33 removed), 7 PBR infantry bodies (atlas v2), T91 and Kestrel rules, paint schemes, ROC FAModels.
+- Checks: 7,090 batch checks; queued changes, multiplayer equipment, battle triangles (max 59,682), slots, fields, swap prices, mounts, squad HP and infantry armour pass. The model carry check reports 2 mappings (PLA ZTZ-99A, PLA Catalogue ZTZ-99) that changed in 0.9.8-dev.5, after this build's dev.2 base; the check script was updated for dev.5. Not a ROC change.
+- The ROC receipt is kept in out/local-098d2roc5r394, not out/receipts (live packagers would fail to parse a -roc5 Models version).
 ## Document change log
 
 - 2026-11-25 01:0x PST (America/Los_Angeles) — Branch created: empty `roc.py`, reserved ID blocks, load/unload notes.
 - 2026-11-26 04:31 PST (America/Los_Angeles) — Test build 0.9.7-roc4 (build 366) built on Vengeance and published to the dev launcher.
+- 2026-11-27 11:03 PST (America/Los_Angeles) — Test build 0.9.8-dev.2-roc5 (build 394) built and published to the dev launcher.
