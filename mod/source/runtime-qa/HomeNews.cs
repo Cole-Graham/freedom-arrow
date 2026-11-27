@@ -71,24 +71,53 @@ static class HomeNews
     static string Safe(string s)=>string.Concat(Path.GetFileName(s).Select(c=>char.IsLetterOrDigit(c)||c=='.'||c=='-'||c=='_'?c:'_'));
     static bool Zh(){try{return HeliRangeCard.Chinese();}catch{return false;}}
     static Item Find(NewsItem n){var g=n?.gid;return g!=null&&g.StartsWith(Tag,StringComparison.Ordinal)?items.FirstOrDefault(i=>Tag+i.id==g):null;}
-    static void BeforeDelivered(ref Il2CppReferenceArray<NewsItem> news)
+    // A changed `ref` array does not reach the native method (tested on dev.6, 27 Nov: the panel kept Steam's news). So the prefix skips the
+    // original and calls OnNewsDelivered again with our array; the flag lets that inner call run the original unchanged.
+    static bool inner;
+    static Il2CppReferenceArray<NewsItem> Build()
     {
-        try
+        var l=items;bool zh=Zh();
+        var arr=new Il2CppReferenceArray<NewsItem>(l.Count);
+        for(int i=0;i<l.Count;i++)
         {
-            var l=items;if(l.Count==0)return;   // nothing of ours: leave Broken Arrow's news
-            bool zh=Zh();
-            var arr=new Il2CppReferenceArray<NewsItem>(l.Count);
-            for(int i=0;i<l.Count;i++)
-            {
-                var it=l[i];var n=new NewsItem();
-                n.gid=Tag+it.id;n.title=zh&&it.title_zh!=""?it.title_zh:it.title;n.contents=zh&&it.text_zh!=""?it.text_zh:it.text;
-                n.url=it.url;n.is_external_url=true;n.author="Freedom Arrow";n.feedlabel="Freedom Arrow";n.feedname="freedomarrow";
-                n.date=DateTime.TryParse(it.date,out var d)?(int)new DateTimeOffset(d,TimeSpan.Zero).ToUnixTimeSeconds():(int)DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-                arr[i]=n;
-            }
-            news=arr;
+            var it=l[i];var n=new NewsItem();
+            n.gid=Tag+it.id;n.title=zh&&it.title_zh!=""?it.title_zh:it.title;n.contents=zh&&it.text_zh!=""?it.text_zh:it.text;
+            n.url=it.url;n.is_external_url=true;n.author="Freedom Arrow";n.feedlabel="Freedom Arrow";n.feedname="freedomarrow";
+            n.date=DateTime.TryParse(it.date,out var d)?(int)new DateTimeOffset(d,TimeSpan.Zero).ToUnixTimeSeconds():(int)DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+            arr[i]=n;
         }
-        catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_HOME_NEWS items: "+e.Message);}
+        return arr;
+    }
+    static bool BeforeDelivered(NewsWindow __instance,Il2CppReferenceArray<NewsItem> news)
+    {
+        if(inner||items.Count==0)return true;
+        try{Fill(__instance,"delivery hook");return false;}
+        catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_HOME_NEWS items: "+e);return true;}
+    }
+    // Tested on dev.6 (27 Nov): the vanilla list is built without passing through the patched OnNewsDelivered, so Tick also checks the
+    // live NewsWindow: when its list holds anything that is not ours, the list is emptied and rebuilt through OnNewsDelivered(our items).
+    static void Fill(NewsWindow w,string why)
+    {
+        var box=w._newsItemsContainer;
+        if(box!=null)for(int c=box.childCount-1;c>=0;c--){var ch=box.GetChild(c).gameObject;if(ch.GetComponent<NewsWindowElement>()!=null)UnityEngine.Object.DestroyImmediate(ch);}
+        inner=true;
+        try{w.OnNewsDelivered(Build());}finally{inner=false;}
+        if(box!=null)foreach(var el in box.GetComponentsInChildren<NewsWindowElement>(true)){var it=Find(el._newsItem);if(it!=null)pending.Add((el,it.id,float.MaxValue));}
+        MelonLogger.Msg($"FREEDOM_ARROW_HOME_NEWS: news list filled with {items.Count} FA items ({why})");
+    }
+    static float nextScan;
+    static void Scan()
+    {
+        if(items.Count==0||Time.unscaledTime<nextScan)return;
+        nextScan=Time.unscaledTime+0.5f;
+        foreach(var w in UnityEngine.Object.FindObjectsOfType<NewsWindow>())
+        {
+            if(w==null||!w.isActiveAndEnabled||w._newsItemsContainer==null)continue;
+            var els=w._newsItemsContainer.GetComponentsInChildren<NewsWindowElement>(true);
+            if(els.Length==0)continue;   // Steam news not shown yet
+            bool foreign=false;foreach(var el in els)if(Find(el._newsItem)==null){foreign=true;break;}
+            if(foreign)Fill(w,"panel scan");
+        }
     }
     static Sprite Pic(Item it)
     {
@@ -102,19 +131,31 @@ static class HomeNews
     }
     static void AfterInit(NewsWindowElement __instance,NewsItem item)
     {
-        try{var it=Find(item);if(it!=null){pending.Add((__instance,it.id,Time.unscaledTime+10f));Apply(__instance,it);}}
+        try{var it=Find(item);if(it!=null){pending.Add((__instance,it.id,float.MaxValue));Apply(__instance,it);}}
         catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_HOME_NEWS element: "+e.Message);}
     }
     // The vanilla preview download runs after Init and finishes later; for 10 s keep our picture on top of whatever it shows.
+    static readonly HashSet<string> told=new();
+    static void Dump(Transform t,int d)
+    {
+        if(d>5)return;
+        var img=t.GetComponent<Image>();var cg=t.GetComponent<CanvasGroup>();var rt=t.GetComponent<RectTransform>();
+        MelonLogger.Msg($"FREEDOM_ARROW_HOME_NEWS tree {new string(' ',d*2)}{t.name} self={t.gameObject.activeSelf} img={(img!=null?$"{(img.sprite!=null?img.sprite.name:"-")} a={img.color.a:0.00} en={img.enabled}":"-")} cg={(cg!=null?cg.alpha.ToString("0.00"):"-")} size={(rt!=null?$"{rt.rect.width:0}x{rt.rect.height:0}":"-")}");
+        for(int i=0;i<t.childCount;i++)Dump(t.GetChild(i),d+1);
+    }
     static void Apply(NewsWindowElement el,Item it)
     {
-        var p=Pic(it);if(p==null||el._preview==null)return;
-        el._preview.sprite=p;el._preview.preserveAspect=false;el._preview.gameObject.SetActive(true);
+        var p=Pic(it);
+        if(p==null||el._preview==null){if(told.Add("miss"+it.id))MelonLogger.Warning($"FREEDOM_ARROW_HOME_NEWS: no picture for '{it.id}' (sprite {(p==null?"null":"ok")}, preview {(el._preview==null?"null":"ok")})");return;}
+        if(told.Add("ok"+it.id))MelonLogger.Msg($"FREEDOM_ARROW_HOME_NEWS: picture '{it.id}' {p.texture.width}x{p.texture.height} on '{el._preview.gameObject.name}' (active {el._preview.gameObject.activeInHierarchy})");
+        el._preview.sprite=p;el._preview.preserveAspect=false;el._preview.color=Color.white;el._preview.enabled=true;
+        for(var t=el._preview.transform;t!=null&&t!=el.transform;t=t.parent)if(!t.gameObject.activeSelf)t.gameObject.SetActive(true);   // vanilla keeps the preview's holder off until its own download finishes
         if(el._previewLoader!=null)el._previewLoader.SetActive(false);
         if(el._genericPreview!=null)el._genericPreview.SetActive(false);
     }
     public static void Tick()
     {
+        try{Scan();}catch(Exception e){nextScan=Time.unscaledTime+10f;MelonLogger.Warning("FREEDOM_ARROW_HOME_NEWS scan: "+e.Message);}
         if(pending.Count==0)return;
         for(int i=pending.Count-1;i>=0;i--)
         {
