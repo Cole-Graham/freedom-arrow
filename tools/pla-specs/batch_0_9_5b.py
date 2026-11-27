@@ -1046,6 +1046,9 @@ import marines_prices_1126;marines_prices_1126.apply(t,g,ok,rec)
 # ---------- Troopers AA Standard without the M-25 CDTE, Mixed 55 -> 70; Mech. Riflemen AA 45 -> 40, 4 M4A1 + 2 M249E3, Stinger 5 -> 6; QJY-201 =
 # PKP-N stats (Lateralus 26 Nov 2026 18:4x). After the Light Brigade Troopers AA and MG sections. See lateralus/aa_squads_qjy_1126.py.
 import aa_squads_qjy_1126;aa_squads_qjy_1126.apply(t,g,ok,rec)
+# ---------- QJB-201 2.55 -> 2.4 damage, pen 20 -> 10; QJY-201 = Mk.48 stats; QJY-88 = PKM stats (Lateralus 26 Nov 2026 19:4x). See
+# lateralus/china_mg_clones_1126.py.
+import china_mg_clones_1126;china_mg_clones_1126.apply(t,g,ok,rec)
 # ---------- PLA Light Brigade (Osama), merged into codex/development for 0.9.8-dev.1 (Lateralus 26 Nov 2026 18:4x). Its rows are in the reserved
 # 'plb' ID block, so they keep the IDs of the 0.9.7l test builds. The development sections run before it (no live row after the block).
 import pla_light_brigade_units_1126
