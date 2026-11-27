@@ -12,11 +12,12 @@ namespace FreedomArrow;
 // its TextTarget components removed (they would re-read the localization key) and our texts set. The copies take the Campaign and
 // Scenarios places in the layout; those two are hidden, and kept hidden if the game switches them back on.
 // Under each title a smaller line says what the page covers (Osama 27 Nov 13:4x: "add more description about what the guides cover and tools cover").
+// Guides title (Osama 27 Nov 13:5x): "say learn what's different with FA along that line".
 static class HomeLinks
 {
     sealed class Card{public string Name,Replaces,Link,Pic,Kick,KickZh,Title,TitleZh,Desc,DescZh;public Sprite Sprite;}
     static readonly Card[] cards={
-        new Card{Name="FA Guides Card",Replaces="Play Campaign Button",Link="https://freedomarrow.app/#guides",Pic="home-guides.png",Kick="Guides",KickZh="指南",Title="How Freedom Arrow plays",TitleZh="自由之箭的玩法",
+        new Card{Name="FA Guides Card",Replaces="Play Campaign Button",Link="https://freedomarrow.app/#guides",Pic="home-guides.png",Kick="Guides",KickZh="指南",Title="Learn what's different in Freedom Arrow",TitleZh="了解自由之箭的不同之处",
             Desc="Vehicle damage, penetration, HEAT, cover, income, scoring, coordinated strikes, ECM and flares",
             DescZh="载具伤害、穿深、破甲、掩体、收入、计分、协同打击、电子干扰与干扰弹"},
         new Card{Name="FA Tools Card",Replaces="ScenariosButton",Link="https://freedomarrow.app/#tools",Pic="home-tools.png",Kick="Tools",KickZh="工具",Title="Armory, DPM and price check",TitleZh="军械库、DPM 与价格查询",
