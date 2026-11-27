@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.9 (China)",
-  "version": "0.9.8-dev.3",
+  "version": "0.9.8-dev.4",
   "type": "modpack",
-  "description": "Freedom Arrow 0.9.8-dev.3: next-patch dev build (codex/development): dev.2 + queued balance changes + deck codes. See the 0.9.8 patch-notes draft. Needs Freedom Arrow — Models and Music (version in the receipt). Needs Freedom Arrow — Models and Music 0.2.109.",
+  "description": "Freedom Arrow 0.9.8-dev.4: next-patch dev build (codex/development): dev.3 + every model change staged 26-27 Nov (DF-15B/DF-17, PHL-03, ZSD-89A paint, turret grime, ZTZ-99A/B green, Rafale finish on F-35B ROKN/J-36/J-50/MD-22/Mirage, cab glass...). See the 0.9.8 patch-notes draft. Needs Freedom Arrow — Models and Music (version in the receipt). Needs Freedom Arrow — Models and Music 0.2.110.",
   "repo": "Cole-Graham/freedom-arrow"
 }
