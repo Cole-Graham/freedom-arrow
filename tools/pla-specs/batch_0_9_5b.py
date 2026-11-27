@@ -1043,6 +1043,9 @@ import reserve_marines_law_1126;reserve_marines_law_1126.apply(t,g,ok,rec)
 # ---------- Reserve Marines 65 -> 70, Standard loadout 75 -> 85 with 2 M240L (die last) in place of 2 M27 IAR; China Marines 65 -> 60 points
 # (Lateralus 26 Nov 2026 17:3x). See lateralus/marines_prices_1126.py.
 import marines_prices_1126;marines_prices_1126.apply(t,g,ok,rec)
+# ---------- Troopers AA Standard without the M-25 CDTE, Mixed 55 -> 70; Mech. Riflemen AA 45 -> 40, 4 M4A1 + 2 M249E3, Stinger 5 -> 6; QJY-201 =
+# PKP-N stats (Lateralus 26 Nov 2026 18:4x). After the Light Brigade Troopers AA and MG sections. See lateralus/aa_squads_qjy_1126.py.
+import aa_squads_qjy_1126;aa_squads_qjy_1126.apply(t,g,ok,rec)
 # ---------- PLA Light Brigade (Osama), merged into codex/development for 0.9.8-dev.1 (Lateralus 26 Nov 2026 18:4x). Its rows are in the reserved
 # 'plb' ID block, so they keep the IDs of the 0.9.7l test builds. The development sections run before it (no live row after the block).
 import pla_light_brigade_units_1126
