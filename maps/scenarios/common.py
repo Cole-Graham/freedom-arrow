@@ -429,6 +429,39 @@ def end_spec(mod_file,title,scene,steam_id,facing=None):
     spec['prepare']=lambda game,sp:prepare_end(mod_file,scene,sp,facing)
     spec['asset_dir']=Path(mod_file).resolve().parent
     return spec
+# End's 1v1 maps for the new occupation scoring (27 Nov 2026, #ai-ops: "The zones should all be +1 zones for the new occ, add the proper
+# occupation game mod like in other maps, and add for both sides the starting camera location between their two respective ground spawns").
+# These files have no script, zones with icon 0 and no active play area, so prepare_end does not take them.
+END_OCC_VALUES=dict(Alpha=1,Bravo=1,Charlie=1,Delta=1,Echo=1)
+def prepare_end_occ(mod_file,scene,spec,zones,turned,edit=None):
+    """zones: End's zone names in letter order (Alpha first). turned: UIDs of the spawns more than 45 degrees off, which get turned
+    (End names spawns alike, so they are compared by UID). edit(objects) runs before the spawns are turned, for map-specific fixes."""
+    head,nodes,objects,meta=read_layout(mod_file)
+    assert head['map']==scene and head['author']=='End' and meta['gameVersion'] in SOURCE_VERSIONS and head['dlc']==meta['dlc']==[3]
+    assert not nodes['b'] and not nodes['c'] and not [o for o in objects if o.get('_type') in (1,18,19)],'End added a script, units or cameras. Check this merge.'
+    strip_editor_teams(objects,meta)
+    assert not [x for t in meta['teams'] for x in t['slots'] if x['lock']]
+    letters={z:v for z,v in zip(zones,END_OCC_VALUES.items())};assert len(letters)==len(zones)==len(END_OCC_VALUES)
+    for o in objects:
+        if o.get('_type')==15:assert o['ZoneIcon']==0,o['_dname'];o['ZoneIcon']=list(letters).index(o['_dname'])+1
+    letter_zones(objects,letters,[f['name'] for f in spec['flavors']])
+    pz=[o['_uid'] for o in objects if o.get('_type')==7];assert len(pz)==1 and head['spz']==0
+    head['spz']=pz[0]   # End left the active play area unset; the other FA maps name their one play area
+    if edit:edit(objects)
+    before={o['_uid']:dict(o['rotate']) for o in objects if o.get('_type')==10}
+    face_spawn_outliers(objects)
+    assert {o['_uid'] for o in objects if o.get('_type')==10 and o['rotate']!=before[o['_uid']]}==set(turned)
+    add_team_cameras(objects,ground=True)
+    return extract_layout(objects),(head,nodes,objects,meta)
+def end_occ_spec(mod_file,title,scene,steam_id,zones,turned,edit=None):
+    import uuid
+    name=f'[FA] [1v1] {title} 0.1';skirmish=f'[FA] [1v1] {title} Skirmish 0.1'
+    spec=dict(author='End',desc=describe(END_OCC_VALUES)+f' Map by End (Steam Workshop {steam_id}).',flavors=[
+        dict(name=name,guid=str(uuid.uuid5(uuid.NAMESPACE_URL,name)),kind=2,public=True,deploy_target=136,deploy_pin='in2'),
+        dict(name=skirmish,guid=str(uuid.uuid5(uuid.NAMESPACE_URL,skirmish)),kind=3,public=False)])
+    spec['prepare']=lambda game,sp:prepare_end_occ(mod_file,scene,sp,zones,turned,edit)
+    spec['asset_dir']=Path(mod_file).resolve().parent
+    return spec
 # Files beside layout.bascr, such as .png previews, go into every built flavor folder.
 SOURCE_ONLY={'__init__.py',LAYOUT+'.bascr','meta.json'}
 def copy_assets(out,spec):
@@ -501,14 +534,15 @@ def face_spawns_to_objectives(objects,team=None):
         o['rotate']=dict(X=0.0,Y=math.sin(half),Z=0.0,W=math.cos(half))
 def add_team_cameras(objects,ground=False):
     """One start camera per team over the middle of its spawns, looking 1200 m toward the centre of the zones.
-    ground: use only the ground spawns (End 27 Nov 2026: "the starting camera location between their two respective ground spawns")."""
+    ground: use only the ground spawns, spawn type 1 (End 27 Nov 2026: "the starting camera location between their two respective ground spawns");
+    helicopter-only (4) and air (5) spawns are left out."""
     import math
     assert not any(o.get('_type')==18 for o in objects),'Existing cameras need explicit reconciliation'
     zones=[o['pos'] for o in objects if o.get('_type')==15]
     cx=sum(p['X'] for p in zones)/len(zones);cz=sum(p['Z'] for p in zones)/len(zones)
     for team,name in [('Alpha team','Camera alpha'),('Bravo team','Camera bravo')]:
         tid=next(o['_uid'] for o in objects if o.get('_type')==3 and o['_dname']==team)
-        ps=[o['pos'] for o in objects if o.get('_type')==10 and o['team']['id']==tid and not (ground and 5 in o.get('spawnType2',[]))]
+        ps=[o['pos'] for o in objects if o.get('_type')==10 and o['team']['id']==tid and not (ground and 1 not in o.get('spawnType2',[]))]
         assert ps,team
         x=sum(p['X'] for p in ps)/len(ps);z=sum(p['Z'] for p in ps)/len(ps);y=sum(p['Y'] for p in ps)/len(ps)
         d=math.hypot(cx-x,cz-z);assert d>1200,team

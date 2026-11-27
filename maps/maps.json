@@ -7,6 +7,7 @@
     "klaipeda_1v1":       {"size": "1v1", "base": "Klaipeda",          "ranked": true},
     "chernyakhovsky_1v1": {"size": "1v1", "base": "Chernyakhovsky",    "ranked": true},
     "below_the_mountain_1v1": {"size": "1v1", "base": "Below the Mountain", "ranked": false},
+    "mountain_1v1":       {"size": "1v1", "base": "Mountain",          "ranked": false},
     "dead_center_2v2":    {"size": "2v2", "base": "Dead Center",       "ranked": true},
     "chkalovsk_2v2":      {"size": "2v2", "base": "Chkalovsk Airbase", "ranked": true},
     "highway_2v2":        {"size": "2v2", "base": "Highway of Death",  "ranked": true},

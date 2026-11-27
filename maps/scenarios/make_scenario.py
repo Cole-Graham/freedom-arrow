@@ -2,8 +2,8 @@
 from pathlib import Path
 import argparse, json, sys
 sys.path.insert(0,str(Path(__file__).resolve().parent))
-import highway_2v2, chkalovsk_2v2, dead_center_1v1, dead_center_2v2, airport_4v4, baltiisk_3v3, dam_3v3, oil_rush_4v4, cold_harbor_4v4, kadaga_1v1, klaipeda_1v1, jelgava_1v1, chernyakhovsky_1v1, bay_of_winds_3v3, coal_mountain_2v2, below_the_mountain_1v1, pve
-MAPS=(dead_center_2v2, dead_center_1v1, chkalovsk_2v2, highway_2v2, airport_4v4, baltiisk_3v3, dam_3v3, oil_rush_4v4, cold_harbor_4v4, kadaga_1v1, klaipeda_1v1, jelgava_1v1, chernyakhovsky_1v1, bay_of_winds_3v3, coal_mountain_2v2, below_the_mountain_1v1)
+import highway_2v2, chkalovsk_2v2, dead_center_1v1, dead_center_2v2, airport_4v4, baltiisk_3v3, dam_3v3, oil_rush_4v4, cold_harbor_4v4, kadaga_1v1, klaipeda_1v1, jelgava_1v1, chernyakhovsky_1v1, bay_of_winds_3v3, coal_mountain_2v2, below_the_mountain_1v1, mountain_1v1, pve
+MAPS=(dead_center_2v2, dead_center_1v1, chkalovsk_2v2, highway_2v2, airport_4v4, baltiisk_3v3, dam_3v3, oil_rush_4v4, cold_harbor_4v4, kadaga_1v1, klaipeda_1v1, jelgava_1v1, chernyakhovsky_1v1, bay_of_winds_3v3, coal_mountain_2v2, below_the_mountain_1v1, mountain_1v1)
 SIZES=('1v1','2v2','3v3','4v4')
 # Written next to the scenario folders; package.py ships it as UserData/FreedomArrow/maps.json (the game and the ranked hub read it).
 REGISTRY_OUT='_maps.json'
