@@ -55,7 +55,7 @@ public class Runtime : MelonMod
         try { conquest.OnInitializeMelon(); }
         catch (Exception e) { LoggerInstance.Error("FREEDOM_ARROW_CONQUEST_FAILED: "+e); }
     }
-    public override void OnUpdate() { conquest?.OnUpdate(); MirrorSkin.Tick(); ChinaVoice.Tick(); LogUpload.Tick(); MenuArt.Tick(); DeckReorder.Tick(); DeckCodes.Tick(); HomeNews.Tick(); MultiplayerToModLobbies.Tick(); MemoryCleanup.Tick(); RankedMenu.Tick(); WebsiteButton.Tick(); PartySizeWarning.Tick(); NationLayout.Tick(); LobbyFlags.Tick(); }
+    public override void OnUpdate() { conquest?.OnUpdate(); MirrorSkin.Tick(); ChinaVoice.Tick(); LogUpload.Tick(); MenuArt.Tick(); DeckReorder.Tick(); DeckCodes.Tick(); HomeLinks.Tick(); MultiplayerToModLobbies.Tick(); MemoryCleanup.Tick(); RankedMenu.Tick(); WebsiteButton.Tick(); PartySizeWarning.Tick(); NationLayout.Tick(); LobbyFlags.Tick(); }
     public override void OnLateUpdate()
     {
         DiagnosticLog.Heartbeat();
@@ -216,8 +216,8 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_DECK_REORDER_FAILED: not installed; deck units keep their order. "+e.Message); }
         try { DeckCodes.Install(HarmonyInstance); }   // Osama 26 Nov 2026: Wargame-style deck codes (DeckCodes.cs)
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_DECK_CODES_FAILED: not installed; decks are unchanged. " + e.Message); }
-        try { HomeNews.Install(HarmonyInstance,Root); }   // Osama 27 Nov 2026: FA news in the Home News panel (HomeNews.cs)
-        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_HOME_NEWS_FAILED: not installed; the panel shows Broken Arrow news. " + e.Message); }
+        try { HomeLinks.Install(); }   // Osama 27 Nov 2026: Home left column Guides/Tools cards (HomeLinks.cs); the FA news panel was dropped ("leave the BA news alone")
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_HOME_LINKS_FAILED: not installed; Campaign and PvE cards stay vanilla. " + e.Message); }
         try { MenuArt.Install(Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_MENU_ART_FAILED: not installed; vanilla start screen. "+e.Message); }
         try { MirrorSkin.Install(HarmonyInstance,Root); }

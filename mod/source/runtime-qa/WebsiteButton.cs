@@ -58,7 +58,7 @@ static class WebsiteButton
     // Osama 22 Nov 01:56: "take the top and central area between quick match and server status". Measured on a 1568x882 Home screenshot:
     // Quick match tile right edge 0.304 (gear icon to 0.324), Server status left edge 0.725, tile tops at 0.122. As anchors in the page:
     // x 0.335-0.715, top edge 0.122 below the page top; the height follows the art's aspect ratio.
-    const float Left=0.335f,Right=0.715f,Top=0.122f;
+    const float Left=0.3825f,Right=0.6675f,Top=0.122f;   // Osama 27 Nov 13:3x "make our central banner smaller": 75% of the old 0.335-0.715 width, same centre
     static GameObject banner;static Image image,closeImage;static Sprite siteSprite,updateSprite;
     static readonly List<UnityEngine.Events.UnityAction> keep=new();
     static float nextScan;static string waitWhy="";
@@ -141,6 +141,7 @@ static class WebsiteButton
         var cb=xb.colors;cb.highlightedColor=new Color(0.89f,0.21f,0.24f,0.95f)*1.6f;xb.colors=cb;
         OnClick(xb,()=>{updateDismissed=true;MelonLogger.Msg("FREEDOM_ARROW_LAUNCHER_NOTICE dismissed");Show();});
         banner=rt.gameObject;
+        try{HomeLinks.Apply(page);}catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_HOME_LINKS not applied: "+e.Message);}
         Show();
         var prt=page.GetComponent<RectTransform>();
         MelonLogger.Msg($"FREEDOM_ARROW_WEBSITE_BUTTON built in '{page.name}' ({(prt!=null?$"{prt.rect.width:0}x{prt.rect.height:0}":"no RectTransform")}, active {page.gameObject.activeInHierarchy}): {(Warning()?"launcher warning":"website")} art, anchors x {Left}-{Right}, top {Top}");
