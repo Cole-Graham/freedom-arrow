@@ -27,6 +27,7 @@ for bone,subs in read_fam(fam):
             m=bpy.data.materials.new(t);m.use_nodes=True;nt=m.node_tree;b=nt.nodes['Principled BSDF']
             if t and os.path.exists(os.path.join(d,t)):
                 tx=nt.nodes.new('ShaderNodeTexImage');tx.image=bpy.data.images.load(os.path.join(d,t));nt.links.new(tx.outputs[0],b.inputs['Base Color'])
+                if any(abs(x-1)>1e-3 for x in sb['col'][:3]):mx=nt.nodes.new('ShaderNodeMix');mx.data_type='RGBA';mx.blend_type='MULTIPLY';mx.inputs['Factor'].default_value=1;nt.links.new(tx.outputs[0],mx.inputs['A']);mx.inputs['B'].default_value=tuple(sb['col'][:3])+(1,);nt.links.new(mx.outputs['Result'],b.inputs['Base Color'])   # 27 Nov: FAModels multiplies the map by the colour (_BaseColor)
                 if os.environ.get('ALPHA'):nt.links.new(tx.outputs['Alpha'],b.inputs['Alpha'])   # ROC copy: show alpha cut-outs (wire grilles)
                 mk=os.path.join(d,t[:-4]+'_mask.png')
                 if os.path.exists(mk):
