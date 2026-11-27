@@ -1125,6 +1125,8 @@ import osama_sprut_1127;osama_sprut_1127.apply(t,g,ok,rec)
 import cj10_held_1127;cj10_held_1127.apply(t,g,ok,rec)
 # ---------- Artillery smoke: Lynx Howitzer 10 -> 6; PLZ-10, PLZ-25, PLL-09, PLL-05 -> 8 (Osama 27 Nov 04:4x). See osama_arty_smoke_1127.py.
 import osama_arty_smoke_1127;osama_arty_smoke_1127.apply(t,g,ok,rec)
+# ---------- Smoke standard: every tube artillery / mortar smoke row capped at 8, all factions; rocket smoke excluded (Osama 27 Nov 11:0x). See smoke_standard_1127.py.
+import smoke_standard_1127;smoke_standard_1127.apply(t,g,ok,rec)
 # ---------- ZTZ-99 split, part 2 (Osama 27 Nov 04:2x): final ZTZ-99 values into the ZTZ-99G rows made in the plb scope; 99G front 700/800, APFSDS 475/425,
 # 180 pts; 1083 shown as ZTZ-99-II. After ztz99_front_1126. See osama_ztz99_split_1127.py.
 osama_ztz99_split_1127.finish(t,g,ok,rec)
