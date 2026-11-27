@@ -1109,6 +1109,8 @@ import ztz99_front_1126;ztz99_front_1126.apply(t,g,ok,rec)
 import qw2_lynx81_1126;qw2_lynx81_1126.apply(t,g,ok,rec)
 # ---------- Z-21 'Air escort' loadout +50 -> +90 (Osama 26 Nov 23:1x). See z21_air_escort_1126.py.
 import z21_air_escort_1126;z21_air_escort_1126.apply(t,g,ok,rec)
+# ---------- ZTZ-99A / ZTZ-96 family availability, armour, prices, 96B speed; HJ-10 120 + NLOS +60; M1A2 SEP v2 220 (Osama 27 Nov 00:0x). See osama_tanks_1127.py.
+import osama_tanks_1127;osama_tanks_1127.apply(t,g,ok,rec)
 import unit_standards
 import roc_hook;roc_hook.apply(t,g,ok,rec,recheck=lambda:(disposable_launchers_1123.check(t,ok,a.vanilla),weapon_coverage_check.check(t,patches,ok),unit_standards.check(t,ok,rec)))
 # Unit standards on the final data (docs/development/UNIT-STANDARDS.md, Lateralus 26 Nov 2026): fails on a new squad that breaks the launcher or
