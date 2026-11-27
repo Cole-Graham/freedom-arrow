@@ -1123,6 +1123,8 @@ import osama_hq16_1127;osama_hq16_1127.apply(t,g,ok,rec)
 import osama_sprut_1127;osama_sprut_1127.apply(t,g,ok,rec)
 # ---------- M8 AGS/Thunderbolt base front 100/100, ZTQ-15 Light front KE 100 / HEAT 150 (15:2x); airborne tanks 12 HP, Thunderbolt 95, ZTQ-15 Light 135 (15:3x). See osama_m8_ztq15_1127.py.
 import osama_m8_ztq15_1127;osama_m8_ztq15_1127.apply(t,g,ok,rec)
+# ---------- FH-97A "Light strike (4x LS-6 500kg)" removed (Osama 27 Nov 15:5x). See osama_fh97_4xls6_1127.py.
+import osama_fh97_4xls6_1127;osama_fh97_4xls6_1127.apply(t,g,ok,rec)
 # ---------- CJ-10 held back (card removed, hidden) for model quality (Osama 27 Nov 04:4x). See cj10_held_1127.py.
 import cj10_held_1127;cj10_held_1127.apply(t,g,ok,rec)
 # ---------- Artillery smoke: Lynx Howitzer 10 -> 6; PLZ-10, PLZ-25, PLL-09, PLL-05 -> 8 (Osama 27 Nov 04:4x). See osama_arty_smoke_1127.py.
