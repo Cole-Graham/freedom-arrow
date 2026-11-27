@@ -1081,6 +1081,8 @@ with g.scope('plb'):pla_light_brigade_units_1126.apply(t,g,ok,rec);pla_light_bri
 import qlz87_icon_1126;qlz87_icon_1126.apply(t,g,ok,rec)
 # PLARF tripod QLZ-87 named 'QLZ-87 (tripod)'; the hand-held squad copy keeps 'QLZ-87' (Osama 26 Nov 10:4x). See pla_light_brigade_qlz87_tripod_1126.py.
 import pla_light_brigade_qlz87_tripod_1126;pla_light_brigade_qlz87_tripod_1126.apply(t,g,ok,rec)
+# ---------- MV-22B Osprey GAU-17 loadout +5 -> +10, the CV-22B's (Osama 26 Nov 19:4x). See osprey_gau17_1126.py.
+import osprey_gau17_1126;osprey_gau17_1126.apply(t,g,ok,rec)
 import unit_standards
 import roc_hook;roc_hook.apply(t,g,ok,rec,recheck=lambda:(disposable_launchers_1123.check(t,ok,a.vanilla),weapon_coverage_check.check(t,patches,ok),unit_standards.check(t,ok,rec)))
 # Unit standards on the final data (docs/development/UNIT-STANDARDS.md, Lateralus 26 Nov 2026): fails on a new squad that breaks the launcher or
