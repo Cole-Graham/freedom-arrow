@@ -98,6 +98,22 @@ The unit's sensor row (`Sensors`) has three ranges: `OpticsGround`, `OpticsLowAl
 
 The target's altitude state picks which one applies: Ground, Low or High. Helicopters always use the low-altitude optics, and so do planes below the threshold above. This is inferred from the matching names and from weapon ranges, which pick Ground/Low/High range by the same `GlobalAltitudeLevel` (`BattleSystemHelpers.GetAmmoShootingDistance`, RVA `0x7D69B0`). The exact read in the vision code is **not traced yet**.
 
+### 2a. Air spotting range, with flash (traced 26 November 2026, Lateralus)
+
+**Short answer.** For an air target the game uses: range = observer low- or high-altitude optics × the observer's radar optics multiplier × the target's stealth (raw) × max(flash, spotted penalty). Flash counts for aircraft, as on the ground. Unlike the ground path, there is no 1.5× visibility cap and no terrain cover. The candidate scan radius (the larger of the observer's optics and its longest weapon range) still bounds the result.
+
+Read from `FogOfWarUnit.CalculateVisionRangeForTarget` (1.2.2.1 RVA `0x69FE20`, code):
+- `0x69FFDE`–`0x6A0002`: s = the larger of the target's `SpottedPenalty` (FOW `+0x14`) and `WeaponFlash` (`+0x10`), computed before the ground/air split.
+- Air branch (`0x6A0016` falls through when the target is not a ground-type entity): radar multipliers default to 1.0 and are read from the observer's active radar (`+0xC` low, `+0x10` high). The target's altitude state picks high (`DistanceHighAlt`, observer FOW `+0x8`) or low (`DistanceLowAlt`, `+0x4`).
+- `0x6A0111`–`0x6A0126`: range = optics × radar multiplier × s × `AntiVisible` (target FOW `+0xC`, raw stealth), then a jump to `0x6A02F5`, past the ground path's `MaxAntiVisible` clamp at `0x6A02D6`–`0x6A02F0`.
+- After that, an optional observer-side component (`+0x24`) can still adjust the value. It is not identified.
+
+**Worked example (calculated, not measured in a game).** Every fighter in the 26 Nov data has sensor 6: high-altitude optics 8000 raw (16,000 m on the card scale), low-altitude 2000 raw. The F-22 has stealth 0.5, or 0.4545 with option 31104. Its longest weapon is 5500 raw, so the scan bound for an F-22 seen by a fighter is 8000 raw.
+- F-22 high, quiet (flash 1): 4000 raw = 8,000 m (0.4545: 7,272 m).
+- After one 1.0-flash missile (flash 2.0) or while spotted: 8000 raw = 16,000 m, the full optics range.
+- At the 2.2 cap: 8800 raw from the formula, but the 8000 scan bound limits it to 16,000 m. So for a 0.5-stealth plane at high altitude, more flash than 2.0 changes nothing.
+- F-22 low: quiet 1000 raw = 2,000 m; at 2.2, 2200 raw = 4,400 m.
+
 ## 3. How the sight line is checked
 
 Each observer runs `FogOfWarUnit` (`Update` RVA `0x6A2CC0`) on a timer. Each check of a target has two independent tests. **Both must pass** (code).
@@ -286,7 +302,7 @@ Ways to make AA placement easier (not implemented, not tested):
 
 ## 6. Not verified
 
-- **Optics selection:** the exact code that picks `DistanceLowAlt` / `DistanceHighAlt` from the target's state, and any stealth, flash or spotted multipliers on it, is inferred, not traced.
+- **Optics selection:** traced on 26 Nov (section 2a). Still open: the end-of-path observer component (`+0x24`), and whether the scan bound is the maximum over all optics domains (from the 4 Nov ground study).
 - **Map grid:** the terrain-grid cell size per map (`MapMetaData`), and so how many grid cells one world-unit step crosses on each map.
 - **Visible tree heights:** no tree heights were measured in a map, so the margin above the visible trees is not quantified in metres.
 - **Helicopter heights:** actual helicopter flying heights were not read, so the worked example's 25 units is an example, not game data.
@@ -316,3 +332,4 @@ Ways to make AA placement easier (not implemented, not tested):
 - 2026-11-25 09:21 PST (America/Los_Angeles) — Section 5e: radar only on loadouts with a radar weapon; HHQ-10 and SeaRAM use SA radar (Lateralus).
 - 2026-11-25 22:3x PST (America/Los_Angeles) — Added section 1c: spawn altitude, fly preset override and low-default, and who writes `PlaneHighAltOverride` (Lateralus).
 - 2026-11-25 22:2x PST (America/Los_Angeles) — Section 1c rewritten: spawn altitude, flight altitude and the Low/High state separated (Lateralus).
+- 2026-11-26 23:2x PST (America/Los_Angeles) — Section 2a: traced the air spotting formula (flash and stealth count, no 1.5 cap) with the F-22 example (Lateralus).
