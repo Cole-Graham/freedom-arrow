@@ -57,3 +57,4 @@ Maps that shipped before these checks and break one are listed by name in `commo
 - 2026-11-23 21:2x PST (America/Los_Angeles) — Map overviews on the website: where the layout and background images come from.
 - 2026-11-27 06:5x PST (America/Los_Angeles) — [1v1] Below the Mountain 0.1 added (End's Workshop map 3846746484, all zones +1); `C.add_team_cameras(ground=True)` puts a camera between a team's ground spawns (End).
 - 2026-11-27 07:4x PST (America/Los_Angeles) — [1v1] Mountain 0.1 added (End's Workshop map 3846746372); End's +1 maps share `C.end_occ_spec`; ground-spawn cameras use spawn type 1 only.
+- 2026-11-27 10:4x PST (America/Los_Angeles) — Lateralus: Mountain A-E 2, Below the Mountain A C E 2 / B D 4 (`end_occ_spec` takes per-map values); Mountain air spawns at the map edges.

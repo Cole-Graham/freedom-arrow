@@ -432,16 +432,16 @@ def end_spec(mod_file,title,scene,steam_id,facing=None):
 # End's 1v1 maps for the new occupation scoring (27 Nov 2026, #ai-ops: "The zones should all be +1 zones for the new occ, add the proper
 # occupation game mod like in other maps, and add for both sides the starting camera location between their two respective ground spawns").
 # These files have no script, zones with icon 0 and no active play area, so prepare_end does not take them.
-END_OCC_VALUES=dict(Alpha=1,Bravo=1,Charlie=1,Delta=1,Echo=1)
-def prepare_end_occ(mod_file,scene,spec,zones,turned,edit=None):
-    """zones: End's zone names in letter order (Alpha first). turned: UIDs of the spawns more than 45 degrees off, which get turned
+# Lateralus 27 Nov 2026 set the zone values per map (Mountain all 2; Below the Mountain A C E 2, B D 4), so each map passes its own.
+def prepare_end_occ(mod_file,scene,spec,zones,values,turned,edit=None):
+    """zones: End's zone names in letter order (Alpha first); values: letter name -> zone value, Alpha first. turned: UIDs of the spawns more than 45 degrees off, which get turned
     (End names spawns alike, so they are compared by UID). edit(objects) runs before the spawns are turned, for map-specific fixes."""
     head,nodes,objects,meta=read_layout(mod_file)
     assert head['map']==scene and head['author']=='End' and meta['gameVersion'] in SOURCE_VERSIONS and head['dlc']==meta['dlc']==[3]
     assert not nodes['b'] and not nodes['c'] and not [o for o in objects if o.get('_type') in (1,18,19)],'End added a script, units or cameras. Check this merge.'
     strip_editor_teams(objects,meta)
     assert not [x for t in meta['teams'] for x in t['slots'] if x['lock']]
-    letters={z:v for z,v in zip(zones,END_OCC_VALUES.items())};assert len(letters)==len(zones)==len(END_OCC_VALUES)
+    letters={z:v for z,v in zip(zones,values.items())};assert len(letters)==len(zones)==len(values)
     for o in objects:
         if o.get('_type')==15:assert o['ZoneIcon']==0,o['_dname'];o['ZoneIcon']=list(letters).index(o['_dname'])+1
     letter_zones(objects,letters,[f['name'] for f in spec['flavors']])
@@ -453,13 +453,13 @@ def prepare_end_occ(mod_file,scene,spec,zones,turned,edit=None):
     assert {o['_uid'] for o in objects if o.get('_type')==10 and o['rotate']!=before[o['_uid']]}==set(turned)
     add_team_cameras(objects,ground=True)
     return extract_layout(objects),(head,nodes,objects,meta)
-def end_occ_spec(mod_file,title,scene,steam_id,zones,turned,edit=None):
+def end_occ_spec(mod_file,title,scene,steam_id,zones,values,turned,edit=None):
     import uuid
     name=f'[FA] [1v1] {title} 0.1';skirmish=f'[FA] [1v1] {title} Skirmish 0.1'
-    spec=dict(author='End',desc=describe(END_OCC_VALUES)+f' Map by End (Steam Workshop {steam_id}).',flavors=[
+    spec=dict(author='End',desc=describe(values)+f' Map by End (Steam Workshop {steam_id}).',flavors=[
         dict(name=name,guid=str(uuid.uuid5(uuid.NAMESPACE_URL,name)),kind=2,public=True,deploy_target=136,deploy_pin='in2'),
         dict(name=skirmish,guid=str(uuid.uuid5(uuid.NAMESPACE_URL,skirmish)),kind=3,public=False)])
-    spec['prepare']=lambda game,sp:prepare_end_occ(mod_file,scene,sp,zones,turned,edit)
+    spec['prepare']=lambda game,sp:prepare_end_occ(mod_file,scene,sp,zones,values,turned,edit)
     spec['asset_dir']=Path(mod_file).resolve().parent
     return spec
 # Files beside layout.bascr, such as .png previews, go into every built flavor folder.
