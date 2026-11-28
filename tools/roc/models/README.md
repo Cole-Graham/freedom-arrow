@@ -211,6 +211,11 @@ Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `inf
 - **Glass:** AH-64E = vanilla `US_AH_64_Glass` (planar UVs 0.38 per metre); UH-60M = vanilla `US_UH60M_glass`, UVs squeezed into that sheet's glass patch (u 0.872, v 0.596).
 - **MTV crew:** FAModels body rules take `"crew": true`; the vehicle's own crew LODs (lod_0/1/2, 40-bone soldier skeleton) get the ROC Infantry body.
 
+## Card art and the F-5E (27 November 2026, night; no build yet)
+
+- **Card art:** 8 portraits from Shawn's Drive folder (`FA_ROC_INF_*-Portrait.png`, 816x549 with the vanilla bottom fade; SF Snipers, SF Section and Marine Frogmen cropped above the BROKEN ARROW logo). Loadout variants show their base card's art.
+- **F-5E** (Shawn's `F-5E_Land.blend`) replaces the F-5F card's model (slug `f5f`; old files in `veh/x/f5f/pre-f5e/`): `f5e_composite.py` bakes the hull node mix (colour + panel lines overlay + dirt) and a line normal map; `f5e_blend2glb.py` makes a gear-down (Arsenal) and gear-up (battle) GLB; `f5e_finish.sh` converts (Arsenal 91k, battle 41.6k, LODs 27k/15.6k); `f5e_mat.py` gives the fighter finish and F-16 donor glass. Battle orientation needs `UPSIGN=1` in plane_prep (without gear the canopy test flips it).
+
 ## Document change log
 
 - 2026-11-25 03:4x PST (America/Los_Angeles) — T91 rifle converted; recipe and first grip offset.
@@ -239,3 +244,4 @@ Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `inf
 - 2026-11-27 15:15 PST (America/Los_Angeles) — Second and third in-game lists (CM-34 card, CM-32 rebuild, glass, M41D, CM-22, CM-11 normals, F-16V gear, EC225 roundel, streaks); test build roc7.
 - 2026-11-27 18:46 PST (America/Los_Angeles) — In-game lists 4-5 (arm weights, Marine green, infjp body, CM-32/33/34 variants, roof camo, glass UVs, F-CK-1 windscreen, CM-11 shine); test build roc8.
 - 2026-11-27 19:29 PST (America/Los_Angeles) — In-game list 6 queued (TK-III, LSW2, M41D, CM-11/12, MTV + crew bodies, EC225 emblem, UH-60M / AH-64E glass); no build.
+- 2026-11-27 19:54 PST (America/Los_Angeles) — ROC card art (8 portraits) and the F-5E model for the F-5F card; no build.
