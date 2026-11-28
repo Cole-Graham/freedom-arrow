@@ -291,8 +291,7 @@ def native_goals_out_of_reach(name,nodes):
 # (CAPTURE_SECONDS) are set on every zone in write and write_flavor; slots, play area, native goals and the score limit have their own
 # checks. The exceptions below are maps that shipped before these checks; each is kept as authored until it is changed on purpose.
 SPAWN_FACING_LIMIT=45   # degrees between a spawn's facing and the direction to the centre of the zones
-SPAWN_FACING_KEPT={'[FA] [1v1] Jelgava',   # Lateralus 23 Nov: Bravo faces south; two ground spawns stay 59-62 degrees off the zones
-    '[FA] [2v2] Highway of Death','[FA] [2v2] Chkalovsk Airbase','[FA] [4v4] Airport','[FA] [4v4] Cold Harbor'}   # Lateralus's facings, 47-79 degrees
+SPAWN_FACING_KEPT={'[FA] [2v2] Highway of Death','[FA] [2v2] Chkalovsk Airbase','[FA] [4v4] Airport','[FA] [4v4] Cold Harbor'}   # Lateralus's facings, 47-79 degrees
 ZONE_ICON_KEPT=set()   # Chkalovsk Foxtrot showed icon 8 (H) until 0.9.6 (fixed in chkalovsk_2v2, Lateralus 23 Nov 2026)
 WAYPOINTS_KEPT={'[FA] [2v2] Chkalovsk Airbase'}   # three native waypoints, no unit uses them
 def base_name(name):return name.rsplit(' ',1)[0].replace(' Skirmish','')
