@@ -213,7 +213,7 @@ public partial class Mod
                 int id=renderer.GetInstanceID();if(view.applied.Contains(id)||view.failed.Contains(id))continue;
                 if(renderer.sharedMesh==null||renderer.bones.Length<1)continue;
                 if(renderer.sharedMesh.name.StartsWith("FAM_BODY_")){view.applied.Add(id);continue;}
-                if(!hideOnly&&(System.Diagnostics.Stopwatch.GetTimestamp()-budgetStart)*1000.0/System.Diagnostics.Stopwatch.Frequency>BodyBudgetMs){hideOnly=true;BodyDeferred++;}
+                if(!hideOnly&&bodySwapsThisFrame>0&&FrameMs()>FrameBudgetMs){hideOnly=true;BodyDeferred++;}   // 0.3.52: the shared frame budget (FAModels.cs)
                 if(hideOnly){renderer.forceRenderingOff=true;continue;}
                 // Use the game's actual LODGroup membership, not a guessed renderer ordering.
                 // 0.3.29: the soldier's LOD groups are read once per soldier, not once per renderer.

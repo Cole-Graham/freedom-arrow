@@ -8,7 +8,7 @@ using Il2CppBrokenArrow.DataBase.Models;
 using System.Text.Json;
 using Il2CppBrokenArrow.Shared.Ecs.MemoryController;
 
-[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.51", "Freedom Arrow")]
+[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.52-ovn.3", "Freedom Arrow")]
 [assembly: MelonGame(null, "BrokenArrow")]
 namespace FAModels;
 
@@ -31,11 +31,15 @@ public partial class Mod : MelonMod
     {
         dir = Path.Combine(MelonLoader.Utils.MelonEnvironment.UserDataDirectory, "FAModels");
         var cfg = Path.Combine(dir, "models.json");
-        if (File.Exists(cfg)) map = JsonSerializer.Deserialize<Dictionary<string, Entry>>(File.ReadAllText(cfg)) ?? new();
-        LoadWeaponRules();
-        LoadBodyRules();
+        // 0.3.52-ovn.3 test switch (overnight A/B, 28 Nov 2026): UserData/FAModels/off.txt leaves every unit on its vanilla model (no models,
+        // bodies or weapons) while the perf and hitch lines keep running, so the same match can be measured with and without FA models.
+        bool off = File.Exists(Path.Combine(dir, "off.txt"));
+        if (File.Exists(cfg) && !off) map = JsonSerializer.Deserialize<Dictionary<string, Entry>>(File.ReadAllText(cfg)) ?? new();
+        if (off) MelonLogger.Msg("FAMODELS OFF (off.txt): vanilla models only; perf lines still logged");
+        else { LoadWeaponRules(); LoadBodyRules(); }
         Verbose = File.Exists(Path.Combine(dir, "verbose.txt"));
         try { InstallPreload(); } catch (Exception ex) { MelonLogger.Error("FAMODELS preload not installed: " + ex.Message); }
+        try { InstallCurtain(HarmonyInstance); } catch (Exception ex) { MelonLogger.Error("FAMODELS loading-screen hold not installed; models build in the match as before: " + ex.Message); }
         try { InstallPaintSchemes(HarmonyInstance); } catch (Exception ex) { MelonLogger.Error("FAMODELS_PAINT not installed; models keep their default colours: " + ex.Message); }
         try { InstallLowSettings(); } catch (Exception ex) { MelonLogger.Error("FAMODELS low-settings switch not installed; armory keeps full models: " + ex.Message); }
         var m = typeof(UnitBuilder).GetMethods().First(x => x.Name == "InitView" && x.GetParameters().Length == 4 && x.GetParameters()[1].ParameterType == typeof(Units));
@@ -81,7 +85,8 @@ public partial class Mod : MelonMod
     static Camera cam; static float camCheck, camPicked; static string camWant = ""; static GameObject camTarget;
     static void CamTick()
     {
-        if (Time.realtimeSinceStartup - camCheck > 1f)
+        // 0.3.52-ovn.3: every 5 s (was 1 s): a missing cam.txt costs a ~1.5 ms folder scan under Wine.
+        if (Time.realtimeSinceStartup - camCheck > 5f)
         {
             camCheck = Time.realtimeSinceStartup;
             var f = Path.Combine(dir, "cam.txt"); var w = File.Exists(f) ? File.ReadAllText(f).Trim() : "off";
@@ -133,11 +138,16 @@ public partial class Mod : MelonMod
     {
         // 0.3.34 (5v5 detail log: "visibility sync" 16+ ms frames): units spawned together refreshed their renderer lists in the same check,
         // every 15 s. At most 8 refreshes per check now (0.2 s apart); a unit over the limit keeps its list until a later check.
-        int refreshes = 0;
-        for (int i = live.Count - 1; i >= 0; i--)
+        // 0.3.52 (overnight run A: the 0.2 s pass grew to ~5 ms per call with 270 units): every frame checks a slice of the list, the whole
+        // list about every 12 frames (0.2 s at 60 fps), and refreshes at most 2 renderer lists per frame.
+        int refreshes = 0, n = Math.Min(live.Count, Math.Max(8, (live.Count + 11) / 12));
+        for (int c = 0; c < n && live.Count > 0; c++)
         {
+            if (syncIdx >= live.Count) syncIdx = 0;
+            int i = syncIdx;
             var (root, unit) = live[i];
             if (root == null) { live.RemoveAt(i); continue; }
+            syncIdx++;
             int k = root.GetInstanceID();
             if (!origs.TryGetValue(k, out var os) || os.Count == 0) continue;
             bool vis = false;
@@ -146,7 +156,7 @@ public partial class Mod : MelonMod
             // to its dead model (AnimationHub.DeadModel active), our model goes too. The vanilla wreck stays hidden, so nothing remains.
             if (vis && IsDead(root, k)) { vis = false; if (deadLogged.Add(k)) MelonLogger.Msg($"FAMODELS {unit}: destroyed, model removed (no wreck)"); }
             // 0.3.31: the renderer list is refreshed every 15 s (was: every 5 s, plus a native null check of every renderer every 0.2 s).
-            if (!famRenderers.TryGetValue(k, out var rs) || (refreshes < 8 && Time.realtimeSinceStartup - famRenderersT.GetValueOrDefault(k) > 15f))
+            if (!famRenderers.TryGetValue(k, out var rs) || (refreshes < 2 && Time.realtimeSinceStartup - famRenderersT.GetValueOrDefault(k) > 15f))
             {
                 refreshes++;
                 var list = new List<MeshRenderer>();var h = root.transform.Find("FAM_holder");
@@ -158,7 +168,7 @@ public partial class Mod : MelonMod
         }
         if (famRenderers.Count > 2000) { famRenderers.Clear(); famRenderersT.Clear(); hubs.Clear(); }
     }
-    static float syncT, yawT;
+    static float syncT, yawT; static int syncIdx;
     static readonly Dictionary<int, float> lastYaw = new(), lastTurn = new(), lastMove = new();
     static readonly Dictionary<int, Vector3> lastPos = new();
     // Turret check: every 2 s, log any FAM unit whose turret_0 turned more than 10 degrees since its last report.
@@ -213,9 +223,15 @@ public partial class Mod : MelonMod
     static readonly string[] secNames = { "preload", "body swap", "body poll", "infantry weapons", "visibility sync", "camera", "cockpit upgrade", "camera, cockpits and model swaps", "PLA review" };
     static int slowUpdates;
     static long Mark(int i, long t0) { long t = System.Diagnostics.Stopwatch.GetTimestamp(); sec[i] += t - t0; return t; }
+    // 0.3.52 (overnight test 28 Nov 2026, run A: 28 of 36 frames over 50 ms followed FAModels work, 16-55 ms in one update): body swaps, body
+    // polls, model swaps, detail levels and heavy preload levels each had their own 6 ms budget, so a squad plus a vehicle spawning in one frame
+    // stacked 18-55 ms. They now share one FrameBudgetMs per frame, counted from the start of this update; each kind still does at least one
+    // item per frame so nothing waits forever.
+    internal static long frameT0; internal const double FrameBudgetMs = 4;
+    internal static double FrameMs() => SinceMs(frameT0);
     public override void OnUpdate()
     {
-        Array.Clear(sec, 0, sec.Length); long start = System.Diagnostics.Stopwatch.GetTimestamp(), t = start;
+        Array.Clear(sec, 0, sec.Length); long start = System.Diagnostics.Stopwatch.GetTimestamp(), t = start; frameT0 = start;
         try { PerfFrame(); } catch (Exception ex) { MelonLogger.Error("FAMODELS perf: " + ex.Message); }
         try { HitchLog(); } catch { }
         try { MemoryLog(); } catch (Exception ex) { MelonLogger.Error("FAMODELS memory log: " + ex.Message); }
@@ -229,7 +245,7 @@ public partial class Mod : MelonMod
         t = Mark(2, t);
         try { TickInfantryWeapons(); } catch (Exception ex) { MelonLogger.Error("FAMODELS weapon poll: " + ex.Message); }
         t = Mark(3, t);
-        if (Time.realtimeSinceStartup - syncT > 0.2f) { syncT = Time.realtimeSinceStartup; try { SyncVisibility(); } catch (Exception ex) { MelonLogger.Error("FAMODELS sync: " + ex.Message); } }
+        try { SyncVisibility(); } catch (Exception ex) { MelonLogger.Error("FAMODELS sync: " + ex.Message); }
         t = Mark(4, t);
         try { TickVariants(); } catch (Exception ex) { MelonLogger.Error("FAMODELS variants: " + ex.Message); }
         try { UpdateRest(); } finally { t = Mark(7, t); SlowUpdateLog(start, t); }
@@ -264,7 +280,7 @@ public partial class Mod : MelonMod
             float wait = q.pass == 0 ? 0f : 1.0f;
             if (Time.realtimeSinceStartup - q.t < wait) continue;
             // 0.3.45: swaps stop for this frame after ModelBudgetMs (LodStreaming.cs); the rest wait hidden, as during the bone wait.
-            if (q.pass == 0 && q.e.file != "" && SinceMs(budgetStart) > ModelBudgetMs) { modelsDeferredThisFrame++; continue; }
+            if (q.pass == 0 && q.e.file != "" && modelSwapsThisFrame > 0 && FrameMs() > FrameBudgetMs) { modelsDeferredThisFrame++; continue; }
             try { if (!Apply(q.root, q.e, q.unit, q.pass == 0, Time.realtimeSinceStartup - q.t, stream: true)) continue; }
             catch (Exception ex) { MelonLogger.Error($"FAMODELS {q.unit}: replacement rejected; original retained: {ex}"); queue.RemoveAt(i); continue; }
             queue[i] = (q.root, q.e, q.unit, Time.realtimeSinceStartup, q.pass + 1);
@@ -424,7 +440,7 @@ public partial class Mod : MelonMod
         // 0.3.31: distance detail levels like vanilla's LOD groups. A battle entry may name lighter copies ("lods": [l1, l2]); each level
         // gets its own parts, and a LODGroup switches between them at the stand-in's own distances (SetLevels). Level 0 is e.file.
         var files = new List<string> { e.file };
-        foreach (var lf in e.lods) if (lf != "" && File.Exists(Path.Combine(dir, lf))) files.Add(lf);
+        foreach (var lf in e.lods) if (lf != "" && FileExists(lf)) files.Add(lf);
         // 0.3.48 (Lateralus 25 Nov 15:3x: "The hitch when zooming in the first time is unacceptable"): back to 0.3.46. 0.3.47 started every
         // model on its lightest level and built heavier levels when the camera came close, which hitched on the first zoom-in.
         bool streamed = stream && !files.All(KeptFam);
@@ -442,7 +458,7 @@ public partial class Mod : MelonMod
         holder.transform.localPosition = new Vector3(e.offset[0], e.offset[1], e.offset[2]);
         holder.transform.localRotation = Quaternion.Euler(0, e.yaw, 0);
         holder.transform.localScale = Vector3.one * e.scale;
-        int verts = 0, parts = 0;
+        int verts = 0, parts = 0; double tA = sw.Elapsed.TotalMilliseconds, tB = 0, tC = 0, tD = 0, tE = 0;
         var byLevel = new List<Renderer>[files.Count];
         for (int k = 0; k < buildNow.Count; k++)
         {
@@ -450,6 +466,7 @@ public partial class Mod : MelonMod
             byLevel[L] = BuildLevel(holder, k == 0 ? fam : LoadFam(files[L], out _), L, made, ref v);
             if (k == 0) { verts = v; parts = made.Count; }
         }
+        tB = sw.Elapsed.TotalMilliseconds;
         // Line the turret up with the stand-in's turret bone (x/z), so it turns about its own ring; then reparent.
         bool aligned = false;
         foreach (var (part, bone) in made)
@@ -481,9 +498,12 @@ public partial class Mod : MelonMod
               var rp = root.transform.InverseTransformPoint(part.transform.position); var mr = part.GetComponentInChildren<MeshRenderer>(true);
               MelonLogger.Msg($"FAMODELS {unit}: {bone} -> {path} active={b.gameObject.activeInHierarchy} scale={b.lossyScale} partPos=({rp.x:F2},{rp.y:F2},{rp.z:F2}) bounds={(mr != null ? mr.bounds.center - root.transform.position : Vector3.zero)}"); }
         }
+        tC = sw.Elapsed.TotalMilliseconds;
         if (files.Count > 1) SetLevels(root, holder, byLevel, unit);
+        tD = sw.Elapsed.TotalMilliseconds;
         int hidden = Hide(root);
         holder.SetActive(true);
+        tE = sw.Elapsed.TotalMilliseconds;
         live.Add((root, unit));
         if (buildNow.Count < files.Count) QueueLodUpgrade(root, holder, unit, files, byLevel, made);
         try { ApplyPaint(root, unit); } catch (Exception ex) { MelonLogger.Warning("FAMODELS_PAINT apply: " + ex.Message); }
@@ -492,6 +512,8 @@ public partial class Mod : MelonMod
         foreach (int L in buildNow) NoteUse(files[L], root);
         if (!kept && inMenu) FreeUnused(MenuKeep, "menu");
         // 0.3.29: infantry weapon swaps log only with UserData/FAModels/verbose.txt (they were ~1,600 lines a session).
+        // 0.3.52-ovn.2 (overnight run B: every ZTQ-15 Light swap took 16 ms, other models 0 ms): where a slow swap spends its time.
+        if (sw.Elapsed.TotalMilliseconds > 5) MelonLogger.Msg($"FAMODELS swap time {unit}: load {loadMs:F1}, build {tB - tA:F1}, bones {tC - tB:F1}, levels {tD - tC:F1}, hide+activate {tE - tD:F1}, paint and rest {sw.Elapsed.TotalMilliseconds - tE:F1} ms");
         if (Verbose || !kept || !unit.StartsWith("infantry ")) MelonLogger.Msg($"FAMODELS {unit}: hid {hidden} renderer(s), added {parts} part(s), {verts} vertices from {files[buildNow[0]]} in {sw.Elapsed.TotalMilliseconds:F0} ms ({(kept ? "kept model" : $"loaded from file in {loadMs:F0} ms")}, after {age:F2} s){(buildNow.Count < files.Count ? $"; lightest of {files.Count} detail levels first, the others follow" : "")}");
         return true;
         }
@@ -514,7 +536,17 @@ public partial class Mod : MelonMod
     // go straight to the GPU: no PNG decode and no mip generation on the main thread, a quarter of the video memory, and no
     // CPU-side copy kept (non-readable). A model without .fat files still loads its PNGs, also kept non-readable now.
     // X.fat: "FAT1", int32 width, height, Unity TextureFormat, mip count, linear (0/1), data length, then the mip data.
-    static bool TexExists(string png) => File.Exists(Path.Combine(dir, Path.ChangeExtension(png, ".fat"))) || File.Exists(Path.Combine(dir, png));
+    // 0.3.52-ovn.3 (overnight run B: every swap of a painted unit took 15-16 ms in "paint and rest"): under Wine/Proton a File.Exists that misses
+    // makes a case-insensitive scan of the whole folder (UserData/FAModels holds ~7,800 files), and the paint code asked for missing scheme sheets
+    // (e.g. tex0@DustCamo) for every renderer of every spawn. Answers are cached for the session; the folder does not change in a match.
+    static readonly Dictionary<string, bool> texExists = new();
+    static bool TexExists(string png)
+    {
+        if (texExists.TryGetValue(png, out var e)) return e;
+        return texExists[png] = File.Exists(Path.Combine(dir, Path.ChangeExtension(png, ".fat"))) || File.Exists(Path.Combine(dir, png));
+    }
+    static readonly Dictionary<string, bool> fileExists = new();
+    static bool FileExists(string name) { if (fileExists.TryGetValue(name, out var e)) return e; return fileExists[name] = File.Exists(Path.Combine(dir, name)); }
     static Texture2D Tex(string png, bool linear)
     {
         var fat = Path.Combine(dir, Path.ChangeExtension(png, ".fat"));
