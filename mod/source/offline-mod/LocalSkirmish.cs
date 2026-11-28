@@ -959,6 +959,20 @@ namespace BALocalSkirmish
     [HarmonyPatch(typeof(NetworkLobbyService), nameof(NetworkLobbyService.CreateLobby))]
     static class CreateLobbyPatch
     {
+        const string VsAiDefault = "[FA] PvE AI Easy CN Dead Center 0.1";
+        static ScenarioSource FindScenario(string name)
+        {
+            ScenariosService svc = null;
+            try { Session.TryGetService<ScenariosService>(out svc, false); } catch { }
+            var list = svc?._scenarios; int n = list != null ? list.Count : 0;
+            for (int i = 0; i < n; i++)
+            {
+                ScenarioSource s = null; try { s = list[i]; } catch { continue; }
+                string nm = null; try { nm = s?.MetaFile?.ScenarioName; } catch { }
+                if (nm != null && nm.Trim() == name) return s;
+            }
+            return null;
+        }
         [HarmonyPriority(Priority.First)]
         static bool Prefix(LobbyType lobbyType, ScenarioSource initScenario, bool isPrivateLobby)
         {
@@ -966,6 +980,22 @@ namespace BALocalSkirmish
             {
                 if (lobbyType == LobbyType.Skirmish)
                 {
+                    // Osama 27 Nov 2026 20:0x: "the skirmish button should put you in an online lobby but all player slots locked except
+                    // for 1". Skirmish now opens a private online Scenario lobby on a vs AI map (one human slot, one AI bot; pve.py VSAI),
+                    // where the host can pick another vs AI map or difficulty. Shift-click, no scenario lobbies (anti-cheat rule) or a
+                    // missing map open the local setup as before.
+                    bool local = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+                    if (!local && OnlineRules.ScenarioAllowed())
+                    {
+                        var s = FindScenario(VsAiDefault);
+                        if (s != null)
+                        {
+                            MelonLogger.Msg($"[LocalSkirmish] Skirmish clicked -> private online lobby on '{VsAiDefault}' (vs AI). Shift-click for the local setup.");
+                            NetworkLobbyService.CreateLobby(LobbyType.Scenario, s, true);
+                            return false;
+                        }
+                        MelonLogger.Warning($"[LocalSkirmish] vs AI map '{VsAiDefault}' not installed; local setup instead.");
+                    }
                     MelonLogger.Msg("[LocalSkirmish] Skirmish clicked -> local setup; native Skirmish lobby blocked.");
                     Core.Instance?.OpenSetup();
                     return false;

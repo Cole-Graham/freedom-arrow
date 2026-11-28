@@ -101,11 +101,14 @@ if _ge(9,36):
         if f not in z.namelist():bad.append(f'PvE map missing: {name}');continue
         waves=[json.loads(next(q['v'] for q in b['props_v2'] if q['k']=='val').replace('\u00a8','"')) for b in SC.load(SC.dec(zipfile.ZipFile(z.open(f)).read('nodes.bam')))['b'] if b['nnKey']=='getSpMultUnData']
         # Random Dead Center (24 Nov 2026): at least one opening group per doctrine; fixed maps: one group per wave.
-        want=len(PVE.DOCTRINES) if 'Random' in name else next(len(PVE.WAVES[t]) for p_,_,_,t,_ in PVE.BASES if name in PVE.names(p_,t))
+        want=(1 if name in getattr(PVE,'VSAI_NAMES',()) else len(PVE.DOCTRINES) if 'Random' in name
+              else next(len(PVE.WAVES[t]) for p_,_,_,t,_ in PVE.BASES if name in PVE.names(p_,t)))
         if len(waves)<want:bad.append(f'{name}: {len(waves)} wave groups (want at least {want} waves)')
         for w in waves:
             for u in w['Units']:
                 if u['unitId'] not in Ut:bad.append(f'{name}: wave unit {u["unitId"]} not in the package')
+                # Osama 27 Nov 2026: "no walking squads ever": an infantry squad spawned by the AI must sit in a carrier.
+                elif (Ut[u['unitId']] or {}).get('Type')==2:bad.append(f'{name}: infantry {u["unitId"]} spawns on foot (no carrier in pve.TRANSPORT)')
                 for it in u['items']:
                     if Mt.get(it['mod'],{}).get('UnitId')!=u['unitId'] or Ot.get(it['opt'],{}).get('ModificationId')!=it['mod']:bad.append(f'{name}: unit {u["unitId"]} option {it} not in the package')
 # From dev.36: stress recovery 0.33 (Lateralus 17 Nov 12:35 PST "queue it"), the lobby list of packaged maps only and the altitude arrow traces.

@@ -46,7 +46,25 @@ RANDOM=[(1,dead_center_1v1,dead_center_1v1.NAME),(2,dead_center_2v2,dead_center_
 DOCTRINES=[t for _,_,_,t,_ in BASES]
 def random_names(players):
     n=f'[FA] PvE {players}P Random Dead Center 0.1';return n,n.replace(' 0.1',' Skirmish 0.1')
-ALL_NAMES=[x for p,_,_,t,_ in BASES for x in names(p,t)]+[x for p,_,_ in RANDOM for x in random_names(p)]
+# vs AI (Osama 27 Nov 2026 20:0x-20:1x PST, bugs thread: "why not just make the ai 1 'player' like test your deck and then increase the points
+# available to it based on map", "the budget is baked in to the maps", "apply these changes and do your best"): one human slot against ONE
+# AI bot that owns the whole enemy side and pays for what it buys. Its wallet = one player's economy x the map's team size (1v1 x1 ... 4v4 x4)
+# x difficulty (Osama 19:3x: "the current mode is easy. Then it's medium then hard then challenge mode. Challenge mode gives the AI 2.2x the
+# income whereas medium is 1.2 and hard is 1.8"); the unit cap scales the same way. Each map x difficulty is its own online scenario, so the
+# lobby list shows the difficulty and nothing reads settings at run time. Names start "[FA] PvE " so the lobby's PvE tab lists them.
+DIFFICULTIES=[('Easy',1.0),('Medium',1.2),('Hard',1.8),('Challenge',2.2)]
+AI_START_POINTS,AI_INCOME_PER_MIN=1500,300   # one player: the lobby defaults StartingPoints 1500 / StartingIncome 300 of the FA maps
+AI_CHANNEL_SHARE={'ch1':0.35,'ch2':0.65}     # air channel / ground channel share of the wallet
+def map_size(base_name):
+    import re
+    m=re.search(r'\[(\d)v\d\]',base_name);assert m,base_name;return int(m.group(1))
+def vsai_names(title,diff):
+    where,enemy=title.split(' vs ');return f'[FA] PvE AI {diff} {FACTION_CODE[enemy]} {where} 0.1'
+def vsai_budget(base_name,mult):
+    k=map_size(base_name)*mult
+    return dict(start=round(AI_START_POINTS*k),income=round(AI_INCOME_PER_MIN*k),cap=max(1,round(AI_MAX_UNITS*k)),scale=map_size(base_name))
+VSAI_NAMES=[vsai_names(t,d) for _,_,_,t,_ in BASES for d,_ in DIFFICULTIES]
+ALL_NAMES=[x for p,_,_,t,_ in BASES for x in names(p,t)]+[x for p,_,_ in RANDOM for x in random_names(p)]+VSAI_NAMES
 
 # China units of those specializations, default options (0.9.0-dev.36 data): unitId -> (ucat = CategoryType, [(modification, option)]).
 # Ground only: the waves are capture orders, which aircraft and artillery do not fly or fire well. queued_checks.py checks every id per build.
@@ -214,6 +232,11 @@ AI_CARDS['Dead Center vs China']['ch1'][0]=923   # J-11BS Light CAP instead of t
 # AI money is unlimited (Osama 19 Nov 2026 22:4x: "the AI gets access to everything ... no cap for points"); the live-unit cap and purchase
 # intervals still apply. Random whole-faction decks were asked for too, but held back for now (Osama 22:5x: "be conservative with the decks").
 TRANSPORT={57:41,60:253,62:22,63:180,66:82,70:180,72:392,75:184,108:141,109:142,110:141,111:141,112:141,117:254,119:212,122:216,126:212,127:365,130:253,132:141,133:254,134:254,146:41,150:392,351:82,353:254,370:41,372:212,398:365,399:365,401:365,407:180,408:180,416:184,419:212,449:33,459:253,701:22,1136:1228,1137:1228,1139:1228,1143:1228,1146:1228,1154:1248,1157:1248,1163:1248,1166:1230,1172:1064,1175:1064,1176:1064,1181:1230,1182:1076,1183:1076,1185:1076,1192:1076,1196:1079,1198:1079,1205:1079}
+# Osama 27 Nov 2026 19:5x: "no walking squads ever". These recon squads had no carrier and walked from the spawn; each gets a same-faction
+# carrier with enough seats (0.9.8 data: men -> seats): Force Recon 6 -> ACV 14, Cavalry Scouts 3 / Scouts Stryker 6 -> Stryker ICV 9,
+# VDV Razvedka / VDV Spetsnaz 5 -> BTR-D 10, Razvedka Mech 7 -> K16 Bumerang 8, Airborne Recce 4 -> RSOV 6, Recon Patrol 6 -> ZSD-89 10.
+# queued_checks.py fails the build if any spawned infantry squad is not inside a carrier.
+TRANSPORT.update({61:180,65:22,277:22,114:141,116:141,123:253,350:184,1201:1064})
 UNITS.update({22:(2,[(4, 9), (3, 7)]),
        33:(2,[(13, 31), (16, 41)]),
        41:(2,[(24, 61), (23, 59)]),
@@ -294,13 +317,13 @@ def ai_code(scene):
                 ('"orders=%d latched=%d','"orders=%s latched=%d')):
         assert code.count(a)==1,('BrokenArrowAI changed: '+a[:40]);code=code.replace(a,b)
     return code
-def pve_header(objects,players):
+def pve_header(objects,players,budget=None):
     bravo=next(o['_uid'] for o in objects if o.get('_type')==3 and o['_dname']=='Bravo team')
     sp=[o['pos'] for o in objects if o.get('_type')==10 and o['team']['id']==bravo and 5 not in o.get('spawnType2',[])]
     spawns=', '.join(f"{{x={q['X']:.1f}, y={q['Y']:.1f}, z={q['Z']:.1f}}}" for q in sp)
     return f'''BA_FA_PVE = true   -- Freedom Arrow PvE: the AI commands and buys for the Bravo players
-BA_FA_MAX_UNITS = {AI_MAX_UNITS*players}
-FA_UNLIMITED = true   -- AI money unlimited (Osama 19 Nov 2026)
+BA_FA_MAX_UNITS = {budget["cap"] if budget else AI_MAX_UNITS*players}
+FA_UNLIMITED = true   -- card ranking only; vs AI maps charge a wallet (FA_PAY) per purchase
 BA_FA_SPAWNS = {{ {spawns} }}   -- Bravo ground spawns: purchases arrive here, as a player's do
 local fa_pick = 0
 function FA_SPAWN()
@@ -390,12 +413,32 @@ def purchase_code(scene,header):
                 ('  ctx.money = (type(money) == "number") and money or 0','  ctx.money = (type(money) == "number") and money or 0\n  if BA_FA_PVE then ctx.money = FA_UNLIMITED and 1000000000 or FA_HUMAN_MONEY() end')):
         assert code.count(a)==1,('BrokenArrowAI ba_purchase changed: '+a[:40]);code=code.replace(a,b)
     return code
-def add_purchase(nodes,objects,scene,players,cards,after=None,doctrine=None):
+def wallet_lua(ch,budget):
+    """vs AI: the AI pays for what it buys. One wallet per buying channel (the two LuaNodes may not share a Lua state, so each gets its own
+    functions); the channel's share of the start points and income. Pins are priced from AI_COST (the payload's units and carriers);
+    clones carry the cloned unit's own Cost; anything unpriced counts 200."""
+    start,per_min,share=budget['start'],budget['income'],AI_CHANNEL_SHARE[ch]
+    return f'''FA_VSAI = true
+FA_WALLET_{ch} = {{ start = {start*share:.0f}, perMin = {per_min*share:.0f}, spent = 0, told = -999 }}
+function FA_PAY_{ch}(label, cost)
+  local w = FA_WALLET_{ch}
+  local t = loopTime or 0.0
+  if type(cost) ~= "number" or cost <= 0 then cost = FA_PIN_COST_{ch}[label] or 200 end
+  local have = w.start + w.perMin * t / 60.0 - w.spent
+  if have < cost then
+    if t - w.told > 60 then w.told = t; pcall(function() API.Print(string.format("[FA AI] {ch} wallet %.0f, %s costs %.0f: saving", have, tostring(label), cost)) end) end
+    return false
+  end
+  w.spent = w.spent + cost
+  return true
+end
+'''
+def add_purchase(nodes,objects,scene,players,cards,after=None,doctrine=None,budget=None):
     """Two buying channels for BP1 (ba_purchase.lua Buy_BP1 / Buy2_BP1), wired as tools/inject_purchase.py does: start -> looped LuaNode,
     static payloads on input_1..5, output_1 -> spawn.UnitInfo, output_2 -> spawn.targetVec, out -> spawn.in, error -> self."""
     owner=next(o['_uid'] for o in objects if o.get('_type')==13 and o['_dname']=='Bravo Player 1')
     start=[b['id'] for b in nodes['b'] if b['nnKey']=='start'][0]
-    header=pve_header(objects,players)
+    header=pve_header(objects,players,budget)
     if doctrine:header+=f'FA_DOCTRINE = "{doctrine}"   -- Random Dead Center: the setup this match rolled\nprint("[FA PvE] doctrine: " .. FA_DOCTRINE)\n'
     code=purchase_code(scene,header)
     nid=max(b['id'] for b in nodes['b'])+500
@@ -406,7 +449,17 @@ def add_purchase(nodes,objects,scene,players,cards,after=None,doctrine=None):
     store=node('mission_storage',[p('value','BP1'),p('actOnSt','False')],-3000.0,8000.0);wire(store,'in',player,'out')
     for k,(enter,ids) in enumerate((('Buy_BP1',cards['ch1']),('Buy2_BP1',cards['ch2']))):
         y=8300.0+k*600.0
-        lua=node('LuaNode',[p('EnterMethod',enter),p('Loop','True'),p('Code',code),p('hotreload','False')],-2600.0,y)
+        ch=f'ch{k+1}';ccode=code
+        if budget:
+            # vs AI: the AI has a wallet; every bought card is paid for (the burst repeats too) and waits when the wallet is short.
+            costs='{ '+', '.join(f'["pin input_{i+1}"] = {pin_cost(uid,budget["scale"])}' for i,uid in enumerate(ids))+' }'
+            ccode=purchase_code(scene,header+wallet_lua(ch,budget)+f'FA_PIN_COST_{ch} = {costs}\n')
+            for a,b in (('  deploy(slot, payload, drop, t, false)\n',f'  if FA_VSAI and not FA_PAY_{ch}(label, unitCost) then return end\n  deploy(slot, payload, drop, t, false)\n'),
+                        ('      BUY.slot[slot].burstLeft = BUY.slot[slot].burstLeft - 1\n      deploy(slot, p, d, t, true)\n',
+                         f'      if FA_VSAI and not FA_PAY_{ch}(BUY.slot[slot].lastCard, nil) then BUY.slot[slot].burstLeft = 0; return end\n'
+                         '      BUY.slot[slot].burstLeft = BUY.slot[slot].burstLeft - 1\n      deploy(slot, p, d, t, true)\n')):
+                assert ccode.count(a)==1,('BrokenArrowAI ba_purchase changed: '+a[:40]);ccode=ccode.replace(a,b)
+        lua=node('LuaNode',[p('EnterMethod',enter),p('Loop','True'),p('Code',ccode),p('hotreload','False')],-2600.0,y)
         wire(lua,'in',*(after or (start,'flow')));wire(lua,'in',lua,'error')
         for i,uid in enumerate(ids):
             data=node('getSpMultUnData',[p('val',payload({uid:1},players))],-3000.0,y+100+i*60);wire(lua,f'input_{i+1}',data,'out')
@@ -591,6 +644,43 @@ def build_random(game,out,settings):
             C.write(out,flavor,h,o,n,m)
             print(f'{flavor}: {len(DOCTRINES)} doctrines rolled at start, {players} human slot(s)')
 
+# Unit point costs (0.9.8-dev.8 queue, OriginalCost else Cost) for the vs AI wallet. A card's pin costs its unit (plus its carrier) x the map
+# size, the units the pin spawns. Drift after a price change only shifts the AI's spending a little; refresh with the batch when prices move.
+AI_COST={4:140,8:110,10:90,20:110,22:30,31:150,33:30,34:140,41:25,46:135,50:80,54:220,60:60,61:60,65:90,82:30,86:110,92:100,109:50,111:65,
+ 114:60,123:55,133:65,141:20,142:20,157:125,168:155,169:135,180:35,184:35,207:90,209:50,212:25,216:30,233:175,238:205,244:205,247:130,
+ 253:30,254:45,256:85,270:115,271:135,280:200,283:145,285:115,286:170,287:160,288:60,291:185,292:175,293:200,300:100,306:150,307:75,
+ 310:150,312:135,317:200,319:145,350:55,351:75,365:25,392:40,398:50,407:70,452:110,701:70,719:95,722:95,913:120,916:165,917:140,923:125,924:140,
+ 925:110,955:140,975:130,1033:75,1040:95,1041:80,1051:90,1052:130,1061:65,1064:35,1076:35,1079:35,1082:125,1083:200,1092:120,1103:115,1136:80,
+ 1175:35,1192:60,1196:75,1201:50,1228:20,1230:35,1242:130,1248:40,1257:45,1258:40,1270:120}
+def pin_cost(uid,scale):
+    return (AI_COST.get(uid,200)+(AI_COST.get(TRANSPORT[uid],30) if uid in TRANSPORT else 0))*scale
+
+def build_vsai(game,out,settings):
+    """vs AI maps: online flavor only, 1 human slot on Alpha, 1 AI bot (Bravo Player 1) owning every enemy unit, wallet and cap baked in."""
+    W=settings['MapZoneWeights']
+    for _,mod,base_name,title,enemy in BASES:
+        size=map_size(base_name)
+        with tempfile.TemporaryDirectory() as tmp:
+            mod.build(game,Path(tmp))
+            base=C.read_bascr(Path(tmp)/base_name,base_name)
+        for diff,mult in DIFFICULTIES:
+            flavor=vsai_names(title,diff);budget=vsai_budget(base_name,mult)
+            assert W.get(flavor)==W[base_name],(flavor,'zone weights must equal those of',base_name)
+            desc=(f'Freedom Arrow vs AI ({diff}): you against one AI commander playing {title.split(" vs ")[1]} ({enemy}). It buys like a player: '
+                  f'{budget["start"]} starting points and {budget["income"]} per minute ({size}v{size} map x{mult:g}), at most {budget["cap"]} units, '
+                  'infantry always mounted. '+base[0]['desc'])
+            h,n,o,m=copy.deepcopy(base)
+            st=[b['id'] for b in n['b'] if b['nnKey']=='start'];assert len(st)==1
+            # opening force sized for the map (as `players` = team size), bought for the one AI player
+            add_waves(n,o,size,(st[0],'flow'),opening(WAVES[title],AI_CARDS[title]),orders=False)
+            add_ai(n,h['map']);add_purchase(n,o,h['map'],size,AI_CARDS[title],budget=budget)
+            configure_slots(o,m,1)
+            C.check_spawns(flavor,h,o)
+            C.check_limit(flavor,desc)
+            C.stamp(h,m,flavor,str(uuid.uuid5(uuid.NAMESPACE_URL,flavor)),desc,'Freedom Arrow',2,True)
+            C.write(out,flavor,h,o,n,m)
+            print(f'{flavor}: 1 human slot vs 1 AI bot, wallet {budget["start"]} + {budget["income"]}/min, cap {budget["cap"]}')
+
 def build(game,out):
     settings=C.settings();ai=(AI_SRC/'ai'/'ba_brain.lua').exists()
     print('PvE commander:','BrokenArrowAI Lua' if ai else f'scripted orders ({AI_SRC} not found)')
@@ -621,4 +711,4 @@ def build(game,out):
             C.stamp(h,m,flavor,str(uuid.uuid5(uuid.NAMESPACE_URL,flavor)),desc,'Freedom Arrow',kind,kind==2)
             C.write(out,flavor,h,o,n,m)
             print(f'{flavor}: {waves[0]} waves from {waves[1]} Bravo spawns, {players} human slot(s)')
-    if ai:build_random(game,out,settings)
+    if ai:build_random(game,out,settings);build_vsai(game,out,settings)
