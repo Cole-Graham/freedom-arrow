@@ -33,6 +33,9 @@ Seen on 26 Nov 2026 21:32 (Osama's PC, Arsenal, J-20): the fallback line above, 
 
 **Other jets with the same donor fallback** (not changed): F-2, F-35 (K and J2B sets), J-8II, KF-21 (both sets), Mirage 2000, Rafale, Typhoon. Each needs only the same one field in its `.mat.json` files.
 
+**Seen 27 Nov 2026 22:0x (Osama's PC, Arsenal, dev.8):** after an F-35B was shown and the J-20S selected again, still no `FAMODELS_COCKPIT_UPGRADED` line after 45 s; the J-20S canopy stayed on its milky fallback. The upgrade tries are limited (3 per stand-in). So in the Arsenal a donor canopy can stay on its fallback for the whole session. The J-20S canopy no longer uses a donor: its own gold glass texture with `metallic` 0.5, `smoothness` 0.92, BLEND and `preserveSpecular` (seen in game with test files, 22:09). Measured in a game.
+
 ## Document change log
 
 - 2026-11-26 21:4x PST (America/Los_Angeles) — New page: donor glass, the fallback, and the 0.3.50 `preserveSpecular` option (Osama: J-20 canopy not reflective).
+- 2026-11-27 22:1x PST (America/Los_Angeles) — Donor glass may never upgrade in the Arsenal (seen); J-20S switched to its own glass.
