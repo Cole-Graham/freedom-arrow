@@ -36,7 +36,9 @@ public partial class Mod
         // ROC (Shawn 28 Nov 2026, list 7): HF-IIE "use the material on HEMTT", Kung Feng VI "the material on M142 HIMARS' window glass". Both are
         // the vehicle layered shader over the truck's own base map; our window UVs sit on its tinted glass patch (tools/donor_glass_patch.py).
         ["US_HeavyOshkosh3_glass"] = "ushemtt",
-        ["Himars GLASS"] = "ushimars"
+        ["Himars GLASS"] = "ushimars",
+        // ROC AH-1W (Shawn 28 Nov: his AH-1W model on the vanilla AH-1W card): the vanilla AH-1W canopy (prefab "US_AH-1W Super_Cobra").
+        ["US_AH-1W_Glass"] = "usah1w"
     };
     static string Compact(string s) => new string(s.ToLowerInvariant().Where(char.IsLetterOrDigit).ToArray());
     static Material FindCockpitMaterial(string name) => Resources.FindObjectsOfTypeAll<Material>()

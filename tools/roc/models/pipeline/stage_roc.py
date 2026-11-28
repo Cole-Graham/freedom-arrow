@@ -10,13 +10,14 @@ CARD={'cm34':'ROC CM-34','cm33':'ROC CM-33',   # CM-33 back 27 Nov 18:4x as the 
       'ah64e':'ROC AH-64E','m60a3':'ROC M60A3 TTS','fck1':'ROC F-CK-1','c130':'ROC C-130HE','chx2':'ROC Chung Hsiang II',   # Shawn's 26 Nov uploads
       'f16a':'ROC F-16A','mirage':'ROC Mirage 2000-5',
       'hf2e':'ROC Hsiung Feng IIE',
+      'ah1w':'ROC AH-1W',   # Shawn 28 Nov 03:2x: his AH-1W model (ROC livery), vanilla AH-1W glass
       'cm12':'ROC CM-12',   # Shawn 27 Nov 00:0x: the CM-12.zip model (file CM11.fbx) is the right CM-12
       'ec225':'ROC EC225'}   # Shawn 27 Nov 00:2x, ROC SAR paint (livery_ec225.py)
 shutil.rmtree(H+'/stage',ignore_errors=True);os.makedirs(S)
 # Extra models.json fields per card. Shawn 28 Nov: "Fix this strange dust on the wheel" (Thunderbolt-2000): the M270 stand-in's dust_point
-# nodes sit at its front track sprockets, which is on the TB2000's front wheels; move them inside the rear wheels (rear axle z -3.56, wheel
-# outer face x 1.2, wheel centre y 0.7) so the driving dust comes from the rear tyres.
-ENTRY_EXTRA={'ROC Thunderbolt-2000':{'dustPoint':[0.95,0.3,-3.56]}}
+# nodes sit at its front track sprockets, which is on the TB2000's front wheels (the cab is at -z in the .fam, as the M270 model faces);
+# move them inside the rearmost wheels (axle z +3.40, wheel outer face x 1.2, wheel centre y 0.7) so the driving dust comes from the rear tyres.
+ENTRY_EXTRA={'ROC Thunderbolt-2000':{'dustPoint':[0.95,0.3,3.40]}}
 models={};n=0
 for s,card in CARD.items():
     st=f'm_roc_{s}'

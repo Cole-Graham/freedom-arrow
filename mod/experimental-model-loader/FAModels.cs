@@ -338,15 +338,15 @@ public partial class Mod : MelonMod
     // Hide the stand-in only after its replacement has loaded completely.
     // ROC 28 Nov 2026 (Shawn: "Fix this strange dust on the wheel", Thunderbolt-2000 on the M270 stand-in): vanilla vehicles spawn their dust
     // effect at child nodes named dust_point_left / dust_point_right, placed inside the vanilla tracks or wheels. On a stand-in with another
-    // running gear the dust shows on the new model (TB2000: on the front wheel). An entry's "dustPoint": [x, y, z] (stand-in root space; each node
-    // keeps its own side, x sign) moves them inside the new model's wheels.
-    static void MoveDustPoints(GameObject root, float[] p, string unit)
+    // running gear the dust shows on the new model (TB2000: on the front wheel). An entry's "dustPoint": [x, y, z] (each node
+    // keeps its own side, x sign), in the new model's own space (the .fam coordinates), moves them inside its wheels.
+    static void MoveDustPoints(GameObject root, Transform model, float[] p, string unit)
     {
         foreach (var t in root.GetComponentsInChildren<Transform>(true))
         {
             if (!t.name.StartsWith("dust_point")) continue;
-            var was = root.transform.InverseTransformPoint(t.position);
-            t.position = root.transform.TransformPoint(new Vector3(Mathf.Abs(p[0]) * (was.x < 0 ? -1f : 1f), p[1], p[2]));
+            var was = model.InverseTransformPoint(t.position);
+            t.position = model.TransformPoint(new Vector3(Mathf.Abs(p[0]) * (was.x < 0 ? -1f : 1f), p[1], p[2]));
             MelonLogger.Msg($"FAMODELS {unit}: {t.name} ({was.x:F2},{was.y:F2},{was.z:F2}) -> ({(was.x < 0 ? -1 : 1) * Mathf.Abs(p[0]):F2},{p[1]:F2},{p[2]:F2})");
         }
     }
@@ -509,7 +509,7 @@ public partial class Mod : MelonMod
         }
         if (files.Count > 1) SetLevels(root, holder, byLevel, unit);
         int hidden = Hide(root);
-        if (e.dustPoint.Length == 3) MoveDustPoints(root, e.dustPoint, unit);
+        if (e.dustPoint.Length == 3) MoveDustPoints(root, holder.transform, e.dustPoint, unit);
         holder.SetActive(true);
         live.Add((root, unit));
         if (buildNow.Count < files.Count) QueueLodUpgrade(root, holder, unit, files, byLevel, made);

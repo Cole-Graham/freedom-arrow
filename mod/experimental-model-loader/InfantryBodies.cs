@@ -156,6 +156,16 @@ public partial class Mod
             for(int j=0;j<nativeBones.Length;j++)if(nativeBones[j]!=null && nativeBones[j].name==src.bones[i]){mapping[i]=j;break;}
             // Lower native LODs may omit unused finger bones; only positive weights require a mapping.
         }
+        // ROC 28 Nov 2026: Shawn's roc10 logs had 18 "body failed lod_2 ... weighted donor bone is absent" (the far body kept the US soldier).
+        // A bone the native LOD leaves out (fingers, toes) now takes its weights on to the nearest ancestor this LOD has, found in the
+        // stand-in's own skeleton; the vertex stays in place at bind pose and follows the hand or foot.
+        var top=native.rootBone!=null?native.rootBone.root:native.transform.root;
+        for(int i=0;i<nb;i++) {
+            if(mapping[i]>=0)continue;
+            Transform t=null;foreach(var c in top.GetComponentsInChildren<Transform>(true))if(c.name==src.bones[i]){t=c;break;}
+            for(var q=t!=null?t.parent:null;q!=null && mapping[i]<0;q=q.parent)
+                for(int j=0;j<nativeBones.Length;j++)if(nativeBones[j]==q){mapping[i]=j;break;}
+        }
         int ns=src.subs.Length;
         var pos=new List<Vector3>();var normals=new List<Vector3>();var uv=new List<Vector2>();var weights=new List<BoneWeight>();var indices=new List<int[]>();var materials=new List<Material>();
         foreach(var sub in src.subs) {
