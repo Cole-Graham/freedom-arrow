@@ -878,7 +878,7 @@ namespace BALocalSkirmish
         // ---------- unattended test runs ----------
         // UserData/LocalSkirmish-autorun.json (perf / AI test runs on Vengeance, Osama 28 Nov 2026 01:5x "boot the game and run the tests ... build,
         // test, improve, test repeat"): {"map":"Airbase","deck":"name part","diff":3,"minutes":34,"opts":{"Size":"Large"}}. 20 s after the local
-        // setup is ready it opens the setup, picks the first map and deck whose names contain the given text, sets the FA difficulty and the named
+        // setup is ready it opens the setup, picks the first map and deck whose names match the given regular expressions (all names are logged), sets the FA difficulty and the named
         // options (label part -> value label part or number), starts the battle and, with "minutes", quits the game that long after the launch.
         // The file is renamed to .used first, so a crash never loops. No file: nothing happens.
         bool _autoDone; float _autoAt = -1f, _autoQuit = -1f;
@@ -894,11 +894,27 @@ namespace BALocalSkirmish
             var j = System.Text.Json.Nodes.JsonNode.Parse(File.ReadAllText(f));
             File.Copy(f, f + ".used", true); File.Delete(f);
             string map = (string)j["map"] ?? "", deck = (string)j["deck"] ?? "";
+            float min0 = j["minutes"] != null ? (float)j["minutes"] : 0f;
+            // {"lobby":"[FA] PvE AI Hard RU Jelgava 0.1","minutes":20}: open that vs AI map as a private online lobby (as the Skirmish button does);
+            // the tester starts the match from the lobby.
+            if (j["lobby"] is System.Text.Json.Nodes.JsonNode ln)
+            {
+                var sc = CreateLobbyPatch.FindScenario((string)ln);
+                if (sc == null) { MelonLogger.Error($"[LocalSkirmish] AUTORUN: lobby map '{(string)ln}' not installed"); return; }
+                if (min0 > 0f) _autoQuit = Time.realtimeSinceStartup + min0 * 60f;
+                MelonLogger.Msg($"[LocalSkirmish] AUTORUN lobby '{(string)ln}' (private online, vs AI), quit after {min0} min");
+                NetworkLobbyService.CreateLobby(LobbyType.Scenario, sc, true);
+                return;
+            }
             OpenSetup();
-            int mi = _mapNames.FindIndex(n => n.IndexOf(map, StringComparison.OrdinalIgnoreCase) >= 0);
+            MelonLogger.Msg("[LocalSkirmish] AUTORUN maps: " + string.Join(" | ", _mapNames));
+            var rx = new System.Text.RegularExpressions.Regex(map, System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+            int mi = _mapNames.FindIndex(n => rx.IsMatch(n));
             if (mi < 0) { MelonLogger.Error($"[LocalSkirmish] AUTORUN: no map contains '{map}'"); return; }
             _mapIdx = mi; RefreshDecks(); RefreshOptions();
-            int di = _deckNames.FindIndex(n => n.IndexOf(deck, StringComparison.OrdinalIgnoreCase) >= 0); if (di >= 0) _deckIdx = di;
+            MelonLogger.Msg("[LocalSkirmish] AUTORUN decks: " + string.Join(" | ", _deckNames));
+            var dx = new System.Text.RegularExpressions.Regex(deck, System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+            int di = _deckNames.FindIndex(n => dx.IsMatch(n)); if (di >= 0) _deckIdx = di;
             if (j["diff"] != null) _diff = Math.Max(1, Math.Min(4, (int)j["diff"]));
             if (j["opts"] is System.Text.Json.Nodes.JsonObject oj)
                 foreach (var kv in oj)
@@ -1077,7 +1093,7 @@ namespace BALocalSkirmish
     static class CreateLobbyPatch
     {
         const string VsAiDefault = "[FA] PvE AI Easy CN Dead Center 0.1";
-        static ScenarioSource FindScenario(string name)
+        internal static ScenarioSource FindScenario(string name)
         {
             ScenariosService svc = null;
             try { Session.TryGetService<ScenariosService>(out svc, false); } catch { }

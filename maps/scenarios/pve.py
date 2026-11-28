@@ -314,8 +314,38 @@ def ai_code(scene):
                  "  if BA.faLog <= 80 then say(string.format(\"[MOVE] %s fast=%s d=%.0f attack=%s kind=%s ok=%s\", tostring(safe(function() return u.Name end)), tostring(far), BA.faD or -1, tostring(attack), tostring(kind), tostring(ok))) end\n"),
                 ('      BA.stats.orders, BA.stats.latched, BA.stats.fires, BA.stats.withdraws,',
                  '      BA.stats.orders .. " fast=" .. tostring(BA.stats.fastMoves or 0), BA.stats.latched, BA.stats.fires, BA.stats.withdraws,'),
-                ('"orders=%d latched=%d','"orders=%s latched=%d')):
+                ('"orders=%d latched=%d','"orders=%s latched=%d'),
+                # Overnight test 28 Nov 2026 (bugs thread 1573561286803980289): local and online PvE matches hitched 60-110 ms every 5 s
+                # (204 frames over 50 ms in 12 min local, 275 in 17 min online; FAModels and GC idle in those frames). Units bought together
+                # re-scored their positions (BA_MIND.bestPosition) in the same pass every RETHINK_EVERY (5 s). Each unit's window is now
+                # stretched by 0-4 s from its UID, so the group drifts apart over the 1 s planning passes. New or retargeted units are
+                # always scored at once.
+                ("                          and (BA.t - (held.at or 0)) < BA_MIND.RETHINK_EVERY\n",
+                 "                          and (BA.t - (held.at or 0)) < BA_MIND.RETHINK_EVERY + ((rec.uid or 0) % 9) * 0.5\n")):
         assert code.count(a)==1,('BrokenArrowAI changed: '+a[:40]);code=code.replace(a,b)
+    # Test-only timing probe (overnight 28 Nov 2026): FA_PVE_PROFILE=1 make_scenario.py ... times each planning pass, the position
+    # scoring and the influence rebuild with os.clock and prints passes over 8 ms ("[PROF]"). Never set for a release build.
+    if os.environ.get('FA_PVE_PROFILE'):
+        for a,b in (("  local ok, err = pcall(function()\n    if count(BA.bots) == 0 then",
+                     "  local faC = os and os.clock; BA.faT0 = faC and faC() or 0; BA.faBest, BA.faBestN, BA.faFld, BA.faCen, BA.faThr, BA.faExe = 0, 0, 0, 0, 0, 0\n"
+                     "  local ok, err = pcall(function()\n    if count(BA.bots) == 0 then"),
+                    ("              p, sc = BA_MIND.bestPosition(ctx)\n",
+                     "              local faB0 = os and os.clock and os.clock() or 0\n              p, sc = BA_MIND.bestPosition(ctx)\n"
+                     "              if os and os.clock then BA.faBest = BA.faBest + (os.clock() - faB0); BA.faBestN = BA.faBestN + 1 end\n"),
+                    ("    for _, bot in pairs(BA.bots) do censusBot(bot) end\n",
+                     "    local faK0 = os and os.clock and os.clock() or 0\n    for _, bot in pairs(BA.bots) do censusBot(bot) end\n    if os and os.clock then BA.faCen = os.clock() - faK0 end\n"),
+                    ("      local threats = gatherThreats(teamId)\n",
+                     "      local faG0 = os and os.clock and os.clock() or 0\n      local threats = gatherThreats(teamId)\n      if os and os.clock then BA.faThr = os.clock() - faG0 end\n"),
+                    ("        local okb, errb = pcall(function() executeBot(bot, threats, objs) end)\n",
+                     "        local faE0 = os and os.clock and os.clock() or 0\n        local okb, errb = pcall(function() executeBot(bot, threats, objs) end)\n        if os and os.clock then BA.faExe = os.clock() - faE0 end\n"),
+                    ("      BA_FIELD.rebuild(all, an)\n",
+                     "      local faF0 = os and os.clock and os.clock() or 0\n      BA_FIELD.rebuild(all, an)\n      if os and os.clock then BA.faFld = os.clock() - faF0 end\n"),
+                    ("  if not ok then\n    BA.stats.errors = (BA.stats.errors or 0) + 1\n",
+                     "  if os and os.clock then local faMs = (os.clock() - BA.faT0) * 1000\n"
+                     "    if faMs > 8 then say(string.format(\"[PROF] t=%.0f pass %.1f ms: census %.1f, field %.1f, threats %.1f, execute %.1f, bestPosition %d x %.1f ms\", BA.t, faMs, (BA.faCen or 0) * 1000, BA.faFld * 1000, (BA.faThr or 0) * 1000, (BA.faExe or 0) * 1000, BA.faBestN, BA.faBest * 1000)) end\n"
+                     "  else if not BA.faNoClock then BA.faNoClock = true; say(\"[PROF] os.clock not available\") end end\n"
+                     "  if not ok then\n    BA.stats.errors = (BA.stats.errors or 0) + 1\n")):
+            assert code.count(a)==1,('profile anchor',a[:40]);code=code.replace(a,b)
     return code
 def pve_header(objects,players,budget=None):
     bravo=next(o['_uid'] for o in objects if o.get('_type')==3 and o['_dname']=='Bravo team')
