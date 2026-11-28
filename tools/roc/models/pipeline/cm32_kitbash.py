@@ -69,7 +69,10 @@ def vsub(v,n,uv,f,keep,tex):
     return dict(tex=tex,col=(1.0,1.0,1.0,1.0),pos=v[used].ravel().tolist(),nrm=n[used].ravel().tolist(),uv=np.c_[uv[used,0],uv[used,1]-1].ravel().tolist(),idx=rm[f[keepf]].ravel().tolist())
 gv=(np.c_[gun['v'],np.ones(len(gun['v']))]@W.T)[:,:3];gn=gun['n']@W[:3,:3].T
 rws_parts=lambda st:[vsub(icv['v'],icv['n'],icv['uv'],icv['f0'],own,f'{st}_rws.png'),vsub(gv,gn,gun['uv'],gun['f0'],np.ones(len(gv),bool),f'{st}_gun.png')]
-RV=np.concatenate([np.array(p['pos']).reshape(-1,3) for p in rws_parts('x')]);rws_min=RV.min(0);rws_c=(RV.min(0)+RV.max(0))/2
+RV=np.concatenate([np.array(p['pos']).reshape(-1,3) for p in rws_parts('x')]);rws_min=RV.min(0)
+# Shawn 28 Nov 02:3x ("Attach both the M2 on CM-32 and TK19 on CM-33 to the center of the round platform. And fix the floating issue"): the box
+# centre was pulled forward by the long barrel, so the pedestal stood 0.5 m behind the platform, 17 cm above the roof. Align the pedestal foot.
+R0=np.array(rws_parts('x')[0]['pos']).reshape(-1,3);ped=R0[R0[:,1]<R0[:,1].min()+0.03];rws_c=ped.mean(0)
 # ---------- build each level ----------
 LV=[(f'm_roc_cm32_{x}static{y}',f'm_roc_cm34_{x}static{y}') for x,y in (('',''),('lo_',''),('lo_','_l1'),('lo_','_l2'))]   # old CM-32 stems (backups) and CM-34 stems
 for st,src34 in LV:
@@ -134,11 +137,14 @@ for st,src34 in LV:
         PT=np.concatenate([arr(q)[np.array(q['idx']).reshape(-1,3)] for q in plate])
     # vanilla Mk19 station where the CM-32's own station stood (centre x 0.37, z -0.30), on the roof
     tgt=np.array([0.37,0,-0.30]);tgt[1]=roof((tgt[0],tgt[2]))-0.01   # pedestal foot 1 cm into the roof
-    if PT is not None:   # on the old base plate, as the old station stood (highest plate surface under the station centre)
-        TRI0=TRI;TRI=PT;tgt[1]=max(tgt[1],roof((tgt[0],tgt[2]))-0.01);TRI=TRI0
+    if plate and 'TGT' in globals():tgt=TGT.copy()   # LODs: the Arsenal model's centre (their decimated plates fit worse)
+    elif plate:   # centre of the round base plate (circle fit to the outer edge of its top face), foot 1 cm into its top
+        big=max(plate,key=lambda q:len(q['idx']));Tb=np.array(big['idx']).reshape(-1,3);lab=tri_components(big);Lb=np.bincount(lab).argmax()
+        q=arr(big)[np.unique(Tb[lab==Lb])];top=q[q[:,1]>q[:,1].max()-0.03][:,[0,2]];d=np.linalg.norm(top-top.mean(0),axis=1);o=top[d>np.percentile(d,60)]
+        sol=np.linalg.lstsq(np.c_[2*o,np.ones(len(o))],(o**2).sum(1),rcond=None)[0];tgt=np.array([sol[0],q[:,1].max()-0.01,sol[1]]);TGT=tgt.copy()
     stn=st.replace('cm32',SLUG)   # output stem
     for p in rws_parts(f'm_roc_{SLUG}_static' if st=='m_roc_cm32_static' else f'm_roc_{SLUG}_lo_static'):
-        Q=arr(p);Q=Q-np.array([rws_c[0],rws_min[1],rws_c[2]])+tgt;p['pos']=Q.ravel().tolist();out.append(p)
+        Q=arr(p);Q=Q-np.array([rws_c[0],R0[:,1].min(),rws_c[2]])+tgt;p['pos']=Q.ravel().tolist();out.append(p)
         mj[p['tex']+'|1.0000,1.0000,1.0000,1.0000']={'metallic':0.0 if 'rws' in p['tex'] else 1.0,'smoothness':0.35,'alpha':'OPAQUE','cutoff':0.5,'emissive':[0,0,0],'unlit':False}
     write(f'{M}/{stn}.fam',[('root',out)]);json.dump(mj,open(f'{M}/{stn}.mat.json','w'),indent=1)
     print(stn,'sub-meshes',len(out),'triangles',sum(len(x['idx'])//3 for x in out),'station at',tgt.round(2))

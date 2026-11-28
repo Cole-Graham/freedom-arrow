@@ -84,7 +84,15 @@ CARDS = {
     'ROC ASSC': ('ASSC', 150, 'Delta Force', 95),
     # Shawn 28 Nov 02:3x: "add AH1W to ROC, duplicate the AH-1W data and price". Added last.
     'ROC AH-1W': ('AH-1W Supercobra', 87, 'AH-1W Supercobra', None),
+    # Shawn 28 Nov 03:0x (list 8 cards): TOW-2A Team "duplicate the vanilla template you think is the best fit" = the 4-man TOW-2A team; SMAW Team
+    # "select the best template from Freedom Arrow" = Assaultmen SMAW; FGM-148 Team: the base-game 4-man Javelin teams are DLC units, so the TOW-2A
+    # frame. Prices from his cards. Added last.
+    'ROC TOW-2A Team': ('TOW-2A Team', 414, 'TOW-2A', 65),
+    'ROC SMAW Team': ('SMAW Team', 63, 'Assaultmen SMAW', 40),
+    'ROC FGM-148 Team': ('FGM-148 Team', 414, 'TOW-2A', 90),
 }
+# Unit fields set on a card after the copy. Shawn 28 Nov 03:0x: EC225 seats 30 -> 19 (the Mi-38T template has 30).
+UNIT_SET = {'ROC EC225': {'InfantrySlots': 19}}
 REMOVED = set()   # 27 Nov 02:2x the CM-33 card was removed; 27 Nov 18:4x it comes back as a CM-32 variant (VARIANTS)
 # Shawn 27 Nov 18:0x: "make this as a customization of Mech. Riflemen rather than a separated unit" (also Marine AT -> Marine, Reserver Kestrel ->
 # Reserver). Vanilla pattern (Mech. Engineers 146 / CQC 708): the base card gets a "Squad loadout" modification (Type 7) whose options swap the whole
@@ -184,6 +192,7 @@ def apply(t, g, ok, rec):
         g.add('OptionsJson', to1, {'ModificationId': nm, 'Name': var, 'UIName': label, 'ReplaceUnitId': vu, 'ReplaceUnitName': U[vu]['HUDName'],
                                    'Cost': d, 'Order': 1})
         res[base]['loadouts'] = [base, f'{var} (+{d})']
+    for name, f in UNIT_SET.items(): g.put('Units', res[name]['unit'], f); res[name].update(f)
     for name, key in PORTRAITS.items():
         g.put('Units', res[name]['unit'], {'PortraitFileName': f'FA_ROC_INF_{key}-Portrait'}); res[name]['portrait'] = key
     for base, blabel, bpic, vars_ in VARIANTS:
@@ -232,7 +241,7 @@ def apply(t, g, ok, rec):
 # FA name M72A7, 66 mm HEAT, base game); "T74 is Taiwan's licensed version of the Belgian FN MAG" (vanilla Ksp 58B = FN MAG, base-game model).
 DONOR = {'M4A1': 50, 'T91': 50, 'T91 CQC': 67, 'T91K1': 70, 'T-112': 70, 'T65K2': 362, 'T75': 60, 'T75 SFAW': 53, 'T74': 643, 'M203': 58,
          'T85': 58, 'MGL-140': 68, 'Kestrel-1': 1019, 'Kestrel-2': 59, 'M72A3 LAW': 1019, 'M72A4 LAW': 1019, 'M72A10 LAW': 212, 'APILAS': 631, 'Javelin': 62,
-         'Javelin LWCLU': 659, 'DMS FIM-92K': 65, 'REPR-20': 57, 'AXMC': 640, 'M107': 56, 'M1014': 45, 'Flashbang': 590}
+         'Javelin LWCLU': 659, 'TOW-2A': 205, 'SMAW': 61, 'DMS FIM-92K': 65, 'REPR-20': 57, 'AXMC': 640, 'M107': 56, 'M1014': 45, 'Flashbang': 590}
 # Shawn 27 Nov 18:0x: "make the damage, penetration and accuracy of Kestrel-1 a bit better than M72A3": its own copy of the 66mm HEAT round
 # (M72A3 6.5 damage, 300 penetration, 2.0 m dispersion). The M72A3 LAW cards keep the shared vanilla round.
 AMMO_EDIT = {'Kestrel-1': {'HUDName': '66mm HEAT (Kestrel)', 'Damage': 7.0, 'PenetrationAtMinRange': 325.0, 'PenetrationAtGroundRange': 325.0,
@@ -263,6 +272,11 @@ SQUADS = {
     'ROC SF Snipers M107': (3, 8, [('T91K1', 1), ('REPR-20', 1), ('M107', 1)], [], {}),
     # ASSC (Shawn's equipment sheet: M4A1 / T91 carbines, Remington 870 / Mossberg shotguns, AXMC precision rifle, CQB and hostage rescue):
     # 6 men, SOF armour 10; 4 M4A1, 1 shotgun (M1014, the FA SOF shotgun), 1 AXMC; 2 M72A10 LAW (one per carrier) and a flashbang.
+    # TOW-2A Team: the TOW is a crew weapon, the gunner's main weapon in every vanilla TOW team (414, 147), so 3 M4A1 + the gunner; M4A1 2400 and
+    # TOW-2A 6 from Shawn's card. SMAW Team: 4 M4A1, 1 SMAW carrier with 4 thermobaric + 4 anti-tank (card). FGM-148 Team: 4 M4A1, 1 Javelin carrier, 4 rounds.
+    'ROC TOW-2A Team': (4, 8, [('M4A1', 3), ('TOW-2A', 1)], [], {'M4A1': 2400, 'TOW-2A': 6}),
+    'ROC SMAW Team': (4, 8, [('M4A1', 4)], [('SMAW', 1)], {'M4A1': 2400, 'SMAW': 4}),
+    'ROC FGM-148 Team': (4, 8, [('M4A1', 4)], [('Javelin', 1)], {'M4A1': 2400, 'Javelin': 4}),
     'ROC ASSC': (6, 10, [('M4A1', 4), ('M1014', 1), ('AXMC', 1)], [('M72A10 LAW', 2), ('Flashbang', 1)],
                  {'M4A1': 1920, 'M1014': 80, 'AXMC': 60, 'M72A10 LAW': 2, 'Flashbang': 1}),
 }

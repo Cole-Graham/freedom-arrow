@@ -63,5 +63,6 @@ for u,(tex,schemes) in PAINT.items():
     for sc in schemes:
         assert os.path.exists(f'{S}/{tex}@{sc}.fat'),(tex,sc);swatch((glob.glob(f'{V}/x/*/scheme*/out/{tex}@{sc}.png')+glob.glob(f'{V}/x/*/camo_maps/{tex}@{sc}.png')+glob.glob(f'{V}/x/*/schemes/{tex}@{sc}.png'))[0]).save(f'{S}/paint/{pf(u)}@{sc}.png')
 json.dump({u:sc for u,(t,sc) in PAINT.items()},open(S+'/paint-schemes-roc.json','w'),indent=1)
+json.dump({'ROC CM-32':['ROC CM-33','ROC CM-34']},open(S+'/paint-groups-roc.json','w'),indent=1)   # 28 Nov: variants follow the CM-32 card's paint choice
 mb=sum(os.path.getsize(f'{S}/{f}') for f in os.listdir(S))/1e6
 print('ROC stage',n,'files',round(mb,1),'MB;',len(models),'card entries:',', '.join(models))

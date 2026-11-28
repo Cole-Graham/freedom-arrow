@@ -170,28 +170,30 @@
  {
   "unitId": 5046,
   "lods": [
-   "roc_infantry2_0.fas",
-   "roc_infantry2_1.fas",
-   "roc_infantry2_2.fas"
+   "roc_sf4_0.fas",
+   "roc_sf4_1.fas",
+   "roc_sf4_2.fas"
   ],
   "offset": [
    0,
    0,
    0
-  ]
+  ],
+  "cutout": true
  },
  {
   "unitId": 5047,
   "lods": [
-   "roc_infantry2_0.fas",
-   "roc_infantry2_1.fas",
-   "roc_infantry2_2.fas"
+   "roc_sf4_0.fas",
+   "roc_sf4_1.fas",
+   "roc_sf4_2.fas"
   ],
   "offset": [
    0,
    0,
    0
-  ]
+  ],
+  "cutout": true
  },
  {
   "unitId": 5055,
@@ -295,5 +297,44 @@
    0
   ],
   "crew": true
+ },
+ {
+  "unitId": 5058,
+  "lods": [
+   "roc_infantry_0.fas",
+   "roc_infantry_1.fas",
+   "roc_infantry_2.fas"
+  ],
+  "offset": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "unitId": 5059,
+  "lods": [
+   "roc_marine_0.fas",
+   "roc_marine_1.fas",
+   "roc_marine_2.fas"
+  ],
+  "offset": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "unitId": 5060,
+  "lods": [
+   "roc_infantry_0.fas",
+   "roc_infantry_1.fas",
+   "roc_infantry_2.fas"
+  ],
+  "offset": [
+   0,
+   0,
+   0
+  ]
  }
 ]

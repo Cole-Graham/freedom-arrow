@@ -18,6 +18,9 @@ public partial class Mod
 {
     static Dictionary<string, string[]> paintSchemes = new();
     static Dictionary<string, string> paintChoices = new();
+    // ROC 28 Nov 2026 (Shawn: "The paint options doesn't work on CM-33"): unit-variant options (CM-33, CM-34 on the CM-32 card) show the base
+    // card's paint buttons, so a choice is saved for the base unit only. paint-groups-<pack>.json (base Name -> variant Names) passes it on.
+    static Dictionary<string, string[]> paintGroups = new();
     // 0.3.42 (Osama 23 Nov 2026 18:1x "Z-19G should have its naval skin as default"): paint-defaults.json (unit Name -> scheme) sets the scheme
     // a unit shows until the player picks one; picking "Default" still shows the pack's base colours.
     static Dictionary<string, string> paintDefaults = new();
@@ -55,6 +58,9 @@ public partial class Mod
         try { if (File.Exists(ChoicesFile)) paintChoices = JsonSerializer.Deserialize<Dictionary<string, string>>(File.ReadAllText(ChoicesFile)) ?? new(); }
         catch (Exception ex) { MelonLogger.Warning("FAMODELS_PAINT choices unreadable, all default: " + ex.Message); }
         h.Patch(AccessTools.Method(typeof(UnitInfoCard), "SetUnitSkins"), postfix: new HarmonyMethod(typeof(Mod), nameof(AfterSetUnitSkins)));
+        foreach (var g in Directory.Exists(dir) ? Directory.GetFiles(dir, "paint-groups-*.json") : new string[0])
+            try { foreach (var kv in JsonSerializer.Deserialize<Dictionary<string, string[]>>(File.ReadAllText(g)) ?? new()) paintGroups[kv.Key] = kv.Value; }
+            catch (Exception ex) { MelonLogger.Warning($"FAMODELS_PAINT groups {Path.GetFileName(g)} skipped: " + ex.Message); }
         MelonLogger.Msg($"FAMODELS_PAINT ready: {paintSchemes.Count} unit(s) with pack paint schemes, {paintDefaults.Count} default(s), {paintChoices.Count} saved choice(s)");
     }
 
@@ -139,6 +145,9 @@ public partial class Mod
     static void PickPaint(UnitInfoCard card, string unit, string scheme)
     {
         paintChoices[unit] = scheme;
+        if (paintGroups.TryGetValue(unit, out var members))
+            foreach (var mbr in members)
+                if (paintSchemes.TryGetValue(mbr, out var ml) && (scheme == "" || ml.Contains(scheme))) { paintChoices[mbr] = scheme; foreach (var (r2, u2) in live) if (u2 == mbr && r2 != null) ApplyPaint(r2, u2); }
         try { File.WriteAllText(ChoicesFile, JsonSerializer.Serialize(paintChoices)); } catch (Exception ex) { MelonLogger.Warning("FAMODELS_PAINT save: " + ex.Message); }
         foreach (var (root, u) in live) if (u == unit && root != null) ApplyPaint(root, u);
         if (card != null && card._selectedSkinName != null) card._selectedSkinName.text = PaintLabel(scheme);
