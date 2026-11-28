@@ -1070,7 +1070,7 @@ import pla_light_brigade_skywolf_1126   # Test SF -> Sky Wolf Commandos, long-ra
 import pla_light_brigade_zsl92_1126   # ZSL-92 / ZSL-92B transports, HQ-17A + PHL-03 -> Light CAB (Osama 26 Nov 03:5x)
 import pla_light_brigade_late_1126   # PAP Rifle Patrol -> Mountaineers, ZBD-04 card in PLAN (Osama 26 Nov 04:0x)
 import pla_light_brigade_transport_rules_1126   # ZBL-191 / ZSL-191 Medium CAB only, ZBL-08 PLAN + Medium CAB only (Osama 26 Nov 04:2x)
-import pla_light_brigade_hq13_sam_1127   # HQ-13 SHORAD: 12 HQ-13 missiles = FK-2000 SAM copy, 170 pts (Osama 27 Nov 04:4x)
+import pla_light_brigade_hq13_sam_1127   # HQ-13 SHORAD: 12 HQ-13 missiles = HHQ-10 copy (Osama 27 Nov 21:2x; was FK-2000), 170 pts
 import osama_ztz99_split_1127   # ZTZ-99 split: 1083 = ZTZ-99-II; ZTZ-99G (948) front 700/800, APFSDS 475/425, 180 pts (Osama 27 Nov 04:2x)
 import pla_light_brigade_lynx81_heat_1127   # Lynx 81mm Mortar HEAT copy at 30 kg (Osama 27 Nov 04:0x)
 import pla_light_brigade_h6_1126   # H-6K high altitude only (Osama 26 Nov 21:0x)
