@@ -3,6 +3,6 @@
   "name": "Freedom Arrow — 0.9 (China)",
   "version": "0.9.8-dev.9",
   "type": "modpack",
-  "description": "Freedom Arrow 0.9.8-dev.9: next-patch dev build (codex/development 426b40dc): dev.8 + infantry rework (Falcons 9, Mountaineers 12, Whistling Arrows 4 men 95 pts, Tiger Brigade / PAP AA Patrol hidden, Sea Dragons CQC kit, Marines QMK), ZSL-92 weapons package, Light CAB points, Flying Tigers ARWEN fix, deck-code row, indoor hangar facing, FAModels 0.3.51 (preload + perf logging), battle models to vanilla. Needs Freedom Arrow — Models and Music 0.2.115.",
+  "description": "Freedom Arrow 0.9.8-dev.9: next-patch dev build (codex/development 426b40dc): dev.8 + infantry rework (Falcons 9, Mountaineers 12, Whistling Arrows 4 men 95 pts, Tiger Brigade / PAP AA Patrol hidden, Sea Dragons CQC kit, Marines QMK), ZSL-92 weapons package, Light CAB points, Flying Tigers ARWEN fix, deck-code row, indoor hangar facing, FAModels 0.3.51 (preload + perf logging), battle models to vanilla. Needs Freedom Arrow — Models and Music 0.2.116.",
   "repo": "Cole-Graham/freedom-arrow"
 }
