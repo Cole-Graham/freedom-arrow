@@ -1070,7 +1070,7 @@ import pla_light_brigade_skywolf_1126   # Test SF -> Sky Wolf Commandos, long-ra
 import pla_light_brigade_zsl92_1126   # ZSL-92 / ZSL-92B transports, HQ-17A + PHL-03 -> Light CAB (Osama 26 Nov 03:5x)
 import pla_light_brigade_late_1126   # PAP Rifle Patrol -> Mountaineers, ZBD-04 card in PLAN (Osama 26 Nov 04:0x)
 import pla_light_brigade_transport_rules_1126   # ZBL-191 / ZSL-191 Medium CAB only, ZBL-08 PLAN + Medium CAB only (Osama 26 Nov 04:2x)
-import pla_light_brigade_hq13_sam_1127   # HQ-13 SHORAD: 12 HQ-13 missiles = FK-2000 SAM copy, 170 pts (Osama 27 Nov 04:4x)
+import pla_light_brigade_hq13_sam_1127   # HQ-13 SHORAD: 12 HQ-13 missiles = HHQ-10 copy (Osama 27 Nov 21:2x; was FK-2000), 170 pts
 import osama_ztz99_split_1127   # ZTZ-99 split: 1083 = ZTZ-99-II; ZTZ-99G (948) front 700/800, APFSDS 475/425, 180 pts (Osama 27 Nov 04:2x)
 import pla_light_brigade_lynx81_heat_1127   # Lynx 81mm Mortar HEAT copy at 30 kg (Osama 27 Nov 04:0x)
 import pla_light_brigade_h6_1126   # H-6K high altitude only (Osama 26 Nov 21:0x)
@@ -1093,6 +1093,7 @@ import pla_light_brigade_zsd05zzc_1126   # ZSD-05 ZZC: ZZC-06 copy on the ZSD-05
 import pla_light_brigade_spec_icon_1126   # Light CAB spec icon FA_CHINA_LIGHT: SOF badge sword + lightning (Osama 26 Nov 15:5x)
 import pla_light_brigade_fk3000_out_1126   # FK-3000 out of the game: its last card (Light CAB) removed (Osama 26 Nov 20:1x)
 import pla_light_brigade_cj10_1126   # CJ-10 in the Medium CAB: Iskander cruise launcher copy, 3 missiles, 250 pts (Osama 26 Nov 19:1x)
+import default_turret_fix_1127   # units without loadouts get a default turret (HQ-13 'no weapons', Osama 27 Nov 21:0x)
 import zsl92b_atgm_1127   # ZSL-92B '+ 4x HJ-73D' loadout +10 (Osama 27 Nov 17:4x)
 import osama_vut10_speed_1127   # VU-T10 speed 60/20 on its own mobility row (Osama 27 Nov 17:3x)
 import pla_light_brigade_vut10_para_1126   # VU-T10 (ZRZ-100 copy) in the Light CAB; Airborne Tracked Carrier (ZBD-251 copy, AGL + 4 HJ-8H, airborne transport) (Osama 26 Nov 19:3x)
@@ -1106,6 +1107,7 @@ import osama_falcons_9man_1127   # Falcons 9 men: 5 QBZ-192, 2 QLU-11, 2 QLZ-87,
 import osama_zsl92_package_1127   # ZSL-92 base + ZSL-92B weapons package, WZ-551 / ZSL-92B off the transport lists (Osama 27 Nov 21:4x)
 import pla_light_brigade_qlz87_range_1127   # hand-held QLZ-87 700 m, own round (Osama 27 Nov 17:4x)
 with g.scope('plb'):pla_light_brigade_units_1126.apply(t,g,ok,rec);pla_light_brigade_jiaolong_1126.apply(t,g,ok,rec);pla_light_brigade_qlu11_1126.apply(t,g,ok,rec);pla_light_brigade_transports_1126.apply(t,g,ok,rec);pla_light_brigade_tiger_1126.apply(t,g,ok,rec);pla_light_brigade_falcons_1126.apply(t,g,ok,rec);pla_light_brigade_transports2_1126.apply(t,g,ok,rec);pla_light_brigade_j50_hq22_1126.apply(t,g,ok,rec);pla_light_brigade_names_1126.apply(t,g,ok,rec);pla_light_brigade_sf_1126.apply(t,g,ok,rec);pla_light_brigade_pap_1126.apply(t,g,ok,rec);pla_light_brigade_skywolf_1126.apply(t,g,ok,rec);pla_light_brigade_zsl92_1126.apply(t,g,ok,rec);pla_light_brigade_late_1126.apply(t,g,ok,rec);pla_light_brigade_transport_rules_1126.apply(t,g,ok,rec);pla_light_brigade_order_1126.apply(t,g,ok,rec);pla_light_brigade_smoke_1126.apply(t,g,ok,rec);pla_light_brigade_pf98a_1126.apply(t,g,ok,rec);pla_light_brigade_zsd05hj10_1126.apply(t,g,ok,rec);pla_light_brigade_zsd05zzc_1126.apply(t,g,ok,rec);pla_light_brigade_spec_icon_1126.apply(t,g,ok,rec);pla_light_brigade_hq13_1126.apply(t,g,ok,rec);pla_light_brigade_fk3000_1126.apply(t,g,ok,rec);pla_light_brigade_df15_1126.apply(t,g,ok,rec);pla_light_brigade_late2_1126.apply(t,g,ok,rec);pla_light_brigade_late3_1126.apply(t,g,ok,rec);pla_light_brigade_late4_1126.apply(t,g,ok,rec);pla_light_brigade_cj10_1126.apply(t,g,ok,rec);pla_light_brigade_fk3000_out_1126.apply(t,g,ok,rec);pla_light_brigade_vut10_para_1126.apply(t,g,ok,rec);pla_light_brigade_z20s_1126.apply(t,g,ok,rec);pla_light_brigade_zbd86_1126.apply(t,g,ok,rec);pla_light_brigade_late5_1126.apply(t,g,ok,rec);pla_light_brigade_carrier_1126.apply(t,g,ok,rec);pla_light_brigade_z20ka_1126.apply(t,g,ok,rec);pla_light_brigade_h6_1126.apply(t,g,ok,rec);pla_light_brigade_ztz98_1127.apply(t,g,ok,rec);pla_light_brigade_lynx81_heat_1127.apply(t,g,ok,rec);pla_light_brigade_hq13_sam_1127.apply(t,g,ok,rec);osama_ztz99_split_1127.apply(t,g,ok,rec);osama_vut10_speed_1127.apply(t,g,ok,rec);zsl92b_atgm_1127.apply(t,g,ok,rec);pla_light_brigade_qlz87_range_1127.apply(t,g,ok,rec);osama_zsl92_package_1127.apply(t,g,ok,rec);osama_falcons_9man_1127.apply(t,g,ok,rec)
+default_turret_fix_1127.apply(t,g,ok,rec)   # after every unit exists
 # ---------- QLZ-87 icon from Osama's photo (26 Nov 2026 02:2x); stats already = QLZ-04, min range 25 for Lateralus. See qlz87_icon_1126.py.
 import qlz87_icon_1126;qlz87_icon_1126.apply(t,g,ok,rec)
 # PLARF tripod QLZ-87 named 'QLZ-87 (tripod)'; the hand-held squad copy keeps 'QLZ-87' (Osama 26 Nov 10:4x). See pla_light_brigade_qlz87_tripod_1126.py.
@@ -1138,6 +1140,8 @@ import osama_fh97_4xls6_1127;osama_fh97_4xls6_1127.apply(t,g,ok,rec)
 import heli_atgm_turn_1127;heli_atgm_turn_1127.apply(t,g,ok,rec)
 # ---------- CJ-10 held back (card removed, hidden) for model quality (Osama 27 Nov 04:4x). See cj10_held_1127.py.
 import cj10_held_1127;cj10_held_1127.apply(t,g,ok,rec)
+# ---------- J-31 hidden (cards removed, hidden in the Armory) (Osama 27 Nov 21:1x). See j31_held_1127.py.
+import j31_held_1127;j31_held_1127.apply(t,g,ok,rec)
 # ---------- Artillery smoke: Lynx Howitzer 10 -> 6; PLZ-10, PLZ-25, PLL-09, PLL-05 -> 8 (Osama 27 Nov 04:4x). See osama_arty_smoke_1127.py.
 import osama_arty_smoke_1127;osama_arty_smoke_1127.apply(t,g,ok,rec)
 # ---------- Mortars back to vanilla (range, smoke rows, prices); China mortars matched to their vanilla twins (Osama 27 Nov 11:3x). Replaces the
