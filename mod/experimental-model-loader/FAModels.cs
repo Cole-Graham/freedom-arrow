@@ -31,9 +31,12 @@ public partial class Mod : MelonMod
     {
         dir = Path.Combine(MelonLoader.Utils.MelonEnvironment.UserDataDirectory, "FAModels");
         var cfg = Path.Combine(dir, "models.json");
-        if (File.Exists(cfg)) map = JsonSerializer.Deserialize<Dictionary<string, Entry>>(File.ReadAllText(cfg)) ?? new();
-        LoadWeaponRules();
-        LoadBodyRules();
+        // 0.3.52-ovn.3 test switch (overnight A/B, 28 Nov 2026): UserData/FAModels/off.txt leaves every unit on its vanilla model (no models,
+        // bodies or weapons) while the perf and hitch lines keep running, so the same match can be measured with and without FA models.
+        bool off = File.Exists(Path.Combine(dir, "off.txt"));
+        if (File.Exists(cfg) && !off) map = JsonSerializer.Deserialize<Dictionary<string, Entry>>(File.ReadAllText(cfg)) ?? new();
+        if (off) MelonLogger.Msg("FAMODELS OFF (off.txt): vanilla models only; perf lines still logged");
+        else { LoadWeaponRules(); LoadBodyRules(); }
         Verbose = File.Exists(Path.Combine(dir, "verbose.txt"));
         try { InstallPreload(); } catch (Exception ex) { MelonLogger.Error("FAMODELS preload not installed: " + ex.Message); }
         try { InstallCurtain(HarmonyInstance); } catch (Exception ex) { MelonLogger.Error("FAMODELS loading-screen hold not installed; models build in the match as before: " + ex.Message); }
