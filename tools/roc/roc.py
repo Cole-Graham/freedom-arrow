@@ -93,6 +93,11 @@ MERGES = [('ROC Mech. Riflemen', 'ROC Mech. Riflemen T112', 'T112 / Kestrel'),
 # vehicles: the "Unit variant" slot (Type 7, Pantsir-S1 / Tor-M2KM, modification 735, options 3111/3112): each option swaps the whole unit.
 # Option picture and label from the Stryker ICV weapon options (9 M2, 10 Mk19, 15 Bushmaster). (base card, [(variant card, label, picture option)])
 VARIANTS = [('ROC CM-32', 'M2 Browning', 9, [('ROC CM-33', 'T91 40mm AGL', 10), ('ROC CM-34', 'Bushmaster II', 15)])]
+# Shawn 27 Nov 19:4x: ROC card art (runtime-qa/icons/FA_ROC_INF_<KEY>-Portrait.png, CardIcons.cs). Loadout variants (T112, Marine AT, Reserver
+# Kestrel) show their base card's art; SF Snipers M107 and Marine Frogmen CQC keep the parent art until Shawn maps them.
+PORTRAITS = {'ROC Reserver': 'RESERVER', 'ROC Reserver Kestrel': 'RESERVER', 'ROC Marine': 'MARINE', 'ROC Marine AT': 'MARINE',
+             'ROC SF Snipers': 'SF_SNIPERS', 'ROC SF Section': 'SF_SECTION', 'ROC SF Scout': 'SF_SCOUT', 'ROC Marine Frogmen': 'MARINE_FROGMEN',
+             'ROC Reserve Marine': 'RESERVE_MARINE', 'ROC Mech. Riflemen': 'MECH_RIFLEMEN', 'ROC Mech. Riflemen T112': 'MECH_RIFLEMEN'}
 SPEC_NAME = 'ROC Joint Arms Coastal'
 SPEC_UI = 'Joint Arms Battalion and Coastal Operations Command 聯合兵種營及濱海作戰指揮部'
 
@@ -173,6 +178,8 @@ def apply(t, g, ok, rec):
         g.add('OptionsJson', to1, {'ModificationId': nm, 'Name': var, 'UIName': label, 'ReplaceUnitId': vu, 'ReplaceUnitName': U[vu]['HUDName'],
                                    'Cost': d, 'Order': 1})
         res[base]['loadouts'] = [base, f'{var} (+{d})']
+    for name, key in PORTRAITS.items():
+        g.put('Units', res[name]['unit'], {'PortraitFileName': f'FA_ROC_INF_{key}-Portrait'}); res[name]['portrait'] = key
     for base, blabel, bpic, vars_ in VARIANTS:
         bu = res[base]['unit'];tm, to0 = t['ModificationsJson'][735], t['OptionsJson'][3111]   # vanilla Pantsir-S1 / Tor-M2KM unit-variant slot
         ok(tm['UIName'] == 'Custom_Slot_Unit_variant' and to0['ReplaceUnitId'] == 12, 'unit variant slot template')
