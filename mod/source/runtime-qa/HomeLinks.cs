@@ -17,12 +17,12 @@ static class HomeLinks
 {
     sealed class Card{public string Name,Replaces,Link,Pic,Kick,KickZh,Title,TitleZh,Desc,DescZh;public Sprite Sprite,SpriteZh;}
     static readonly Card[] cards={
-        new Card{Name="FA Guides Card",Replaces="Play Campaign Button",Link="https://freedomarrow.app/#guides",Pic="home-guides.png",Kick="Guides",KickZh="指南",Title="Learn what's different in Freedom Arrow",TitleZh="了解自由之箭的不同之处",
-            Desc="Vehicle damage, penetration, HEAT, cover, income, scoring, coordinated strikes, ECM and flares",
-            DescZh="载具伤害、穿深、破甲、掩体、收入、计分、协同打击、电子干扰与干扰弹"},
+        new Card{Name="FA Guides Card",Replaces="Play Campaign Button",Link="https://freedomarrow.app/#guides",Pic="home-guides.png",Kick="Guides",KickZh="指南",Title="Learn what's different in FA",TitleZh="了解自由之箭的不同之处",
+            Desc="Damage, penetration, HEAT, optics, cover, scoring",
+            DescZh="伤害、穿深、破甲、光学、掩体、计分"},
         new Card{Name="FA Tools Card",Replaces="ScenariosButton",Link="https://freedomarrow.app/#tools",Pic="home-tools.png",Kick="Tools",KickZh="工具",Title="Armory, DPM and price check",TitleZh="军械库、DPM 与价格查询",
-            Desc="Every unit vs vanilla, DPM by range, damage and crit calculator, price check, maps and build changelog",
-            DescZh="全部单位与原版对比、按距离的 DPM、伤害与暴击计算器、价格对比、地图和版本更新记录"}};
+            Desc="Every unit vs vanilla, DPM, crits, prices, maps",
+            DescZh="单位与原版对比、DPM、暴击、价格、地图"}};
     static readonly List<Il2CppSystem.Action<GameObject,UnityEngine.EventSystems.PointerEventData.InputButton>> keep=new();
     static Transform bar; static float next;
     public static void Install()
@@ -81,7 +81,18 @@ static class HomeLinks
         var img=go.transform.Find("image")?.GetComponent<Image>();
         if(img!=null){img.sprite=zh?c.SpriteZh:c.Sprite;img.color=Color.white;img.preserveAspect=false;}
         var kick=go.transform.Find("Texts/GUIDE")?.GetComponent<Il2CppTMPro.TextMeshProUGUI>();if(kick!=null)kick.SetText(zh?c.KickZh:c.Kick);
-        var title=go.transform.Find("Texts/Text")?.GetComponent<Il2CppTMPro.TextMeshProUGUI>();if(title!=null){title.enableWordWrapping=true;title.richText=true;title.SetText((zh?c.TitleZh:c.Title)+"\n<size=58%><color=#C4C9D0>"+(zh?c.DescZh:c.Desc)+"</color></size>");var trt=title.rectTransform;MelonLogger.Msg($"FREEDOM_ARROW_HOME_LINKS text rect {trt.rect.width:0}x{trt.rect.height:0} font {title.fontSize:0} auto {title.enableAutoSizing} overflow {title.overflowMode} align {title.alignment}");}
+        // The card's text box is 380x30 at font 24 (log 27 Nov 20:58, 0.9.8-dev.8), centred on one line: a wrapped title and a 2-line
+        // description spilled over the label and off the card (Osama 27 Nov 21:0x "you put too much and it is overflowing"). Now: one title
+        // line, one small description line, no wrapping, the block anchored to the box bottom, and the label lifted by the extra height.
+        var title=go.transform.Find("Texts/Text")?.GetComponent<Il2CppTMPro.TextMeshProUGUI>();
+        if(title!=null)
+        {
+            title.enableWordWrapping=false;title.richText=true;title.alignment=Il2CppTMPro.TextAlignmentOptions.BottomLeft;
+            title.SetText((zh?c.TitleZh:c.Title)+"\n<size=58%><color=#C4C9D0>"+(zh?c.DescZh:c.Desc)+"</color></size>");
+            var box=title.rectTransform.rect;float h=title.preferredHeight,w=title.preferredWidth,lift=Mathf.Max(0f,h-box.height);
+            if(kick!=null)kick.rectTransform.anchoredPosition+=new Vector2(0f,lift);
+            MelonLogger.Msg($"FREEDOM_ARROW_HOME_LINKS text box {box.width:0}x{box.height:0}, text {w:0}x{h:0}, label lifted {lift:0}{(w>box.width?" WIDER THAN THE BOX":"")}");
+        }
         var ort=old.GetComponent<RectTransform>();var rt=go.GetComponent<RectTransform>();
         // The hidden Feedback card is placed by hand (the layout group skips it), so the copy takes the replaced card's exact rect.
         if(ort!=null&&rt!=null){rt.anchorMin=ort.anchorMin;rt.anchorMax=ort.anchorMax;rt.pivot=ort.pivot;rt.sizeDelta=ort.sizeDelta;rt.anchoredPosition=ort.anchoredPosition;}
