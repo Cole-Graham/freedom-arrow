@@ -1,11 +1,11 @@
 """ZTZ-100 APS as a loadout (Osama 27 Nov 2026 17:3x PST, thread 1567745029781454889: "ZTZ-100 lets make a new model that remove the aps and give it
 as an option. base price goes down by 60 and then the APS option is 60 pts" / "actually the unit goes down by 80 points overall").
-- Base 355 -> 275 (-80); protection slot like the ZTZ-99A's (modification 2019383 pattern): None 0 (default) / APS +60 -> 335 with APS.
+- Base 355 -> 275 (-80); protection slot like the ZTZ-99A's (modification 2019383 pattern): None 0 (default) / APS +60 -> 335 with APS. 17:5x "ztz-100 aps should be 70 points": APS +70 -> 345.
 - The ZTZ-100's own ability row 2010187 (smoke + ECM 0.7 + APS, used by 968 only) loses the APS; the APS option links the existing row 82
   'APS IronFist NoModel' (same 2 charges, 10 s cooldown, hitbox 2.0, supply 200), as the ZTZ-99B. Empty slot = row 4. No new ability rows.
 - Option Name 'PLA ZTZ-100 APS' is the FAModels variant key: the APS option shows the current model, the default the no-APS model.
   Before the plb scope (adds rows)."""
-Z100, ABIL, APS, EMPTY, TURRET, OLD, NEW, APS_COST = 968, 2010187, 82, 4, 2010192, 355, 275, 60
+Z100, ABIL, APS, EMPTY, TURRET, OLD, NEW, APS_COST = 968, 2010187, 82, 4, 2010192, 355, 275, 70
 APS_FIELDS = {'IsAPS': False, 'APSHitboxProportion': 0.0, 'APSQuantity': 0, 'APSCooldown': 0.0, 'APSSupplyCost': 0.0, 'APSResupplyTime': 0.0}
 
 
