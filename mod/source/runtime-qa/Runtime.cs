@@ -55,7 +55,7 @@ public class Runtime : MelonMod
         try { conquest.OnInitializeMelon(); }
         catch (Exception e) { LoggerInstance.Error("FREEDOM_ARROW_CONQUEST_FAILED: "+e); }
     }
-    public override void OnUpdate() { conquest?.OnUpdate(); MirrorSkin.Tick(); ChinaVoice.Tick(); LogUpload.Tick(); MenuArt.Tick(); DeckReorder.Tick(); DeckCodes.Tick(); HomeLinks.Tick(); MultiplayerToModLobbies.Tick(); MemoryCleanup.Tick(); RankedMenu.Tick(); WebsiteButton.Tick(); PartySizeWarning.Tick(); NationLayout.Tick(); LobbyFlags.Tick(); }
+    public override void OnUpdate() { conquest?.OnUpdate(); MissilePerf.Tick(); MirrorSkin.Tick(); ChinaVoice.Tick(); LogUpload.Tick(); MenuArt.Tick(); DeckReorder.Tick(); DeckCodes.Tick(); HomeLinks.Tick(); MultiplayerToModLobbies.Tick(); MemoryCleanup.Tick(); RankedMenu.Tick(); WebsiteButton.Tick(); PartySizeWarning.Tick(); NationLayout.Tick(); LobbyFlags.Tick(); }
     public override void OnLateUpdate()
     {
         DiagnosticLog.Heartbeat();

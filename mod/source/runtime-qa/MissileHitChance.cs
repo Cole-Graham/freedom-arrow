@@ -94,6 +94,7 @@ static class MissileHitChance
                 {
                     if(missiles.Count>=Prune)foreach(var k in missiles.Where(p=>now-p.Value.time>30).Select(p=>p.Key).ToList())missiles.Remove(k);
                     missiles[key]=(flat,now,now);kind="first";
+                    try{if(Target(current,out var pt))MissilePerf.Launch(current,pt,ammoInfo.Id);}catch{}
                 }
             }
             __result=result;
