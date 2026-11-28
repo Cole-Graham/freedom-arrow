@@ -17,6 +17,8 @@ def tables(van,read):
             if v is None:t[tab].pop(int(k),None)
             else:t[tab].setdefault(int(k),{'Id':int(k)}).update(v)
     return t
+# Squads Osama set below 5 HP per soldier on purpose (unit id -> HP per soldier).
+HP_PER_MAN={1184:4}   # Whistling Arrows 响箭: Osama 27 Nov 2026 21:2x "whistling arrows 4 hp" (osama_whistling_hp_1127.py)
 def off(t):
     men=Counter(r['UnitId'] for r in t['SquadMembersJson'].values());live={r['UnitId'] for r in t['SpecializationAvailabilitiesJson'].values()}
     bad=[]
@@ -24,7 +26,7 @@ def off(t):
         u=t['Units'].get(r['UnitId'])
         if not u or u.get('Type')!=2 or u['Id'] not in live or not men[u['Id']]:continue
         hp=t['ArmorsJson'].get(r['ArmorId'],{}).get('MaxHealthPoints')
-        if hp!=5*men[u['Id']]:bad.append((u['Id'],u.get('HUDName'),men[u['Id']],hp,r['ArmorId']))
+        if hp!=HP_PER_MAN.get(u['Id'],5)*men[u['Id']]:bad.append((u['Id'],u.get('HUDName'),men[u['Id']],hp,r['ArmorId']))
     return bad
 def main():
     a=sys.argv[1:]

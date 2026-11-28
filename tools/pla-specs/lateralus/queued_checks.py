@@ -89,6 +89,9 @@ if _ge(9,33):
     import china_sf_recon as CSR
     _F={'AbilitiesJson':'abilities.json','UnitAbilitiesJson':'unit_abilities.json','SquadMembersJson':'squad_members.json','WeaponAmmunitionsJson':'weapon_ammunitions.json','Units':'units.json'}
     bad+=CSR.check(lambda tab:merged(tab+'.json',_F[tab]))
+    # 0.9.8-dev.9 (Osama 27 Nov 2026): the J-31 is hidden (21:1x "hide J-31 from the game first", j31_held_1127.py: its deck row 2014513 is
+    # removed) and the Sea Dragons 1191 get the CQC SF smoke x4 (22:4x "Jiaolong given flashbangs and 4x smoke", osama_jiaolong_cqc_1127.py).
+    if m>=key('0.9.8-dev.9'):bad=[b for b in bad if not b.startswith('PLA J-31 deck row 2014513:') and not b.startswith('unit 1191 smoke [4]')]
 # From dev.36: the six [FA] [PvE] maps ship, and every China wave in them names units and options that exist in this package (Osama 17 Nov
 # 13:2x PST: "do units update when we update the armory": the maps store only unit and option ids, so stats follow the armory, but a removed
 # or renumbered unit/option would break a wave).
@@ -265,6 +268,8 @@ if m>=key('0.9.5-dev.34'):
         # PLA Light Brigade branch (Osama 26 Nov 2026 10:4x, pla_light_brigade_order_1126.py, checked there): weapon list order and death priority
         # re-set by the vanilla rule for the squads the branch re-kitted (Sea Dragons, Flying Tigers, Falcons, Taishan Eagles, Airborne, QLU-11 Team, Mountaineers).
         if m>=key('0.9.7l-dev.14'):_want={i:f for i,f in _want.items() if (_t.get(int(i)) or {}).get('UnitId') not in (1191,1187,1185,1203,1136,1140,1196)}
+        # 0.9.8-dev.9 (Osama 27 Nov 2026 22:5x, osama_mountaineers_12man_1127.py): the Mountaineers' PF-98 card row 2015457 is removed (12 men, no PF-98).
+        if _tab=='SquadWeaponsJson.json' and m>=key('0.9.8-dev.9'):_want.pop('2015457',None)
         bad+=[f'{_tab} {i} {k}={(_t.get(int(i)) or {}).get(k)} (want {v}, infantry_order_1122.py)' for i,f in _want.items() for k,v in f.items() if (_t.get(int(i)) or {}).get(k)!=v]
     # Lateralus 22 Nov 17:1x: QCW-05 = the KNT MP5SD6 amount (160), QBU-191 100 (infantry_ammo_1122.py).
     _wa=merged('WeaponAmmunitionsJson.json','weapon_ammunitions.json')
