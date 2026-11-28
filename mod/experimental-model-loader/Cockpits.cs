@@ -38,7 +38,9 @@ public partial class Mod
         ["US_HeavyOshkosh3_glass"] = "ushemtt",
         ["Himars GLASS"] = "ushimars",
         // ROC AH-1W (Shawn 28 Nov: his AH-1W model on the vanilla AH-1W card): the vanilla AH-1W canopy (prefab "US_AH-1W Super_Cobra").
-        ["US_AH-1W_Glass"] = "usah1w"
+        ["US_AH-1W_Glass"] = "usah1w",
+        // ROC MTWV (Shawn 28 Nov: "Use the vanilla MTV as the visual and technical reference for the glass"): the MTV windscreen, on its atlas patch.
+        ["US_MTV_GLASS"] = "usmtv"
     };
     static string Compact(string s) => new string(s.ToLowerInvariant().Where(char.IsLetterOrDigit).ToArray());
     static Material FindCockpitMaterial(string name) => Resources.FindObjectsOfTypeAll<Material>()

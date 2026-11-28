@@ -60,6 +60,7 @@ from PIL import Image
 PAINT={'ROC Mirage 2000-5':('m_roc_mirage_static_tex0',['GreyCamo']),
        'ROC Hsiung Feng IIE':('m_roc_hf2e_static_tex4',['Camo']),
        'ROC CM-34':('m_roc_cm34_static_tex0',['Dust','Mosaic']),
+       'ROC MTWV':('m_roc_mtwv_static_tex2',['Woodland']),   # Shawn 28 Nov 03:4x: plain olive base + woodland option (camo3d.py woodland_mtwv.json)
        'ROC CM-32':('m_roc_cm34_static_tex0',['Dust','Mosaic']),'ROC CM-33':('m_roc_cm34_static_tex0',['Dust','Mosaic'])}   # Shawn 27 Nov 02:2x: CM-32 with the CM-34 sets (camo3d.py blocks)   # Shawn 27 Nov 02:1x: the SHAMO (desert) and MAISAIKE (mosaic) sets from his folder   # Shawn 26 Nov 21:5x: optional Woodland camo (camo_hf2e.py)
 os.makedirs(S+'/paint',exist_ok=True)
 def swatch(f):

@@ -11,7 +11,8 @@ D=os.path.dirname(os.path.abspath(__file__));R=D+'/..';sys.path.insert(0,R+'/too
 M=R+'/veh/models'
 # slug: (hips x of the driver (the co-driver mirrors it), hips y, hips z, yaw)
 SEATS={'antelope':(0.42,1.00,1.45,0),'hf2e':(0.36,0.66,3.62,0),'kf6':(0.45,1.76,1.07,0),'lsw2':(0.55,2.51,3.85,0),
-       'tk3':(0.55,1.81,6.10,0),'tb2000':(0.55,2.31,-4.07,180)}
+       'tk3':(0.55,1.81,6.10,0),'tb2000':(0.55,2.31,-4.07,180),
+       'mtwv':(0.50,1.71,1.75,0)}   # 28 Nov: MTWV (Navistar cab: windscreen z 2.3-2.7, side windows y 1.9-2.6, half width 1.05)
 Z=np.load(D+'/seated.npz');S=Z['S'];NAMES=list(Z['names'])
 HIPS=S[NAMES.index('Hips')]   # not a position; the posed hips joint comes from the bind pose below
 def read_fas(path):

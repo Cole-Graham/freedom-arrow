@@ -55,6 +55,10 @@ def mtv(npzname,keep):
 bedm=pbr('MTWV_Bed',RT+'/MTV_Bed_BaseColor.png')
 for o in (mtv('BASE_MESH_8523.npz',lambda c:(c[:,1]>=1.25)&(c[:,2]<=0.85)),mtv('TENT_34027.npz',lambda c:np.ones(len(c),bool))):
     o.data.materials.append(bedm);print('MTV part',o.name,len(o.data.polygons))
+# 28 Nov: the cut left the cab hood flat-shaded (triangle facets in the preview): smooth by angle (35 deg) keeps panel edges sharp.
+for o in [o for o in bpy.data.objects if o.type=='MESH']:
+    bpy.context.view_layer.objects.active=o
+    with bpy.context.temp_override(object=o,selected_objects=[o],active_object=o):bpy.ops.object.shade_smooth_by_angle(angle=math.radians(35))
 for o in bpy.data.objects:
     if o.type=='MESH' and o.parent is None: o.matrix_world=__import__('mathutils').Matrix.Rotation(math.radians(90),4,'Z')@o.matrix_world
 ms=[o for o in bpy.data.objects if o.type=='MESH']
