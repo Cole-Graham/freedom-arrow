@@ -59,7 +59,7 @@ for f in sorted(glob.glob(f'{M}/m_roc_{slug}_*static*.fam')):
                 if home:home[0].append(L)
                 else:wheels.append([[L],lo,hi])
             if SPLIT:   # keep only wheel-shaped groups; the rest stays on the old sheet
-                def round_(lo,hi):e=np.sort(hi-lo);return e[1]/e[2]>0.85 and e[2]>0.5 and e[0]<0.6*e[2]
+                def round_(lo,hi):e=np.sort(hi-lo);return e[1]/e[2]>0.85 and 2.0>e[2]>float(os.environ.get('WHEEL_MIN','0.5')) and e[0]<0.6*e[2]   # WHEEL_MIN: Land Sword II 0.9 (round lamps and tanks)
                 wheels=[w for w in wheels if round_(w[1],w[2])]
                 keep=~np.isin(lab,[L for w in wheels for L in w[0]])
                 if not wheels:continue
