@@ -100,12 +100,17 @@ static class DetectionConfig
         foreach(var row in cfg.SourceValues)if((int)row.TerrainType==type){if(found!=null)throw new InvalidDataException("Duplicate terrain "+type);found=row;}
         return found??throw new InvalidDataException("Missing terrain "+type);
     }
-    static DetectionSettings Read(FogOfWarConfig c)=>new(c.MaxFlashValue,c.SpottedPenalty,c.SpottedPenaltyBuildings,Terrain(c,Forest).Cover,Terrain(c,Buildings).Cover);
+    static DetectionSettings Read(FogOfWarConfig c)
+    {
+        var forest=Terrain(c,Forest);
+        return new(c.MaxFlashValue,c.SpottedPenalty,c.SpottedPenaltyBuildings,forest.Cover,Terrain(c,Buildings).Cover,forest.Opacity,forest.Multiplier);
+    }
     static void Write(FogOfWarConfig c,DetectionSettings s)
     {
         var forest=Terrain(c,Forest);var buildings=Terrain(c,Buildings);
         c.MaxFlashValue=s.MaxFlashValue;c.SpottedPenalty=s.SpottedPenalty;c.SpottedPenaltyBuildings=s.SpottedPenaltyBuildings;
         forest.Cover=s.ForestCover;buildings.Cover=s.BuildingCover;
+        forest.Opacity=s.ForestOpacity;forest.Multiplier=s.ForestMultiplier;
     }
     // Scenario lobby options can still set their own starting points after this.
     static void BeforePlayers()

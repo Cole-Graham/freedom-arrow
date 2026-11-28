@@ -3,5 +3,7 @@
   "SpottedPenalty": 2.0,
   "SpottedPenaltyBuildings": 2.0,
   "ForestCover": 3.0,
-  "BuildingCover": 3.5
+  "BuildingCover": 3.5,
+  "ForestOpacity": -263.0,
+  "ForestMultiplier": 4.4
 }

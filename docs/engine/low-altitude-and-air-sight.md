@@ -257,12 +257,21 @@ In this example the Patriot can only fire once the jet is within about 1,050 uni
 
 ## 5. Where the mod changes this
 
-Freedom Arrow today changes only **Cover** for forest (3.0) and buildings (3.5), plus flash and spotted settings, through `DetectionConfig.cs` / `detection-config.json`. It changes no `Height`, `Opacity` or `Multiplier`, and no altitude thresholds (read from the mod source).
+Freedom Arrow changes **Cover** for forest (3.0) and buildings (3.5), flash and spotted settings, and the forest **Opacity** and **Multiplier**, through `DetectionConfig.cs` / `detection-config.json`. It changes no `Height` and no altitude thresholds (read from the mod source).
+
+**Forest Opacity −15 → −263, Multiplier 0.75 → 4.4 (option B, Lateralus 27 Nov 2026, queued after 0.9.8-dev.8).** Step *k* now costs `max(1, −263 + 4.4k)`: steps 1–60 (120 m) cost 1, as open ground, then the cost rises by 4.4 a step. Goal: every unit with at least Medium optics sees about 150 m into woods. Calculated with the walk in 3c and the FA tier caps (not yet measured in a game):
+
+- Unit fully visible: Bad 110 → 146 m, Medium 116 → 148 m, Good 134 → 156 m, Very Good 140 → 158 m, Exceptional 150 → 164 m.
+- Quiet infantry (stealth 0.5, cover 3): 76–108 → 130–144 m. Quiet sniper (0.333): 68–94 → 126–138 m.
+- Extra cost of a forest belt on the line: 120 m belt +0 (was +575), 150 m +528 (was +1,100).
+- AA against a helicopter behind woods (budget 2,000 / 3,000): 184 / 216 → 176 / 190 m.
+- Unchanged: stealth, cover, `MaxShootableForestDistance` 45, planes (they skip the forest walk), buildings and smoke. Options A (wall at 150 m) and C (ramp after 100 m) were compared and not chosen; chart script `work/forest-options-20261127/draw.py` in the BA Codex work folder.
+
+The hook writes the values in the `InitBattleSequentialSystem` prefix and restores vanilla when the tables are not applied, the same path as Cover.
 
 Ways to make AA placement easier (not implemented, not tested):
 
 - **Lower the forest `Height`** (15 → e.g. 8–10) in the same `DetectionConfig` write, before `GenerateVisionData` copies the settings into `TerrainVisionData`. This moves the layer top closer to the visible treetops. It also changes ground vision through and over woods, for every unit.
-- **Soften forest growth**: a smaller `Multiplier` (0.75) or a higher start (`Opacity` −15 → e.g. −30 gives 41 free steps). This also affects ground units.
 - **Firing through woods**: raise `MaxShootableForestDistance` (45) in the same config write. Only units whose target is already spotted are affected, and this applies to every weapon.
 - **Air-only rule**: a hook on `FogOfWarFilter.FilterCore` that uses a lower forest height when the target is a helicopter or plane. Ground vision stays unchanged. This needs code and a performance check, because the filter runs for every observer–target pair.
 - **Plane altitude band**: `PlanesConfig.LowAltitude` / `HighAltitude` (100 / 400). This changes when planes count as Low, not the forest problem.

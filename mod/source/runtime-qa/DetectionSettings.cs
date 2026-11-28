@@ -7,11 +7,16 @@ public sealed class DetectionSettings
     public float SpottedPenaltyBuildings{get;}
     public float ForestCover{get;}
     public float BuildingCover{get;}
-    public DetectionSettings(float flash,float spotted,float spottedBuildings,float forest,float building)
+    // Forest sight walk: each forest step on a sight line costs max(1, Opacity + Multiplier x step number). Vanilla -15 / 0.75.
+    public float ForestOpacity{get;}
+    public float ForestMultiplier{get;}
+    public DetectionSettings(float flash,float spotted,float spottedBuildings,float forest,float building,float forestOpacity,float forestMultiplier)
     {
         MaxFlashValue=flash;SpottedPenalty=spotted;SpottedPenaltyBuildings=spottedBuildings;ForestCover=forest;BuildingCover=building;
+        ForestOpacity=forestOpacity;ForestMultiplier=forestMultiplier;
     }
-    public bool Same(DetectionSettings o)=>MaxFlashValue==o.MaxFlashValue&&SpottedPenalty==o.SpottedPenalty&&SpottedPenaltyBuildings==o.SpottedPenaltyBuildings&&ForestCover==o.ForestCover&&BuildingCover==o.BuildingCover;
+    public bool Same(DetectionSettings o)=>MaxFlashValue==o.MaxFlashValue&&SpottedPenalty==o.SpottedPenalty&&SpottedPenaltyBuildings==o.SpottedPenaltyBuildings&&ForestCover==o.ForestCover&&BuildingCover==o.BuildingCover
+        &&ForestOpacity==o.ForestOpacity&&ForestMultiplier==o.ForestMultiplier;
     public static DetectionSettings Parse(string json)
     {
         var o=JsonNode.Parse(json).AsObject();
@@ -22,7 +27,8 @@ public sealed class DetectionSettings
             if(!(v>=min&&v<=max))throw new InvalidDataException("Detection setting out of range: "+name);
             return v;
         }
-        if(o.Count!=5)throw new InvalidDataException("Unexpected detection settings");
-        return new(Read("MaxFlashValue",1,10),Read("SpottedPenalty",1,10),Read("SpottedPenaltyBuildings",1,10),Read("ForestCover",1,10),Read("BuildingCover",1,10));
+        if(o.Count!=7)throw new InvalidDataException("Unexpected detection settings");
+        return new(Read("MaxFlashValue",1,10),Read("SpottedPenalty",1,10),Read("SpottedPenaltyBuildings",1,10),Read("ForestCover",1,10),Read("BuildingCover",1,10),
+            Read("ForestOpacity",-1000,1),Read("ForestMultiplier",0,20));
     }
 }
