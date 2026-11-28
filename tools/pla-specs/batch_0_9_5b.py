@@ -1164,6 +1164,8 @@ import osama_ztq15_side_1127;osama_ztq15_side_1127.apply(t,g,ok,rec)
 import osama_mbt_prices_1127;osama_mbt_prices_1127.apply(t,g,ok,rec)
 # ---------- ZTZ-100 front KE back to 750 (Osama 27 Nov 18:0x). See osama_ztz100_ke_1127.py.
 import osama_ztz100_ke_1127;osama_ztz100_ke_1127.apply(t,g,ok,rec)
+# ---------- ARWEN 37 rounds penetration 0 -> 20 (vanilla 40 mm GL) so attack and Fire Position orders can use them (Osama 27 Nov 21:4x). See osama_arwen_pen_1127.py.
+import osama_arwen_pen_1127;osama_arwen_pen_1127.apply(t,g,ok,rec)
 import unit_standards
 import roc_hook;roc_hook.apply(t,g,ok,rec,recheck=lambda:(disposable_launchers_1123.check(t,ok,a.vanilla),weapon_coverage_check.check(t,patches,ok),unit_standards.check(t,ok,rec)))
 # Unit standards on the final data (docs/development/UNIT-STANDARDS.md, Lateralus 26 Nov 2026): fails on a new squad that breaks the launcher or
