@@ -115,6 +115,11 @@ PORTRAITS = {'ROC Reserver': 'RESERVER', 'ROC Reserver Kestrel': 'RESERVER', 'RO
              'ROC SF Snipers': 'SF_SNIPERS', 'ROC SF Section': 'SF_SECTION', 'ROC SF Scout': 'SF_SCOUT', 'ROC Marine Frogmen': 'MARINE_FROGMEN',
              'ROC Reserve Marine': 'RESERVE_MARINE', 'ROC Mech. Riflemen': 'MECH_RIFLEMEN', 'ROC Mech. Riflemen T112': 'MECH_RIFLEMEN',
              'ROC SF Snipers M107': 'SF_SNIPERS', 'ROC Marine Frogmen CQC': 'MARINE_FROGMEN'}   # 20:4x: "Art for SF Snipers M107 and Marine Frogmen CQC: yes"
+ICONS = {'ROC CM-11': 'cm11', 'ROC CM-12': 'cm12', 'ROC CM-21': 'cm21', 'ROC CM-32': 'cm32', 'ROC CM-33': 'cm33', 'ROC CM-34': 'cm34',
+         'ROC Antelope': 'antelope', 'ROC M41D': 'm41d', 'ROC Thunderbolt-2000': 'tb2000', 'ROC Kung Feng VI': 'kf6', 'ROC Tien Kung III': 'tk3',
+         'ROC Land Sword II': 'lsw2', 'ROC M110A2': 'm110a2', 'ROC M60A3 TTS': 'm60a3', 'ROC Hsiung Feng IIE': 'hf2e', 'ROC MTWV': 'mtwv',
+         'ROC UH-60M': 'uh60m', 'ROC AH-64E': 'ah64e', 'ROC AH-1W': 'ah1w', 'ROC EC225': 'ec225', 'ROC F-16A': 'f16a', 'ROC F-16V': 'f16v',
+         'ROC F-5F': 'f5f', 'ROC F-CK-1': 'fck1', 'ROC Mirage 2000-5': 'mirage', 'ROC C-130HE': 'c130', 'ROC Chung Hsiang II': 'chx2'}
 SPEC_NAME = 'ROC Joint Arms Coastal'
 SPEC_UI = 'Joint Arms Battalion and Coastal Operations Command 聯合兵種營及濱海作戰指揮部'
 
@@ -126,7 +131,8 @@ def apply(t, g, ok, rec):
         return sorted([r for r in t[tab].values() if r and all(r.get(k) == v for k, v in kw.items())], key=lambda r: r['Id'])
 
     ok(S[SPEC_TEMPLATE]['Name'] == 'USMC' and S[SPEC_TEMPLATE]['CountryId'] == 2, 'USMC spec template')
-    spec = g.add('SpecializationsJson', S[SPEC_TEMPLATE], {'Name': SPEC_NAME, 'UIName': SPEC_UI, 'ShowInHangar': True, 'ContentMembership': -1,
+    # Shawn 28 Nov 03:3x: deck icon = his 'ROC DECK' emblem (runtime-qa/icons/FA_PLA_ROC_DECK.png, white on transparent, seeded by ChinaUi).
+    spec = g.add('SpecializationsJson', S[SPEC_TEMPLATE], {'Name': SPEC_NAME, 'UIName': SPEC_UI, 'ShowInHangar': True, 'ContentMembership': -1, 'Icon': 'FA_PLA_ROC_DECK',
         'UIDescription': 'ROC TEST. Every card is a copy of a US unit: models, weapons and stats are placeholders.'})
     ok(spec == 60, ('ROC spec id', spec))
     res, dropped, unarmed, zero = {}, [], [], []
@@ -196,6 +202,10 @@ def apply(t, g, ok, rec):
                                    'Cost': d, 'Order': 1})
         res[base]['loadouts'] = [base, f'{var} (+{d})']
     for name, f in UNIT_SET.items(): g.put('Units', res[name]['unit'], f); res[name].update(f)
+    # Shawn 28 Nov 03:3x: card icons of every ROC vehicle/aircraft that has its own model = white silhouettes rendered from that model
+    # (work/roc-20261125/icons/roc_icons.py, runtime-qa/icons/FA_PLA_VEH_ROC_<SLUG>.png + _OUTLINE, seeded by ChinaUi).
+    for name, slug in ICONS.items():
+        g.put('Units', res[name]['unit'], {'ThumbnailFileName': 'FA_PLA_VEH_ROC_' + slug.upper()}); res[name]['icon'] = slug
     for name, key in PORTRAITS.items():
         g.put('Units', res[name]['unit'], {'PortraitFileName': f'FA_ROC_INF_{key}-Portrait'}); res[name]['portrait'] = key
     for base, blabel, bpic, vars_ in VARIANTS:

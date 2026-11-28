@@ -336,5 +336,19 @@
    0,
    0
   ]
+ },
+ {
+  "unitId": 5026,
+  "lods": [
+   "roc_infjp_0.fas",
+   "roc_infjp_1.fas",
+   "roc_infjp_2.fas"
+  ],
+  "offset": [
+   0,
+   0,
+   0
+  ],
+  "crew": true
  }
 ]
