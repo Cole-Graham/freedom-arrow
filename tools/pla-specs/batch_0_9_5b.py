@@ -1125,6 +1125,8 @@ import osama_sprut_1127;osama_sprut_1127.apply(t,g,ok,rec)
 import osama_m8_ztq15_1127;osama_m8_ztq15_1127.apply(t,g,ok,rec)
 # ---------- FH-97A "Light strike (4x LS-6 500kg)" removed (Osama 27 Nov 15:5x). See osama_fh97_4xls6_1127.py.
 import osama_fh97_4xls6_1127;osama_fh97_4xls6_1127.apply(t,g,ok,rec)
+# ---------- Helicopter ATGMs turn at least 160 deg/s (Osama 27 Nov 16:1x). See heli_atgm_turn_1127.py.
+import heli_atgm_turn_1127;heli_atgm_turn_1127.apply(t,g,ok,rec)
 # ---------- CJ-10 held back (card removed, hidden) for model quality (Osama 27 Nov 04:4x). See cj10_held_1127.py.
 import cj10_held_1127;cj10_held_1127.apply(t,g,ok,rec)
 # ---------- Artillery smoke: Lynx Howitzer 10 -> 6; PLZ-10, PLZ-25, PLL-09, PLL-05 -> 8 (Osama 27 Nov 04:4x). See osama_arty_smoke_1127.py.
