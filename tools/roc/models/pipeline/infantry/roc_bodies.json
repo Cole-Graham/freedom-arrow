@@ -519,5 +519,74 @@
   "decimate": {
    "JP_helmet": 5000
   }
+ },
+ "reservist2": {
+  "source": "/home/sam/tars/work/ba-dev/replicas/codex/work/roc-20261125/x/ROC Reservist v2/ROC Reservist.blend",
+  "texdir": "/home/sam/tars/work/ba-dev/replicas/codex/work/roc-20261125/x/ROC Reservist v2",
+  "meshes": [
+   "head_tw",
+   "SM_CC_Arm",
+   "uniform_tw",
+   "SM_vestHeadGear",
+   "Box001"
+  ],
+  "tex": {
+   "Material #70": [
+    "T_twhead_color",
+    "T_twhead_normal"
+   ],
+   "M_CC_Arm": [
+    "CC_Arm_color",
+    "CC_Arm_Normal"
+   ],
+   "M_tw_soldier_uniform": [
+    "T_tw_soldier_uniform_color",
+    "FLAT"
+   ],
+   "M_tw_soldier_vest": [
+    "T_tw_soldier_vest_color",
+    "FLAT"
+   ],
+   "M_vestHeadGear_T_vestHeadGear_Color": [
+    "T_vestHeadGear_Color",
+    "T_vestHeadGear_Normal"
+   ],
+   "01 - Default": [
+    "glasses_frame",
+    "FLAT"
+   ],
+   "02 - Default": [
+    "glasses_black",
+    "FLAT"
+   ],
+   "03 - Default": [
+    "glasses_lens",
+    "FLAT"
+   ]
+  },
+  "rigid": {
+   "head_tw": "Head",
+   "Box001": "Head",
+   "SM_vestHeadGear": "torso"
+  },
+  "fit": [
+   "SM_CC_Arm",
+   "uniform_tw"
+  ],
+  "bones": {
+   "upperarm_l": "upperarm_l",
+   "lowerarm_l": "lowerarm_l",
+   "hand_l": "hand_l",
+   "index_01_l": "index_01_l",
+   "ring_01_l": "ring_01_l",
+   "thumb_01_l": "thumb_01_l",
+   "upperarm_r": "upperarm_r",
+   "lowerarm_r": "lowerarm_r",
+   "hand_r": "hand_r",
+   "index_01_r": "index_01_r",
+   "ring_01_r": "ring_01_r",
+   "thumb_01_r": "thumb_01_r"
+  },
+  "units": "ROC Reserver variant (Shawn 27 Nov 20:0x): reservist + ROC Infantry vest/helmet + glasses (see-through lenses, cut-out)"
  }
 }

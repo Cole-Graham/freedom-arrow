@@ -6,7 +6,7 @@ using Il2CppBrokenArrow.Client.Ecs.Spawn;
 namespace FAModels;
 public partial class Mod
 {
-    class BodyRule { public int unitId {get;set;} public string[] lods {get;set;} = Array.Empty<string>(); public float[] offset {get;set;} = new float[3]; public bool anchorHands {get;set;} public bool cutout {get;set;} public bool crew {get;set;} }   // crew (ROC 27 Nov): the vehicle's own crew figures (skinned lod_0/1/2 under the vehicle prefab) take the body
+    class BodyRule { public int unitId {get;set;} public string[] lods {get;set;} = Array.Empty<string>(); public float[] offset {get;set;} = new float[3]; public bool anchorHands {get;set;} public bool cutout {get;set;} public bool crew {get;set;} public string[] alt {get;set;} = Array.Empty<string>(); public bool altCutout {get;set;} }   // alt (ROC Reserver variant, 27 Nov): every second soldier of the squad wears the alt body; altCutout = its alpha is a cut-out (see-through glasses)   // crew (ROC 27 Nov): the vehicle's own crew figures (skinned lod_0/1/2 under the vehicle prefab) take the body
     class BodyOffset { public Transform source; public Transform visual; public Vector3 offset; }
     static readonly Dictionary<int,BodyOffset> bodyOffsets=new();
     class BodyView { public UnitModelInfo model; public int unitId; public bool battle; public float created=Time.realtimeSinceStartup; public readonly HashSet<int> applied=new(); public readonly HashSet<int> failed=new(); public float lastDiagnostic; public bool done; }
@@ -32,7 +32,7 @@ public partial class Mod
                 try { var add=ReadBodyRules(extra);rules.AddRange(add);MelonLogger.Msg($"FAMODELS body add-on {Path.GetFileName(extra)}: {add.Count} unit(s)"); }
                 catch(Exception e){MelonLogger.Error($"FAMODELS body add-on {Path.GetFileName(extra)} rejected: "+e.Message);}
             }
-            bodyRules=rules;cutoutBodies.Clear();foreach(var r in rules)if(r.cutout)foreach(var l in r.lods)cutoutBodies.Add(l);bodyOffsetsOn=File.Exists(Path.Combine(dir,"body-offset-on.txt"));MelonLogger.Msg($"FAMODELS body offsets {(bodyOffsetsOn?"on":"off")} (body-offset-on.txt)");MelonLogger.Msg($"FAMODELS body prototype ready: {rules.Count} unit(s); native animation and attachments retained");
+            bodyRules=rules;cutoutBodies.Clear();foreach(var r in rules){if(r.cutout)foreach(var l in r.lods)cutoutBodies.Add(l);if(r.altCutout)foreach(var l in r.alt)cutoutBodies.Add(l);}bodyOffsetsOn=File.Exists(Path.Combine(dir,"body-offset-on.txt"));MelonLogger.Msg($"FAMODELS body offsets {(bodyOffsetsOn?"on":"off")} (body-offset-on.txt)");MelonLogger.Msg($"FAMODELS body prototype ready: {rules.Count} unit(s); native animation and attachments retained");
         } catch(Exception e){bodyRules.Clear();MelonLogger.Error("FAMODELS body rules rejected: "+e.Message);}
     }
     static List<BodyRule> ReadBodyRules(string file)
@@ -42,6 +42,8 @@ public partial class Mod
             if(!InfantryBodyIdentity.IsSupported(r.unitId) || r.lods.Length!=3)throw new InvalidDataException("Body rule must use an approved infantry unit and three LODs");
             if(r.offset.Length!=3 || r.offset.Any(x=>!float.IsFinite(x)||Math.Abs(x)>.15f))throw new InvalidDataException("Invalid body-only offset");
             foreach(var f in r.lods)if(Path.GetFileName(f)!=f || !File.Exists(Path.Combine(dir,f)))throw new InvalidDataException("Missing/unsafe body asset");
+            if(r.alt.Length!=0 && r.alt.Length!=3)throw new InvalidDataException("Body rule alt must have three LODs");
+            foreach(var f in r.alt)if(Path.GetFileName(f)!=f || !File.Exists(Path.Combine(dir,f)))throw new InvalidDataException("Missing/unsafe alt body asset");
         }
         return rules;
     }
@@ -134,7 +136,7 @@ public partial class Mod
     }
     // Before the match: read the body file and make its materials (GPU textures), so the first squad of a type does no file work.
     static void PreloadBody(string file){var b=ParseBody(file);foreach(var sub in b.subs)BodyMat(sub.tex,true,cutoutBodies.Contains(file));}
-    static List<string> BodyFiles(int unitId){var l=new List<string>();foreach(var r in bodyRules)if(r.unitId==unitId)l.AddRange(r.lods);return l;}
+    static List<string> BodyFiles(int unitId){var l=new List<string>();foreach(var r in bodyRules)if(r.unitId==unitId){l.AddRange(r.lods);l.AddRange(r.alt);}return l;}
     static BodyMesh ReadBody(string file,SkinnedMeshRenderer native,bool battle)
     {
         var original=native.sharedMesh;
@@ -239,7 +241,7 @@ public partial class Mod
                 if(level<0){renderer.forceRenderingOff=false;view.failed.Add(id);MelonLogger.Warning($"FAMODELS body skipped unknown LOD {renderer.name}; native mesh retained");continue;}
                 var oldMesh=renderer.sharedMesh;var oldMats=renderer.sharedMaterials;var oldBounds=renderer.localBounds;var oldBones=renderer.bones;
                 try {
-                    var body=ReadBody(rule.lods[level],renderer,view.battle);
+                    var body=ReadBody((rule.alt.Length==3&&candidate.soldier%2==1?rule.alt:rule.lods)[level],renderer,view.battle);
                     renderer.sharedMaterials=new Il2CppReferenceArray<Material>(body.materials);renderer.sharedMesh=body.mesh;
                     renderer.bones=OffsetBodyBones(renderer,rule);
                     // Conservative local bounds for first deformation test; native LOD and visibility logic stays in place.

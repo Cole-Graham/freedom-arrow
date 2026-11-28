@@ -114,7 +114,13 @@
    0,
    0,
    0
-  ]
+  ],
+  "alt": [
+   "roc_reservist2_0.fas",
+   "roc_reservist2_1.fas",
+   "roc_reservist2_2.fas"
+  ],
+  "altCutout": true
  },
  {
   "unitId": 5043,
@@ -127,7 +133,13 @@
    0,
    0,
    0
-  ]
+  ],
+  "alt": [
+   "roc_reservist2_0.fas",
+   "roc_reservist2_1.fas",
+   "roc_reservist2_2.fas"
+  ],
+  "altCutout": true
  },
  {
   "unitId": 5044,

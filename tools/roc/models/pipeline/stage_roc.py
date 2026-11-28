@@ -33,12 +33,12 @@ for s,card in CARD.items():
     if card:models[card]={'file':f'{st}_static.fam','battle':f'{st}_lo_static.fam','align':False,'lods':lods}
 # infantry bodies (inf/, 25-26 Nov) and their add-on rules; the T91 rifle (t91/) and its hand rules
 WT='/home/sam/tars/work/ba-dev/replicas/codex/work/roc-wt/tools/roc/models'
-BODY={l.rsplit('_',1)[0]+'_' for r in json.load(open(WT+'/infantry-bodies-roc.json')) for l in r['lods']}   # only bodies a rule uses (27 Nov: SF Scout -> roc_sf4)
+BODY={l.rsplit('_',1)[0]+'_' for r in json.load(open(WT+'/infantry-bodies-roc.json')) for l in r['lods']+r.get('alt',[])}   # 27 Nov: + Reserver alt body   # only bodies a rule uses (27 Nov: SF Scout -> roc_sf4)
 inf=[f for f in glob.glob(H+'/inf/lod/roc_*.fas')+glob.glob(H+'/inf/fat/roc_*.fat') if any(os.path.basename(f).startswith(b) for b in BODY)]+[WT+'/infantry-bodies-roc.json']
 t91=[f for f in glob.glob(H+'/t91/models/w_roc_*') if f.endswith(('.fam','.mat.json'))]+glob.glob(H+'/t91/fat/w_roc_*.fat')   # T91 + Kestrel-1 (27 Nov)
 for f in inf+t91:shutil.copy(f,S);n+=1
 for r in json.load(open(WT+'/infantry-bodies-roc.json')):
-    for f in r['lods']:assert os.path.exists(f'{S}/{f}'),f
+    for f in r['lods']+r.get('alt',[]):assert os.path.exists(f'{S}/{f}'),f
 shutil.copy(H+'/t91/rules.json',H+'/stage/roc-weapon-rules.json')
 # Shawn 27 Nov 14:4x in game: the CM-34 faced backwards (turret at the front); the M41D was ~70 % of its size (5.8 m with the gun; real M41 8.2 m
 # with the gun, 3.2 m wide; model 2.3 m wide). FAModels entries take yaw (degrees) and scale for both the Arsenal and battle models.
