@@ -22,8 +22,42 @@ public partial class Mod
             foreach (var kv in JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(File.ReadAllText(cf)) ?? new())
                 if (kv.Value.ValueKind == JsonValueKind.Object && kv.Value.TryGetProperty("Name", out var n) && n.ValueKind == JsonValueKind.String && map.ContainsKey(n.GetString()!))
                     unitNames[int.Parse(kv.Key)] = n.GetString()!;
-        SharedPlayerDeck.add_OnSetDeck(new System.Action<int, IDeckDataModel, IDeckHelper>(OnSetDeck));
+        HookSetDeck();
         MelonLogger.Msg($"FAMODELS preload installed: {unitNames.Count} mapped unit id(s)");
+    }
+    // 0.3.51 (Osama 27 Nov 2026: "Why aren't we preloading all models and at the lowest lod at the Start of the game not after deployment"). The
+    // 27 Nov Oil Rush logs (Ravity, CDRMatthew, FAModels 0.3.49) show OnSetDeck only in the first match after launch: the 2nd and 3rd matches,
+    // including the 5v5, logged no deck at all, so all 771-871 battle models and bodies were built when each unit first appeared. Now the handler is
+    // attached again on every scene load, and once a second outside the hangar the game's own deck table (SharedPlayerDeck._playerDecks) is read
+    // directly; every deck found there that was not queued yet goes through the same preload. Each log line names the path that found the deck.
+    static Il2CppSystem.Action<int, IDeckDataModel, IDeckHelper> setDeckCb;
+    static void HookSetDeck()
+    {
+        try { if (setDeckCb != null) SharedPlayerDeck.remove_OnSetDeck(setDeckCb); } catch { }
+        setDeckCb = new System.Action<int, IDeckDataModel, IDeckHelper>(OnSetDeck);
+        SharedPlayerDeck.add_OnSetDeck(setDeckCb);
+    }
+    static readonly Dictionary<int, IntPtr> decksQueued = new();
+    static float deckPollT; static bool battleScene;
+    static void PreloadSceneLoaded(string sceneName)
+    {
+        battleScene = sceneName != "Hangar_Scene" && sceneName != "Void" && sceneName != "EntryPoint";
+        decksQueued.Clear(); preloadSeen.Clear();   // FreeUnused has just freed every model no live unit uses
+        try { HookSetDeck(); } catch (Exception ex) { MelonLogger.Warning("FAMODELS preload: deck event not attached: " + ex.Message); }
+    }
+    static void PollDecks()
+    {
+        if (!battleScene) return;
+        float now = Time.realtimeSinceStartup;
+        if (now - deckPollT < 1f) return;
+        deckPollT = now;
+        var table = SharedPlayerDeck._playerDecks;
+        if (table == null) return;
+        var ids = new List<int>();
+        foreach (var k in table.Keys) ids.Add(k);
+        foreach (var id in ids)
+            if (SharedPlayerDeck.TryGetDeck(id, out var deck) && deck != null && (!decksQueued.TryGetValue(id, out var ptr) || ptr != deck.Pointer))
+                QueueDeck(id, deck, "deck table");
     }
     // 0.3.34 (Osama 17 Nov 2026: "we should preload all the models before the game loads so there's no stuttering on model loading"). The
     // 5v5 detail log showed the one-per-frame preload as 10 s of 50-107 ms frames right after deployment began. Now the whole queue is built in
@@ -31,10 +65,12 @@ public partial class Mod
     // model, LOD, body and infantry weapon already built: one pause at the start instead of a stutter for every model. preloadSeen is cleared
     // when a new match sets its decks (more than 30 s after the last deck), because the game unloads the kept meshes between scenes.
     static float lastSetDeck = -100f; static bool burst;
-    static void OnSetDeck(int player, IDeckDataModel deck, IDeckHelper helper)
+    static void OnSetDeck(int player, IDeckDataModel deck, IDeckHelper helper) => QueueDeck(player, deck, "deck event");
+    static void QueueDeck(int player, IDeckDataModel deck, string source)
     {
         try
         {
+            decksQueued[player] = deck.Pointer;
             float now = Time.realtimeSinceStartup;
             if (now - lastSetDeck > 30f) { preloadSeen.Clear(); preloadHeavy.Clear(); heavyBuilt = 0; MelonLogger.Msg("FAMODELS preload: new match, cache list reset"); }
             lastSetDeck = now; burst = true;
@@ -63,13 +99,14 @@ public partial class Mod
                         foreach (var r in weaponRules.Where(r => r.unitId == id))
                         { var f = r.battle != "" ? r.battle : r.file; if (f != "" && preloadSeen.Add(f)) { preload.Enqueue(f); Prefetch(f); added++; } }
                     }
-            MelonLogger.Msg($"FAMODELS preload deck of player {player}: {added} lightest battle level(s), bodies and infantry weapons queued; {readOnly} heavier level(s) to build during deployment");
+            MelonLogger.Msg($"FAMODELS preload deck of player {player} ({source}): {added} lightest battle level(s), bodies and infantry weapons queued; {readOnly} heavier level(s) to build during deployment");
         }
         catch (Exception ex) { MelonLogger.Error("FAMODELS preload deck: " + ex.Message); }
     }
     // One model per frame, so a weak PC never stalls for the whole deck at once.
     static void TickPreload()
     {
+        try { PollDecks(); } catch (Exception ex) { MelonLogger.Warning("FAMODELS preload deck table: " + ex.Message); deckPollT = Time.realtimeSinceStartup + 30f; }
         if (preload.Count == 0) { burst = false; return; }
         if (burst && Time.realtimeSinceStartup - lastSetDeck > 0.3f)
         {
