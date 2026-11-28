@@ -77,13 +77,13 @@ public partial class Mod : MelonMod
             // 0.3.39: loadout variants (OptionVariants.cs) pick other files; the view is re-checked while it lives.
             if (e.variants.Length > 0) { int vi = VariantIndex(e, unitData); variantViews.Add((unitModel.PrefabRootScript.gameObject, unitData, e, unitData.Name, battle, vi)); e = Resolve(e, vi, battle); }
             else if (e.battle != "" && battle)
-                e = new Entry { file = e.battle, scale = e.scale, offset = e.offset, yaw = e.yaw, align = e.align, lods = e.lods };
+                e = new Entry { file = e.battle, scale = e.scale, offset = e.offset, yaw = e.yaw, align = e.align, lods = e.lods, dustPoint = e.dustPoint, keep = e.keep };
             // 0.3.49 (Lateralus 25 Nov 16:4x: "the mod's new custom units pop in at the highest LOD before switching to the lowest LOD, the vanilla
             // units don't do that... Can that be changed only for the armory?"): the armory entry kept the battle detail levels ("lods"), so the
             // full armory model got a LODGroup with the battle copies under it and the armory camera dropped it to the lightest one. The armory
             // (not Potato/Low, which use the battle model) now shows only the full model: one level, no LODGroup (Apply makes one only for 2+).
             else if (!battle && e.lods.Length > 0)
-                e = new Entry { file = e.file, scale = e.scale, offset = e.offset, yaw = e.yaw, align = e.align, hide = e.hide };
+                e = new Entry { file = e.file, scale = e.scale, offset = e.offset, yaw = e.yaw, align = e.align, hide = e.hide, dustPoint = e.dustPoint, keep = e.keep };
             // Hide immediately; Apply restores the original and cancels queued re-hides on failure.
             queue.Add((unitModel.PrefabRootScript.gameObject, e, unitData.Name, Time.realtimeSinceStartup, 0));
             Hide(unitModel.PrefabRootScript.gameObject);
