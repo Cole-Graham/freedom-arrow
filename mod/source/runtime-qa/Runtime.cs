@@ -361,6 +361,8 @@ public class Runtime : MelonMod
         ("[FA] [1v1] Jelgava 0.1","0ce3d77a-13b8-5d8e-9074-bbc96ab469b9"),("[FA] [1v1] Jelgava Skirmish 0.1","d78167d6-7984-5fe9-87de-0e3a7ce97efc"),
         // Lateralus 28 Nov 2026: "replace the PvE Jelgava maps with new PvE maps based on the new design"; the RU Jelgavas Pils PvE maps replace these.
         ("[FA] PvE 1P RU Jelgava 0.2","ec9548a6-bc98-506b-9716-8d219bf61ced"),("[FA] PvE 1P RU Jelgava Skirmish 0.2","498b2cba-4856-5b27-8204-a7517d2b10b8"),("[FA] PvE AI Easy RU Jelgava 0.1","1f4780a8-8245-594a-9445-3ae3bf18ba60"),("[FA] PvE AI Medium RU Jelgava 0.1","650edaa0-688e-5333-af82-eff1652bee7f"),("[FA] PvE AI Hard RU Jelgava 0.1","0a2bdfe3-a277-5943-b694-95126ae50b5d"),("[FA] PvE AI Challenge RU Jelgava 0.1","15fa1691-e7e4-5415-a66d-168178448023"),
+        // Lateralus 28 Nov 2026: "Remove Kadaga 1v1, and add this completely new design"; [1v1] Kadaga Military Base 0.1 replaces it.
+        ("[FA] [1v1] Kadaga 0.1","0c513881-6a4f-5f3d-be1a-b9863528eafb"),("[FA] [1v1] Kadaga Skirmish 0.1","59be0c0c-88f6-552e-be30-023a007c04b2"),
     };
     static void RemoveRetiredScenarios()
     {

@@ -73,7 +73,7 @@ static class Ranked
         ["4v4"] = (4, "team", new[] { "Airport", "Oil Rush", "Cold Harbor" }),
         ["3v3"] = (3, "team", new[] { "Baltiisk", "Bay of Winds", "Dam" }),
         ["2v2"] = (2, "team", new[] { "Dead Center", "Chkalovsk Airbase", "Highway of Death" }),
-        ["1v1"] = (1, "1v1", new[] { "Dead Center", "Kadaga", "Jelgavas Pils", "Klaipeda", "Chernyakhovsky" }),
+        ["1v1"] = (1, "1v1", new[] { "Dead Center", "Kadaga Military Base", "Jelgavas Pils", "Klaipeda", "Chernyakhovsky" }),
     };
     // Lateralus 23 Nov 2026: map size from data, not the [NvN] tag ("its super important the game can clearly keep track of which version
     // belongs to which game size"). maps.json is the file the build ships as UserData/FreedomArrow/maps.json (copy it to the ranked dir or
