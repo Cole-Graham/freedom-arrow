@@ -18,8 +18,11 @@ shutil.rmtree(H+'/stage',ignore_errors=True);os.makedirs(S)
 # Extra models.json fields per card. Shawn 28 Nov: "Fix this strange dust on the wheel" (Thunderbolt-2000): the M270 stand-in's dust_point
 # nodes sit at its front track sprockets, which is on the TB2000's front wheels (the cab is at -z in the .fam, as the M270 model faces);
 # move them inside the rearmost wheels (axle z +3.40, wheel outer face x 1.2, wheel centre y 0.7) so the driving dust comes from the rear tyres.
-ENTRY_EXTRA={'ROC Thunderbolt-2000':{'dustPoint':[0.95,0.3,3.40]},
-             'ROC AH-64E':{'yaw':180}}   # Shawn 28 Nov 03:3x: "The model was turned by 180 degree, turn back please"
+ENTRY_EXTRA={'ROC Thunderbolt-2000':{'dustPoint':[0.95,0.3,3.40],'yaw':180},   # Shawn 28 Nov 12:2x: "180 Degree turning to the front"
+             'ROC AH-1W':{'yaw':180},   # Shawn 28 Nov 12:2x: "180 Degree turning to the front"
+             # Shawn 28 Nov 12:2x: "Add the rocket launcher and missiles from US AH-64E ... adjustable based on customization options": the
+             # pylon weapon models the game adds for the chosen loadout stay visible (FAModels "keep").
+             'ROC AH-64E':{'yaw':180,'keep':'hellfire|hydra|^m26[01]|dagr|jagm|stinger|aim.?92|zuni|bgm.?71'}}   # Shawn 28 Nov 03:3x: "The model was turned by 180 degree, turn back please"
 models={};n=0
 for s,card in CARD.items():
     st=f'm_roc_{s}'

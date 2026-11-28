@@ -58,7 +58,8 @@
    0.95,
    0.3,
    3.4
-  ]
+  ],
+  "yaw": 180
  },
  "ROC Kung Feng VI": {
   "file": "m_roc_kf6_static.fam",
@@ -149,7 +150,8 @@
    "m_roc_ah64e_lo_static_l1.fam",
    "m_roc_ah64e_lo_static_l2.fam"
   ],
-  "yaw": 180
+  "yaw": 180,
+  "keep": "hellfire|hydra|^m26[01]|dagr|jagm|stinger|aim.?92|zuni|bgm.?71"
  },
  "ROC M60A3 TTS": {
   "file": "m_roc_m60a3_static.fam",
@@ -221,7 +223,8 @@
   "lods": [
    "m_roc_ah1w_lo_static_l1.fam",
    "m_roc_ah1w_lo_static_l2.fam"
-  ]
+  ],
+  "yaw": 180
  },
  "ROC MTWV": {
   "file": "m_roc_mtwv_static.fam",

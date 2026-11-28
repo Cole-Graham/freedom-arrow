@@ -224,7 +224,7 @@ public partial class Mod
                 }
             }
             if(Time.realtimeSinceStartup-view.lastDiagnostic>10 && view.applied.Count==0) {
-                view.lastDiagnostic=Time.realtimeSinceStartup;MelonLogger.Msg($"FAMODELS body scan unit={view.unitId} soldiers={soldiers.Length} skins={candidates.Count} applied={view.applied.Count} failed={view.failed.Count}");
+                view.lastDiagnostic=Time.realtimeSinceStartup;MelonLogger.Msg($"FAMODELS body scan unit={view.unitId} soldiers={soldiers?.Length??0} skins={candidates.Count} applied={view.applied.Count} failed={view.failed.Count}");
             }
             // 0.3.31: a squad whose every soldier renderer is swapped (or refused) is not scanned again; the scan re-read each soldier's
             // renderers and bone arrays four times a second for every China squad of the match.

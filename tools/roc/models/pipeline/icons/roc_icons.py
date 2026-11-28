@@ -8,7 +8,7 @@ D=os.path.dirname(os.path.abspath(__file__));M=D+'/../veh/models';B='/nix/store/
 PY='/nix/store/00dsik9nawmyscdmpg0m64yfcfxpg548-python3-3.13.13-env/bin/python3'
 GROUND=['cm11','cm12','cm21','cm32','cm33','cm34','antelope','m41d','tb2000','kf6','tk3','lsw2','m110a2','m60a3','hf2e','mtwv']
 HELI=['uh60m','ah64e','ah1w','ec225'];AIR=['f16a','f16v','f5f','fck1','mirage','c130','chx2']
-AZ={'tb2000':'180','ah64e':'180'}   # ah64e: the .fam faces backwards; the card entry turns it 180 (yaw)
+AZ={'tb2000':'180','ah64e':'180','ah1w':'180'}   # ah64e: the .fam faces backwards; the card entry turns it 180 (yaw)
 for s in (sys.argv[1:] or GROUND+HELI+AIR):
     f=f'm_roc_{s}_lo_static'
     for ext in ('.fam','.mat.json'):

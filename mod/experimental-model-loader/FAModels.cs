@@ -17,7 +17,7 @@ namespace FAModels;
 // Parts named for a bone (for example turret_0) are reparented to that bone, so they turn with it.
 public partial class Mod : MelonMod
 {
-    class Entry { public string file { get; set; } = ""; public float scale { get; set; } = 1; public float[] offset { get; set; } = new float[3]; public float yaw { get; set; } public bool align { get; set; } = true; public string battle { get; set; } = ""; public string hide { get; set; } = ""; public string[] lods { get; set; } = Array.Empty<string>(); public Variant[] variants { get; set; } = Array.Empty<Variant>(); public float[] dustPoint { get; set; } = Array.Empty<float>(); }
+    class Entry { public string file { get; set; } = ""; public float scale { get; set; } = 1; public float[] offset { get; set; } = new float[3]; public float yaw { get; set; } public bool align { get; set; } = true; public string battle { get; set; } = ""; public string hide { get; set; } = ""; public string[] lods { get; set; } = Array.Empty<string>(); public Variant[] variants { get; set; } = Array.Empty<Variant>(); public float[] dustPoint { get; set; } = Array.Empty<float>(); public string keep { get; set; } = ""; }
     static Dictionary<string, Entry> map = new();
     static string dir = "";
     static readonly List<(GameObject root, Entry e, string unit, float t, int pass)> queue = new();
@@ -350,12 +350,28 @@ public partial class Mod : MelonMod
             MelonLogger.Msg($"FAMODELS {unit}: {t.name} ({was.x:F2},{was.y:F2},{was.z:F2}) -> ({(was.x < 0 ? -1 : 1) * Mathf.Abs(p[0]):F2},{p[1]:F2},{p[2]:F2})");
         }
     }
+    // ROC 28 Nov 2026 (Shawn: AH-64E "Add the rocket launcher and missiles from US AH-64E to this one, better to make them adjustable based on
+    // customization options"): an entry's "keep" regex leaves the stand-in's renderers visible when their object or a parent up to the unit
+    // root matches it, e.g. the pylon weapon models the game adds for the chosen loadout. Logged once per unit.
+    static readonly Dictionary<int, System.Text.RegularExpressions.Regex> keepByRoot = new();
+    static readonly HashSet<string> keepLogged = new();
+    static bool Kept(GameObject root, Renderer r)
+    {
+        if (!keepByRoot.TryGetValue(root.GetInstanceID(), out var re)) return false;
+        for (var t = r.transform; t != null && t != root.transform; t = t.parent)
+            if (re.IsMatch(t.name))
+            {
+                if (keepLogged.Add(root.name + "/" + t.name)) MelonLogger.Msg($"FAMODELS keep: {t.name} stays visible on {root.name}");
+                return true;
+            }
+        return false;
+    }
     static int Hide(GameObject root)
     {
         int hidden = 0;
         foreach (var r in root.GetComponentsInChildren<Renderer>(true))
         {
-            if (r.forceRenderingOff || r.gameObject.name.StartsWith("FAM_")) continue;
+            if (r.forceRenderingOff || r.gameObject.name.StartsWith("FAM_") || Kept(root, r)) continue;
             if (r.TryCast<MeshRenderer>() != null || r.TryCast<SkinnedMeshRenderer>() != null) { if (!r.forceRenderingOff) { hidden++; r.forceRenderingOff = true; origs.TryAdd(root.GetInstanceID(), new()); origs[root.GetInstanceID()].Add(r); } }
         }
         return hidden;
@@ -508,6 +524,7 @@ public partial class Mod : MelonMod
               MelonLogger.Msg($"FAMODELS {unit}: {bone} -> {path} active={b.gameObject.activeInHierarchy} scale={b.lossyScale} partPos=({rp.x:F2},{rp.y:F2},{rp.z:F2}) bounds={(mr != null ? mr.bounds.center - root.transform.position : Vector3.zero)}"); }
         }
         if (files.Count > 1) SetLevels(root, holder, byLevel, unit);
+        if (e.keep != "") keepByRoot[root.GetInstanceID()] = new System.Text.RegularExpressions.Regex(e.keep, System.Text.RegularExpressions.RegexOptions.IgnoreCase);
         int hidden = Hide(root);
         if (e.dustPoint.Length == 3) MoveDustPoints(root, holder.transform, e.dustPoint, unit);
         holder.SetActive(true);

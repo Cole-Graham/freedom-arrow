@@ -81,7 +81,7 @@ CARDS = {
     'ROC MTV': ('MTV', 390, 'MTV', None),
     # Shawn 27 Nov 20:4x: "Add one more SF called ASSC" (Airborne Special Service Company, "Ghosts of Liangshan": all-black CQB direct-action
     # operators). Template Delta Force (vanilla SOF assault squad). Added last.
-    'ROC ASSC': ('ASSC', 150, 'Delta Force', 95),
+    'ROC ASSC': ('ASSC', 150, 'Delta Force', 65),   # Shawn 28 Nov 12:2x: price 95 -> 65
     # Shawn 28 Nov 02:3x: "add AH1W to ROC, duplicate the AH-1W data and price". Added last.
     'ROC AH-1W': ('AH-1W Supercobra', 87, 'AH-1W Supercobra', None),
     # Shawn 28 Nov 03:0x (list 8 cards): TOW-2A Team "duplicate the vanilla template you think is the best fit" = the 4-man TOW-2A team; SMAW Team
@@ -121,7 +121,8 @@ ICONS = {'ROC CM-11': 'cm11', 'ROC CM-12': 'cm12', 'ROC CM-21': 'cm21', 'ROC CM-
          'ROC UH-60M': 'uh60m', 'ROC AH-64E': 'ah64e', 'ROC AH-1W': 'ah1w', 'ROC EC225': 'ec225', 'ROC F-16A': 'f16a', 'ROC F-16V': 'f16v',
          'ROC F-5F': 'f5f', 'ROC F-CK-1': 'fck1', 'ROC Mirage 2000-5': 'mirage', 'ROC C-130HE': 'c130', 'ROC Chung Hsiang II': 'chx2'}
 SPEC_NAME = 'ROC Joint Arms Coastal'
-SPEC_UI = 'Joint Arms Battalion and Coastal Operations Command 聯合兵種營及濱海作戰指揮部'
+# Shawn 28 Nov 12:2x: other languages 'ROCA JAB & ROCMC COC', Chinese the whole string (LangNames.cs WholeInChinese).
+SPEC_UI = 'ROCA JAB & ROCMC COC 聯合兵種營及濱海作戰指揮部'
 
 
 def apply(t, g, ok, rec):
@@ -259,6 +260,8 @@ DONOR = {'M4A1': 50, 'T91': 50, 'T91 CQC': 67, 'T91K1': 70, 'T-112': 70, 'T65K2'
 # (M72A3 6.5 damage, 300 penetration, 2.0 m dispersion). The M72A3 LAW cards keep the shared vanilla round.
 AMMO_EDIT = {'Kestrel-1': {'HUDName': '66mm HEAT (Kestrel)', 'Damage': 7.0, 'PenetrationAtMinRange': 325.0, 'PenetrationAtGroundRange': 325.0,
                            'DispersionHorizontalRadius': 1.7, 'DispersionVerticalRadius': 1.7}}
+PARENT_MODELS = {'ROC SMAW Team'}   # squads whose men take the parent's per-role soldier models (squads())
+CREW_WEAPONS = {'TOW-2A'}   # main guns whose gunner uses the parent's own gunner model (squads())
 WEAPON_ORDER = ['DMS FIM-92K', 'T75', 'Kestrel-1', 'T91 CQC', 'T91K1', 'REPR-20', 'APILAS', 'T-112', 'T74', 'MGL-140', 'T91', 'T85', 'M72A4 LAW',
                 'M72A3 LAW', 'T65K2', 'T75 SFAW', 'Kestrel-2']
 # name: (men, armour points, [main guns (name, men)], [extra weapons (name, men)], {weapon: rounds for the whole squad, from the card})
@@ -288,6 +291,7 @@ SQUADS = {
     # TOW-2A Team: the TOW is a crew weapon, the gunner's main weapon in every vanilla TOW team (414, 147), so 3 M4A1 + the gunner; M4A1 2400 and
     # TOW-2A 6 from Shawn's card. SMAW Team: 4 M4A1, 1 SMAW carrier with 4 thermobaric + 4 anti-tank (card). FGM-148 Team: 4 M4A1, 1 Javelin carrier, 4 rounds.
     'ROC TOW-2A Team': (4, 8, [('M4A1', 3), ('TOW-2A', 1)], [], {'M4A1': 2400, 'TOW-2A': 6}),
+    # Lateralus 28 Nov 09:25: "SMAW is not a disposable launcher they should only get 1 launcher" (Shawn: "I will fix it"): one carrier again.
     'ROC SMAW Team': (4, 8, [('M4A1', 4)], [('SMAW', 1)], {'M4A1': 2400, 'SMAW': 4}),
     'ROC FGM-148 Team': (4, 8, [('M4A1', 4)], [('Javelin', 1)], {'M4A1': 2400, 'Javelin': 4}),
     'ROC ASSC': (6, 10, [('M4A1', 4), ('M1014', 1), ('AXMC', 1)], [('M72A10 LAW', 2), ('Flashbang', 1)],
@@ -316,12 +320,30 @@ def squads(t, g, ok, res, rows):
         members = [{**tmpl, 'UnitId': uid, 'PrimaryWeaponId': 0, 'SpecialWeaponId': 0} for _ in range(men)]
         i = 0
         for name, n in mains:
-            for m in members[i:i + n]: m['PrimaryWeaponId'] = weapon(name)[0]
+            for m in members[i:i + n]:
+                m['PrimaryWeaponId'] = weapon(name)[0]
+                # Shawn 28 Nov 12:2x: "TOW-2A needs to be on ground, refer to the US TOW-2A group": a crew weapon's gunner takes the parent's
+                # gunner model (US_Army_TOW: kneeling, launcher on its tripod); the rifleman model held the TOW in the air.
+                if name in CREW_WEAPONS:
+                    g_ = next(r for r in rows('SquadMembersJson', UnitId=int(res[card]['parent'].rsplit('(', 1)[1][:-1])) if r['PrimaryWeaponId'] == weapon(name)[1])
+                    m.update({'ModelFileName': g_['ModelFileName'], 'DeathPriority': g_['DeathPriority']})
             i += n
         i = 0
         for name, n in extras:
             for m in members[i:i + n]: m['SpecialWeaponId'] = weapon(name)[0]
             i += n
+        # Shawn 28 Nov 12:3x: "fix the pose of other soldiers, especially their hands. Following the vanilla SMAW group": every man had the
+        # template row's model (the SMAW carrier's US_Marine_Weapon, a hand raised to the launcher). Squads in PARENT_MODELS take the parent's own
+        # model per role: a launcher carrier the parent carrier's, the others the parent's riflemen (rifle models first), in order.
+        if card in PARENT_MODELS:
+            prow = rows('SquadMembersJson', UnitId=int(res[card]['parent'].rsplit('(', 1)[1][:-1]))
+            plain = sorted([r for r in prow if not r['SpecialWeaponId']], key=lambda r: ('rifle' not in r['ModelFileName'].lower(), r['Id']))
+            k = 0
+            for m in members:
+                if m['SpecialWeaponId']:
+                    c_ = [r for r in prow if r['SpecialWeaponId'] and r['SpecialWeaponId'] == next((d for nm, d in DONOR.items() if weapon(nm)[0] == m['SpecialWeaponId']), None)]
+                    if c_: m.update({'ModelFileName': c_[0]['ModelFileName'], 'DeathPriority': c_[0]['DeathPriority']})
+                elif k < len(plain): m.update({'ModelFileName': plain[k]['ModelFileName'], 'DeathPriority': plain[k]['DeathPriority']}); k += 1
         for m in members: m.pop('Id', None); g.add('SquadMembersJson', m)
         sw = next(iter(t['SquadWeaponsJson'].values()))
         for order, (name, n) in enumerate(mains + extras):
@@ -339,7 +361,7 @@ def squads(t, g, ok, res, rows):
         for ua in rows('UnitArmorsJson', UnitId=uid):
             g.put('ArmorsJson', ua['ArmorId'], {'MaxHealthPoints': men * 5, 'ArmorValue': armour})
         res[card]['men'] = men
-        out[card] = {'men': men, 'hp': men * 5, 'armour': armour, 'weapons': [f'{x} x{n}' for x, n in mains + extras]}
+        out[card] = {'men': men, 'hp': men * 5, 'armour': armour, 'weapons': [f'{x} x{n}' for x, n in mains + extras], 'models': [m['ModelFileName'] for m in members]}
     return {'squads': out, 'weapons': {k: v for k, v in made.items()}}
 
 
@@ -350,6 +372,8 @@ def squads(t, g, ok, res, rows):
 # rename: {old weapon: new name | (new name, donor weapon)}; ammo: {old ammo HUDName: new}; drop: weapons whose options go; rounds: {new name: n}
 J = {'jsow_weapon': 391, 'jsow_turret': 551, 'jsow_ammo': 296}
 VEH = {
+    # Shawn 28 Nov 12:2x: "No weapons for MTWV" (the MTV's self-defence weapon and armour-kit slots go).
+    'ROC MTWV': {'drop_options': '.', 'unarmed': True},
     'ROC F-CK-1': {'rename': {113: 'TC-1', 118: 'TC-2'}, 'ammo': {'AIM-9': 'TC-1 Sky Sword I', 'AMRAAM': 'TC-2 Sky Sword II'},
                    'drop': {230, 387, 393, 394, 373}, 'jsow': 'Wan Chien',
                    'ui': [('AIM-9 Sidewinder', 'TC-1 Sky Sword I'), ('AIM-120 AMRAAM', 'TC-2 Sky Sword II'), ('AIM-9', 'TC-1'), ('AIM-120', 'TC-2')]},

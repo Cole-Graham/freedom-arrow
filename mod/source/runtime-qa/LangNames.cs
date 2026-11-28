@@ -16,11 +16,14 @@ static class LangNames
     static readonly HashSet<string> Bilingual=new();
     static readonly Dictionary<string,(string en,string zh)> Split=new();
     static string lang="\0";static bool chinese;
+    static readonly string[] WholeInChinese={"ROCA JAB & ROCMC COC 聯合兵種營及濱海作戰指揮部"};
     public static void Install(HarmonyLib.Harmony h,string root)
     {
         foreach(var f in Directory.GetFiles(Path.Combine(root,"constants"),"*.json"))
             using(var doc=JsonDocument.Parse(File.ReadAllBytes(f)))Collect(doc.RootElement);
         foreach(var s in Bilingual){var p=Halves(s);if(p!=null)Split[s]=p.Value;}
+        // ROC (Shawn 28 Nov 12:2x): the ROC deck name shows "ROCA JAB & ROCMC COC" in other languages and the whole string in Chinese.
+        foreach(var s in WholeInChinese)if(Split.TryGetValue(s,out var p))Split[s]=(p.en,s);
         h.Patch(AccessTools.Method(typeof(LocalizationService),nameof(LocalizationService.GetLocalizedStringPart))??throw new MissingMethodException("LocalizationService.GetLocalizedStringPart"),
             postfix:new HarmonyMethod(typeof(LangNames),nameof(Post)));
         // dev.14 log (Osama's PC, 23 Nov 19:35): installed with 120 names, but GetLocalizedStringPart never returned one of them (no "language"
@@ -66,7 +69,7 @@ static class LangNames
     static string Pick(LocalizationService s,(string en,string zh) p,string via)
     {
         string code="";try{code=s?.CurrentLanguage??"";}catch{}
-        if(code!=lang){lang=code;var c=code.Trim().ToLowerInvariant();chinese=c.StartsWith("zh")||c.Contains("chin");MelonLogger.Msg($"FREEDOM_ARROW_LANG_NAMES language '{code}': {(chinese?"Chinese":"English")}");}
+        if(code!=lang){lang=code;var c=code.Trim().ToLowerInvariant();chinese=c.StartsWith("zh")||c.StartsWith("chi")||c.Contains("chin");   // ROC 28 Nov: Shawn's Chinese game reports 'chi' (ISO 639-2) and got EnglishMelonLogger.Msg($"FREEDOM_ARROW_LANG_NAMES language '{code}': {(chinese?"Chinese":"English")}");}
         if(via=="key"&&!loggedKey){loggedKey=true;MelonLogger.Msg($"FREEDOM_ARROW_LANG_NAMES first name via TryResolveSimpleKey: '{p.en}'");}
         if(via=="part"&&!loggedPart){loggedPart=true;MelonLogger.Msg($"FREEDOM_ARROW_LANG_NAMES first name via GetLocalizedStringPart: '{p.en}'");}
         return chinese?p.zh:p.en;
