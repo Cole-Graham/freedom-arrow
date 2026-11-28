@@ -231,7 +231,14 @@ namespace BALocalSkirmish
                 }
             }
             catch (Exception e) { MelonLogger.Error("[LocalSkirmish] BuildMapList: " + e.Message); }
-            foreach (var s in skirmish) { _maps.Add(s); _mapNames.Add(NameOf(s) + "  (skirmish)"); }
+            // Local vs AI maps (pve.py VSAI local, Osama 28 Nov 2026 "set the AI difficulty to map"): one map per difficulty. The list shows the
+            // Easy map of each; the Difficulty row switches to the Medium / Hard / Challenge map of the same base (VsAiSibling).
+            foreach (var s in skirmish)
+            {
+                var nm = NameOf(s);
+                if (VsAiLevel(nm) > 1) continue;
+                _maps.Add(s); _mapNames.Add(nm + "  (skirmish)");
+            }
             foreach (var s in pve) { _maps.Add(s); _mapNames.Add(NameOf(s)); }
             foreach (var s in solo) { _maps.Add(s); _mapNames.Add(NameOf(s) + "  (mission)"); }
         }
@@ -899,7 +906,12 @@ namespace BALocalSkirmish
             if (mi < 0) { MelonLogger.Error($"[LocalSkirmish] AUTORUN: no map contains '{map}'"); return; }
             _mapIdx = mi; RefreshDecks(); RefreshOptions();
             int di = _deckNames.FindIndex(n => n.IndexOf(deck, StringComparison.OrdinalIgnoreCase) >= 0); if (di >= 0) _deckIdx = di;
-            if (j["diff"] != null) _diff = Math.Max(1, Math.Min(4, (int)j["diff"]));
+            if (j["diff"] != null)
+            {
+                _diff = Math.Max(1, Math.Min(4, (int)j["diff"]));
+                var sib = VsAiLevel(NameOf(_maps[_mapIdx])) > 0 ? VsAiSibling(NameOf(_maps[_mapIdx]), _diffNames[_diff]) : null;
+                if (sib != null) { _maps[_mapIdx] = sib; _mapNames[_mapIdx] = NameOf(sib) + "  (skirmish)"; RefreshDecks(); RefreshOptions(); }
+            }
             if (j["opts"] is System.Text.Json.Nodes.JsonObject oj)
                 foreach (var kv in oj)
                 {
@@ -929,6 +941,7 @@ namespace BALocalSkirmish
         {
             if (_maps.Count == 0) return;
             _mapIdx = (_mapIdx + dir + _maps.Count) % _maps.Count;
+            { int lv = VsAiLevel(NameOf(_maps[_mapIdx])); if (lv > 0) _diff = lv; }
             RefreshDecks(); RefreshOptions(); BuildUI();
         }
         void CycleDeck(int dir)
@@ -950,7 +963,33 @@ namespace BALocalSkirmish
             UpdateLabels();
         }
         void CycleDiff(int dir)
-        { _diff += dir; if (_diff < 1) _diff = 4; if (_diff > 4) _diff = 1; UpdateLabels(); }
+        {
+            _diff += dir; if (_diff < 1) _diff = 4; if (_diff > 4) _diff = 1;
+            // local vs AI map: the level is the map (its wallet and unit cap are baked in), so pick the sibling map of that level
+            if (_mapIdx >= 0 && _mapIdx < _maps.Count && VsAiLevel(NameOf(_maps[_mapIdx])) > 0)
+            {
+                var sib = VsAiSibling(NameOf(_maps[_mapIdx]), _diffNames[_diff]);
+                if (sib != null) { _maps[_mapIdx] = sib; _mapNames[_mapIdx] = NameOf(sib) + "  (skirmish)"; RefreshDecks(); RefreshOptions(); BuildUI(); return; }
+                MelonLogger.Warning($"[LocalSkirmish] no {_diffNames[_diff]} map for '{NameOf(_maps[_mapIdx])}'");
+            }
+            UpdateLabels();
+        }
+        // "[FA] PvE AI <Level> <CN|US|RU> <map> Skirmish 0.1" -> 1..4 (Easy..Challenge), else 0.
+        static int VsAiLevel(string name)
+        {
+            if (name == null || !name.StartsWith("[FA] PvE AI ") || !name.Contains(" Skirmish ")) return 0;
+            string rest = name.Substring("[FA] PvE AI ".Length);
+            for (int i = 1; i < _diffNames.Length; i++) if (rest.StartsWith(_diffNames[i] + " ")) return i;
+            return 0;
+        }
+        static ScenarioSource VsAiSibling(string name, string level)
+        {
+            int l = VsAiLevel(name); if (l == 0) return null;
+            string want = "[FA] PvE AI " + level + name.Substring(("[FA] PvE AI " + _diffNames[l]).Length);
+            var svc = ScenariosSvc(); var list = svc?._scenarios; int n = list != null ? list.Count : 0;
+            for (int i = 0; i < n; i++) { ScenarioSource x = null; try { x = list[i]; } catch { continue; } if (x != null && NameOf(x) == want) return x; }
+            return null;
+        }
         void RandomMap()
         {
             if (_maps.Count == 0) return; _mapIdx = _rng.Next(_maps.Count);

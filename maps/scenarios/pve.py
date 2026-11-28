@@ -65,7 +65,12 @@ def vsai_budget(base_name,mult):
     k=map_size(base_name)*mult
     return dict(start=round(AI_START_POINTS*k),income=round(AI_INCOME_PER_MIN*k),cap=max(1,round(AI_MAX_UNITS*k)),scale=map_size(base_name))
 VSAI_NAMES=[vsai_names(t,d) for _,_,_,t,_ in BASES for d,_ in DIFFICULTIES]
-ALL_NAMES=[x for p,_,_,t,_ in BASES for x in names(p,t)]+[x for p,_,_ in RANDOM for x in random_names(p)]+VSAI_NAMES
+# Local vs AI (Osama 28 Nov 2026 11:1x, bugs thread: "You can set the AI difficulty to map"; the overnight test showed the FA level had no effect
+# on the local PvE maps, whose Lua AI never saw it): the same 36 maps as Skirmish (local) flavors, wallet and cap baked in per difficulty. The
+# local setup's Difficulty row switches between the four maps of one base (LocalSkirmish.cs).
+def vsai_local_names(title,diff):return vsai_names(title,diff)[:-len(' 0.1')]+' Skirmish 0.1'
+VSAI_LOCAL_NAMES=[vsai_local_names(t,d) for _,_,_,t,_ in BASES for d,_ in DIFFICULTIES]
+ALL_NAMES=[x for p,_,_,t,_ in BASES for x in names(p,t)]+[x for p,_,_ in RANDOM for x in random_names(p)]+VSAI_NAMES+VSAI_LOCAL_NAMES
 
 # China units of those specializations, default options (0.9.0-dev.36 data): unitId -> (ucat = CategoryType, [(modification, option)]).
 # Ground only: the waves are capture orders, which aircraft and artillery do not fly or fire well. queued_checks.py checks every id per build.
@@ -664,7 +669,21 @@ def build_vsai(game,out,settings):
         with tempfile.TemporaryDirectory() as tmp:
             mod.build(game,Path(tmp))
             base=C.read_bascr(Path(tmp)/base_name,base_name)
+            sk=C.read_bascr(Path(tmp)/mod.SKIRMISH_NAME,mod.SKIRMISH_NAME)
         for diff,mult in DIFFICULTIES:
+            # local flavor: the base Skirmish map with the opening force, the Lua AI and the paying purchase channels (no slot change: bots)
+            lflavor=vsai_local_names(title,diff);budget=vsai_budget(base_name,mult)
+            assert W.get(lflavor)==W[mod.SKIRMISH_NAME],(lflavor,'zone weights must equal those of',mod.SKIRMISH_NAME)
+            ldesc=(f'Freedom Arrow vs AI, local ({diff}): one AI commander playing {title.split(" vs ")[1]} ({enemy}): {budget["start"]} starting '
+                   f'points and {budget["income"]} per minute, at most {budget["cap"]} units, infantry always mounted. '+sk[0]['desc'])
+            h,n,o,m=copy.deepcopy(sk)
+            st=[b['id'] for b in n['b'] if b['nnKey']=='start'];assert len(st)==1
+            add_waves(n,o,size,(st[0],'flow'),opening(WAVES[title],AI_CARDS[title]),orders=False)
+            add_ai(n,h['map']);add_purchase(n,o,h['map'],size,AI_CARDS[title],budget=budget)
+            C.check_spawns(lflavor,h,o);C.check_limit(lflavor,ldesc)
+            C.stamp(h,m,lflavor,str(uuid.uuid5(uuid.NAMESPACE_URL,lflavor)),ldesc,'Freedom Arrow',3,False)
+            C.write(out,lflavor,h,o,n,m)
+            print(f'{lflavor}: local, wallet {budget["start"]} + {budget["income"]}/min, cap {budget["cap"]}')
             flavor=vsai_names(title,diff);budget=vsai_budget(base_name,mult)
             assert W.get(flavor)==W[base_name],(flavor,'zone weights must equal those of',base_name)
             desc=(f'Freedom Arrow vs AI ({diff}): you against one AI commander playing {title.split(" vs ")[1]} ({enemy}). It buys like a player: '
