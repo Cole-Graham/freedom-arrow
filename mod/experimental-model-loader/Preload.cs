@@ -115,8 +115,10 @@ public partial class Mod
             while (preload.Count > 0)
             {
                 var b = preload.Dequeue();
+                inPreloadBuild = true;
                 try { if (b.StartsWith("body:")) PreloadBody(b.Substring(5)); else LoadFam(b, out _); }   // LoadFam waits for the background job
                 catch (Exception ex) { fails++; MelonLogger.Warning($"FAMODELS preload {b}: {ex.Message}"); }
+                finally { inPreloadBuild = false; }
             }
             MelonLogger.Msg($"FAMODELS preload burst: {n} model(s)/bodies built in {all.Elapsed.TotalMilliseconds:F0} ms at match start ({fails} failed)");
             return;
@@ -128,10 +130,12 @@ public partial class Mod
         try
         {
             bool kept = false;
+            inPreloadBuild = true;
             if (f.StartsWith("body:")) PreloadBody(f.Substring(5)); else LoadFam(f, out kept);
             if (Verbose || preload.Count == 0 || sw.Elapsed.TotalMilliseconds > 50) MelonLogger.Msg($"FAMODELS preloaded {f} in {sw.Elapsed.TotalMilliseconds:F0} ms{(kept ? " (already kept)" : "")}, {preload.Count} left");
         }
         catch (Exception ex) { MelonLogger.Warning($"FAMODELS preload {f}: {ex.Message}"); }
+        finally { inPreloadBuild = false; }
     }
 
     // 0.3.46: after the burst, the heavier detail levels are built one at a time while the frame has budget left, lightest first. Runs
@@ -148,8 +152,10 @@ public partial class Mod
             var f = preloadHeavy.Dequeue();
             if (KeptFam(f)) continue;
             if (!StreamReady(f)) { preloadHeavy.Enqueue(f); continue; }
+            inPreloadBuild = true;
             try { LoadFam(f, out _); heavyBuilt++; }
             catch (Exception ex) { MelonLogger.Warning($"FAMODELS preload level {f}: {ex.Message}"); }
+            finally { inPreloadBuild = false; }
             if (preloadHeavy.Count == 0) MelonLogger.Msg($"FAMODELS preload: {heavyBuilt} heavier detail level(s) built in {Time.realtimeSinceStartup - heavyT:F1} s after the burst");
             return;   // at most one level per frame
         }

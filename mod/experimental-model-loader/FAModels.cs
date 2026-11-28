@@ -201,7 +201,7 @@ public partial class Mod : MelonMod
         {
             hitchCount++;
             if (Time.realtimeSinceStartup - hitchLogT > 0.5f || dt > 0.2f)
-            { hitchLogT = Time.realtimeSinceStartup; MelonLogger.Msg($"FAMODELS hitch {dt * 1000f:F0} ms (#{hitchCount}): previous frame FAModels did {modelSwapsThisFrame} model swap(s), {lodLevelsThisFrame} later detail level(s), {modelsDeferredThisFrame} deferred, {bodySwapsThisFrame} body swap(s), {preload.Count} preload(s) left"); }
+            { hitchLogT = Time.realtimeSinceStartup; MelonLogger.Msg($"FAMODELS hitch {dt * 1000f:F0} ms (#{hitchCount}): previous frame FAModels did {modelSwapsThisFrame} model swap(s), {lodLevelsThisFrame} later detail level(s), {modelsDeferredThisFrame} deferred, {bodySwapsThisFrame} body swap(s), {preload.Count} preload(s) left; garbage collections this frame: IL2CPP {frameIlGc}, .NET {frameNetGc}; FAModels update {lastUpdateMs:F1} ms"); }
         }
         bodySwapsThisFrame = 0; modelSwapsThisFrame = 0; lodLevelsThisFrame = 0; modelsDeferredThisFrame = 0;
         if (lodLevels.Count > 4000) lodLevels.Clear();
@@ -216,6 +216,7 @@ public partial class Mod : MelonMod
     public override void OnUpdate()
     {
         Array.Clear(sec, 0, sec.Length); long start = System.Diagnostics.Stopwatch.GetTimestamp(), t = start;
+        try { PerfFrame(); } catch (Exception ex) { MelonLogger.Error("FAMODELS perf: " + ex.Message); }
         try { HitchLog(); } catch { }
         try { MemoryLog(); } catch (Exception ex) { MelonLogger.Error("FAMODELS memory log: " + ex.Message); }
         try { TickPlaReview(); } catch(Exception e) { MelonLogger.Error("PLA_REVIEW: "+e.Message); }
@@ -235,6 +236,7 @@ public partial class Mod : MelonMod
     }
     static void SlowUpdateLog(long start, long end)
     {
+        PerfAddUpdate(start, end);
         double ms = (end - start) * 1000.0 / System.Diagnostics.Stopwatch.Frequency;
         if (ms < 15 || slowUpdates++ > 400) return;
         MelonLogger.Msg($"FAMODELS slow update {ms:F0} ms: " + string.Join(", ", Enumerable.Range(0, sec.Length).Where(i => sec[i] * 1000.0 / System.Diagnostics.Stopwatch.Frequency >= 1).OrderByDescending(i => sec[i])
@@ -342,7 +344,7 @@ public partial class Mod : MelonMod
     {
         famUsed[file] = Time.realtimeSinceStartup;   // 0.3.35 (Unload.cs): most recently used models are freed last
         if (famCache.TryGetValue(file, out var c) && c.All(p => p.subs.All(x => x.mesh != null && x.mat != null))) { kept = true; return c; }
-        kept = false;
+        kept = false; long buildStart = System.Diagnostics.Stopwatch.GetTimestamp();
         var mj = Path.Combine(dir, Path.ChangeExtension(file, null) + ".mat.json");
         var mp = File.Exists(mj) ? JsonSerializer.Deserialize<Dictionary<string, MatP>>(File.ReadAllText(mj)) ?? new() : new Dictionary<string, MatP>();
         // 0.3.31: the file was read, converted and given tangents on a background thread (Background.cs); only the Unity objects
@@ -379,6 +381,7 @@ public partial class Mod : MelonMod
             parts.Add(part);
         }
         famCache[file] = parts;
+        PerfBuilt(System.Diagnostics.Stopwatch.GetTimestamp() - buildStart);
         return parts;
     }
     // The stand-in's own LOD switch heights (screen share where each level ends), so our levels change where vanilla's would.
