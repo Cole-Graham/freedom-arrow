@@ -1139,6 +1139,8 @@ osama_ztz99_split_1127.finish(t,g,ok,rec)
 import osama_hide_1127;osama_hide_1127.apply(t,g,ok,rec)
 # ---------- Plane high-altitude optics 16,000 -> 14,500 m (sensor 6, 8000 -> 7250 raw) (Lateralus 27 Nov 2026 10:0x). See lateralus/plane_high_optics_1127.py.
 import plane_high_optics_1127;plane_high_optics_1127.apply(t,g,ok,rec)
+# ---------- Airborne Tracked Carrier -> ZSD-251, 45 -> 35 pts, HJ-8H stays +10; no-missile model by default (Osama 27 Nov 15:5x). See zsd251_1127.py.
+import zsd251_1127;zsd251_1127.apply(t,g,ok,rec)
 import unit_standards
 import roc_hook;roc_hook.apply(t,g,ok,rec,recheck=lambda:(disposable_launchers_1123.check(t,ok,a.vanilla),weapon_coverage_check.check(t,patches,ok),unit_standards.check(t,ok,rec)))
 # Unit standards on the final data (docs/development/UNIT-STANDARDS.md, Lateralus 26 Nov 2026): fails on a new squad that breaks the launcher or
