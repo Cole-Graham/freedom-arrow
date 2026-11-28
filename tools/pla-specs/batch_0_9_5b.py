@@ -1150,6 +1150,8 @@ import hidden_infantry_1127;hidden_infantry_1127.apply(t,g,ok,rec)
 import osama_light_cab_points_1127;osama_light_cab_points_1127.apply(t,g,ok,rec)
 # ---------- Whistling Arrows 95 pts (Osama 27 Nov 23:0x). See osama_whistling_price_1127.py.
 import osama_whistling_price_1127;osama_whistling_price_1127.apply(t,g,ok,rec)
+# ---------- M10 Booker 85 (XM913 95), ZTL-11 80, M8 AGS 65 (Osama 28 Nov 00:3x). See osama_light_tank_prices_1128.py.
+import osama_light_tank_prices_1128;osama_light_tank_prices_1128.apply(t,g,ok,rec)
 # ---------- Artillery smoke: Lynx Howitzer 10 -> 6; PLZ-10, PLZ-25, PLL-09, PLL-05 -> 8 (Osama 27 Nov 04:4x). See osama_arty_smoke_1127.py.
 import osama_arty_smoke_1127;osama_arty_smoke_1127.apply(t,g,ok,rec)
 # ---------- Mortars back to vanilla (range, smoke rows, prices); China mortars matched to their vanilla twins (Osama 27 Nov 11:3x). Replaces the
