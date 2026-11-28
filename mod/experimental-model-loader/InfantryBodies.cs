@@ -6,7 +6,7 @@ using Il2CppBrokenArrow.Client.Ecs.Spawn;
 namespace FAModels;
 public partial class Mod
 {
-    class BodyRule { public int unitId {get;set;} public string[] lods {get;set;} = Array.Empty<string>(); public float[] offset {get;set;} = new float[3]; public bool anchorHands {get;set;} public bool cutout {get;set;} }
+    class BodyRule { public int unitId {get;set;} public string[] lods {get;set;} = Array.Empty<string>(); public float[] offset {get;set;} = new float[3]; public bool anchorHands {get;set;} public bool cutout {get;set;} public bool crew {get;set;} }   // crew (ROC 27 Nov): the vehicle's own crew figures (skinned lod_0/1/2 under the vehicle prefab) take the body
     class BodyOffset { public Transform source; public Transform visual; public Vector3 offset; }
     static readonly Dictionary<int,BodyOffset> bodyOffsets=new();
     class BodyView { public UnitModelInfo model; public int unitId; public bool battle; public float created=Time.realtimeSinceStartup; public readonly HashSet<int> applied=new(); public readonly HashSet<int> failed=new(); public float lastDiagnostic; public bool done; }
@@ -192,9 +192,17 @@ public partial class Mod
             if(view.done)continue;
             if(view.model?.PrefabRootScript==null){if(Time.realtimeSinceStartup-view.created>30)bodyViews.RemoveAt(v);continue;}
             var rule=bodyRules.First(r=>r.unitId==view.unitId);
-            var soldiers=view.model.SquadSolders;if(soldiers==null)continue;
             var candidates=new List<(SkinnedMeshRenderer renderer,GameObject root,int soldier)>();
-            for(int si=0;si<soldiers.Length;si++) {
+            // ROC MTV (Shawn 27 Nov 19:1x: "replace the drivers by the model of mech. riflemen without weapons"): a vehicle has no squad;
+            // its crew figures are skinned soldier LODs (lod_0, lod_1, lod_2, material US_Army) inside the vehicle prefab.
+            if(rule.crew) {
+                var vroot=view.model.PrefabRootScript.gameObject;
+                foreach(var renderer in vroot.GetComponentsInChildren<SkinnedMeshRenderer>(true)) {
+                    string n=renderer.name.ToLowerInvariant();if(n=="lod_0"||n=="lod_1"||n=="lod_2")candidates.Add((renderer,vroot,0));
+                }
+            }
+            var soldiers=view.model.SquadSolders;if(soldiers==null&&!rule.crew)continue;
+            for(int si=0;si<(soldiers?.Length??0)&&!rule.crew;si++) {
                 var soldier=soldiers[si];if(soldier==null||soldier.ViewObject==null)continue;
                 var root=soldier.ViewObject;
                 // Soldier ViewObjects are not guaranteed to be descendants of the squad prefab root.

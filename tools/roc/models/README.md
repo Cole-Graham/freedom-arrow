@@ -204,6 +204,13 @@ Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `inf
 - **CM-11:** tracks and roof items from BLEND to MASK; hull mask smoothness lowered on the dark patches (`cm11_shine.py`).
 - **Stage:** copies only the .fat files a staged model uses.
 
+## In-game list 6 (27 November 2026, night; queued, no build yet)
+
+- **Data (roc.py):** Tien Kung III without machine guns or B-kit (PAC-3 MSE style); Land Sword II 4x TC-2 only; M41D gun = PT-76 D-56TS copy with the PT-76 rounds, 35 pts; CM-11 / CM-12 armour = M10 Booker, -10 pts; MTV card 5055.
+- **EC225:** roundel redrawn from the official National Emblem SVG (`ec225_qtbr.py`).
+- **Glass:** AH-64E = vanilla `US_AH_64_Glass` (planar UVs 0.38 per metre); UH-60M = vanilla `US_UH60M_glass`, UVs squeezed into that sheet's glass patch (u 0.872, v 0.596).
+- **MTV crew:** FAModels body rules take `"crew": true`; the vehicle's own crew LODs (lod_0/1/2, 40-bone soldier skeleton) get the ROC Infantry body.
+
 ## Document change log
 
 - 2026-11-25 03:4x PST (America/Los_Angeles) — T91 rifle converted; recipe and first grip offset.
@@ -231,3 +238,4 @@ Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `inf
 - 2026-11-27 14:38 PST (America/Los_Angeles) — Vest torso weights (infantry, marines), JP shoulder press, Kestrel 75 %; test build roc6.
 - 2026-11-27 15:15 PST (America/Los_Angeles) — Second and third in-game lists (CM-34 card, CM-32 rebuild, glass, M41D, CM-22, CM-11 normals, F-16V gear, EC225 roundel, streaks); test build roc7.
 - 2026-11-27 18:46 PST (America/Los_Angeles) — In-game lists 4-5 (arm weights, Marine green, infjp body, CM-32/33/34 variants, roof camo, glass UVs, F-CK-1 windscreen, CM-11 shine); test build roc8.
+- 2026-11-27 19:29 PST (America/Los_Angeles) — In-game list 6 queued (TK-III, LSW2, M41D, CM-11/12, MTV + crew bodies, EC225 emblem, UH-60M / AH-64E glass); no build.

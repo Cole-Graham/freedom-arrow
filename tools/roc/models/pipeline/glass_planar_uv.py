@@ -17,7 +17,7 @@ def write(path,parts):
         for x in ss:
             nv=len(x['pos'])//3;o+=[S(x['tex']),struct.pack('<4f',*x['col']),struct.pack('<i',nv),struct.pack('<%df'%(3*nv),*x['pos']),struct.pack('<%df'%(3*nv),*x['nrm']),struct.pack('<%df'%(2*nv),*x['uv']),struct.pack('<i',len(x['idx'])),struct.pack('<%di'%len(x['idx']),*x['idx'])]
     open(path,'wb').write(b''.join(o))
-K,U0=0.27,np.array([0.09,0.82-1])   # .fam v = Unity v - 1 (as cm32_kitbash vsub)
+K=float(os.environ.get("GLASS_K","0.27"));U0=np.array([float(x) for x in os.environ.get("GLASS_U0","0.09,-0.18").split(",")])   # .fam v = Unity v - 1 (as cm32_kitbash vsub); AH-64 glass: GLASS_K=0.38 GLASS_U0=0.0,-0.86
 for f in sorted(glob.glob(f'{M}/m_roc_{slug}_*static*.fam')):
     b=f'{BK}/{os.path.basename(f)}'
     if not os.path.exists(b):shutil.copy(f,b)

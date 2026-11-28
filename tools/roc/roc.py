@@ -33,7 +33,7 @@ CARDS = {
     'ROC F-16A': ('F-16A Fighting Falcon', 285, 'F-16C Fighting Falcon', None),
     'ROC Kung Feng VI': ('Kung Feng VI', 92, '9K51 Grad', None),
     'ROC Land Sword II': ('Land Sword II', 389, 'SLAMRAAM', None),                     # sheet: NASAMS (DLC2)
-    'ROC M41D': ('M41D', 182, 'M551A1 Sheridan', None),                               # Shawn 27 Nov 18:3x: "Change the name to M41D"
+    'ROC M41D': ('M41D', 182, 'M551A1 Sheridan', 35),   # Shawn 27 Nov 19:0x: price 35                               # Shawn 27 Nov 18:3x: "Change the name to M41D"
     'ROC M60A3 TTS': ('M60A3 TTS', 14, 'M60A1', None),
     'ROC M110A2': ('M110A2', 422, '2S7M Malka', None),
     'ROC Mirage 2000-5': ('Mirage 2000-5', 285, 'F-16C Fighting Falcon', None),
@@ -77,6 +77,8 @@ CARDS = {
     'ROC EC225': ('EC225 Super Puma', 268, 'Mi-38T', None),
     # Shawn 27 Nov 01:4x: "Add AN/TWQ-1 to ROC deck and duplicate data from latest Freedom Arrow". Added last.
     'ROC AN/TWQ-1 Avenger': ('AN/TWQ-1 Avenger', 10, 'AN/TWQ-1 Avenger', None),
+    # Shawn 27 Nov 19:1x: "Add MTV to ROC deck" (FA MTV data; drivers = Mech. Riflemen model, no weapons, through the ROC model). Added last.
+    'ROC MTV': ('MTV', 390, 'MTV', None),
 }
 REMOVED = set()   # 27 Nov 02:2x the CM-33 card was removed; 27 Nov 18:4x it comes back as a CM-32 variant (VARIANTS)
 # Shawn 27 Nov 18:0x: "make this as a customization of Mech. Riflemen rather than a separated unit" (also Marine AT -> Marine, Reserver Kestrel ->
@@ -314,18 +316,21 @@ VEH = {
                           'ammo': {'AMRAAM': 'MICA EM', 'AIM-9': 'MICA IR'}, 'ammo_by_weapon': {'Magic II': {'AIM-9': 'Magic II'}}, 'drop': {230, 387, 393, 394, 385, 389, 373},
                           },
     'ROC Antelope': {'rename': {26: ('TC-1L', 621)}, 'drop': {16}, 'ammo': {'AIM-9': 'TC-1L Sky Sword I'}, 'rounds': {'TC-1L': 4}, 'ui_auto': True},   # 4 missiles: one pod option
-    'ROC Land Sword II': {'rename': {619: 'TC-2 SAM', 620: 'TC-2 SAM'}, 'ammo': {'AMRAAM': 'TC-2 Sky Sword II'}, 'drop': {621},
+    'ROC Land Sword II': {'rename': {619: 'TC-2 SAM', 620: 'TC-2 SAM'}, 'ammo': {'AMRAAM': 'TC-2 Sky Sword II'}, 'drop': {621, 620},   # 19:1x: only 4x TC-2
                           'ui': [('AIM-120', 'TC-2')]},
-    'ROC Tien Kung III': {'rename': {347: 'TK-III', 366: 'TK-III'}, 'ammo': {'MIM-104F': 'TK-III'}},
+    # Shawn 27 Nov 19:1x: "No M240 on Tien Kung III", "Duplicate this to Tien Kung III" (PAC-3 MSE: no self-defence weapon, default armour)
+    'ROC Tien Kung III': {'rename': {347: 'TK-III', 366: 'TK-III'}, 'ammo': {'MIM-104F': 'TK-III'}, 'drop': {27, 18, 21}, 'drop_options': 'Bkit'},
     'ROC Kung Feng VI': {'rename': {92: 'Kung Feng VI', 712: 'Kung Feng VI'}, 'ammo': {'122mm HE': '117mm HE', '122mm SMOKE': '117mm WP'},
                          'drop': {571, 573}, 'rounds': {'Kung Feng VI': 45}, 'ui_auto': True},
     'ROC Thunderbolt-2000': {'rename': {263: 'MK45 230mm', 264: ('MK15 117mm', 92), 265: ('MK30 180mm', 263)},
                              'ammo': {'227mm HE': '230mm HE', '122mm HE': '117mm HE'}, 'ammo_by_weapon': {'MK30 180mm': {'227mm HE': '180mm HE'}},
                              'rounds': {'MK45 230mm': 12, 'MK15 117mm': 60, 'MK30 180mm': 27}, 'ui_auto': True},
-    'ROC M41D': {'rename': {579: ('M32K1 76mm', 11)}, 'drop': {257}, 'ui_auto': True,   # no Shillelagh: one gun option
-                  'ammo': {'M393A1 HESH': '76mm HE', 'M900A1 APFSDS': '76mm AP'}},
+    # Shawn 27 Nov 19:0x: "数据参考PT-76主炮的数据" - the gun is a copy of the PT-76 D-56TS 76mm (weapon 321) and fires the PT-76's own rows
+    # (76mm HEAT / 76mm HE, shared, not copied); was a 105mm M68E1 copy with renamed rounds.
+    'ROC M41D': {'rename': {579: ('M32K1 76mm', 321)}, 'drop': {257}, 'ui_auto': True},   # no Shillelagh: one gun option
     'ROC M110A2': {'rename': {636: 'M201 203mm'}, 'drop': {710}},
-    'ROC CM-11': {'drop': {649}}, 'ROC CM-12': {'drop': {649}}, 'ROC M60A3 TTS': {'drop': {649}},
+    # Shawn 27 Nov 19:0x: "Armor of CM-11 and CM-12 changed to similar to M10 Booker, and the price can be reduced by 10 for both."
+    'ROC CM-11': {'drop': {649}, 'armor_from': 453, 'cost_delta': -10}, 'ROC CM-12': {'drop': {649}, 'armor_from': 453, 'cost_delta': -10}, 'ROC M60A3 TTS': {'drop': {649}},
     'ROC CM-32': {'drop': {76, 23, 21}, 'default': 18, 'flatten': True},   # Shawn 27 Nov 18:4x: base CM-32 = Stryker M2 station only (VARIANTS)
     'ROC CM-33': {'rename': {21: 'T91 40mm AGL'}, 'drop': {76, 23, 18}, 'default': 21, 'flatten': True},
     'ROC CM-34': {'rename': {27: 'T74'}, 'drop': {76, 21, 18}, 'default': 23, 'flatten': True},   # Shawn 27 Nov 14:4x: no option rows; 30mm fixed, no SRAT/Trophy
@@ -466,6 +471,19 @@ def vehicles(t, g, ok, res, rows):
                 if n: g.put('OptionsJson', o['Id'], {'UIName': ', '.join(f'{q}x {h}' for h, q in n.items())})
         if spec.get('cost_factor'):
             c = int(round(t['Units'][uid]['Cost'] * spec['cost_factor'] / 5) * 5); g.put('Units', uid, {'Cost': c}); res[card]['cost'] = c
+        # 6b. armour from another unit (CM-11 / CM-12 = M10 Booker, Shawn 27 Nov 19:0x): the card's own armour copies take the donor's values, and
+        #     options that pointed at the parent's vanilla armour row point at the card's copy of it. Price change in whole points.
+        if spec.get('armor_from'):
+            src = t['ArmorsJson'][rows('UnitArmorsJson', UnitId=spec['armor_from'])[0]['ArmorId']]
+            vals = {k: src[k] for k in src if k == 'ArmorValue' or k == 'MaxHealthPoints' or k.startswith(('HeatArmor', 'KinArmor'))}
+            mine = {t['ArmorsJson'][r['ArmorId']]['Name']: r['ArmorId'] for r in rows('UnitArmorsJson', UnitId=uid)}
+            for o in opts(uid):
+                if o.get('ArmorId') and o['ArmorId'] not in mine.values():
+                    c = mine.get(t['ArmorsJson'][o['ArmorId']]['Name'] + ' ' + card); ok(c, (card, 'armour copy for option', o['Id'])); g.put('OptionsJson', o['Id'], {'ArmorId': c})
+            for a_ in mine.values(): g.put('ArmorsJson', a_, vals)
+            res[card]['armor'] = f"{src['Name']}: KE {src['KinArmorFront']}/{src['KinArmorSides']}/{src['KinArmorRear']}/{src['KinArmorTop']}, HEAT {src['HeatArmorFront']}/{src['HeatArmorSides']}/{src['HeatArmorRear']}/{src['HeatArmorTop']}"
+        if spec.get('cost_delta'):
+            c = t['Units'][uid]['Cost'] + spec['cost_delta']; g.put('Units', uid, {'Cost': c}); res[card]['cost'] = c
         # 7. flatten (Shawn 27 Nov 14:4x, CM-34: "Remove both of them"): no custom-option rows at all. Each modification's default option
         #    becomes the unit itself, like vanilla units without modifications (M1A2 SEP v2 TUA): its price joins the card cost, its abilities
         #    stay, its armour and mobility are the unit's only armour/mobility rows, and the renaming option text (M1296 Dragoon) goes.
