@@ -532,12 +532,36 @@ namespace BALocalSkirmish
                 if (++_borrowedLogged <= 20) MelonLogger.Msg($"[LocalSkirmish] AI infantry {selected.UnitID} had no transport; given transport {carrier.TransportID} from the same deck.");
                 return;
             }
-            if (unitData != null && unitData.Type == UnitType.Infantry && ++_onFootLogged <= 20)
-                MelonLogger.Msg($"[LocalSkirmish] AI infantry {selected.UnitID} spawns on foot: no transport in this AI deck with {unitData.SquadMembers?.Count ?? 0} seats.");
+            // Osama 27 Nov 19:5x: "no walking squads ever". No card in the AI deck can carry this squad: use the faction's standard truck.
+            if (unitData != null && unitData.Type == UnitType.Infantry && database != null)
+            {
+                int need = Math.Max(1, unitData.SquadMembers?.Count ?? 1);
+                foreach (var id in FallbackTrucks(unitData.CountryId))
+                {
+                    var truck = database.GetUnitById(id, false);
+                    if (truck == null || truck.InfantrySlots < need) continue;
+                    var transport = MakeSpawnUnit(id, truck.CategoryType, 0, null);
+                    transport.Cargo.Slots.Add(unit);
+                    output.Add(transport);
+                    if (++_onFootLogged <= 20) MelonLogger.Msg($"[LocalSkirmish] AI infantry {selected.UnitID}: no transport in this AI deck; given the standard truck {id}.");
+                    return;
+                }
+                if (++_onFootLogged <= 40) MelonLogger.Warning($"[LocalSkirmish] AI infantry {selected.UnitID} spawns on foot: no truck with {need} seats for country {unitData.CountryId}.");
+            }
             output.Add(unit);
         }
 
         static int _borrowedLogged, _onFootLogged;
+        // Standard trucks by CountryId (0.9.8 data): Russia KamAZ-6560 (32 seats), USA HEMTT (27), China Shaanxi SX2306 (27), Eurocorp TPz Fuchs (9);
+        // the other factions' trucks follow as spares, so a squad never walks.
+        static IEnumerable<int> FallbackTrucks(int country)
+        {
+            if (country == 1) yield return 95;
+            else if (country == 2) yield return 242;
+            else if (country == 4) yield return 1235;
+            else if (country == 5) yield return 1424;
+            foreach (var id in new[] { 242, 95, 1235 }) yield return id;
+        }
         static bool TryDeckTransport(Il2CppBrokenArrow.DataBase.Models.Units squad, List<DeckSlotModel> slots, out DeckSlotModel carrier)
         {
             carrier = null;
