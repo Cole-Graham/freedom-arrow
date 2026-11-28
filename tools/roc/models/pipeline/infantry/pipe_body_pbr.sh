@@ -11,6 +11,13 @@ $PY -I -c "
 from PIL import Image
 for s in ('','_n','_mask'):
     im=Image.open('lod/roc_${K}_0'+s+'.png');im.resize((im.width//2,im.height//2),Image.LANCZOS).save('lod/roc_${K}_0_b'+s+'.png')"
+# 28 Nov (Shawn: "Enhance PBR textures ... following the Chinese Thunder God Model"): AO + normal relief pass on the fresh atlases. Its
+# backups are of the previous atlases, so drop them first: the pass must start from this run's output.
+rm -f lod/pre-pbr2/roc_${K}_*.png
+$W/pla-0.9/armory-opt/.venv/bin/python -I tools/pbr_enhance.py lod roc_${K}_0 roc_${K}_0_b roc_${K}_1 roc_${K}_2
+# 28 Nov: conv.py skips existing outputs, so a re-run kept the old textures in the game (dark-green helmet, army camo, Marine green never shipped).
+# This body's own .fat files are generated output: remove them so every run converts the current atlases.
+rm -f fat/roc_${K}_*.fat
 (cd lod && ls roc_${K}_*.png) > fat/$K/list.txt
 $W/pla-0.9/armory-opt/.venv/bin/python -I $W/pla-0.9/fat-all/conv.py fat/$K/list.txt $R/lod $R/fat 0 1 > fat/$K/conv.log 2>&1
 ls fat/roc_${K}_*.fat | wc -l

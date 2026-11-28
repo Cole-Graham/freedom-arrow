@@ -11,6 +11,7 @@ CARD={'cm34':'ROC CM-34','cm33':'ROC CM-33',   # CM-33 back 27 Nov 18:4x as the 
       'f16a':'ROC F-16A','mirage':'ROC Mirage 2000-5',
       'hf2e':'ROC Hsiung Feng IIE',
       'ah1w':'ROC AH-1W',   # Shawn 28 Nov 03:2x: his AH-1W model (ROC livery), vanilla AH-1W glass
+      'mtwv':'ROC MTWV',   # Shawn 28 Nov 03:4x: Navistar 7400 cab/chassis + vanilla MTV bed and canvas
       'cm12':'ROC CM-12',   # Shawn 27 Nov 00:0x: the CM-12.zip model (file CM11.fbx) is the right CM-12
       'ec225':'ROC EC225'}   # Shawn 27 Nov 00:2x, ROC SAR paint (livery_ec225.py)
 shutil.rmtree(H+'/stage',ignore_errors=True);os.makedirs(S)

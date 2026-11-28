@@ -90,6 +90,9 @@ CARDS = {
     'ROC TOW-2A Team': ('TOW-2A Team', 414, 'TOW-2A', 65),
     'ROC SMAW Team': ('SMAW Team', 63, 'Assaultmen SMAW', 40),
     'ROC FGM-148 Team': ('FGM-148 Team', 414, 'TOW-2A', 90),
+    # Shawn 28 Nov 03:4x: "Add a new unit called MTWV to the ROC faction, using the existing MTV as the data template" (Navistar 7400 model,
+    # ROC Mech. Riflemen driver baked into the cab). Added last.
+    'ROC MTWV': ('MTWV', 390, 'MTV', None),
 }
 # Unit fields set on a card after the copy. Shawn 28 Nov 03:0x: EC225 seats 30 -> 19 (the Mi-38T template has 30).
 UNIT_SET = {'ROC EC225': {'InfantrySlots': 19}}

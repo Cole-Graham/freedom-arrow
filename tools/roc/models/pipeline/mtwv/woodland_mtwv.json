@@ -1,0 +1,9 @@
+{
+ "about": "MTWV woodland paint option (Shawn 28 Nov 03:4x: 'woodland camo based on the reference photographs provided as alternative paint'). Photo: olive base with large brown and black patches. Old = the MTWV base olive (recolour.py, 66/72/48) as famconv wrote it.",
+ "old": [[66, 72, 48], [56, 61, 41], [78, 85, 57]],
+ "radius": 22,
+ "pattern": "woodland",
+ "size": 1.5,
+ "colors": [[70, 80, 50], [104, 78, 54], [40, 40, 36], [118, 108, 82]],
+ "cover": [0.32, 0.22, 0.06]
+}

@@ -5,11 +5,12 @@ the vanilla windows sit on plain tinted glass patches of that sheet (read from t
   HEMTT  px x 1050-1184 y 566-725  (rgb 64/86/85, alpha 171)      HIMARS px x 1606-1697 y 1290-1532 (rgb 99/99/99, alpha 189)
 Every donor-glass sub-mesh (mat.json entry with a cockpitDonor) of the model's four .fam files gets its UVs squeezed into that patch (6 px
 inset, Unity v = 1 - y/2048), and the entries name the new donor. Originals go to veh/x/<slug>/pre-donorpatch/.
-usage: python donor_glass_patch.py SLUG hemtt|himars"""
+usage: python donor_glass_patch.py SLUG hemtt|himars|mtv"""
 import sys,os,json,struct,shutil
 import numpy as np
 T=os.path.dirname(os.path.abspath(__file__));sys.path.insert(0,T);from famread import read_fam
-PATCH={'hemtt':('US_HeavyOshkosh3_glass',1050,1184,566,725),'himars':('Himars GLASS',1606,1697,1290,1532)}
+PATCH={'hemtt':('US_HeavyOshkosh3_glass',1050,1184,566,725),'himars':('Himars GLASS',1606,1697,1290,1532),
+       'mtv':('US_MTV_GLASS',1791,1908,809,895)}   # vanilla MTV windscreen patch (rgb 41/42/36, alpha 182), for the MTWV
 slug,which=sys.argv[1],sys.argv[2];donor,x0,x1,y0,y1=PATCH[which];I=6
 U0,U1,V0,V1=(x0+I)/2048,(x1-I)/2048,1-(y1-I)/2048,1-(y0+I)/2048
 M=T+'/../veh/models';BK=f'{T}/../veh/x/{slug}/pre-donorpatch';os.makedirs(BK,exist_ok=True)
