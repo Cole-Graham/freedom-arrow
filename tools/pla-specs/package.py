@@ -141,6 +141,14 @@ with zipfile.ZipFile(base) as z:
     if a.famodels:override['Mods/FAModels.dll']=Path(a.famodels).read_bytes()   # complete package only; gameplay package drops asset paths
     for spec in a.asset:
         k,f=spec.split('=',1);assert k.startswith(('UserData/FAModels/','UserData/FAMusic/','Mods/FAMusic.dll')),k;override[k]=Path(f)
+    # Osama 28 Nov 2026 00:1x ("make sure all the 130 files are pushed in the following build"): dev.9 was packed with dev.8's --asset list,
+    # so 130 files staged since then (e.g. the Lynx Laser ball sheet its .fam asks for) were left out and 481 shipped in their dev.8 versions.
+    # A model build that takes any file from a model stage folder must take every file in that folder (infantry-weapons.json excepted).
+    _stages={Path(str(f)).parent for f in override.values() if isinstance(f,Path) and '/stage/UserData/FAModels' in str(f)}
+    for _sd in {Path(str(d).split('/stage/UserData/FAModels')[0]+'/stage/UserData/FAModels') for d in _stages}:
+        _given={str(f) for f in override.values() if isinstance(f,Path)}
+        _miss=sorted(str(q.relative_to(_sd)) for q in _sd.rglob('*') if q.is_file() and q.name!='infantry-weapons.json' and str(q) not in _given)
+        assert not _miss,(f'model stage {_sd}: {len(_miss)} staged files not passed as --asset (stale list?)',_miss[:10])
     drops=sorted({l.strip() for l in Path(a.drop_assets).read_text().splitlines() if l.strip()}) if a.drop_assets else []
     # Osama 22 Nov 2026 00:4x PST ("wait until next model asset update"): the grunt-only C&C voice clips leave with the next Assets
     # version, i.e. any build that changes models (--famodels / --asset). Gameplay-only hotfixes keep the current Assets untouched.
