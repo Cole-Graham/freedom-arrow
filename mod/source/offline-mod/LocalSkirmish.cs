@@ -163,6 +163,7 @@ namespace BALocalSkirmish
 
         public override void OnUpdate()
         {
+            try { AutoRunTick(); } catch (Exception e) { MelonLogger.Error("[LocalSkirmish] AUTORUN: " + e.Message); _autoDone = true; }
             if (_offlineLobbyGuardReady && Input.GetKeyDown(KeyCode.F8))
             {
                 try { OpenSetup(); }
@@ -872,6 +873,47 @@ namespace BALocalSkirmish
                 string hint = IsSkirmishMap() ? $"AI decks saved per player ({customCount}/{_aiSlots.Count} custom)." : "Set difficulty & deck, then Start.";
                 _statusLabel.text = $"Map {_mapIdx + 1}/{_maps.Count}.  {extra}  {hint}";
             }
+        }
+
+        // ---------- unattended test runs ----------
+        // UserData/LocalSkirmish-autorun.json (perf / AI test runs on Vengeance, Osama 28 Nov 2026 01:5x "boot the game and run the tests ... build,
+        // test, improve, test repeat"): {"map":"Airbase","deck":"name part","diff":3,"minutes":34,"opts":{"Size":"Large"}}. 20 s after the local
+        // setup is ready it opens the setup, picks the first map and deck whose names contain the given text, sets the FA difficulty and the named
+        // options (label part -> value label part or number), starts the battle and, with "minutes", quits the game that long after the launch.
+        // The file is renamed to .used first, so a crash never loops. No file: nothing happens.
+        bool _autoDone; float _autoAt = -1f, _autoQuit = -1f;
+        void AutoRunTick()
+        {
+            if (_autoQuit > 0f && Time.realtimeSinceStartup > _autoQuit) { _autoQuit = -1f; MelonLogger.Msg("[LocalSkirmish] AUTORUN time up: quitting the game."); Application.Quit(); return; }
+            if (_autoDone || !_offlineLobbyGuardReady) return;
+            string f = Path.Combine(MelonLoader.Utils.MelonEnvironment.UserDataDirectory, "LocalSkirmish-autorun.json");
+            if (!File.Exists(f)) { _autoDone = true; return; }
+            if (_autoAt < 0f) { _autoAt = Time.realtimeSinceStartup + 20f; return; }
+            if (Time.realtimeSinceStartup < _autoAt) return;
+            _autoDone = true;
+            var j = System.Text.Json.Nodes.JsonNode.Parse(File.ReadAllText(f));
+            File.Copy(f, f + ".used", true); File.Delete(f);
+            string map = (string)j["map"] ?? "", deck = (string)j["deck"] ?? "";
+            OpenSetup();
+            int mi = _mapNames.FindIndex(n => n.IndexOf(map, StringComparison.OrdinalIgnoreCase) >= 0);
+            if (mi < 0) { MelonLogger.Error($"[LocalSkirmish] AUTORUN: no map contains '{map}'"); return; }
+            _mapIdx = mi; RefreshDecks(); RefreshOptions();
+            int di = _deckNames.FindIndex(n => n.IndexOf(deck, StringComparison.OrdinalIgnoreCase) >= 0); if (di >= 0) _deckIdx = di;
+            if (j["diff"] != null) _diff = Math.Max(1, Math.Min(4, (int)j["diff"]));
+            if (j["opts"] is System.Text.Json.Nodes.JsonObject oj)
+                foreach (var kv in oj)
+                {
+                    var od = _opts.Find(o => o.Label != null && o.Label.IndexOf(kv.Key, StringComparison.OrdinalIgnoreCase) >= 0);
+                    if (od == null) { MelonLogger.Warning($"[LocalSkirmish] AUTORUN: no option '{kv.Key}' ({string.Join(", ", _opts.ConvertAll(o => o.Label))})"); continue; }
+                    string want = kv.Value?.ToString() ?? "";
+                    int li = od.EnumLabels.FindIndex(l => l != null && l.IndexOf(want, StringComparison.OrdinalIgnoreCase) >= 0);
+                    if (od.IsEnum && li >= 0) _optVals[od.Uid] = od.EnumVals[li]; else if (int.TryParse(want, out int v)) _optVals[od.Uid] = v;
+                    MelonLogger.Msg($"[LocalSkirmish] AUTORUN option {od.Label} = {OptValueText(od)}");
+                }
+            float min = j["minutes"] != null ? (float)j["minutes"] : 0f;
+            if (min > 0f) _autoQuit = Time.realtimeSinceStartup + min * 60f;
+            MelonLogger.Msg($"[LocalSkirmish] AUTORUN map '{_mapNames[_mapIdx]}', deck '{(_deckNames.Count > 0 ? _deckNames[_deckIdx] : "none")}', FA level {_diffNames[_diff]}, {_aiSlots.Count} AI, quit after {min} min");
+            StartBattle();
         }
 
         // ---------- actions ----------

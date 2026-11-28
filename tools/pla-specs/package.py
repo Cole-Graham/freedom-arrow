@@ -121,7 +121,14 @@ with zipfile.ZipFile(base) as z:
     retired_scenarios+=[n for n in z.namelist() if n.startswith('UserData/FreedomArrow/loading/') and not n.endswith('/') and not (SRC/n).is_file()]
     conquest=ROOT/'maps/source/UserData/FAConquestPrototype'
     settings=(conquest/'settings.json').read_bytes();compat=json.loads((conquest/'compatibility.json').read_text())
-    compat['UserData/FAConquestPrototype/settings.json']=sha(settings);compat=enc(compat)
+    compat['UserData/FAConquestPrototype/settings.json']=sha(settings)
+    # 28 Nov 2026 (overnight test, bugs thread 1573561286803980289): dev.8 and dev.9 shipped the 25 Nov FABALocalSkirmish.dll from the base package, so
+    # the 27 Nov local AI work (always-transport, Easy..Challenge, Skirmish button -> vs-AI lobby) never reached a build. The DLL is now taken
+    # from mod/source/offline-mod/bin/Release (build it before packaging; it must be newer than LocalSkirmish.cs) and pinned in compatibility.json.
+    _ls=SRC/'offline-mod/bin/Release/BALocalSkirmish.dll'
+    assert _ls.is_file() and _ls.stat().st_mtime>=(SRC/'offline-mod/LocalSkirmish.cs').stat().st_mtime,'build mod/source/offline-mod (dotnet build BALocalSkirmish.csproj -c Release) first: the DLL is missing or older than LocalSkirmish.cs'
+    if z.read('Mods/FABALocalSkirmish.dll')!=_ls.read_bytes():override['Mods/FABALocalSkirmish.dll']=_ls.read_bytes()
+    compat['Mods/FABALocalSkirmish.dll']=sha(_ls.read_bytes());compat=enc(compat)
     for k,b in (('UserData/FAConquestPrototype/settings.json',settings),('UserData/FAConquestPrototype/compatibility.json',compat)):
         if z.read(k)!=b:override[k]=b
     # Lateralus 19 Nov 2026 (thread 1572724406642286692, "queue it"; asked 18 Nov: "rename any .dll our mod uses to include FA, e.g.
