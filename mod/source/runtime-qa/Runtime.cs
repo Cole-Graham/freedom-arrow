@@ -55,7 +55,15 @@ public class Runtime : MelonMod
         try { conquest.OnInitializeMelon(); }
         catch (Exception e) { LoggerInstance.Error("FREEDOM_ARROW_CONQUEST_FAILED: "+e); }
     }
-    public override void OnUpdate() { conquest?.OnUpdate(); MissilePerf.Tick(); MirrorSkin.Tick(); ChinaVoice.Tick(); LogUpload.Tick(); MenuArt.Tick(); DeckReorder.Tick(); DeckCodes.Tick(); HomeLinks.Tick(); MultiplayerToModLobbies.Tick(); MemoryCleanup.Tick(); RankedMenu.Tick(); WebsiteButton.Tick(); PartySizeWarning.Tick(); NationLayout.Tick(); LobbyFlags.Tick(); }
+    // 28 Nov 2026 (Osama "keep optimizing and testing the FPS ... Measure our hooks too"; run P2, perf-detail.txt): the menu, lobby and deck-builder
+    // ticks ran every frame in battle too. In a battle scene only the battle ticks run (InBattle, set from the scene name like FAModels).
+    internal static bool InBattle;
+    public override void OnUpdate()
+    {
+        conquest?.OnUpdate(); MissilePerf.Tick(); MirrorSkin.Tick(); ChinaVoice.Tick(); LogUpload.Tick(); MemoryCleanup.Tick();
+        if (InBattle) return;
+        MenuArt.Tick(); DeckReorder.Tick(); DeckCodes.Tick(); HomeLinks.Tick(); MultiplayerToModLobbies.Tick(); RankedMenu.Tick(); WebsiteButton.Tick(); PartySizeWarning.Tick(); NationLayout.Tick(); LobbyFlags.Tick();
+    }
     public override void OnLateUpdate()
     {
         DiagnosticLog.Heartbeat();
@@ -76,10 +84,11 @@ public class Runtime : MelonMod
         PlayableBorders.Update();
         HideTextureTest.LateUpdate();
     }
-    public override void OnGUI() { conquest?.OnGUI(); RankedMenu.OnGUI(); PartySizeWarning.OnGUI(); }
+    public override void OnGUI() { conquest?.OnGUI(); if (InBattle) return; RankedMenu.OnGUI(); PartySizeWarning.OnGUI(); }
     public override void OnSceneWasLoaded(int buildIndex,string sceneName)
     {
         DiagnosticLog.Write("scene_loaded",new{buildIndex,sceneName});
+        InBattle = sceneName != "Hangar_Scene" && sceneName != "Void" && sceneName != "EntryPoint";
         try { LogUpload.SceneLoaded(sceneName); } catch (Exception e) { MelonLogger.Warning("FREEDOM_ARROW_LOG_UPLOAD scene: "+e.Message); }
         GroundAaLog.SceneChanged();
         InterceptLead.SceneChanged();

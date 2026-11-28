@@ -202,7 +202,9 @@ public sealed partial class Prototype
     public void OnGUI()
     {
         DrawVersionLabel();
-        if(leaving)return;
+        // 28 Nov 2026 (run P2: Freedom Arrow.OnGUI 0.15 ms per frame, called for the layout and the repaint event): everything below draws on
+        // the repaint event only, so the menu checks are skipped for the other events.
+        if(leaving||Event.current.type!=EventType.Repaint)return;
         try{if(MenuOpen()){if(!menuLogged){menuLogged=true;Log("overlay_hidden_for_menu",new{});}return;}}
         catch(Exception e){MelonLogger.Error("FREEDOM_ARROW_MENU_CHECK_FAILED: "+e.Message);}
         if(!labelsOff&&config.ShowOverlay&&Event.current.type==EventType.Repaint&&labelView==null)
@@ -403,6 +405,7 @@ public sealed partial class Prototype
         foreach(var marker in new Component[]{bar._goalPointA,bar._goalPointB,bar._goalPointC,bar._goalIconA,bar._goalIconB,bar._goalIconC,bar._progressLineMain,bar._limiterParent})
             if(marker!=null&&marker.gameObject.activeSelf)marker.gameObject.SetActive(false);
     }
+    static int lastTimerShown=-1;static string lastTimerText;
     public static void UpdateNativeUi(WarGoalsPanel __instance)
     {
         if(updatingHud||!uiEnabled||uiFault||ledger==null||view==null||!Guarded(view.Service))return;
@@ -429,8 +432,12 @@ public sealed partial class Prototype
             }
             double shown=ShownElapsed();
             int remaining=(int)Math.Ceiling(Math.Max(0,ledger.Duration-shown));
-            __instance._timeText.text=$"{remaining/60:00}:{remaining%60:00}";
-            __instance._timeText.color=Color.cyan;
+            // 28 Nov 2026 (run P2: this postfix 0.08 ms every frame): the timer text is written only when it differs from what is shown; assigning it
+            // every frame made the text mesh rebuild every frame.
+            // The game may write the field itself, so the shown text is compared, not a cached second.
+            string timer=remaining==lastTimerShown&&lastTimerText!=null?lastTimerText:(lastTimerText=$"{remaining/60:00}:{remaining%60:00}");lastTimerShown=remaining;
+            if(__instance._timeText.text!=timer)__instance._timeText.text=timer;
+            if(__instance._timeText.color!=Color.cyan)__instance._timeText.color=Color.cyan;
             // The native phase bar shows the rounds. It stays hidden during the setup phase, which has the large banner.
             bool showRound=setupEnds<0&&!(view.Service._isOnline&&OnlineSetupLeft()!=null);   // online deployment has the banner too
             foreach(var root in uiSnapshot.HiddenRoots)if(root.widget!=null&&root.widget.activeSelf!=showRound)root.widget.SetActive(showRound);
