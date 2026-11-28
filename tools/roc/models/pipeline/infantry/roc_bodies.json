@@ -210,11 +210,11 @@
     "DefaultMaterial_Normal_OpenGL"
    ],
    "lowr_diff_000_a_uni.001": [
-    "lowr_diff_000_a_uni",
+    "lowr_diff_000_a_uni_dark",
     "lowr_normal_000"
    ],
    "accs_diff_000_a_uni.001": [
-    "accs_diff_000_a_uni",
+    "accs_diff_000_a_uni_dark",
     "accs_normal_000"
    ],
    "hair_diff_001_a_uni.001": [
@@ -447,5 +447,77 @@
    "JGSF_soldier_01"
   ],
   "units": "SF Section 5045 (Shawn 27 Nov 01:5x: ROC SF2); model is 1.62 m tall, scaled to 1.83 m like the other ROC bodies"
+ },
+ "infjp": {
+  "source": "/home/sam/tars/work/ba-dev/replicas/codex/work/roc-20261125/x/ROC Infantry/ROC Infantry/ROC Infantry JPhead.blend",
+  "texdir": "/home/sam/tars/work/ba-dev/replicas/codex/work/roc-20261125/x",
+  "scale": 0.01,
+  "ground": true,
+  "landmarks": "auto",
+  "meshes": [
+   "SM_CC_Arm",
+   "SM_PelvisGear",
+   "SM_PMC_shoes_01",
+   "SM_TWCoat",
+   "SM_TWPants",
+   "SM_vestHeadGear",
+   "JP_head",
+   "JP_helmet"
+  ],
+  "tex": {
+   "M_CC_Arm_T_CC_Arm_color": [
+    "T_CC_Arm_color",
+    "T_CC_Arm_Normal"
+   ],
+   "M_PelvisGear_T_PelvisGear_Color": [
+    "T_PelvisGear_Color",
+    "T_PelvisGear_Normal"
+   ],
+   "M_PMC_shoes_01_T_PMC_shoes_01_Color": [
+    "T_PMC_shoes_01_Color",
+    "T_PMC_shoes_01_normal"
+   ],
+   "M_TWCoat_T_TWCoat_Color": [
+    "T_TWCoat_Color",
+    "T_TWCoat_Normal"
+   ],
+   "M_TWPants_T_TWPants_Color": [
+    "T_TWPants_Color",
+    "T_TWPants_Normal"
+   ],
+   "M_vestHeadGear_T_vestHeadGear_Color": [
+    "T_vestHeadGear_Color",
+    "T_vestHeadGear_Normal"
+   ],
+   "japan_gunner_heads_japan_gunner_heads_Base_Color": [
+    "japan_gunner_heads_Base_Color",
+    "japan_gunner_heads_Normal"
+   ],
+   "TK_M1": [
+    "TK_M1_Diffuse_darkgreen",
+    "TK_M1_Normal"
+   ],
+   "TK_M2": [
+    "TK_M2_Diffuse_darkgreen",
+    "TK_M2_Normal"
+   ],
+   "japan_gunner_late_japan_gunner_late_Base_Color": [
+    "japan_gunner_late_Base_Color",
+    "japan_gunner_late_Normal"
+   ]
+  },
+  "rigid": {
+   "SM_vestHeadGear": "torso",
+   "JP_head": "Head",
+   "JP_helmet": "Head"
+  },
+  "fit": [
+   "SM_CC_Arm",
+   "SM_TWCoat"
+  ],
+  "units": "Mech. Riflemen T112 (5039) and SF Scout (5044): ROC Infantry body + Infantry 2 head and helmet (Shawn 27 Nov 18:0x)",
+  "decimate": {
+   "JP_helmet": 5000
+  }
  }
 }

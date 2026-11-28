@@ -33,7 +33,7 @@ CARDS = {
     'ROC F-16A': ('F-16A Fighting Falcon', 285, 'F-16C Fighting Falcon', None),
     'ROC Kung Feng VI': ('Kung Feng VI', 92, '9K51 Grad', None),
     'ROC Land Sword II': ('Land Sword II', 389, 'SLAMRAAM', None),                     # sheet: NASAMS (DLC2)
-    'ROC M41D': ('M41D Walker Bulldog', 182, 'M551A1 Sheridan', None),
+    'ROC M41D': ('M41D', 182, 'M551A1 Sheridan', None),                               # Shawn 27 Nov 18:3x: "Change the name to M41D"
     'ROC M60A3 TTS': ('M60A3 TTS', 14, 'M60A1', None),
     'ROC M110A2': ('M110A2', 422, '2S7M Malka', None),
     'ROC Mirage 2000-5': ('Mirage 2000-5', 285, 'F-16C Fighting Falcon', None),
@@ -78,7 +78,19 @@ CARDS = {
     # Shawn 27 Nov 01:4x: "Add AN/TWQ-1 to ROC deck and duplicate data from latest Freedom Arrow". Added last.
     'ROC AN/TWQ-1 Avenger': ('AN/TWQ-1 Avenger', 10, 'AN/TWQ-1 Avenger', None),
 }
-REMOVED = {'ROC CM-33'}   # out of the deck (see apply); keep the CARDS entry so later unit IDs do not move
+REMOVED = set()   # 27 Nov 02:2x the CM-33 card was removed; 27 Nov 18:4x it comes back as a CM-32 variant (VARIANTS)
+# Shawn 27 Nov 18:0x: "make this as a customization of Mech. Riflemen rather than a separated unit" (also Marine AT -> Marine, Reserver Kestrel ->
+# Reserver). Vanilla pattern (Mech. Engineers 146 / CQC 708): the base card gets a "Squad loadout" modification (Type 7) whose options swap the whole
+# unit (ReplaceUnitId); the variant keeps its unit row as IsUnitModification, leaves the spec list and has no availability row of its own.
+# The option costs the price difference, so the swap row = base + option (audit_swap_prices). (base card, variant card, option label)
+MERGES = [('ROC Mech. Riflemen', 'ROC Mech. Riflemen T112', 'T112 / Kestrel'),
+          ('ROC Marine', 'ROC Marine AT', 'Anti-tank'),
+          ('ROC Reserver', 'ROC Reserver Kestrel', 'Kestrel')]   # out of the deck (see apply); keep the CARDS entry so later unit IDs do not move
+# Shawn 27 Nov 18:4x: "Make the CM32 Clouded Leopard as the base version of the vehicle ... with M2 Browning ..., then rename the one with MK19 as
+# CM33 Clouded Leopard, then the CM-34 with Bushmaster II, the price of the 3 different customization can follow the Stryker". Vanilla pattern for
+# vehicles: the "Unit variant" slot (Type 7, Pantsir-S1 / Tor-M2KM, modification 735, options 3111/3112): each option swaps the whole unit.
+# Option picture and label from the Stryker ICV weapon options (9 M2, 10 Mk19, 15 Bushmaster). (base card, [(variant card, label, picture option)])
+VARIANTS = [('ROC CM-32', 'M2 Browning', 9, [('ROC CM-33', 'T91 40mm AGL', 10), ('ROC CM-34', 'Bushmaster II', 15)])]
 SPEC_NAME = 'ROC Joint Arms Coastal'
 SPEC_UI = 'Joint Arms Battalion and Coastal Operations Command 聯合兵種營及濱海作戰指揮部'
 
@@ -146,20 +158,50 @@ def apply(t, g, ok, rec):
         uid = res[name]['unit']; res[name]['removed'] = True
         for r in rows('SpecializationAvailabilitiesJson', UnitId=uid): g.remove('SpecializationAvailabilitiesJson', r['Id'])
         g.put('Units', uid, {'DisplayInArmory': False})
+    for base, var, label in MERGES:
+        bu, vu = res[base]['unit'], res[var]['unit']; res[var]['merged_into'] = base
+        for r in rows('SpecializationAvailabilitiesJson', UnitId=vu): g.remove('SpecializationAvailabilitiesJson', r['Id'])
+        g.put('Units', vu, {'IsUnitModification': True})
+        tm, (to0, to1) = t['ModificationsJson'][815], (t['OptionsJson'][3347], t['OptionsJson'][3348])   # vanilla Mech. Engineers loadout slot
+        ok(tm['UIName'] == 'Custom_Slot_Squad_loadout' and to0['ReplaceUnitId'] == 146 and to1['ReplaceUnitId'] == 708, 'loadout slot template')
+        ok(not rows('ModificationsJson', UnitId=bu, Type=7), (base, 'already has a loadout slot'))
+        nm = g.add('ModificationsJson', tm, {'UnitId': bu, 'Name': 'Squad ' + base})
+        d = U[vu]['Cost'] - U[bu]['Cost'];ok(d >= 0, (var, 'costs less than', base))
+        g.add('OptionsJson', to0, {'ModificationId': nm, 'Name': base + ' standard', 'ReplaceUnitId': bu, 'Cost': 0, 'Order': 0})
+        g.add('OptionsJson', to1, {'ModificationId': nm, 'Name': var, 'UIName': label, 'ReplaceUnitId': vu, 'ReplaceUnitName': U[vu]['HUDName'],
+                                   'Cost': d, 'Order': 1})
+        res[base]['loadouts'] = [base, f'{var} (+{d})']
+    for base, blabel, bpic, vars_ in VARIANTS:
+        bu = res[base]['unit'];tm, to0 = t['ModificationsJson'][735], t['OptionsJson'][3111]   # vanilla Pantsir-S1 / Tor-M2KM unit-variant slot
+        ok(tm['UIName'] == 'Custom_Slot_Unit_variant' and to0['ReplaceUnitId'] == 12, 'unit variant slot template')
+        ok(not rows('ModificationsJson', UnitId=bu, Type=7), (base, 'already has a variant slot'))
+        nm = g.add('ModificationsJson', tm, {'UnitId': bu, 'Name': 'UnitVariant ' + base})
+        pic = lambda o: t['OptionsJson'][o]['OptionPicture']
+        g.add('OptionsJson', to0, {'ModificationId': nm, 'Name': base + ' standard', 'UIName': blabel, 'ReplaceUnitId': bu, 'ReplaceUnitName': U[bu]['HUDName'],
+                                   'Cost': 0, 'Order': 0, 'IsDefault': True, 'OptionPicture': pic(bpic), 'ThumbnailOverride': None, 'PortraitOverride': None})
+        res[base]['variants'] = [f"{U[bu]['HUDName']} ({U[bu]['Cost']})"]
+        for i, (var, label, vpic) in enumerate(vars_, 1):
+            vu = res[var]['unit']; res[var]['merged_into'] = base
+            for r in rows('SpecializationAvailabilitiesJson', UnitId=vu): g.remove('SpecializationAvailabilitiesJson', r['Id'])
+            g.put('Units', vu, {'IsUnitModification': True, 'DisplayInArmory': True})
+            d = U[vu]['Cost'] - U[bu]['Cost'];ok(d >= 0, (var, 'costs less than', base))
+            g.add('OptionsJson', to0, {'ModificationId': nm, 'Name': var, 'UIName': label, 'ReplaceUnitId': vu, 'ReplaceUnitName': U[vu]['HUDName'],
+                                       'Cost': d, 'Order': i, 'IsDefault': False, 'OptionPicture': pic(vpic), 'ThumbnailOverride': None, 'PortraitOverride': None})
+            res[base]['variants'].append(f"{U[vu]['HUDName']} (+{d})")
     # Transports: every ROC infantry card may ride in every ROC ground vehicle or helicopter whose seats fit the squad.
     carriers = {r['UnitId'] for r in TA.values() if r}                            # units the game already uses as transports
     cars = [v['unit'] for v in res.values() if not v.get('removed') and U[v['unit']].get('InfantrySlots', 0) > 0 and U[v['unit']]['Type'] != 2
             and int(v['parent'].rsplit('(', 1)[1][:-1]) in carriers]
     links = 0
     for v in res.values():
-        if U[v['unit']]['Type'] != 2: continue
+        if U[v['unit']]['Type'] != 2 or v.get('merged_into') or v.get('removed'): continue
         sa = rows('SpecializationAvailabilitiesJson', UnitId=v['unit'], SpecializationId=spec)[0]
         v['transports'] = [U[c]['HUDName'] for c in cars if U[c]['InfantrySlots'] >= v['men']]
         for c in cars:
             if U[c]['InfantrySlots'] >= v['men']:
                 g.add('TransportAvailabilitiesJson', next(iter(TA.values())), {'SpecializationAvailabilityId': sa['Id'], 'UnitId': c}); links += 1
-    ok(sorted(r['UnitId'] for r in SA.values() if r and r['SpecializationId'] == spec) == sorted(v['unit'] for v in res.values() if not v.get('removed')), 'ROC spec = the ROC cards')
-    ok(all(v['transports'] for v in res.values() if U[v['unit']]['Type'] == 2), ('every ROC squad has a transport', [k for k, v in res.items() if U[v['unit']]['Type'] == 2 and not v['transports']]))
+    ok(sorted(r['UnitId'] for r in SA.values() if r and r['SpecializationId'] == spec) == sorted(v['unit'] for v in res.values() if not v.get('removed') and not v.get('merged_into')), 'ROC spec = the ROC cards')
+    ok(all(v['transports'] for v in res.values() if U[v['unit']]['Type'] == 2 and not v.get('merged_into')), ('every ROC squad has a transport', [k for k, v in res.items() if U[v['unit']]['Type'] == 2 and not v.get('merged_into') and not v.get('transports')]))
     rec['roc'] = {'spec': spec, 'cards': res, 'transports': [U[c]['HUDName'] for c in cars], 'transport_links': links,
                   'dropped_swap_options': dropped, 'skipped_squad_weapons_without_ammo': unarmed, 'zero_round_rows': zero, 'stage2': stage2, 'stage3': stage3, 'live_edits': []}
     if os.environ.get('ROC_REPORT'):                    # optional: write the ROC record for review (check runs write nothing else)
@@ -174,13 +216,19 @@ def apply(t, g, ok, rec):
 # Shawn 25 Nov 03:3x: "Kestrel-1 is actually Taiwanese version of M72A4, can duplicate the data from M72A4" (the game has no M72A4; vanilla M72A3,
 # FA name M72A7, 66 mm HEAT, base game); "T74 is Taiwan's licensed version of the Belgian FN MAG" (vanilla Ksp 58B = FN MAG, base-game model).
 DONOR = {'M4A1': 50, 'T91': 50, 'T91 CQC': 67, 'T91K1': 70, 'T-112': 70, 'T65K2': 362, 'T75': 60, 'T75 SFAW': 53, 'T74': 643, 'M203': 58,
-         'T85': 58, 'MGL-140': 68, 'Kestrel-1': 1019, 'M72A3 LAW': 1019, 'M72A4 LAW': 1019, 'M72A10 LAW': 212, 'APILAS': 631, 'Javelin': 62,
+         'T85': 58, 'MGL-140': 68, 'Kestrel-1': 1019, 'Kestrel-2': 59, 'M72A3 LAW': 1019, 'M72A4 LAW': 1019, 'M72A10 LAW': 212, 'APILAS': 631, 'Javelin': 62,
          'Javelin LWCLU': 659, 'DMS FIM-92K': 65, 'REPR-20': 57, 'AXMC': 640, 'M107': 56, 'M1014': 45, 'Flashbang': 590}
+# Shawn 27 Nov 18:0x: "make the damage, penetration and accuracy of Kestrel-1 a bit better than M72A3": its own copy of the 66mm HEAT round
+# (M72A3 6.5 damage, 300 penetration, 2.0 m dispersion). The M72A3 LAW cards keep the shared vanilla round.
+AMMO_EDIT = {'Kestrel-1': {'HUDName': '66mm HEAT (Kestrel)', 'Damage': 7.0, 'PenetrationAtMinRange': 325.0, 'PenetrationAtGroundRange': 325.0,
+                           'DispersionHorizontalRadius': 1.7, 'DispersionVerticalRadius': 1.7}}
+WEAPON_ORDER = ['DMS FIM-92K', 'T75', 'Kestrel-1', 'T91 CQC', 'T91K1', 'REPR-20', 'APILAS', 'T-112', 'T74', 'MGL-140', 'T91', 'T85', 'M72A4 LAW',
+                'M72A3 LAW', 'T65K2', 'T75 SFAW', 'Kestrel-2']
 # name: (men, armour points, [main guns (name, men)], [extra weapons (name, men)], {weapon: rounds for the whole squad, from the card})
 SQUADS = {
     'ROC DMS Team': (4, 8, [('M4A1', 4)], [('DMS FIM-92K', 1)], {'M4A1': 1800, 'DMS FIM-92K': 8}),
-    'ROC Marine AT': (9, 8, [('M4A1', 6), ('T75', 3)], [('M203', 2), ('Kestrel-1', 3), ('Javelin', 1)],
-                      {'M4A1': 3600, 'T75': 3600, 'M203': 96, 'Kestrel-1': 3, 'Javelin': 2}),
+    'ROC Marine AT': (9, 8, [('M4A1', 6), ('T75', 3)], [('M203', 2), ('Kestrel-2', 3), ('Javelin', 1)],   # Shawn 27 Nov 18:0x: Kestrel-2 = AT4-CS RS data
+                      {'M4A1': 3600, 'T75': 3600, 'M203': 96, 'Kestrel-2': 3, 'Javelin': 2}),
     # the card lists T91 CQC x6 and M1014 x2 on 6 men: as the vanilla parent, 4 rifles + 2 shotguns; the flashbang takes one LAW slot
     'ROC Marine Frogmen CQC': (6, 10, [('T91 CQC', 4), ('M1014', 2)], [('M72A10 LAW', 5), ('Flashbang', 1)],
                                {'T91 CQC': 1920, 'M1014': 80, 'M72A10 LAW': 5, 'Flashbang': 1}),
@@ -203,13 +251,16 @@ SQUADS = {
 
 def squads(t, g, ok, res, rows):
     W, WA = t['WeaponsJson'], t['WeaponAmmunitionsJson']
-    made, out = {}, {}
+    made, out, made_ammo = {}, {}, {}
 
     def weapon(name):
         donor = DONOR[name]
         if name not in made:
             made[name] = donor if W[donor]['HUDName'].strip() == name else g.add('WeaponsJson', W[donor], {'Name': 'ROC ' + name, 'HUDName': name})
         return made[name], donor
+    # Weapon copies keep the IDs they had when the cards first shipped (the FAModels weapon rules and saved decks point at them); a gun added
+    # later (Kestrel-2, 27 Nov) takes the next free ID.
+    for name in WEAPON_ORDER: weapon(name)
     for card, (men, armour, mains, extras, rounds) in SQUADS.items():
         uid = res[card]['unit']
         ok(sum(n for _, n in mains) == men and all(n <= men for _, n in extras) and sum(n for _, n in extras) <= men, (card, 'men vs weapons'))
@@ -233,7 +284,12 @@ def squads(t, g, ok, res, rows):
             src = min(r['UnitId'] for r in WA.values() if r and r['WeaponId'] == donor)      # the donor gun's own ammo rows, as the PLA designer
             for r in sorted(rows('WeaponAmmunitionsJson', UnitId=src, WeaponId=donor), key=lambda r: (r['Order'], r['Id'])):
                 q = max(1, round(rounds[name] / n)) if name in rounds else r['Quantity']
-                g.add('WeaponAmmunitionsJson', r, {'UnitId': uid, 'WeaponId': wid, 'Quantity': q})
+                aid = r['AmmunitionId']
+                if name in AMMO_EDIT:
+                    if name not in made_ammo:
+                        made_ammo[name] = g.add('AmmunitionsJson', t['AmmunitionsJson'][aid], {'Name': 'ROC ' + AMMO_EDIT[name]['HUDName'], **AMMO_EDIT[name]})
+                    aid = made_ammo[name]
+                g.add('WeaponAmmunitionsJson', r, {'UnitId': uid, 'WeaponId': wid, 'Quantity': q, 'AmmunitionId': aid})
         for ua in rows('UnitArmorsJson', UnitId=uid):
             g.put('ArmorsJson', ua['ArmorId'], {'MaxHealthPoints': men * 5, 'ArmorValue': armour})
         res[card]['men'] = men
@@ -270,8 +326,8 @@ VEH = {
                   'ammo': {'M393A1 HESH': '76mm HE', 'M900A1 APFSDS': '76mm AP'}},
     'ROC M110A2': {'rename': {636: 'M201 203mm'}, 'drop': {710}},
     'ROC CM-11': {'drop': {649}}, 'ROC CM-12': {'drop': {649}}, 'ROC M60A3 TTS': {'drop': {649}},
-    'ROC CM-32': {'rename': {21: 'T91 40mm AGL'}, 'drop': {76, 23}, 'default': 21},
-    'ROC CM-33': {'rename': {21: 'T91 40mm AGL'}, 'drop': {76, 23, 18}, 'default': 21},
+    'ROC CM-32': {'drop': {76, 23, 21}, 'default': 18, 'flatten': True},   # Shawn 27 Nov 18:4x: base CM-32 = Stryker M2 station only (VARIANTS)
+    'ROC CM-33': {'rename': {21: 'T91 40mm AGL'}, 'drop': {76, 23, 18}, 'default': 21, 'flatten': True},
     'ROC CM-34': {'rename': {27: 'T74'}, 'drop': {76, 21, 18}, 'default': 23, 'flatten': True},   # Shawn 27 Nov 14:4x: no option rows; 30mm fixed, no SRAT/Trophy
     # Shawn 26 Nov 02:3x: "CM-22 just keeps the data as 120mm but rename the weapon by 107mm and reduce the damage value by around 20%"
     'ROC CM-22': {'rename_hud': {'M121': 'M30 107mm'}, 'ammo': {'120mm HE': '107mm HE', '120mm smoke': '107mm smoke'},
@@ -414,10 +470,11 @@ def vehicles(t, g, ok, res, rows):
         #    becomes the unit itself, like vanilla units without modifications (M1A2 SEP v2 TUA): its price joins the card cost, its abilities
         #    stay, its armour and mobility are the unit's only armour/mobility rows, and the renaming option text (M1296 Dragoon) goes.
         if spec.get('flatten'):
-            extra, keep, base = 0, set(), {}
+            extra, keep, base, guns = 0, set(), {}, set()
             for m in rows('ModificationsJson', UnitId=uid):
                 os_ = rows('OptionsJson', ModificationId=m['Id']); d = next((o for o in os_ if o['IsDefault']), os_[0])
                 extra += d.get('Cost') or 0; keep |= {d.get(f'Ability{i}Id') for i in (1, 2, 3)} - {None, 0}
+                guns |= {d[f] for f in tfields if d.get(f)}
                 for f, tab in (('ArmorId', 'ArmorsJson'), ('MobilityId', 'MobilityJson')):
                     if d.get(f): base[f] = t[tab][d[f]]['Name'] + ' ' + card
                 for o in os_: g.remove('OptionsJson', o['Id'])
@@ -429,6 +486,18 @@ def vehicles(t, g, ok, res, rows):
                     if r not in hit: g.remove(tab, r['Id'])
             for r in rows('UnitAbilitiesJson', UnitId=uid):
                 if r['AbilityId'] not in keep: g.remove('UnitAbilitiesJson', r['Id'])
+            # Shawn 27 Nov 18:3x (roc7: "Bring back the previous weapon back to CM-34"): with no options, the unit mounts its default
+            # top-level turrets (IsDefault, like the M1A2 SEP v2 TUA). The default option's turret (the copied 30 mm Dragoon turret) becomes
+            # the default turret; the other top-level turrets and their children go.
+            if guns:
+                for tid in guns:
+                    if not T[tid]['IsDefault']: ok(tid >= 2900000, (card, 'flatten turret is a vanilla row', tid)); g.put('TurretsJson', tid, {'IsDefault': True})
+                    if not rows('TurretUnitsJson', UnitId=uid, TurretId=tid): g.add('TurretUnitsJson', {'UnitId': uid, 'TurretId': tid, 'Order': 0})
+                top = lambda tid: tid if T[tid].get('ParentTurretId') is None else top(T[tid]['ParentTurretId'])
+                for r in rows('TurretUnitsJson', UnitId=uid):
+                    if top(r['TurretId']) not in guns: g.remove('TurretUnitsJson', r['Id'])
+                ok(all(T[r['TurretId']]['IsDefault'] or T[r['TurretId']].get('ParentTurretId') for r in rows('TurretUnitsJson', UnitId=uid)), (card, 'flatten turrets'))
+                res[card]['turrets'] = sorted(W[w]['HUDName'] for r in rows('TurretUnitsJson', UnitId=uid) for w in tw(r['TurretId']))
             c = t['Units'][uid]['Cost'] + extra; g.put('Units', uid, {'Cost': c}); res[card]['cost'] = c
         after = sorted({W[r['WeaponId']]['HUDName'] for r in rows('WeaponAmmunitionsJson', UnitId=uid)})
         out[card] = {'before': before, 'after': after, 'options': [o.get('UIName') for o in opts(uid)], 'cost': t['Units'][uid]['Cost'],

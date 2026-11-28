@@ -194,6 +194,16 @@ Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `inf
 - **EC225:** real ROC Blue Sky White Sun on both sides (`ec225_roundel.py`: 12 straight rays, ring and disc 30:17:15).
 - **Infantry:** shoulders shaped to a smooth curve after rigging (`infantry/fas_shoulders.py`; Infantry 2 flatter, rise 0.015).
 
+## In-game lists 4 and 5; test build roc8 (27 November 2026, evening)
+
+- **Marine / Reserve Marine grey flap by the arm:** the real cause was weights, not the vest. A few upper-arm vertices just past the shoulder joint were weighted to the spine, so in the rifle stance they stayed with the chest and stretched a sheet to the elbow. `infantry/fas_armweights.py` moves torso weight on those vertices to the arm (all 7 bodies; Marine stretched area in a 70 degree arm-down test 357 -> 92 cm2).
+- **Marine green gear** (belt, straps, thigh pouch, knee pads) desaturated 55 % and darkened to 72 % (`infantry/darken_green.py`, new `*_dark.png` sources; camo green untouched).
+- **SF Scout and Mech. Riflemen T112:** new body `infjp` = ROC Infantry body with the Infantry 2 face and helmet (`infantry/make_infjp.py`), helmet recoloured dark green.
+- **CM-32 / CM-33 / CM-34:** `cm32_kitbash.py cm32|cm33` builds the CM-34 hull with the old CM-32 base plate, smoke-grenade arcs and side box, antennas seated on the roof, and the vanilla Stryker station: M2 Browning (CM-32) or Mk19 (CM-33). The bare CM-34 turret plate gets camo (`cm34_panel_camo.py`, colour + Dust/Mosaic sets). CM-33 and CM-34 are Unit-variant options of the CM-32 card.
+- **Glass:** HF-IIE and Land Sword II donor-glass UVs re-projected like the Grad windscreen (`glass_planar_uv.py`); F-CK-1 front windscreen moved from the body to glass (`fck1_windscreen2.py`).
+- **CM-11:** tracks and roof items from BLEND to MASK; hull mask smoothness lowered on the dark patches (`cm11_shine.py`).
+- **Stage:** copies only the .fat files a staged model uses.
+
 ## Document change log
 
 - 2026-11-25 03:4x PST (America/Los_Angeles) — T91 rifle converted; recipe and first grip offset.
@@ -220,3 +230,4 @@ Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `inf
 
 - 2026-11-27 14:38 PST (America/Los_Angeles) — Vest torso weights (infantry, marines), JP shoulder press, Kestrel 75 %; test build roc6.
 - 2026-11-27 15:15 PST (America/Los_Angeles) — Second and third in-game lists (CM-34 card, CM-32 rebuild, glass, M41D, CM-22, CM-11 normals, F-16V gear, EC225 roundel, streaks); test build roc7.
+- 2026-11-27 18:46 PST (America/Los_Angeles) — In-game lists 4-5 (arm weights, Marine green, infjp body, CM-32/33/34 variants, roof camo, glass UVs, F-CK-1 windscreen, CM-11 shine); test build roc8.

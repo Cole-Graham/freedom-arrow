@@ -3,7 +3,7 @@ files under stage/UserData/FAModels, plus roc-models.json = the models.json entr
 entries to the live models.json. usage: python3 stage_roc.py"""
 import os,json,glob,shutil
 H=os.path.dirname(os.path.abspath(__file__))+'/..';V=H+'/veh';S=H+'/stage/UserData/FAModels'
-CARD={'cm34':'ROC CM-34',   # CM-33 removed from the deck (Shawn 27 Nov 02:2x)
+CARD={'cm34':'ROC CM-34','cm33':'ROC CM-33',   # CM-33 back 27 Nov 18:4x as the Mk19 variant of the CM-32 (cm32_kitbash.py cm33)
      'cm11':'ROC CM-11','antelope':'ROC Antelope','m41d':'ROC M41D',
       'tb2000':'ROC Thunderbolt-2000','kf6':'ROC Kung Feng VI','tk3':'ROC Tien Kung III',   # CM-26 removed from the ROC set (Shawn 27 Nov 00:0x)
       'cm21':'ROC CM-21','cm32':'ROC CM-32','lsw2':'ROC Land Sword II','f16v':'ROC F-16V','f5f':'ROC F-5F','m110a2':'ROC M110A2','uh60m':'ROC UH-60M',
@@ -16,8 +16,18 @@ shutil.rmtree(H+'/stage',ignore_errors=True);os.makedirs(S)
 models={};n=0
 for s,card in CARD.items():
     st=f'm_roc_{s}'
-    files=[f for f in glob.glob(f'{V}/models/{st}_*') if f.endswith(('.fam','.mat.json'))]+glob.glob(f'{V}/fat/{st}_*.fat')
-    for f in files:shutil.copy(f,S);n+=1
+    fams=[f for f in glob.glob(f'{V}/models/{st}_*') if f.endswith(('.fam','.mat.json'))]
+    for f in fams:shutil.copy(f,S);n+=1
+# textures: only the .fat files a staged .fam uses (with their _n/_mask maps and @Scheme sets); 27 Nov: the CM-32/CM-33 rebuilds left old maps behind
+import sys;sys.path.insert(0,H+'/tools');from famread import read_fam
+used={x['tex'][:-4] for f in glob.glob(S+'/*.fam') for b,ss in read_fam(f) for x in ss if x['tex']}
+for f in glob.glob(f'{V}/fat/m_roc_*.fat'):
+    b=os.path.basename(f)[:-4].split('@')[0]
+    for suf in ('_n','_mask'):
+        if b.endswith(suf):b=b[:-len(suf)]
+    if b in used:shutil.copy(f,S);n+=1
+for s,card in CARD.items():
+    st=f'm_roc_{s}'
     lods=[f'{st}_lo_static_{l}.fam' for l in ('l1','l2') if os.path.exists(f'{S}/{st}_lo_static_{l}.fam')]
     for need in (f'{st}_static.fam',f'{st}_lo_static.fam'):assert os.path.exists(f'{S}/{need}'),need
     if card:models[card]={'file':f'{st}_static.fam','battle':f'{st}_lo_static.fam','align':False,'lods':lods}
@@ -43,7 +53,7 @@ from PIL import Image
 PAINT={'ROC Mirage 2000-5':('m_roc_mirage_static_tex0',['GreyCamo']),
        'ROC Hsiung Feng IIE':('m_roc_hf2e_static_tex4',['Camo']),
        'ROC CM-34':('m_roc_cm34_static_tex0',['Dust','Mosaic']),
-       'ROC CM-32':('m_roc_cm34_static_tex0',['Dust','Mosaic'])}   # Shawn 27 Nov 02:2x: CM-32 with the CM-34 sets (camo3d.py blocks)   # Shawn 27 Nov 02:1x: the SHAMO (desert) and MAISAIKE (mosaic) sets from his folder   # Shawn 26 Nov 21:5x: optional Woodland camo (camo_hf2e.py)
+       'ROC CM-32':('m_roc_cm34_static_tex0',['Dust','Mosaic']),'ROC CM-33':('m_roc_cm34_static_tex0',['Dust','Mosaic'])}   # Shawn 27 Nov 02:2x: CM-32 with the CM-34 sets (camo3d.py blocks)   # Shawn 27 Nov 02:1x: the SHAMO (desert) and MAISAIKE (mosaic) sets from his folder   # Shawn 26 Nov 21:5x: optional Woodland camo (camo_hf2e.py)
 os.makedirs(S+'/paint',exist_ok=True)
 def swatch(f):
     im=Image.open(f).convert('RGB');w,h=im.size;cw,ch=int(w*0.5),int(w*0.5*144/256);x,y=(w-cw)//2,(h-ch)//2;return im.crop((x,y,x+cw,y+ch)).resize((256,144),Image.LANCZOS)

@@ -171,25 +171,6 @@
   ]
  },
  {
-  "unitId": 5035,
-  "soldierIndex": -1,
-  "slot": "special",
-  "weaponId": 2900002,
-  "file": "w_roc_kestrel.fam",
-  "battle": "w_roc_kestrel_lo.fam",
-  "scale": 0.75,
-  "offset": [
-   0,
-   -0.16,
-   0.07
-  ],
-  "rotation": [
-   0,
-   0,
-   0
-  ]
- },
- {
   "unitId": 5038,
   "soldierIndex": -1,
   "slot": "special",
@@ -239,6 +220,25 @@
    0,
    -0.16,
    0.07
+  ],
+  "rotation": [
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "unitId": 5035,
+  "soldierIndex": -1,
+  "slot": "special",
+  "weaponId": 2900016,
+  "file": "w_roc_kestrel2.fam",
+  "battle": "w_roc_kestrel2_lo.fam",
+  "scale": 1.0,
+  "offset": [
+   0,
+   0,
+   0
   ],
   "rotation": [
    0,

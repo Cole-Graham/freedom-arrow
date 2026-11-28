@@ -67,9 +67,9 @@
  {
   "unitId": 5039,
   "lods": [
-   "roc_infantry2_0.fas",
-   "roc_infantry2_1.fas",
-   "roc_infantry2_2.fas"
+   "roc_infjp_0.fas",
+   "roc_infjp_1.fas",
+   "roc_infjp_2.fas"
   ],
   "offset": [
    0,
@@ -132,16 +132,15 @@
  {
   "unitId": 5044,
   "lods": [
-   "roc_sf4_0.fas",
-   "roc_sf4_1.fas",
-   "roc_sf4_2.fas"
+   "roc_infjp_0.fas",
+   "roc_infjp_1.fas",
+   "roc_infjp_2.fas"
   ],
   "offset": [
    0,
    0,
    0
-  ],
-  "cutout": true
+  ]
  },
  {
   "unitId": 5045,
