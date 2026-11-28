@@ -1144,8 +1144,8 @@ import heli_atgm_turn_1127;heli_atgm_turn_1127.apply(t,g,ok,rec)
 import cj10_held_1127;cj10_held_1127.apply(t,g,ok,rec)
 # ---------- J-31 hidden (cards removed, hidden in the Armory) (Osama 27 Nov 21:1x). See j31_held_1127.py.
 import j31_held_1127;j31_held_1127.apply(t,g,ok,rec)
-# ---------- PAP AA Patrol hidden (cards + their transport rows removed, hidden in the Armory) (Osama 27 Nov 22:4x). See pap_aa_hidden_1127.py.
-import pap_aa_hidden_1127;pap_aa_hidden_1127.apply(t,g,ok,rec)
+# ---------- Infantry hidden (cards + their transport rows removed, hidden in the Armory): PAP AA Patrol (Osama 27 Nov 22:4x), Tiger Brigade (23:4x). See hidden_infantry_1127.py.
+import hidden_infantry_1127;hidden_infantry_1127.apply(t,g,ok,rec)
 # ---------- Light CAB points = SOF with recon 1250 -> 1000, vehicles 0 -> 250, helicopters 1000 -> 750, support 250 -> 500 (Osama 27 Nov 23:0x). See osama_light_cab_points_1127.py.
 import osama_light_cab_points_1127;osama_light_cab_points_1127.apply(t,g,ok,rec)
 # ---------- Whistling Arrows 95 pts (Osama 27 Nov 23:0x). See osama_whistling_price_1127.py.
