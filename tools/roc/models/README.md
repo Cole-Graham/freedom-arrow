@@ -216,6 +216,12 @@ Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `inf
 - **Card art:** 8 portraits from Shawn's Drive folder (`FA_ROC_INF_*-Portrait.png`, 816x549 with the vanilla bottom fade; SF Snipers, SF Section and Marine Frogmen cropped above the BROKEN ARROW logo). Loadout variants show their base card's art.
 - **F-5E** (Shawn's `F-5E_Land.blend`) replaces the F-5F card's model (slug `f5f`; old files in `veh/x/f5f/pre-f5e/`): `f5e_composite.py` bakes the hull node mix (colour + panel lines overlay + dirt) and a line normal map; `f5e_blend2glb.py` makes a gear-down (Arsenal) and gear-up (battle) GLB; `f5e_finish.sh` converts (Arsenal 91k, battle 41.6k, LODs 27k/15.6k); `f5e_mat.py` gives the fighter finish and F-16 donor glass. Battle orientation needs `UPSIGN=1` in plane_prep (without gear the canopy test flips it).
 
+## Patriot PBR and wheels: HF-IIE and Thunderbolt-2000 (27 November 2026, night; no build)
+
+- **Wheels** (`patriot_wheels.py SLUG TEX[:split]`): the vanilla Patriot PAC-2 tyre sidewall + hub disc and tread strip make a new wheel sheet; each wheel (pieces grouped by the biggest piece) gets a disc map on its sides and the tread wrapped round. HF-IIE: its own wheel sheet tex5 (12 wheels). Thunderbolt-2000: 8 wheels + spare split off tex1 onto `_wheel.png`.
+- **Surface:** HF-IIE masks remapped (`patriot_pbr.py`: metal x0.3, smoothness 0.22-0.50); Thunderbolt-2000 had no masks, so `patriot_mask_from_colour.py` makes one from the paint.
+- Kung Feng VI, Land Sword II and Tien Kung III wait for Shawn's verdict on these two.
+
 ## Document change log
 
 - 2026-11-25 03:4x PST (America/Los_Angeles) — T91 rifle converted; recipe and first grip offset.
@@ -245,3 +251,4 @@ Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `inf
 - 2026-11-27 18:46 PST (America/Los_Angeles) — In-game lists 4-5 (arm weights, Marine green, infjp body, CM-32/33/34 variants, roof camo, glass UVs, F-CK-1 windscreen, CM-11 shine); test build roc8.
 - 2026-11-27 19:29 PST (America/Los_Angeles) — In-game list 6 queued (TK-III, LSW2, M41D, CM-11/12, MTV + crew bodies, EC225 emblem, UH-60M / AH-64E glass); no build.
 - 2026-11-27 19:54 PST (America/Los_Angeles) — ROC card art (8 portraits) and the F-5E model for the F-5F card; no build.
+- 2026-11-27 20:01 PST (America/Los_Angeles) — Patriot wheels and surface on HF-IIE and Thunderbolt-2000; no build.
