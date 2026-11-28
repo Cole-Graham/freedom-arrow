@@ -1194,6 +1194,8 @@ import roc_hook;roc_hook.apply(t,g,ok,rec,recheck=lambda:(disposable_launchers_1
 # ---------- Ground optics Proposal W (Lateralus 28 Nov 2026 10:4x, "Ok queue up W proposal"): tiers 900/1300/1450/1650/2300/2800 -> 450/700/925/1375/1950/2500,
 # one spotting cap 1075 (Exceptional 1300). After roc_hook so ROC sensor rows move too. See lateralus/optics_w_1128.py.
 import optics_w_1128;spotting_caps,optics_names=optics_w_1128.apply(t,g,ok,rec)
+# ---------- C-RAM tier 3 SPAAG, 110 points; SeaRAM loadout stays 200 (Lateralus 28 Nov 12:0x). See lateralus/cram_tier3_1128.py.
+import cram_tier3_1128;cram_tier3_1128.apply(t,g,ok,rec)
 # Unit standards on the final data (docs/development/UNIT-STANDARDS.md, Lateralus 26 Nov 2026): fails on a new squad that breaks the launcher or
 # one-name-one-damage rules, and rebuilds the disposable-launcher squad rate table (squad-reload.json) from this build's squads.
 squad_reload=unit_standards.check(t,ok,rec)
