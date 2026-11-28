@@ -1218,14 +1218,6 @@ UserData/FAModels/m_ztz96b_wdigi_tex1_n.fat
 UserData/FAModels/m_ztz96b_wdigi_tex2.fat
 UserData/FAModels/m_ztz96b_wdigi_tex2_mask.fat
 UserData/FAModels/m_ztz96b_wdigi_tex2_n.fat
-UserData/FAModels/m_ztz99_static.fam
-UserData/FAModels/m_ztz99_static.mat.json
-UserData/FAModels/m_ztz99_static_tex0.fat
-UserData/FAModels/m_ztz99_static_tex0_mask.fat
-UserData/FAModels/m_ztz99_static_tex0_n.fat
-UserData/FAModels/m_ztz99_static_tex1.fat
-UserData/FAModels/m_ztz99_static_tex1_mask.fat
-UserData/FAModels/m_ztz99_static_tex1_n.fat
 UserData/FAModels/m_ztz99a2_lo_static.fam
 UserData/FAModels/m_ztz99a2_lo_static.mat.json
 UserData/FAModels/m_ztz99a2_lo_tex0.fat
