@@ -71,31 +71,28 @@ static class DeckCodes
             go.GetComponent<UiButton>()?.add_ClickEvent(Click(Import,"import"));
             go.transform.SetSiblingIndex(create.transform.GetSiblingIndex()+1);
             // Osama 27 Nov 2026 17:4x: "The import deck code is right over the new deck. I can't press either button." The header has no layout
-            // group, so the copy sat exactly on the Create button. Both now share the Create button's old place: Create left half, Import right half.
+            // group, so the copy sat exactly on the Create button. dev.8 split the place in half, but the two labels still ran into each other
+            // (Lateralus's dev.8 screen). 21:2x "the import deck code needs to go above the new deck button": Create keeps its own place and
+            // size; Import is the same size, one button height plus 6 px above it.
             var crt=create.GetComponent<RectTransform>();var irt=go.GetComponent<RectTransform>();
             if(crt!=null&&irt!=null)
             {
-                float w=crt.rect.width,half=(w-8f)/2f,cx=CenterX(crt);
-                foreach(var (r,side) in new[]{(crt,-1f),(irt,1f)})
-                {
-                    r.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal,half);
-                    var ap=r.anchoredPosition;ap.x+=cx+side*(half/2f+4f)-CenterX(r);r.anchoredPosition=ap;
-                }
+                irt.anchorMin=crt.anchorMin;irt.anchorMax=crt.anchorMax;irt.pivot=crt.pivot;irt.sizeDelta=crt.sizeDelta;
+                irt.anchoredPosition=crt.anchoredPosition+new Vector2(0f,crt.rect.height+6f);
             }
             // 17:4x "allow us to type into the code not directly read from the clip board": the deck list's own search box takes the code
             // (no length limit); Import reads it from there first and only falls back to the clipboard when the box holds no code.
             var search=SearchField();if(search!=null)search.characterLimit=0;
             var nt=new GameObject("FA Deck Code Note");nt.layer=go.layer;
             var rt=nt.AddComponent<RectTransform>();rt.SetParent(go.transform,false);
-            rt.anchorMin=new Vector2(0f,0f);rt.anchorMax=new Vector2(1f,0f);rt.pivot=new Vector2(0.5f,1f);rt.anchoredPosition=new Vector2(0f,-4f);rt.sizeDelta=new Vector2(0f,40f);
+            rt.anchorMin=new Vector2(0f,1f);rt.anchorMax=new Vector2(1f,1f);rt.pivot=new Vector2(0.5f,0f);rt.anchoredPosition=new Vector2(0f,4f);rt.sizeDelta=new Vector2(0f,40f);   // above Import, so it never covers Create
             note=nt.AddComponent<Il2CppTMPro.TextMeshProUGUI>();
             if(label!=null&&label.font!=null)note.font=label.font;
-            note.fontSize=16;note.enableWordWrapping=true;note.alignment=Il2CppTMPro.TextAlignmentOptions.Top;note.raycastTarget=false;note.color=new Color(1f,0.85f,0.4f,1f);note.SetText("");
+            note.fontSize=16;note.enableWordWrapping=true;note.alignment=Il2CppTMPro.TextAlignmentOptions.Bottom;note.raycastTarget=false;note.color=new Color(1f,0.85f,0.4f,1f);note.SetText("");
             MelonLogger.Msg($"FREEDOM_ARROW_DECK_CODES import button made from '{create.gameObject.name}' under '{parent.name}' (label {(label!=null?"set":"not found")})");
         }
         catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_DECK_CODES import button: "+e.Message);}
     }
-    static float CenterX(RectTransform r)=>r.anchoredPosition.x+(0.5f-r.pivot.x)*r.rect.width;
     static Il2CppTMPro.TMP_InputField SearchField(){try{return panel?._nameFilterField?._input;}catch{return null;}}
     public static void Tick(){ if(note!=null&&noteUntil>0f&&Time.unscaledTime>noteUntil){noteUntil=0f;try{note.SetText("");}catch{note=null;}} }
     static void Say(string s){MelonLogger.Msg("FREEDOM_ARROW_DECK_CODES: "+s);try{if(note!=null){note.SetText(s);noteUntil=Time.unscaledTime+6f;}}catch{note=null;}}
