@@ -59,3 +59,4 @@ Maps that shipped before these checks and break one are listed by name in `commo
 - 2026-11-27 07:4x PST (America/Los_Angeles) — [1v1] Mountain 0.1 added (End's Workshop map 3846746372); End's +1 maps share `C.end_occ_spec`; ground-spawn cameras use spawn type 1 only.
 - 2026-11-27 10:4x PST (America/Los_Angeles) — Lateralus: Mountain A-E 2, Below the Mountain A C E 2 / B D 4 (`end_occ_spec` takes per-map values); Mountain air spawns at the map edges.
 - 2026-11-27 12:3x PST (America/Los_Angeles) — [2v2] Jelgavas Pils 0.1 added (Lateralus; A B 2 / C D 4; not in the ranked pool).
+- 2026-11-28 09:5x PST (America/Los_Angeles) — [1v1] Jelgavas Pils 0.1 replaces [1v1] Jelgava (Lateralus; his 2v2 layout with a 5000 m wide playable zone; A B 2 / C D 4; ranked). Runtime.cs retires the installed Jelgava copies by GUID. The PvE Jelgava maps keep the old layout, so `jelgava_1v1` stays as their base and is no longer built on its own.

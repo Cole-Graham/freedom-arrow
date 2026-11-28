@@ -357,6 +357,8 @@ public class Runtime : MelonMod
         // Lateralus 23 Nov 2026 (0.9.6): new zone values; the 0.3 versions replace these.
         ("[FA] [2v2] Highway of Death 0.2","32e238bc-e2df-5aed-93ca-a74b406e292d"),("[FA] [2v2] Highway of Death Skirmish 0.2","f22e8f35-e2bc-5b70-b6f3-893705babf14"),
         ("[FA] [1v1] Dead Center 0.2","a8726371-f049-5a03-8bfa-5ad4867936ad"),("[FA] [1v1] Dead Center Skirmish 0.2","fc9a8f06-f10e-5f7c-a829-c0a962eff198"),
+        // Lateralus 28 Nov 2026: "remove 1v1 Jelgava from the mod"; [1v1] Jelgavas Pils 0.1 replaces it. The PvE Jelgava maps stay.
+        ("[FA] [1v1] Jelgava 0.1","0ce3d77a-13b8-5d8e-9074-bbc96ab469b9"),("[FA] [1v1] Jelgava Skirmish 0.1","d78167d6-7984-5fe9-87de-0e3a7ce97efc"),
     };
     static void RemoveRetiredScenarios()
     {
