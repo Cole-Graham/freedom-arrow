@@ -99,9 +99,17 @@ namespace BALocalSkirmish
         bool _aiLoadPending, _aiRestartAllowed, _aiDeckPatchReady;
         readonly List<OptDef> _opts = new List<OptDef>();
         readonly Dictionary<int, int> _optVals = new Dictionary<int, int>();
-        int _diff = 2;          // 1=Easy, 2=Medium, 3=Hard (DifficultyLevel values)
+        // FA difficulty (Osama 27 Nov 2026 19:3x PST, bugs thread: "the current mode is easy. Then it's medium then hard then challenge mode.
+        // Challenge mode gives the AI 2.2x the income whereas medium is 1.2 and hard is 1.8"). The scripted Skirmish AI does not spend money:
+        // it spawns waves, so its "income" is the size of each wave. Easy = today's AI (x1.0); Medium x1.2, Hard x1.8, Challenge x2.2 more
+        // units per wave. The scenario's own (native) difficulty stays at the map's default, so the levels differ only by our multiplier.
+        int _diff = 1;          // FA level 1..4 (index into _diffNames)
+        int _nativeDiff = 2;    // the map's own DifficultyLevel (scenario scripts read it), unchanged
         bool _hasDiff = true;
-        static readonly string[] _diffNames = { "None", "Easy", "Medium", "Hard" };
+        static readonly string[] _diffNames = { "None", "Easy", "Medium", "Hard", "Challenge" };
+        static readonly double[] _diffScale = { 1.0, 1.0, 1.2, 1.8, 2.2 };
+        internal static double AiWaveScale = 1.0;
+        internal static string AiLevel = "Easy";
 
         // UI
         GameObject _root;
@@ -445,7 +453,11 @@ namespace BALocalSkirmish
                 Session.TryGetService<DataBaseService>(out database, false);
                 var replacements = new List<UnitModData>();
                 foreach (var requested in original.Units)
-                    ReplaceSpawnUnit(requested, slots, database, replacements);
+                {
+                    // FA difficulty: whole copies plus one more with the fractional chance (x1.8 = 1 copy, 80% a second).
+                    int copies = (int)Math.Floor(AiWaveScale) + (_rng.NextDouble() < AiWaveScale - Math.Floor(AiWaveScale) ? 1 : 0);
+                    for (int c = 0; c < Math.Max(1, copies); c++) ReplaceSpawnUnit(requested, slots, database, replacements);
+                }
                 node.UnitInfo = new MultiUnits { Units = new Il2CppReferenceArray<UnitModData>(replacements.ToArray()) };
                 // Native empty-input handling completes the node immediately. Clear the
                 // previous activation's output so it cannot send old units down the graph.
@@ -506,7 +518,43 @@ namespace BALocalSkirmish
                     return;
                 }
             }
+            // Osama 27 Nov 2026 19:3x: "the AI must ALWAYS buy a transport for the Infantry". A deck card without a transport used to spawn
+            // its squad on foot (26-27 Nov logs: 55% of AI squads ever rode, against 95% of human squads). Borrow the transport of another
+            // card in the same AI deck that has enough seats for this squad; ground transports first. Only when the deck has none at all
+            // does the squad still walk.
+            var unitData = selected.GetUnitData();
+            if (unitData != null && unitData.Type == UnitType.Infantry && TryDeckTransport(unitData, slots, out var carrier))
+            {
+                var transportData = carrier.GetTransportUnitData();
+                var transport = MakeSpawnUnit(carrier.TransportID, transportData.CategoryType, carrier.TransportSkinId, carrier.TransportModList);
+                transport.Cargo.Slots.Add(unit);
+                output.Add(transport);
+                if (++_borrowedLogged <= 20) MelonLogger.Msg($"[LocalSkirmish] AI infantry {selected.UnitID} had no transport; given transport {carrier.TransportID} from the same deck.");
+                return;
+            }
+            if (unitData != null && unitData.Type == UnitType.Infantry && ++_onFootLogged <= 20)
+                MelonLogger.Msg($"[LocalSkirmish] AI infantry {selected.UnitID} spawns on foot: no transport in this AI deck with {unitData.SquadMembers?.Count ?? 0} seats.");
             output.Add(unit);
+        }
+
+        static int _borrowedLogged, _onFootLogged;
+        static bool TryDeckTransport(Il2CppBrokenArrow.DataBase.Models.Units squad, List<DeckSlotModel> slots, out DeckSlotModel carrier)
+        {
+            carrier = null;
+            int need = Math.Max(1, squad.SquadMembers?.Count ?? 1);
+            int bestScore = -1, weight = 0;
+            foreach (var slot in slots)
+            {
+                if (!slot.IsValidTransport || slot.TransportCount <= 0) continue;
+                var t = slot.GetTransportUnitData();
+                if (t == null || t.InfantrySlots < need) continue;
+                int score = t.Type == UnitType.Vehicle ? 1 : 0;   // ground first, helicopters only when no ground transport fits
+                if (score < bestScore) continue;
+                if (score > bestScore) { bestScore = score; weight = 0; }
+                weight += slot.TransportCount;
+                if (_rng.Next(weight) < slot.TransportCount) carrier = slot;
+            }
+            return carrier != null;
         }
 
         static DeckSlotModel PickSpawnSlot(UnitModData requested, List<DeckSlotModel> slots, DataBaseService database)
@@ -555,9 +603,9 @@ namespace BALocalSkirmish
                 var meta0 = _maps[_mapIdx].MetaFile;
                 _hasDiff = meta0 != null && meta0.HasDifficulty;
                 int d = 2; try { d = (int)meta0.MEStartDifficulty; } catch { }
-                _diff = (d >= 1 && d <= 3) ? d : 2;
+                _nativeDiff = (d >= 1 && d <= 3) ? d : 2;
             }
-            catch { _hasDiff = true; _diff = 2; }
+            catch { _hasDiff = true; _nativeDiff = 2; }
             try
             {
                 var meta = _maps[_mapIdx].MetaFile;
@@ -790,7 +838,7 @@ namespace BALocalSkirmish
             if (_aiPlayerLabel != null) _aiPlayerLabel.text = _aiSlots.Count > 0
                 ? $"{_aiSlotIdx + 1}/{_aiSlots.Count}  {_aiSlots[_aiSlotIdx].Name}" : "(no AI players)";
             if (_aiDeckLabel != null) _aiDeckLabel.text = AiDeckText();
-            if (_diffLabel != null) _diffLabel.text = _diffNames[Math.Max(0, Math.Min(3, _diff))];
+            if (_diffLabel != null) _diffLabel.text = _diffNames[Math.Max(0, Math.Min(4, _diff))];
             for (int i = 0; i < _optLabels.Count && i < _opts.Count; i++)
                 if (_optLabels[i] != null) _optLabels[i].text = OptValueText(_opts[i]);
             if (_statusLabel != null)
@@ -836,7 +884,7 @@ namespace BALocalSkirmish
             UpdateLabels();
         }
         void CycleDiff(int dir)
-        { _diff += dir; if (_diff < 1) _diff = 3; if (_diff > 3) _diff = 1; UpdateLabels(); }
+        { _diff += dir; if (_diff < 1) _diff = 4; if (_diff > 4) _diff = 1; UpdateLabels(); }
         void RandomMap()
         {
             if (_maps.Count == 0) return; _mapIdx = _rng.Next(_maps.Count);
@@ -864,13 +912,16 @@ namespace BALocalSkirmish
                 if (st == null) { if (_statusLabel != null) _statusLabel.text = "Scene transition unavailable."; return; }
                 PrepareDecks(scenario, deck);
 
-                // difficulty (scenario scripts read CampaignService.Difficulty)
+                // FA difficulty: AI wave size multiplier, applied in OverrideAiSpawn
+                AiWaveScale = _diffScale[Math.Max(1, Math.Min(4, _diff))]; AiLevel = _diffNames[Math.Max(1, Math.Min(4, _diff))];
+                MelonLogger.Msg($"[LocalSkirmish] FA difficulty = {AiLevel}: AI waves x{AiWaveScale:0.0}.");
+                // native difficulty (scenario scripts read CampaignService.Difficulty): the map's own default
                 if (_hasDiff)
                 {
                     try
                     {
                         CampaignService cs = null; Session.TryGetService<CampaignService>(out cs, false);
-                        if (cs != null) { cs.Difficulty = (DifficultyLevel)_diff; MelonLogger.Msg($"[LocalSkirmish] Difficulty = {_diffNames[_diff]}."); }
+                        if (cs != null) { cs.Difficulty = (DifficultyLevel)_nativeDiff; MelonLogger.Msg($"[LocalSkirmish] Native difficulty = {(DifficultyLevel)_nativeDiff}."); }
                         else MelonLogger.Warning("[LocalSkirmish] CampaignService not available; difficulty not set.");
                     }
                     catch (Exception e) { MelonLogger.Error("[LocalSkirmish] set difficulty: " + e.Message); }
