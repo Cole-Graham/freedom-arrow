@@ -131,9 +131,10 @@
       "approved_master": "tools/pla-specs/approved-patch-masters/TIANLANG-master.png",
       "approval_status": "Approved by Sam voice review",
       "png_sha256": {
-        "FA_PLA_INF_TIANLANG": "5e11dad1eb01ad4312724eddf96c724a9c54be8aefa8f66ea125fb4946200ba2",
-        "FA_PLA_INF_TIANLANG_OUTLINE": "2dbbdbd5baf3058df1c8ce0ff17d7f63e158e88747e7ca84437581b2fbb432e6"
-      }
+        "FA_PLA_INF_TIANLANG": "d7f4836c08a4b32fd149dc44f1a23e2457ed32ae7cf62c978a0d24d7e7b9e402",
+        "FA_PLA_INF_TIANLANG_OUTLINE": "d7f4836c08a4b32fd149dc44f1a23e2457ed32ae7cf62c978a0d24d7e7b9e402"
+      },
+      "revision_27nov": "Wolf scaled down over the Light CAB spec-icon sabre (Osama 27 Nov 2026 22:3x); tools/icons-src/make_skywolf_sabre.py; pending his look in game"
     },
     "XIANGJIAN": {
       "profile": "XIANGJIAN",
@@ -214,7 +215,7 @@
     }
   },
   "source_urls": {
-    "LINE_AIRBORNE": "https://commons.wikimedia.org/wiki/File:\u4e2d\u56fd\u4eba\u6c11\u89e3\u653e\u519b\u7a7a\u964d\u5175\u519b\u81c2\u7ae0.svg",
+    "LINE_AIRBORNE": "https://commons.wikimedia.org/wiki/File:中国人民解放军空降兵军臂章.svg",
     "LEISHEN": "https://www.xinhuanet.com/mil/2015-12/28/c_128573417_4.htm",
     "XIANGJIAN": "https://finance.ifeng.com/a/20170625/15483459_0.shtml",
     "ROCKET_SOF": "https://www.junpin360.com/html/2015-03-30/4053.html",
