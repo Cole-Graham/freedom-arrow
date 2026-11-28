@@ -1136,6 +1136,8 @@ import osama_fh97_4xls6_1127;osama_fh97_4xls6_1127.apply(t,g,ok,rec)
 import heli_atgm_turn_1127;heli_atgm_turn_1127.apply(t,g,ok,rec)
 # ---------- CJ-10 held back (card removed, hidden) for model quality (Osama 27 Nov 04:4x). See cj10_held_1127.py.
 import cj10_held_1127;cj10_held_1127.apply(t,g,ok,rec)
+# ---------- J-31 hidden (cards removed, hidden in the Armory) (Osama 27 Nov 21:1x). See j31_held_1127.py.
+import j31_held_1127;j31_held_1127.apply(t,g,ok,rec)
 # ---------- Artillery smoke: Lynx Howitzer 10 -> 6; PLZ-10, PLZ-25, PLL-09, PLL-05 -> 8 (Osama 27 Nov 04:4x). See osama_arty_smoke_1127.py.
 import osama_arty_smoke_1127;osama_arty_smoke_1127.apply(t,g,ok,rec)
 # ---------- Mortars back to vanilla (range, smoke rows, prices); China mortars matched to their vanilla twins (Osama 27 Nov 11:3x). Replaces the
