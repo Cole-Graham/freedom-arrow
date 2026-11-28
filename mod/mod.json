@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.9 (China)",
-  "version": "0.9.8-dev.7",
+  "version": "0.9.8-dev.8",
   "type": "modpack",
-  "description": "Freedom Arrow 0.9.8-dev.7: next-patch dev build (codex/development 0393367a): dev.6 + every change queued since (helicopter ATGM 160 deg/s, Basic Hangar Indoors, ZSD-251, airborne armour, Sprut = BMP-2, Home cards) + model stage (ZTZ-99B Arsenal look v5, ZBD/ZSD-05 marine family look, CTL-181 glass). Needs Freedom Arrow — Models and Music 0.2.113.",
+  "description": "Freedom Arrow 0.9.8-dev.8: next-patch dev build (codex/development da7770a4): dev.7 + queued balance (MBT prices/order, ZTZ-100 APS/armour, HJ-10, QLZ-87, ZTQ-15 Light, VU-T10 speed, ZSL-92B ATGM, PLAN spec name), deck-code button fix, FAModels 0.3.51 + model stage: 5-step Arsenal look on every ground vehicle, tank/IFV set pieces (300k-ish meshes, x2 colour), Lynx family. Needs Freedom Arrow — Models and Music 0.2.114.",
   "repo": "Cole-Graham/freedom-arrow"
 }
