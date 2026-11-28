@@ -1,7 +1,7 @@
 """Light tank prices (Osama 28 Nov 2026 00:3x PST, thread 1567745029781454889: "M10 booker to 85 pts, ztl-11 to 80 pts, m8 ags 65 pts ... double check
-those points as a sanity check"): M10 Booker M35 (453) 100 -> 85; the M10 Booker XM913 card (720) keeps its +10 over the M35, 110 -> 95; ZTL-11
-(938) 90 -> 80; M8 AGS (183) 70 -> 65. Base Cost only: OriginalCost 0 on all four and no loadout swaps to another unit row (checked). Put-only."""
-PRICES = {453: ('M10 Booker M35', 100, 85), 720: ('M10 Booker XM913', 110, 95), 938: ('ZTL-11', 90, 80), 183: ('M8 AGS', 70, 65)}
+those points as a sanity check"): ZTL-11 (938) 90 -> 80; M8 AGS (183) 70 -> 65. The M10 Booker stays as it is (M35 100, XM913 110): Osama 00:4x "I meant
+the m35 booker, lets leave it at 100 right now". Base Cost only: OriginalCost 0 on both and no loadout swaps to another unit row (checked). Put-only."""
+PRICES = {938: ('ZTL-11', 90, 80), 183: ('M8 AGS', 70, 65)}
 
 
 def apply(t, g, ok, rec):
