@@ -1191,7 +1191,7 @@ import osama_marines_qmk_1127;osama_marines_qmk_1127.apply(t,g,ok,rec)
 import osama_tiger_brigade_1127;osama_tiger_brigade_1127.apply(t,g,ok,rec)
 import unit_standards
 import roc_hook;roc_hook.apply(t,g,ok,rec,recheck=lambda:(disposable_launchers_1123.check(t,ok,a.vanilla),weapon_coverage_check.check(t,patches,ok),unit_standards.check(t,ok,rec)))
-# ---------- Ground optics Proposal W (Lateralus 28 Nov 2026 10:4x, "Ok queue up W proposal"): tiers 900/1300/1450/1650/2300/2800 -> 450/700/925/1375/1950/2525,
+# ---------- Ground optics Proposal W (Lateralus 28 Nov 2026 10:4x, "Ok queue up W proposal"): tiers 900/1300/1450/1650/2300/2800 -> 450/700/925/1375/1950/2500,
 # one spotting cap 1075 (Exceptional 1300). After roc_hook so ROC sensor rows move too. See lateralus/optics_w_1128.py.
 import optics_w_1128;spotting_caps=optics_w_1128.apply(t,g,ok,rec)
 # Unit standards on the final data (docs/development/UNIT-STANDARDS.md, Lateralus 26 Nov 2026): fails on a new squad that breaks the launcher or

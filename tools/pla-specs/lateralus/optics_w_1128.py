@@ -1,6 +1,6 @@
 """Ground optics "Proposal W" (Lateralus 28 Nov 2026 10:4x PST, thread 1572962048705429598, "Ok queue up W proposal").
 Ground optics tiers (raw, card metres = raw x 2) and the spotting cap of SpottingCap.cs:
-  Bad 900 -> 450, Medium 1300 -> 700, Medium+ 1450 -> 925, Good 1650 -> 1375, Very Good 2300 -> 1950, Exceptional 2800 -> 2525.
+  Bad 900 -> 450, Medium 1300 -> 700, Medium+ 1450 -> 925, Good 1650 -> 1375, Very Good 2300 -> 1950, Exceptional 2800 -> 2500 (2525 until 28 Nov 11:4x, Lateralus: "use 2500").
   Cap: per tier 500 / 600 / 700 / 875 / 1000 / 1200 -> one cap 1075 (2150 m) for every tier, 1300 (2600 m) for Exceptional.
 Why: with the per-tier cap at 43-56% of the optics, every unit with stealth >= ~0.45 hit the cap in the open, so vehicles, recon vehicles and
 infantry were all seen at the same range; and the card had to show the cap instead of the optics. With W the cap binds only for vehicles seen by
@@ -9,10 +9,10 @@ the forest walk (option B) are unchanged. Drones (4650 / 5250 / 6400, caps 2000 
 Calculator: Optics and Stealth sheet 1oxreXr0ydZR2PD3pM3c74V2Ju6fBdpySVAq5KDZ-Wbo, tab "Proposal W". Existing rows only: every sensor row whose
 ground optics is an FA tier value is rewritten in place, so all units on that row (any nation, ROC included) move together."""
 
-TIERS = {900.0: 450.0, 1300.0: 700.0, 1450.0: 925.0, 1650.0: 1375.0, 2300.0: 1950.0, 2800.0: 2525.0}
+TIERS = {900.0: 450.0, 1300.0: 700.0, 1450.0: 925.0, 1650.0: 1375.0, 2300.0: 1950.0, 2800.0: 2500.0}
 GROUND_CAP, EXCEPTIONAL_CAP = 1075.0, 1300.0
 # OpticsGround -> cap (raw) for spotting-caps.json. 0 = planes, 50 = blind optics, drones keep their 0.9.3 caps.
-CAPS = {0.0: 0.0, 50.0: 50.0, **{w: (EXCEPTIONAL_CAP if w == 2525.0 else GROUND_CAP) for w in TIERS.values()},
+CAPS = {0.0: 0.0, 50.0: 50.0, **{w: (EXCEPTIONAL_CAP if w == 2500.0 else GROUND_CAP) for w in TIERS.values()},
         4650.0: 2000.0, 5250.0: 2250.0, 6400.0: 2750.0}
 
 
