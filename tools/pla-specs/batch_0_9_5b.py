@@ -1145,6 +1145,8 @@ import plane_high_optics_1127;plane_high_optics_1127.apply(t,g,ok,rec)
 import zsd251_1127;zsd251_1127.apply(t,g,ok,rec)
 # ---------- ZTZ-99G 180 -> 165 pts (Osama 27 Nov 17:2x). See osama_ztz99g_price_1127.py.
 import osama_ztz99g_price_1127;osama_ztz99g_price_1127.apply(t,g,ok,rec)
+# ---------- ZTZ-96B 150, ZTZ-96A 125, both front KE 600, both cards to PLAN (Osama 27 Nov 17:2x). See osama_ztz96_marines_1127.py.
+import osama_ztz96_marines_1127;osama_ztz96_marines_1127.apply(t,g,ok,rec)
 import unit_standards
 import roc_hook;roc_hook.apply(t,g,ok,rec,recheck=lambda:(disposable_launchers_1123.check(t,ok,a.vanilla),weapon_coverage_check.check(t,patches,ok),unit_standards.check(t,ok,rec)))
 # Unit standards on the final data (docs/development/UNIT-STANDARDS.md, Lateralus 26 Nov 2026): fails on a new squad that breaks the launcher or
