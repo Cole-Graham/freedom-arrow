@@ -69,7 +69,7 @@ static class LangNames
     static string Pick(LocalizationService s,(string en,string zh) p,string via)
     {
         string code="";try{code=s?.CurrentLanguage??"";}catch{}
-        if(code!=lang){lang=code;var c=code.Trim().ToLowerInvariant();chinese=c.StartsWith("zh")||c.StartsWith("chi")||c.Contains("chin");   // ROC 28 Nov: Shawn's Chinese game reports 'chi' (ISO 639-2) and got EnglishMelonLogger.Msg($"FREEDOM_ARROW_LANG_NAMES language '{code}': {(chinese?"Chinese":"English")}");}
+        if(code!=lang){lang=code;var c=code.Trim().ToLowerInvariant();chinese=c.StartsWith("zh")||c.StartsWith("chi")||c.Contains("chin");/* 28 Nov: Shawn's Chinese game reports 'chi' (ISO 639-2) and got English */MelonLogger.Msg($"FREEDOM_ARROW_LANG_NAMES language '{code}': {(chinese?"Chinese":"English")}");}
         if(via=="key"&&!loggedKey){loggedKey=true;MelonLogger.Msg($"FREEDOM_ARROW_LANG_NAMES first name via TryResolveSimpleKey: '{p.en}'");}
         if(via=="part"&&!loggedPart){loggedPart=true;MelonLogger.Msg($"FREEDOM_ARROW_LANG_NAMES first name via GetLocalizedStringPart: '{p.en}'");}
         return chinese?p.zh:p.en;
