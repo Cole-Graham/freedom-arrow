@@ -2,7 +2,8 @@
 Whistling Arrows 响箭 (1184): 3 -> 4 men (the 4th is a copy of the plain QBZ-192 rifleman, death priority 3; the man removed on 20 Nov was a QBU-10
 marksman) and 5 -> 4 HP per man: squad pool 15 -> 16 (health per soldier = Armors.MaxHealthPoints / men, docs/engine/damage-falloff.md). Armour
 stays 8. The armour link moves to an existing row equal to vanilla 279 except MaxHealthPoints 16 (ability-row-reuse rule); only when none exists is
-a copy added. Price: osama_whistling_price_1127. Adds rows, so it runs before the plb scope."""
+a copy added. Price: osama_whistling_price_1127.
+28 Nov 00:1x (Osama, China cosmetic work thread: "whistling arrows should be 20 hp"): pool 16 -> 20, i.e. 5 HP per man again. Adds rows, so it runs before the plb scope."""
 
 
 def apply(t, g, ok, rec):
@@ -16,13 +17,13 @@ def apply(t, g, ok, rec):
     g.add('SquadMembersJson', plain[0], {})
     base = AR[279]; ign = {'Id', 'Name', 'MaxHealthPoints'}
     same = lambda a: all(a.get(k) == base.get(k) for k in set(a) | set(base) if k not in ign)
-    hit = [k for k, a in AR.items() if a and same(a) and a.get('MaxHealthPoints') == 16]
-    row = hit[0] if hit else g.add('ArmorsJson', base, {'Name': 'Armor Infantry Shock 4Men 4HP', 'MaxHealthPoints': 16})
+    hit = [k for k, a in AR.items() if a and same(a) and a.get('MaxHealthPoints') == 20]
+    row = hit[0] if hit else g.add('ArmorsJson', base, {'Name': 'Armor Infantry Shock 4Men', 'MaxHealthPoints': 20})
     (link,) = rows('UnitArmorsJson', UnitId=1184)
     a = AR[link['ArmorId']]
     ok(a['ArmorValue'] == 8 and a['MaxHealthPoints'] == 15, ('armour 8 / 15 before', a['ArmorValue'], a['MaxHealthPoints']))
     old = link['ArmorId']; g.put('UnitArmorsJson', link['Id'], {'ArmorId': row})
     kit = sorted(W[m['PrimaryWeaponId']]['HUDName'] + (' + ' + W[m['SpecialWeaponId']]['HUDName'] if m.get('SpecialWeaponId') else '') for m in rows('SquadMembersJson', UnitId=1184))
     ok(len(kit) == 4 and kit.count('QBZ-192') == 2, ('kit after', kit))
-    rec['osama_whistling_hp_1127'] = {'men': [3, 4], 'hp_per_man': [5, 4], 'pool': [15, 16], 'armor_row': [old, row], 'row_reused': bool(hit), 'kit': kit}
+    rec['osama_whistling_hp_1127'] = {'men': [3, 4], 'hp_per_man': [5, 5], 'pool': [15, 20], 'armor_row': [old, row], 'row_reused': bool(hit), 'kit': kit}
     print('WHISTLING ARROWS', rec['osama_whistling_hp_1127'])
