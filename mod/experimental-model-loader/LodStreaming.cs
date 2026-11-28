@@ -75,7 +75,7 @@ public partial class Mod
             int L = -1; for (int k = u.files.Count - 1; k >= 0; k--) if (u.byLevel[k] == null) { L = k; break; }
             if (L < 0) { lodUpgrades.RemoveAt(i); continue; }
             if (!StreamReady(u.files[L])) continue;
-            if (SinceMs(budgetStart) > ModelBudgetMs) { modelsDeferredThisFrame++; return; }
+            if (FrameMs() > FrameBudgetMs) { modelsDeferredThisFrame++; return; }   // 0.3.52: the shared frame budget
             var made = new List<(GameObject part, string bone)>();
             try
             {

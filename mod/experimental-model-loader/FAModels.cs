@@ -8,7 +8,7 @@ using Il2CppBrokenArrow.DataBase.Models;
 using System.Text.Json;
 using Il2CppBrokenArrow.Shared.Ecs.MemoryController;
 
-[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.51-np.1", "Freedom Arrow")]
+[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.52-ovn.1", "Freedom Arrow")]
 [assembly: MelonGame(null, "BrokenArrow")]
 namespace FAModels;
 
@@ -134,11 +134,16 @@ public partial class Mod : MelonMod
     {
         // 0.3.34 (5v5 detail log: "visibility sync" 16+ ms frames): units spawned together refreshed their renderer lists in the same check,
         // every 15 s. At most 8 refreshes per check now (0.2 s apart); a unit over the limit keeps its list until a later check.
-        int refreshes = 0;
-        for (int i = live.Count - 1; i >= 0; i--)
+        // 0.3.52 (overnight run A: the 0.2 s pass grew to ~5 ms per call with 270 units): every frame checks a slice of the list, the whole
+        // list about every 12 frames (0.2 s at 60 fps), and refreshes at most 2 renderer lists per frame.
+        int refreshes = 0, n = Math.Min(live.Count, Math.Max(8, (live.Count + 11) / 12));
+        for (int c = 0; c < n && live.Count > 0; c++)
         {
+            if (syncIdx >= live.Count) syncIdx = 0;
+            int i = syncIdx;
             var (root, unit) = live[i];
             if (root == null) { live.RemoveAt(i); continue; }
+            syncIdx++;
             int k = root.GetInstanceID();
             if (!origs.TryGetValue(k, out var os) || os.Count == 0) continue;
             bool vis = false;
@@ -147,7 +152,7 @@ public partial class Mod : MelonMod
             // to its dead model (AnimationHub.DeadModel active), our model goes too. The vanilla wreck stays hidden, so nothing remains.
             if (vis && IsDead(root, k)) { vis = false; if (deadLogged.Add(k)) MelonLogger.Msg($"FAMODELS {unit}: destroyed, model removed (no wreck)"); }
             // 0.3.31: the renderer list is refreshed every 15 s (was: every 5 s, plus a native null check of every renderer every 0.2 s).
-            if (!famRenderers.TryGetValue(k, out var rs) || (refreshes < 8 && Time.realtimeSinceStartup - famRenderersT.GetValueOrDefault(k) > 15f))
+            if (!famRenderers.TryGetValue(k, out var rs) || (refreshes < 2 && Time.realtimeSinceStartup - famRenderersT.GetValueOrDefault(k) > 15f))
             {
                 refreshes++;
                 var list = new List<MeshRenderer>();var h = root.transform.Find("FAM_holder");
@@ -159,7 +164,7 @@ public partial class Mod : MelonMod
         }
         if (famRenderers.Count > 2000) { famRenderers.Clear(); famRenderersT.Clear(); hubs.Clear(); }
     }
-    static float syncT, yawT;
+    static float syncT, yawT; static int syncIdx;
     static readonly Dictionary<int, float> lastYaw = new(), lastTurn = new(), lastMove = new();
     static readonly Dictionary<int, Vector3> lastPos = new();
     // Turret check: every 2 s, log any FAM unit whose turret_0 turned more than 10 degrees since its last report.
@@ -214,9 +219,15 @@ public partial class Mod : MelonMod
     static readonly string[] secNames = { "preload", "body swap", "body poll", "infantry weapons", "visibility sync", "camera", "cockpit upgrade", "camera, cockpits and model swaps", "PLA review" };
     static int slowUpdates;
     static long Mark(int i, long t0) { long t = System.Diagnostics.Stopwatch.GetTimestamp(); sec[i] += t - t0; return t; }
+    // 0.3.52 (overnight test 28 Nov 2026, run A: 28 of 36 frames over 50 ms followed FAModels work, 16-55 ms in one update): body swaps, body
+    // polls, model swaps, detail levels and heavy preload levels each had their own 6 ms budget, so a squad plus a vehicle spawning in one frame
+    // stacked 18-55 ms. They now share one FrameBudgetMs per frame, counted from the start of this update; each kind still does at least one
+    // item per frame so nothing waits forever.
+    internal static long frameT0; internal const double FrameBudgetMs = 4;
+    internal static double FrameMs() => SinceMs(frameT0);
     public override void OnUpdate()
     {
-        Array.Clear(sec, 0, sec.Length); long start = System.Diagnostics.Stopwatch.GetTimestamp(), t = start;
+        Array.Clear(sec, 0, sec.Length); long start = System.Diagnostics.Stopwatch.GetTimestamp(), t = start; frameT0 = start;
         try { PerfFrame(); } catch (Exception ex) { MelonLogger.Error("FAMODELS perf: " + ex.Message); }
         try { HitchLog(); } catch { }
         try { MemoryLog(); } catch (Exception ex) { MelonLogger.Error("FAMODELS memory log: " + ex.Message); }
@@ -230,7 +241,7 @@ public partial class Mod : MelonMod
         t = Mark(2, t);
         try { TickInfantryWeapons(); } catch (Exception ex) { MelonLogger.Error("FAMODELS weapon poll: " + ex.Message); }
         t = Mark(3, t);
-        if (Time.realtimeSinceStartup - syncT > 0.2f) { syncT = Time.realtimeSinceStartup; try { SyncVisibility(); } catch (Exception ex) { MelonLogger.Error("FAMODELS sync: " + ex.Message); } }
+        try { SyncVisibility(); } catch (Exception ex) { MelonLogger.Error("FAMODELS sync: " + ex.Message); }
         t = Mark(4, t);
         try { TickVariants(); } catch (Exception ex) { MelonLogger.Error("FAMODELS variants: " + ex.Message); }
         try { UpdateRest(); } finally { t = Mark(7, t); SlowUpdateLog(start, t); }
@@ -265,7 +276,7 @@ public partial class Mod : MelonMod
             float wait = q.pass == 0 ? 0f : 1.0f;
             if (Time.realtimeSinceStartup - q.t < wait) continue;
             // 0.3.45: swaps stop for this frame after ModelBudgetMs (LodStreaming.cs); the rest wait hidden, as during the bone wait.
-            if (q.pass == 0 && q.e.file != "" && SinceMs(budgetStart) > ModelBudgetMs) { modelsDeferredThisFrame++; continue; }
+            if (q.pass == 0 && q.e.file != "" && modelSwapsThisFrame > 0 && FrameMs() > FrameBudgetMs) { modelsDeferredThisFrame++; continue; }
             try { if (!Apply(q.root, q.e, q.unit, q.pass == 0, Time.realtimeSinceStartup - q.t, stream: true)) continue; }
             catch (Exception ex) { MelonLogger.Error($"FAMODELS {q.unit}: replacement rejected; original retained: {ex}"); queue.RemoveAt(i); continue; }
             queue[i] = (q.root, q.e, q.unit, Time.realtimeSinceStartup, q.pass + 1);

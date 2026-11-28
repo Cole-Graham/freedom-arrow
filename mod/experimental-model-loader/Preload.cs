@@ -201,7 +201,7 @@ public partial class Mod
         if (heavyBuilt == 0) heavyT = Time.realtimeSinceStartup;
         for (int tries = preloadHeavy.Count; tries > 0 && preloadHeavy.Count > 0; tries--)
         {
-            if (SinceMs(budgetStart) > (curtainUp ? CurtainBudgetMs : ModelBudgetMs)) return;
+            if (curtainUp ? SinceMs(budgetStart) > CurtainBudgetMs : FrameMs() > FrameBudgetMs) return;   // 0.3.52: the shared frame budget in a match
             var f = preloadHeavy.Dequeue();
             if (KeptFam(f)) continue;
             if (!StreamReady(f)) { preloadHeavy.Enqueue(f); continue; }
