@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.9 (China)",
-  "version": "0.9.8-dev.9",
+  "version": "0.9.8-dev.10",
   "type": "modpack",
-  "description": "Freedom Arrow 0.9.8-dev.9: next-patch dev build (codex/development 426b40dc): dev.8 + infantry rework (Falcons 9, Mountaineers 12, Whistling Arrows 4 men 95 pts, Tiger Brigade / PAP AA Patrol hidden, Sea Dragons CQC kit, Marines QMK), ZSL-92 weapons package, Light CAB points, Flying Tigers ARWEN fix, deck-code row, indoor hangar facing, FAModels 0.3.51 (preload + perf logging), battle models to vanilla. Needs Freedom Arrow — Models and Music 0.2.116.",
+  "description": "Freedom Arrow 0.9.8-dev.10: next-patch dev build (codex/development 9496f2a7): dev.9 + ground optics rework (Proposal W: new optics, one ground spotting cap, coloured optics names on the card, LoS tool shows the cap), seeing into woods (forest sight option B; detection settings now ship, fixing dev.9), [1v1] Jelgavas Pils and Kadaga Military Base, RU PvE on Jelgavas Pils, local vs AI maps, PF-89B, Sky Wolf AA/AT loadouts, PF-98 back on Falcons and Mountaineers, light tank prices, one-layer TEST units, ZTZ-85-III removed. Needs Freedom Arrow — Models and Music 0.2.117.",
   "repo": "Cole-Graham/freedom-arrow"
 }
