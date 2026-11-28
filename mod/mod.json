@@ -1,8 +1,8 @@
 {
   "id": "freedomarrow.gameplay",
   "name": "Freedom Arrow — 0.9 (China)",
-  "version": "0.9.8-dev.6",
+  "version": "0.9.8-dev.7",
   "type": "modpack",
-  "description": "Freedom Arrow 0.9.8-dev.6: next-patch dev build (codex/development): dev.5 + every change queued since (smoke cap 8, plane optics, RANKED tag, maps) + every model change staged 27 Nov (Su-47, ZTZ-99 split models, ZSD-05 hull, over-cut restores and 4K sheets, CTL-181, HQ-12, PHL-16/PCL-181/SR-5 grime, Lynx NLOS re-bake, J-20 floor, Rafale finishes). Needs Freedom Arrow — Models and Music 0.2.112.",
+  "description": "Freedom Arrow 0.9.8-dev.7: next-patch dev build (codex/development 0393367a): dev.6 + every change queued since (helicopter ATGM 160 deg/s, Basic Hangar Indoors, ZSD-251, airborne armour, Sprut = BMP-2, Home cards) + model stage (ZTZ-99B Arsenal look v5, ZBD/ZSD-05 marine family look, CTL-181 glass). Needs Freedom Arrow — Models and Music 0.2.113.",
   "repo": "Cole-Graham/freedom-arrow"
 }
