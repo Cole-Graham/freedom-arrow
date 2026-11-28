@@ -8,7 +8,7 @@ using Il2CppBrokenArrow.DataBase.Models;
 using System.Text.Json;
 using Il2CppBrokenArrow.Shared.Ecs.MemoryController;
 
-[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.52-ovn.1", "Freedom Arrow")]
+[assembly: MelonInfo(typeof(FAModels.Mod), "FAModels", "0.3.52-ovn.3", "Freedom Arrow")]
 [assembly: MelonGame(null, "BrokenArrow")]
 namespace FAModels;
 
@@ -82,7 +82,8 @@ public partial class Mod : MelonMod
     static Camera cam; static float camCheck, camPicked; static string camWant = ""; static GameObject camTarget;
     static void CamTick()
     {
-        if (Time.realtimeSinceStartup - camCheck > 1f)
+        // 0.3.52-ovn.3: every 5 s (was 1 s): a missing cam.txt costs a ~1.5 ms folder scan under Wine.
+        if (Time.realtimeSinceStartup - camCheck > 5f)
         {
             camCheck = Time.realtimeSinceStartup;
             var f = Path.Combine(dir, "cam.txt"); var w = File.Exists(f) ? File.ReadAllText(f).Trim() : "off";
@@ -436,7 +437,7 @@ public partial class Mod : MelonMod
         // 0.3.31: distance detail levels like vanilla's LOD groups. A battle entry may name lighter copies ("lods": [l1, l2]); each level
         // gets its own parts, and a LODGroup switches between them at the stand-in's own distances (SetLevels). Level 0 is e.file.
         var files = new List<string> { e.file };
-        foreach (var lf in e.lods) if (lf != "" && File.Exists(Path.Combine(dir, lf))) files.Add(lf);
+        foreach (var lf in e.lods) if (lf != "" && FileExists(lf)) files.Add(lf);
         // 0.3.48 (Lateralus 25 Nov 15:3x: "The hitch when zooming in the first time is unacceptable"): back to 0.3.46. 0.3.47 started every
         // model on its lightest level and built heavier levels when the camera came close, which hitched on the first zoom-in.
         bool streamed = stream && !files.All(KeptFam);
@@ -454,7 +455,7 @@ public partial class Mod : MelonMod
         holder.transform.localPosition = new Vector3(e.offset[0], e.offset[1], e.offset[2]);
         holder.transform.localRotation = Quaternion.Euler(0, e.yaw, 0);
         holder.transform.localScale = Vector3.one * e.scale;
-        int verts = 0, parts = 0;
+        int verts = 0, parts = 0; double tA = sw.Elapsed.TotalMilliseconds, tB = 0, tC = 0, tD = 0, tE = 0;
         var byLevel = new List<Renderer>[files.Count];
         for (int k = 0; k < buildNow.Count; k++)
         {
@@ -462,6 +463,7 @@ public partial class Mod : MelonMod
             byLevel[L] = BuildLevel(holder, k == 0 ? fam : LoadFam(files[L], out _), L, made, ref v);
             if (k == 0) { verts = v; parts = made.Count; }
         }
+        tB = sw.Elapsed.TotalMilliseconds;
         // Line the turret up with the stand-in's turret bone (x/z), so it turns about its own ring; then reparent.
         bool aligned = false;
         foreach (var (part, bone) in made)
@@ -493,9 +495,12 @@ public partial class Mod : MelonMod
               var rp = root.transform.InverseTransformPoint(part.transform.position); var mr = part.GetComponentInChildren<MeshRenderer>(true);
               MelonLogger.Msg($"FAMODELS {unit}: {bone} -> {path} active={b.gameObject.activeInHierarchy} scale={b.lossyScale} partPos=({rp.x:F2},{rp.y:F2},{rp.z:F2}) bounds={(mr != null ? mr.bounds.center - root.transform.position : Vector3.zero)}"); }
         }
+        tC = sw.Elapsed.TotalMilliseconds;
         if (files.Count > 1) SetLevels(root, holder, byLevel, unit);
+        tD = sw.Elapsed.TotalMilliseconds;
         int hidden = Hide(root);
         holder.SetActive(true);
+        tE = sw.Elapsed.TotalMilliseconds;
         live.Add((root, unit));
         if (buildNow.Count < files.Count) QueueLodUpgrade(root, holder, unit, files, byLevel, made);
         try { ApplyPaint(root, unit); } catch (Exception ex) { MelonLogger.Warning("FAMODELS_PAINT apply: " + ex.Message); }
@@ -504,6 +509,8 @@ public partial class Mod : MelonMod
         foreach (int L in buildNow) NoteUse(files[L], root);
         if (!kept && inMenu) FreeUnused(MenuKeep, "menu");
         // 0.3.29: infantry weapon swaps log only with UserData/FAModels/verbose.txt (they were ~1,600 lines a session).
+        // 0.3.52-ovn.2 (overnight run B: every ZTQ-15 Light swap took 16 ms, other models 0 ms): where a slow swap spends its time.
+        if (sw.Elapsed.TotalMilliseconds > 5) MelonLogger.Msg($"FAMODELS swap time {unit}: load {loadMs:F1}, build {tB - tA:F1}, bones {tC - tB:F1}, levels {tD - tC:F1}, hide+activate {tE - tD:F1}, paint and rest {sw.Elapsed.TotalMilliseconds - tE:F1} ms");
         if (Verbose || !kept || !unit.StartsWith("infantry ")) MelonLogger.Msg($"FAMODELS {unit}: hid {hidden} renderer(s), added {parts} part(s), {verts} vertices from {files[buildNow[0]]} in {sw.Elapsed.TotalMilliseconds:F0} ms ({(kept ? "kept model" : $"loaded from file in {loadMs:F0} ms")}, after {age:F2} s){(buildNow.Count < files.Count ? $"; lightest of {files.Count} detail levels first, the others follow" : "")}");
         return true;
         }
@@ -526,7 +533,17 @@ public partial class Mod : MelonMod
     // go straight to the GPU: no PNG decode and no mip generation on the main thread, a quarter of the video memory, and no
     // CPU-side copy kept (non-readable). A model without .fat files still loads its PNGs, also kept non-readable now.
     // X.fat: "FAT1", int32 width, height, Unity TextureFormat, mip count, linear (0/1), data length, then the mip data.
-    static bool TexExists(string png) => File.Exists(Path.Combine(dir, Path.ChangeExtension(png, ".fat"))) || File.Exists(Path.Combine(dir, png));
+    // 0.3.52-ovn.3 (overnight run B: every swap of a painted unit took 15-16 ms in "paint and rest"): under Wine/Proton a File.Exists that misses
+    // makes a case-insensitive scan of the whole folder (UserData/FAModels holds ~7,800 files), and the paint code asked for missing scheme sheets
+    // (e.g. tex0@DustCamo) for every renderer of every spawn. Answers are cached for the session; the folder does not change in a match.
+    static readonly Dictionary<string, bool> texExists = new();
+    static bool TexExists(string png)
+    {
+        if (texExists.TryGetValue(png, out var e)) return e;
+        return texExists[png] = File.Exists(Path.Combine(dir, Path.ChangeExtension(png, ".fat"))) || File.Exists(Path.Combine(dir, png));
+    }
+    static readonly Dictionary<string, bool> fileExists = new();
+    static bool FileExists(string name) { if (fileExists.TryGetValue(name, out var e)) return e; return fileExists[name] = File.Exists(Path.Combine(dir, name)); }
     static Texture2D Tex(string png, bool linear)
     {
         var fat = Path.Combine(dir, Path.ChangeExtension(png, ".fat"));

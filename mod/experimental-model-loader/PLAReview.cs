@@ -10,7 +10,8 @@ public partial class Mod
     static int reviewUnit;
     static void TickPlaReview()
     {
-        if(Time.realtimeSinceStartup-reviewPoll<1)return;reviewPoll=Time.realtimeSinceStartup;
+        // 0.3.52-ovn.3: Arsenal-only tool; in a match the file check (a ~1.5 ms folder scan under Wine when the file is missing) is skipped.
+        if(battleScene||Time.realtimeSinceStartup-reviewPoll<1)return;reviewPoll=Time.realtimeSinceStartup;
         string file=Path.Combine(dir,"pla-review-unit.txt");if(!File.Exists(file))return;
         string request=File.ReadAllText(file).Trim();
         if(!int.TryParse(request.Split(':')[0],out int uid)||(uid!=901&&(uid<985||uid>1009)))return;

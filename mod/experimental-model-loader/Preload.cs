@@ -128,7 +128,7 @@ public partial class Mod
                             // budget (TickPreloadHeavy). A unit that spawns before its heavier levels are built shows the lightest and gets the
                             // rest over later frames (LodStreaming.cs). The levels are the ones Apply uses.
                             var levels = new List<string> { e.battle != "" ? e.battle : e.file };
-                            if (e.battle != "") levels.AddRange(e.lods.Where(lf => lf != "" && File.Exists(Path.Combine(dir, lf))));
+                            if (e.battle != "") levels.AddRange(e.lods.Where(lf => lf != "" && FileExists(lf)));
                             var light = levels[levels.Count - 1];
                             if (preloadSeen.Add(light)) { preload.Enqueue(light); Prefetch(light); added++; }
                             foreach (var lf in levels.Take(levels.Count - 1).Reverse()) if (preloadSeen.Add(lf)) { preloadHeavy.Enqueue(lf); Prefetch(lf); readOnly++; }
