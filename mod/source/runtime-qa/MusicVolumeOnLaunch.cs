@@ -17,6 +17,8 @@ static class MusicVolumeOnLaunch
 {
     const int Music=70;
     const string Marker="FreedomArrow.MusicDefaultApplied";
+    const int Night=60;   // HangarEnvironmentType.Night
+    const string NightMarker="FreedomArrow.HangarNightDefaultApplied";
     static bool done;
     public static void Install(HarmonyLib.Harmony harmony)
     {
@@ -28,6 +30,7 @@ static class MusicVolumeOnLaunch
     {
         if(done)return;
         done=true;
+        HangarNight(__instance);
         try
         {
             if(PlayerPrefs.GetInt(Marker,0)==1){MelonLogger.Msg("FREEDOM_ARROW_MUSIC_ON_LAUNCH not first start: music slider kept at "+__instance.GetSettingValue(SettingType.VolumeMusic,false));return;}
@@ -37,5 +40,20 @@ static class MusicVolumeOnLaunch
             MelonLogger.Msg($"FREEDOM_ARROW_MUSIC_ON_LAUNCH first start: music slider {before} -> {__instance.GetSettingValue(SettingType.VolumeMusic,false)}");
         }
         catch(Exception e){MelonLogger.Error("FREEDOM_ARROW_MUSIC_ON_LAUNCH_FAILED: the slider keeps the player's value. "+e.Message);}
+    }
+    static void HangarNight(SettingsService __instance)
+    {
+        // Hangar time of day (Osama 27 Nov 2026 17:1x PST, thread 1567745029781454889: "make the default hanger night on first install"): game setting
+        // HangarEnvironment (SettingType 46; the Arsenal's time button saves HangarEnvironmentType there, Night = 60, read from Osama's saved settings).
+        // Set once per install with its own marker, the same call as the music slider; later choices stay.
+        try
+        {
+            if(PlayerPrefs.GetInt(NightMarker,0)==1)return;
+            int before=__instance.GetSettingValue(SettingType.HangarEnvironment,false);
+            if(before!=Night)__instance.ChangeSettings(SettingType.HangarEnvironment,Night,true);
+            PlayerPrefs.SetInt(NightMarker,1);PlayerPrefs.Save();
+            MelonLogger.Msg($"FREEDOM_ARROW_HANGAR_NIGHT first start: hangar time {before} -> {__instance.GetSettingValue(SettingType.HangarEnvironment,false)}");
+        }
+        catch(Exception e){MelonLogger.Error("FREEDOM_ARROW_HANGAR_NIGHT_FAILED: the hangar keeps the game's time. "+e.Message);}
     }
 }
