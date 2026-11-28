@@ -38,7 +38,7 @@ CARDS = {
     'ROC M110A2': ('M110A2', 422, '2S7M Malka', None),
     'ROC Mirage 2000-5': ('Mirage 2000-5', 285, 'F-16C Fighting Falcon', None),
     'ROC Thunderbolt-2000': ('Thunderbolt-2000', 376, 'M270A1 MLRS', None),
-    'ROC Tien Kung III': ('Tien Kung III', 251, 'Patriot PAC-3', None),
+    'ROC Tien Kung III': ('Tien Kung III', 163, 'Patriot PAC-2', None),   # Shawn 28 Nov 02:3x: PAC-2 data (was the PAC-3)
     'ROC UH-60M': ('UH-60M Black Hawk', 81, 'UH-60M Blackhawk', None),
     # 9 reused US units
     'ROC M1167': ('M1167 HMMWV TOW', 6, 'Humvee TOW-2', None),
@@ -82,6 +82,8 @@ CARDS = {
     # Shawn 27 Nov 20:4x: "Add one more SF called ASSC" (Airborne Special Service Company, "Ghosts of Liangshan": all-black CQB direct-action
     # operators). Template Delta Force (vanilla SOF assault squad). Added last.
     'ROC ASSC': ('ASSC', 150, 'Delta Force', 95),
+    # Shawn 28 Nov 02:3x: "add AH1W to ROC, duplicate the AH-1W data and price". Added last.
+    'ROC AH-1W': ('AH-1W Supercobra', 87, 'AH-1W Supercobra', None),
 }
 REMOVED = set()   # 27 Nov 02:2x the CM-33 card was removed; 27 Nov 18:4x it comes back as a CM-32 variant (VARIANTS)
 # Shawn 27 Nov 18:0x: "make this as a customization of Mech. Riflemen rather than a separated unit" (also Marine AT -> Marine, Reserver Kestrel ->
@@ -334,7 +336,10 @@ VEH = {
     'ROC Land Sword II': {'rename': {619: 'TC-2 SAM', 620: 'TC-2 SAM'}, 'ammo': {'AMRAAM': 'TC-2 Sky Sword II'}, 'drop': {621, 620},   # 19:1x: only 4x TC-2
                           'ui': [('AIM-120', 'TC-2')]},
     # Shawn 27 Nov 19:1x: "No M240 on Tien Kung III", "Duplicate this to Tien Kung III" (PAC-3 MSE: no self-defence weapon, default armour)
-    'ROC Tien Kung III': {'rename': {347: 'TK-III', 366: 'TK-III'}, 'ammo': {'MIM-104F': 'TK-III'}, 'drop': {27, 18, 21}, 'drop_options': 'Bkit'},
+    # Shawn 28 Nov 02:3x: "Duplicate the data of PAC-2 to TK-III but with Final Homing", "TK-III only has 4 x Missiles, no other options",
+    # "The Price of Tien Kung III becomes 240": PAC-2 4-missile launcher, the PAC-2 round with the PAC-3 round's seeker, no option rows, 240 pts.
+    'ROC Tien Kung III': {'rename': {236: 'TK-III'}, 'ammo': {'MIM-104E GEM+': 'TK-III'}, 'ammo_from': {'TK-III': {'Seeker': 263}},
+                          'drop': {238, 27, 18, 21}, 'drop_options': 'Bkit', 'default': 236, 'flatten': True, 'set_cost': 240},
     'ROC Kung Feng VI': {'rename': {92: 'Kung Feng VI', 712: 'Kung Feng VI'}, 'ammo': {'122mm HE': '117mm HE', '122mm SMOKE': '117mm WP'},
                          'drop': {571, 573}, 'rounds': {'Kung Feng VI': 45}, 'ui_auto': True},
     'ROC Thunderbolt-2000': {'rename': {263: 'MK45 230mm', 264: ('MK15 117mm', 92), 265: ('MK30 180mm', 263)},
@@ -468,6 +473,9 @@ def vehicles(t, g, ok, res, rows):
             if r['WeaponId'] not in reach: g.remove('WeaponAmmunitionsJson', r['Id'])
         missing = sorted(reach - {r['WeaponId'] for r in rows('WeaponAmmunitionsJson', UnitId=uid)})
         ok(not missing, (card, 'weapons without ammo rows', missing))
+        for name, fields in spec.get('ammo_from', {}).items():   # copy single fields from another (FA) round, e.g. the seeker
+            for (src_a, nm), aid in made_a.items():
+                if nm == name: g.put('AmmunitionsJson', aid, {f: A[src][f] for f, src in fields.items()})
         # 6. option names and price
         for o in opts(uid):
             ui = o.get('UIName') or ''
@@ -507,13 +515,16 @@ def vehicles(t, g, ok, res, rows):
             for m in rows('ModificationsJson', UnitId=uid):
                 os_ = rows('OptionsJson', ModificationId=m['Id']); d = next((o for o in os_ if o['IsDefault']), os_[0])
                 extra += d.get('Cost') or 0; keep |= {d.get(f'Ability{i}Id') for i in (1, 2, 3)} - {None, 0}
-                guns |= {d[f] for f in tfields if d.get(f)}
+                guns |= {d[f] for f in tfields if d.get(f) and tw(d[f])}   # an empty slot turret (TK-III 'no MG') is not mounted
                 for f, tab in (('ArmorId', 'ArmorsJson'), ('MobilityId', 'MobilityJson')):
                     if d.get(f): base[f] = t[tab][d[f]]['Name'] + ' ' + card
                 for o in os_: g.remove('OptionsJson', o['Id'])
                 g.remove('ModificationsJson', m['Id'])
             for tab, f, target in (('UnitArmorsJson', 'ArmorId', 'ArmorsJson'), ('UnitPropulsionsJson', 'MobilityId', 'MobilityJson')):
-                rs = rows(tab, UnitId=uid); hit = [r for r in rs if t[target][r[f]]['Name'] == base.get(f)]
+                rs = rows(tab, UnitId=uid)
+                if base.get(f) is None:   # no option picks this row (TK-III mobility): the unit keeps its own single row
+                    ok(len(rs) == 1, (card, 'flatten', tab, 'rows without an option choice', len(rs))); continue
+                hit = [r for r in rs if t[target][r[f]]['Name'] == base.get(f)]
                 ok(len(hit) == 1, (card, 'flatten base', tab, base.get(f)))
                 for r in rs:
                     if r not in hit: g.remove(tab, r['Id'])
@@ -532,6 +543,7 @@ def vehicles(t, g, ok, res, rows):
                 ok(all(T[r['TurretId']]['IsDefault'] or T[r['TurretId']].get('ParentTurretId') for r in rows('TurretUnitsJson', UnitId=uid)), (card, 'flatten turrets'))
                 res[card]['turrets'] = sorted(W[w]['HUDName'] for r in rows('TurretUnitsJson', UnitId=uid) for w in tw(r['TurretId']))
             c = t['Units'][uid]['Cost'] + extra; g.put('Units', uid, {'Cost': c}); res[card]['cost'] = c
+        if spec.get('set_cost'): g.put('Units', uid, {'Cost': spec['set_cost']}); res[card]['cost'] = spec['set_cost']
         after = sorted({W[r['WeaponId']]['HUDName'] for r in rows('WeaponAmmunitionsJson', UnitId=uid)})
         out[card] = {'before': before, 'after': after, 'options': [o.get('UIName') for o in opts(uid)], 'cost': t['Units'][uid]['Cost'],
                      'turrets_copied': len(tmap)}

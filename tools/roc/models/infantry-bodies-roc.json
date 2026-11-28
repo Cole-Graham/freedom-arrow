@@ -225,5 +225,75 @@
    "roc_assc_b_2.fas"
   ],
   "altCutout": true
+ },
+ {
+  "unitId": 5054,
+  "lods": [
+   "roc_infantry_0.fas",
+   "roc_infantry_1.fas",
+   "roc_infantry_2.fas"
+  ],
+  "offset": [
+   0,
+   0,
+   0
+  ],
+  "crew": true
+ },
+ {
+  "unitId": 5049,
+  "lods": [
+   "roc_infantry_0.fas",
+   "roc_infantry_1.fas",
+   "roc_infantry_2.fas"
+  ],
+  "offset": [
+   0,
+   0,
+   0
+  ],
+  "crew": true
+ },
+ {
+  "unitId": 5050,
+  "lods": [
+   "roc_infantry_0.fas",
+   "roc_infantry_1.fas",
+   "roc_infantry_2.fas"
+  ],
+  "offset": [
+   0,
+   0,
+   0
+  ],
+  "crew": true
+ },
+ {
+  "unitId": 5051,
+  "lods": [
+   "roc_infantry_0.fas",
+   "roc_infantry_1.fas",
+   "roc_infantry_2.fas"
+  ],
+  "offset": [
+   0,
+   0,
+   0
+  ],
+  "crew": true
+ },
+ {
+  "unitId": 5025,
+  "lods": [
+   "roc_infantry_0.fas",
+   "roc_infantry_1.fas",
+   "roc_infantry_2.fas"
+  ],
+  "offset": [
+   0,
+   0,
+   0
+  ],
+  "crew": true
  }
 ]
