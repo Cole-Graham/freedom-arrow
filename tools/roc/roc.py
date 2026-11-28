@@ -28,7 +28,7 @@ CARDS = {
     'ROC CM-32': ('CM-32 Clouded Leopard', 22, 'Stryker ICV', None),
     'ROC CM-33': ('CM-33 Clouded Leopard', 22, 'Stryker ICV', None),
     'ROC CM-34': ('CM-34 Clouded Leopard', 22, 'Stryker ICV', None),                 # Shawn 27 Nov 14:4x: name without 'IFV'             # sheet: CV-9035 (DLC)
-    'ROC F-5F': ('F-5F Tiger II', 285, 'F-16C Fighting Falcon', None),
+    'ROC F-5F': ('F-5E Tiger II', 285, 'F-16C Fighting Falcon', None),
     'ROC F-16V': ('F-16V Viper', 284, 'F-16V Viper', None),
     'ROC F-16A': ('F-16A Fighting Falcon', 285, 'F-16C Fighting Falcon', None),
     'ROC Kung Feng VI': ('Kung Feng VI', 92, '9K51 Grad', None),
@@ -79,6 +79,9 @@ CARDS = {
     'ROC AN/TWQ-1 Avenger': ('AN/TWQ-1 Avenger', 10, 'AN/TWQ-1 Avenger', None),
     # Shawn 27 Nov 19:1x: "Add MTV to ROC deck" (FA MTV data; drivers = Mech. Riflemen model, no weapons, through the ROC model). Added last.
     'ROC MTV': ('MTV', 390, 'MTV', None),
+    # Shawn 27 Nov 20:4x: "Add one more SF called ASSC" (Airborne Special Service Company, "Ghosts of Liangshan": all-black CQB direct-action
+    # operators). Template Delta Force (vanilla SOF assault squad). Added last.
+    'ROC ASSC': ('ASSC', 150, 'Delta Force', 95),
 }
 REMOVED = set()   # 27 Nov 02:2x the CM-33 card was removed; 27 Nov 18:4x it comes back as a CM-32 variant (VARIANTS)
 # Shawn 27 Nov 18:0x: "make this as a customization of Mech. Riflemen rather than a separated unit" (also Marine AT -> Marine, Reserver Kestrel ->
@@ -97,7 +100,8 @@ VARIANTS = [('ROC CM-32', 'M2 Browning', 9, [('ROC CM-33', 'T91 40mm AGL', 10), 
 # Kestrel) show their base card's art; SF Snipers M107 and Marine Frogmen CQC keep the parent art until Shawn maps them.
 PORTRAITS = {'ROC Reserver': 'RESERVER', 'ROC Reserver Kestrel': 'RESERVER', 'ROC Marine': 'MARINE', 'ROC Marine AT': 'MARINE',
              'ROC SF Snipers': 'SF_SNIPERS', 'ROC SF Section': 'SF_SECTION', 'ROC SF Scout': 'SF_SCOUT', 'ROC Marine Frogmen': 'MARINE_FROGMEN',
-             'ROC Reserve Marine': 'RESERVE_MARINE', 'ROC Mech. Riflemen': 'MECH_RIFLEMEN', 'ROC Mech. Riflemen T112': 'MECH_RIFLEMEN'}
+             'ROC Reserve Marine': 'RESERVE_MARINE', 'ROC Mech. Riflemen': 'MECH_RIFLEMEN', 'ROC Mech. Riflemen T112': 'MECH_RIFLEMEN',
+             'ROC SF Snipers M107': 'SF_SNIPERS', 'ROC Marine Frogmen CQC': 'MARINE_FROGMEN'}   # 20:4x: "Art for SF Snipers M107 and Marine Frogmen CQC: yes"
 SPEC_NAME = 'ROC Joint Arms Coastal'
 SPEC_UI = 'Joint Arms Battalion and Coastal Operations Command 聯合兵種營及濱海作戰指揮部'
 
@@ -255,6 +259,10 @@ SQUADS = {
                        {'T91 CQC': 1920, 'T75 SFAW': 1200, 'AXMC': 60, 'APILAS': 4, 'M1014': 80}),
     'ROC SF Snipers': (3, 8, [('T91K1', 1), ('REPR-20', 1), ('AXMC', 1)], [], {}),
     'ROC SF Snipers M107': (3, 8, [('T91K1', 1), ('REPR-20', 1), ('M107', 1)], [], {}),
+    # ASSC (Shawn's equipment sheet: M4A1 / T91 carbines, Remington 870 / Mossberg shotguns, AXMC precision rifle, CQB and hostage rescue):
+    # 6 men, SOF armour 10; 4 M4A1, 1 shotgun (M1014, the FA SOF shotgun), 1 AXMC; 2 M72A10 LAW (one per carrier) and a flashbang.
+    'ROC ASSC': (6, 10, [('M4A1', 4), ('M1014', 1), ('AXMC', 1)], [('M72A10 LAW', 2), ('Flashbang', 1)],
+                 {'M4A1': 1920, 'M1014': 80, 'AXMC': 60, 'M72A10 LAW': 2, 'Flashbang': 1}),
 }
 
 
