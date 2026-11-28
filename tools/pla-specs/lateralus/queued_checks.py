@@ -268,8 +268,7 @@ if m>=key('0.9.5-dev.34'):
         # PLA Light Brigade branch (Osama 26 Nov 2026 10:4x, pla_light_brigade_order_1126.py, checked there): weapon list order and death priority
         # re-set by the vanilla rule for the squads the branch re-kitted (Sea Dragons, Flying Tigers, Falcons, Taishan Eagles, Airborne, QLU-11 Team, Mountaineers).
         if m>=key('0.9.7l-dev.14'):_want={i:f for i,f in _want.items() if (_t.get(int(i)) or {}).get('UnitId') not in (1191,1187,1185,1203,1136,1140,1196)}
-        # 0.9.8-dev.9 (Osama 27 Nov 2026 22:5x, osama_mountaineers_12man_1127.py): the Mountaineers' PF-98 card row 2015457 is removed (12 men, no PF-98).
-        if _tab=='SquadWeaponsJson.json' and m>=key('0.9.8-dev.9'):_want.pop('2015457',None)
+        # The Mountaineers' PF-98 card row 2015457 stays (Osama 28 Nov 01:2x: dev.9 had removed it by mistake).
         bad+=[f'{_tab} {i} {k}={(_t.get(int(i)) or {}).get(k)} (want {v}, infantry_order_1122.py)' for i,f in _want.items() for k,v in f.items() if (_t.get(int(i)) or {}).get(k)!=v]
     # Lateralus 22 Nov 17:1x: QCW-05 = the KNT MP5SD6 amount (160), QBU-191 100 (infantry_ammo_1122.py).
     _wa=merged('WeaponAmmunitionsJson.json','weapon_ammunitions.json')
