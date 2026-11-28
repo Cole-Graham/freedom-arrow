@@ -32,7 +32,11 @@ public partial class Mod
         // 0.3.43 (Osama 23 Nov): the F-35B canopy, loaded with the US_F35B body the F-35B (ROKN/JASDF) cards stand on.
         ["US_F35B_Glass"] = "usf35b",
         // ROC (Shawn 27 Nov 2026: Kung Feng VI glass "following the model of 9K51 Grad"; also HF-IIE and Antelope cabs): the 9K51 Grad cab glass.
-        ["RU_BM_21_Grad_glass"] = "rubm21grad"
+        ["RU_BM_21_Grad_glass"] = "rubm21grad",
+        // ROC (Shawn 28 Nov 2026, list 7): HF-IIE "use the material on HEMTT", Kung Feng VI "the material on M142 HIMARS' window glass". Both are
+        // the vehicle layered shader over the truck's own base map; our window UVs sit on its tinted glass patch (tools/donor_glass_patch.py).
+        ["US_HeavyOshkosh3_glass"] = "ushemtt",
+        ["Himars GLASS"] = "ushimars"
     };
     static string Compact(string s) => new string(s.ToLowerInvariant().Where(char.IsLetterOrDigit).ToArray());
     static Material FindCockpitMaterial(string name) => Resources.FindObjectsOfTypeAll<Material>()
@@ -71,7 +75,7 @@ public partial class Mod
             else { var src = FindCockpitMaterial(name); if (src != null) { try { donor = CockpitMaterial(name); } catch (InvalidDataException) { } } }
             if (donor == null) continue;
             int n = 0;
-            foreach (var m in fallbackMats[name]) { if (m == null) continue; m.shader = donor.shader; m.CopyPropertiesFromMaterial(donor); n++; }
+            foreach (var m in fallbackMats[name]) { if (m == null) continue; m.shader = donor.shader; m.CopyPropertiesFromMaterial(donor); if (fallbackAlpha.TryGetValue(m, out var fa)) SetDonorAlpha(m, fa); n++; }
             fallbackMats.Remove(name);
             MelonLogger.Msg($"FAMODELS_COCKPIT_UPGRADED {name}: {n} fallback material(s) now use the donor glass");
         }

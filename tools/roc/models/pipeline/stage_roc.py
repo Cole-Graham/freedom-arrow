@@ -13,6 +13,10 @@ CARD={'cm34':'ROC CM-34','cm33':'ROC CM-33',   # CM-33 back 27 Nov 18:4x as the 
       'cm12':'ROC CM-12',   # Shawn 27 Nov 00:0x: the CM-12.zip model (file CM11.fbx) is the right CM-12
       'ec225':'ROC EC225'}   # Shawn 27 Nov 00:2x, ROC SAR paint (livery_ec225.py)
 shutil.rmtree(H+'/stage',ignore_errors=True);os.makedirs(S)
+# Extra models.json fields per card. Shawn 28 Nov: "Fix this strange dust on the wheel" (Thunderbolt-2000): the M270 stand-in's dust_point
+# nodes sit at its front track sprockets, which is on the TB2000's front wheels; move them inside the rear wheels (rear axle z -3.56, wheel
+# outer face x 1.2, wheel centre y 0.7) so the driving dust comes from the rear tyres.
+ENTRY_EXTRA={'ROC Thunderbolt-2000':{'dustPoint':[0.95,0.3,-3.56]}}
 models={};n=0
 for s,card in CARD.items():
     st=f'm_roc_{s}'
@@ -31,6 +35,7 @@ for s,card in CARD.items():
     lods=[f'{st}_lo_static_{l}.fam' for l in ('l1','l2') if os.path.exists(f'{S}/{st}_lo_static_{l}.fam')]
     for need in (f'{st}_static.fam',f'{st}_lo_static.fam'):assert os.path.exists(f'{S}/{need}'),need
     if card:models[card]={'file':f'{st}_static.fam','battle':f'{st}_lo_static.fam','align':False,'lods':lods}
+    if card in ENTRY_EXTRA:models[card].update(ENTRY_EXTRA[card])
 # infantry bodies (inf/, 25-26 Nov) and their add-on rules; the T91 rifle (t91/) and its hand rules
 WT='/home/sam/tars/work/ba-dev/replicas/codex/work/roc-wt/tools/roc/models'
 BODY={l.rsplit('_',1)[0]+'_' for r in json.load(open(WT+'/infantry-bodies-roc.json')) for l in r['lods']+r.get('alt',[])}   # 27 Nov: + Reserver alt body   # only bodies a rule uses (27 Nov: SF Scout -> roc_sf4)

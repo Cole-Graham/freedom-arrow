@@ -14,10 +14,11 @@ def S(b):b=b.encode();return struct.pack('<i',len(b))+b
 A=[x for b,q in read_fam(f'{D}/m_roc_f16a_static.fam') for x in q];V=read_fam(f'{B}/{st}.fam')
 PA=np.concatenate([np.array(x['pos']).reshape(-1,3) for x in A]);PV=np.concatenate([np.array(x['pos']).reshape(-1,3) for b,q in V for x in q])
 def belly(P,z0,z1):m=(P[:,2]>z0)&(P[:,2]<z1)&(np.abs(P[:,0])<0.4);return float(np.percentile(P[m,1],2))
-gear=[];
-for x in A:
-    P=np.array(x['pos']).reshape(-1,3)
-    if P[:,1].max()<1.3 and ((P[:,2].min()>-2.1 and P[:,2].max()<-1.0) or (P[:,2].min()>1.8 and P[:,2].max()<2.95)):gear.append(x)
+# Shawn 28 Nov 03:0x: "Bug of landing gears here, please duplicate the entire landing gear from F-16A to F-16V": the first cut (pieces wholly below
+# 1.3 m in two z windows) left out the main legs (31, 32), the nose strut and doors (16, 17, 36) and the main bay doors and links (20-24, 35, 38, 39),
+# so the wheels hung on thin rods. The F-16A gear is sub-meshes 13-39 (nose 13-19, 36, 37; main 20-35, 38, 39); all of them are taken now.
+gear=A[13:40]
+for x in gear:P=np.array(x['pos']).reshape(-1,3);assert P[:,1].min()<1.2 and -2.1<P[:,2].min() and P[:,2].max()<2.95,('not gear',P.min(0),P.max(0))
 body=[x for x in A if x not in gear];PB=np.concatenate([np.array(x['pos']).reshape(-1,3) for x in body])
 dy=belly(PB,-1.0,0.5)-belly(PV,-1.0,0.5)
 print('gear pieces',len(gear),'triangles',sum(len(x['idx'])//3 for x in gear),'lift F-16V by %.3f m'%dy)

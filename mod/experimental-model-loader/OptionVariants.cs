@@ -27,10 +27,10 @@ public partial class Mod
         {
             var v = e.variants[vi];
             r = new Entry { file = v.file != "" ? v.file : e.file, battle = v.battle != "" ? v.battle : e.battle, lods = v.lods.Length > 0 ? v.lods : e.lods,
-                            scale = v.scale > 0 ? v.scale : e.scale, offset = e.offset, yaw = e.yaw, align = e.align, hide = e.hide };
+                            scale = v.scale > 0 ? v.scale : e.scale, offset = e.offset, yaw = e.yaw, align = e.align, hide = e.hide, dustPoint = e.dustPoint };
         }
-        if (battle && r.battle != "") r = new Entry { file = r.battle, scale = r.scale, offset = r.offset, yaw = r.yaw, align = r.align, lods = r.lods };
-        else if (!battle && r.lods.Length > 0) r = new Entry { file = r.file, scale = r.scale, offset = r.offset, yaw = r.yaw, align = r.align, hide = r.hide };   // 0.3.49: armory = full model only
+        if (battle && r.battle != "") r = new Entry { file = r.battle, scale = r.scale, offset = r.offset, yaw = r.yaw, align = r.align, lods = r.lods, dustPoint = r.dustPoint };
+        else if (!battle && r.lods.Length > 0) r = new Entry { file = r.file, scale = r.scale, offset = r.offset, yaw = r.yaw, align = r.align, hide = r.hide, dustPoint = r.dustPoint };   // 0.3.49: armory = full model only
         return r;
     }
     static void TickVariants()

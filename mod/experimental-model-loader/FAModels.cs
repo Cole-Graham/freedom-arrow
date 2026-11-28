@@ -17,7 +17,7 @@ namespace FAModels;
 // Parts named for a bone (for example turret_0) are reparented to that bone, so they turn with it.
 public partial class Mod : MelonMod
 {
-    class Entry { public string file { get; set; } = ""; public float scale { get; set; } = 1; public float[] offset { get; set; } = new float[3]; public float yaw { get; set; } public bool align { get; set; } = true; public string battle { get; set; } = ""; public string hide { get; set; } = ""; public string[] lods { get; set; } = Array.Empty<string>(); public Variant[] variants { get; set; } = Array.Empty<Variant>(); }
+    class Entry { public string file { get; set; } = ""; public float scale { get; set; } = 1; public float[] offset { get; set; } = new float[3]; public float yaw { get; set; } public bool align { get; set; } = true; public string battle { get; set; } = ""; public string hide { get; set; } = ""; public string[] lods { get; set; } = Array.Empty<string>(); public Variant[] variants { get; set; } = Array.Empty<Variant>(); public float[] dustPoint { get; set; } = Array.Empty<float>(); }
     static Dictionary<string, Entry> map = new();
     static string dir = "";
     static readonly List<(GameObject root, Entry e, string unit, float t, int pass)> queue = new();
@@ -25,6 +25,21 @@ public partial class Mod : MelonMod
     static string fallbackDonor;
     static float upgradeT;
     static readonly Dictionary<string, List<Material>> fallbackMats = new();
+    static readonly Dictionary<Material, float> fallbackAlpha = new();
+    static float fallbackDonorAlpha;
+    static readonly Dictionary<string, Material> donorTinted = new();
+    static void SetDonorAlpha(Material m, float a)
+    {
+        foreach (var prop in new[] { "_BaseColor", "_Color" }) if (m.HasProperty(prop)) { var c = m.GetColor(prop); c.a = a; m.SetColor(prop, c); }
+    }
+    static Material DonorTinted(Material donor, string name, float a)
+    {
+        string k = name + "@" + a.ToString("F3", System.Globalization.CultureInfo.InvariantCulture);
+        if (donorTinted.TryGetValue(k, out var t) && t != null) return t;
+        t = new Material(donor) { name = "FAM_COCKPIT_" + k, hideFlags = HideFlags.DontUnloadUnusedAsset }; SetDonorAlpha(t, a); donorTinted[k] = t;
+        MelonLogger.Msg($"FAMODELS_COCKPIT donor={name} alpha={a:F3} (own copy)");
+        return t;
+    }
     static readonly HashSet<string> donorFallbacks = new();
 
     public override void OnInitializeMelon()
@@ -321,6 +336,20 @@ public partial class Mod : MelonMod
     }
 
     // Hide the stand-in only after its replacement has loaded completely.
+    // ROC 28 Nov 2026 (Shawn: "Fix this strange dust on the wheel", Thunderbolt-2000 on the M270 stand-in): vanilla vehicles spawn their dust
+    // effect at child nodes named dust_point_left / dust_point_right, placed inside the vanilla tracks or wheels. On a stand-in with another
+    // running gear the dust shows on the new model (TB2000: on the front wheel). An entry's "dustPoint": [x, y, z] (stand-in root space; each node
+    // keeps its own side, x sign) moves them inside the new model's wheels.
+    static void MoveDustPoints(GameObject root, float[] p, string unit)
+    {
+        foreach (var t in root.GetComponentsInChildren<Transform>(true))
+        {
+            if (!t.name.StartsWith("dust_point")) continue;
+            var was = root.transform.InverseTransformPoint(t.position);
+            t.position = root.transform.TransformPoint(new Vector3(Mathf.Abs(p[0]) * (was.x < 0 ? -1f : 1f), p[1], p[2]));
+            MelonLogger.Msg($"FAMODELS {unit}: {t.name} ({was.x:F2},{was.y:F2},{was.z:F2}) -> ({(was.x < 0 ? -1 : 1) * Mathf.Abs(p[0]):F2},{p[1]:F2},{p[2]:F2})");
+        }
+    }
     static int Hide(GameObject root)
     {
         int hidden = 0;
@@ -480,6 +509,7 @@ public partial class Mod : MelonMod
         }
         if (files.Count > 1) SetLevels(root, holder, byLevel, unit);
         int hidden = Hide(root);
+        if (e.dustPoint.Length == 3) MoveDustPoints(root, e.dustPoint, unit);
         holder.SetActive(true);
         live.Add((root, unit));
         if (buildNow.Count < files.Count) QueueLodUpgrade(root, holder, unit, files, byLevel, made);
@@ -542,7 +572,7 @@ public partial class Mod : MelonMod
     }
     static string Str(BinaryReader f) { int n = f.ReadInt32(); return System.Text.Encoding.UTF8.GetString(f.ReadBytes(n)); }
 
-    public class MatP { public float[] metallicRemap { get; set; } public float[] smoothnessRemap { get; set; } public bool sourceCanopy { get; set; } public string cockpitDonor { get; set; } = ""; public float[] colorScale { get; set; } = new float[] { 1f, 1f, 1f }; public float metallic { get; set; } = 0.1f; public float smoothness { get; set; } = 0.3f; public string alpha { get; set; } = "OPAQUE"; public float cutoff { get; set; } = 0.5f; public float[] emissive { get; set; } = new float[3]; public bool unlit { get; set; } public bool clearGlass { get; set; } public float opacity { get; set; } = 0.025f; public bool preserveSpecular { get; set; } public MatP fallback { get; set; } }
+    public class MatP { public float[] metallicRemap { get; set; } public float[] smoothnessRemap { get; set; } public bool sourceCanopy { get; set; } public string cockpitDonor { get; set; } = ""; public float[] colorScale { get; set; } = new float[] { 1f, 1f, 1f }; public float metallic { get; set; } = 0.1f; public float smoothness { get; set; } = 0.3f; public string alpha { get; set; } = "OPAQUE"; public float cutoff { get; set; } = 0.5f; public float[] emissive { get; set; } = new float[3]; public bool unlit { get; set; } public bool clearGlass { get; set; } public float opacity { get; set; } = 0.025f; public bool preserveSpecular { get; set; } public MatP fallback { get; set; } public float donorAlpha { get; set; } }
     static string MatKey(string tex, Color c) => tex + "|" + string.Join(",", new[] { c.r, c.g, c.b, c.a }.Select(x => x.ToString("F4", System.Globalization.CultureInfo.InvariantCulture)));
     static Material Mat(string tex, Color col, MatP p)
     {
@@ -550,7 +580,10 @@ public partial class Mod : MelonMod
         {
             // 0.3.22: the donor (F-16 glass) is only loaded in some scenes (not the editor, not every match). Before this the
             // whole model swap was refused and the stand-in showed (FK-2000, DF-15/17/21, J-jets). Use clear glass until it loads.
-            try { return CockpitMaterial(p.cockpitDonor); }
+            // ROC 28 Nov 2026 (Shawn, F-CK-1: "The front cockpit is too transparent and not visible ... make sure it is visible"): an entry's
+            // "donorAlpha" gives its own copy of the donor glass with that base-colour alpha (F-16 glass is 0.05, nearly invisible).
+            fallbackDonorAlpha = p.donorAlpha;
+            try { var dm = CockpitMaterial(p.cockpitDonor); return p.donorAlpha > 0 ? DonorTinted(dm, p.cockpitDonor, p.donorAlpha) : dm; }
             catch (InvalidDataException e)
             {
                 if (donorFallbacks.Add(p.cockpitDonor)) MelonLogger.Warning($"FAMODELS_COCKPIT_FALLBACK {p.cockpitDonor}: {e.Message}; clear glass used until the donor loads");
@@ -629,7 +662,7 @@ public partial class Mod : MelonMod
         bool ok = false; try { ok = UnityEngine.Rendering.HighDefinition.HDMaterial.ValidateMaterial(m); } catch (Exception ex) { MelonLogger.Warning("FAMODELS validate: " + ex.Message); }
         mats[key] = m;
         // 0.3.44: every new stand-in gets the periodic tries again (an AH-1Z stand-in at 21:39 had used up the scene's 3 before the KF-21s at 21:49).
-        if (fallbackDonor != null) { if (!fallbackMats.TryGetValue(fallbackDonor, out var fl)) fallbackMats[fallbackDonor] = fl = new List<Material>(); fl.Add(m); fallbackDonor = null; upgradeTries = 0; upgradeGap = 10f; }
+        if (fallbackDonor != null) { if (!fallbackMats.TryGetValue(fallbackDonor, out var fl)) fallbackMats[fallbackDonor] = fl = new List<Material>(); fl.Add(m); if (fallbackDonorAlpha > 0) fallbackAlpha[m] = fallbackDonorAlpha; fallbackDonor = null; upgradeTries = 0; upgradeGap = 10f; }
         MelonLogger.Msg($"FAMODELS material {key}: shader {(sh == null ? "MISSING" : sh.name)} surface={p.alpha} sourceCanopy={p.sourceCanopy} preserveSpecular={m.GetFloat("_EnableBlendModePreserveSpecularLighting"):F0} effectiveMetallic={m.GetFloat("_Metallic"):F2} smoothRange={m.GetFloat("_SmoothnessRemapMin"):F2}..{m.GetFloat("_SmoothnessRemapMax"):F2} clearGlass={clearGlass} opacity={col.a:F3} met={p.metallic:F2} smooth={p.smoothness:F2} normal={m.IsKeywordEnabled("_NORMALMAP")} mask={m.IsKeywordEnabled("_MASKMAP")} validated={ok} queue={m.renderQueue} mv={m.GetShaderPassEnabled("MotionVectors")} depth={m.GetShaderPassEnabled("DepthOnly")}");
         return m;
     }
