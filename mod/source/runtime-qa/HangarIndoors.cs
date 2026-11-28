@@ -97,18 +97,32 @@ static class HangarIndoors
         catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_HANGAR_INDOORS add failed: "+e);}
     }
 
-    // Every unit type uses the Aircraft spawn point while this hangar is shown.
+    // Every unit type uses the Aircraft spawn point while this hangar is shown. Osama 27 Nov 22:1x: "units in the indoor hanger spawn facing away
+    // not towards the entrance": the spot is used turned 180 degrees about its vertical axis (a sibling transform at the same place, made once per
+    // spot), so every unit, planes too, faces the entrance.
+    static Transform turned,turnedFrom;
+    static Transform Turned(Transform t)
+    {
+        if(turned!=null&&turnedFrom==t)return turned;
+        var go=new GameObject("FA indoor spot (facing entrance)");
+        go.transform.SetParent(t.parent,false);
+        go.transform.position=t.position;
+        go.transform.rotation=t.rotation*Quaternion.Euler(0f,180f,0f);
+        go.transform.localScale=t.localScale;
+        turned=go.transform;turnedFrom=t;
+        return turned;
+    }
     public static void Spawn(ArsenalUnitPreviewData __instance,UnitType __0,ref Transform __result)
     {
-        if(busy||(__0&UnitType.Aircraft)!=0||!Active())return;
+        if(busy||!Active())return;
         busy=true;
         try
         {
-            var t=__instance.GetSpawnPointByUnitType(UnitType.Aircraft);
+            var t=(__0&UnitType.Aircraft)!=0?__result:__instance.GetSpawnPointByUnitType(UnitType.Aircraft);
             if(t!=null)
             {
-                __result=t;
-                if(!loggedSpawn){loggedSpawn=true;MelonLogger.Msg($"FREEDOM_ARROW_HANGAR_INDOORS {__0} shown at the aircraft spot '{t.name}'");}
+                __result=Turned(t);
+                if(!loggedSpawn){loggedSpawn=true;MelonLogger.Msg($"FREEDOM_ARROW_HANGAR_INDOORS {__0} shown at the aircraft spot '{t.name}', turned to face the entrance");}
             }
         }
         catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_HANGAR_INDOORS spawn: "+e.Message);}
