@@ -1146,6 +1146,8 @@ import cj10_held_1127;cj10_held_1127.apply(t,g,ok,rec)
 import j31_held_1127;j31_held_1127.apply(t,g,ok,rec)
 # ---------- PAP AA Patrol hidden (cards + their transport rows removed, hidden in the Armory) (Osama 27 Nov 22:4x). See pap_aa_hidden_1127.py.
 import pap_aa_hidden_1127;pap_aa_hidden_1127.apply(t,g,ok,rec)
+# ---------- Light CAB points = SOF with recon 1250 -> 1000, vehicles 0 -> 250, helicopters 1000 -> 750, support 250 -> 500 (Osama 27 Nov 23:0x). See osama_light_cab_points_1127.py.
+import osama_light_cab_points_1127;osama_light_cab_points_1127.apply(t,g,ok,rec)
 # ---------- Artillery smoke: Lynx Howitzer 10 -> 6; PLZ-10, PLZ-25, PLL-09, PLL-05 -> 8 (Osama 27 Nov 04:4x). See osama_arty_smoke_1127.py.
 import osama_arty_smoke_1127;osama_arty_smoke_1127.apply(t,g,ok,rec)
 # ---------- Mortars back to vanilla (range, smoke rows, prices); China mortars matched to their vanilla twins (Osama 27 Nov 11:3x). Replaces the
