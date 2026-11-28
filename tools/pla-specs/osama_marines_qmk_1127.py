@@ -1,6 +1,6 @@
-"""Osama 27 Nov 2026 22:0x PST, thread 1567745029781454889: "Chinese Marines get QMK over QBZ-191". Every Marine squad of the PLAN & PLAGF
-Amphibious CAB (spec 20) that carries a QBZ-191 (any of its rows) gets the QMK instead (2019300, round 2019301, 160 per carrier as every QMK row,
-the pla_light_brigade_late3_1126 Tank Hunters swap): Marines 陆战队, Marine HJ-12 Team, Marine QW-2 Team, Marines PF-98. Men, special weapons,
+"""Osama 27 Nov 2026 22:0x PST, thread 1567745029781454889: "Chinese Marines get QMK over QBZ-191" / 22:0x "I only meant hte marine line team
+not the weapons teams". The Marines 陆战队 line squad of the PLAN & PLAGF Amphibious CAB (spec 20) gets the QMK instead of its QBZ-191 (2019300, round 2019301, 160 per carrier as every QMK row,
+the pla_light_brigade_late3_1126 Tank Hunters swap). The weapons teams (Marine HJ-12 Team, Marine QW-2 Team, Marines PF-98) keep the QBZ-191. Men, special weapons,
 death priority, prices and cards unchanged. Put-only (QBZ-191 rows re-pointed, or dropped where the squad already lists the QMK)."""
 QMK, QMK_A, SPEC = 2019300, 2019301, 20
 
@@ -11,8 +11,8 @@ def apply(t, g, ok, rec):
     ok(W[QMK]['HUDName'] == 'QMK' and A[QMK_A]['HUDName'] == 'QMK ammunition', 'QMK weapon + round')
     qbz = {k for k, w in W.items() if w and w.get('HUDName') == 'QBZ-191'}
     spec = {r['UnitId'] for r in SA.values() if r and r.get('SpecializationId') == SPEC}
-    units = sorted(u for u in spec if (U[u].get('HUDName') or '').startswith('Marine') and any(m['PrimaryWeaponId'] in qbz or m.get('SpecialWeaponId') in qbz for m in rows('SquadMembersJson', UnitId=u)))
-    ok(sorted(U[u]['HUDName'] for u in units) == sorted(['Marines 陆战队', 'Marine HJ-12 Team', 'Marine QW-2 Team', 'Marines PF-98']), ('Marine squads with QBZ-191', [U[u]['HUDName'] for u in units]))
+    units = sorted(u for u in spec if U[u].get('HUDName') == 'Marines 陆战队' and any(m['PrimaryWeaponId'] in qbz or m.get('SpecialWeaponId') in qbz for m in rows('SquadMembersJson', UnitId=u)))
+    ok(len(units) == 1, ('Marines line squad with QBZ-191', [U[u]['HUDName'] for u in units]))
     out = {}
     for u in units:
         n = 0
