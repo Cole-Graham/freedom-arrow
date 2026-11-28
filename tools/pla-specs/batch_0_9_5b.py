@@ -1141,6 +1141,8 @@ import osama_sprut_1127;osama_sprut_1127.apply(t,g,ok,rec)
 import osama_m8_ztq15_1127;osama_m8_ztq15_1127.apply(t,g,ok,rec)
 # ---------- FH-97A "Light strike (4x LS-6 500kg)" removed (Osama 27 Nov 15:5x). See osama_fh97_4xls6_1127.py.
 import osama_fh97_4xls6_1127;osama_fh97_4xls6_1127.apply(t,g,ok,rec)
+# ---------- PHL-16 '2x Fire Dragon 480' loadout removed (Osama 28 Nov 12:15 'Phl-16 should have lost that option'). See osama_phl16_fd480_1128.py.
+import osama_phl16_fd480_1128;osama_phl16_fd480_1128.apply(t,g,ok,rec)
 # ---------- Helicopter ATGMs turn at least 160 deg/s (Osama 27 Nov 16:1x). See heli_atgm_turn_1127.py.
 import heli_atgm_turn_1127;heli_atgm_turn_1127.apply(t,g,ok,rec)
 # ---------- CJ-10 held back (card removed, hidden) for model quality (Osama 27 Nov 04:4x). See cj10_held_1127.py.
@@ -1194,6 +1196,8 @@ import roc_hook;roc_hook.apply(t,g,ok,rec,recheck=lambda:(disposable_launchers_1
 # ---------- Ground optics Proposal W (Lateralus 28 Nov 2026 10:4x, "Ok queue up W proposal"): tiers 900/1300/1450/1650/2300/2800 -> 450/700/925/1375/1950/2500,
 # one spotting cap 1075 (Exceptional 1300). After roc_hook so ROC sensor rows move too. See lateralus/optics_w_1128.py.
 import optics_w_1128;spotting_caps,optics_names=optics_w_1128.apply(t,g,ok,rec)
+# ---------- C-RAM tier 3 SPAAG, 110 points; SeaRAM loadout stays 200 (Lateralus 28 Nov 12:0x). See lateralus/cram_tier3_1128.py.
+import cram_tier3_1128;cram_tier3_1128.apply(t,g,ok,rec)
 # Unit standards on the final data (docs/development/UNIT-STANDARDS.md, Lateralus 26 Nov 2026): fails on a new squad that breaks the launcher or
 # one-name-one-damage rules, and rebuilds the disposable-launcher squad rate table (squad-reload.json) from this build's squads.
 squad_reload=unit_standards.check(t,ok,rec)
