@@ -32,7 +32,7 @@ static class DeckCodes
     {
         h.Patch(AccessTools.Method(typeof(DeckListButton),nameof(DeckListButton.Init)),postfix:new HarmonyMethod(typeof(DeckCodes),nameof(AfterButton)));
         h.Patch(AccessTools.Method(typeof(DeckListPanel),nameof(DeckListPanel.LoadDecks)),postfix:new HarmonyMethod(typeof(DeckCodes),nameof(AfterList)));
-        MelonLogger.Msg("FREEDOM_ARROW_DECK_CODES installed: Share copies a deck code; 'Import deck code' adds the deck in the clipboard");
+        MelonLogger.Msg("FREEDOM_ARROW_DECK_CODES installed: Share copies a deck code; 'Import deck code' adds the deck typed in the search box (or in the clipboard)");
     }
     static Il2CppSystem.Action<GameObject,PointerEventData.InputButton> Click(Action a,string what)
     {
@@ -70,6 +70,21 @@ static class DeckCodes
             if(label!=null)label.SetText(Chinese()?"导入卡组代码":"Import deck code");
             go.GetComponent<UiButton>()?.add_ClickEvent(Click(Import,"import"));
             go.transform.SetSiblingIndex(create.transform.GetSiblingIndex()+1);
+            // Osama 27 Nov 2026 17:4x: "The import deck code is right over the new deck. I can't press either button." The header has no layout
+            // group, so the copy sat exactly on the Create button. Both now share the Create button's old place: Create left half, Import right half.
+            var crt=create.GetComponent<RectTransform>();var irt=go.GetComponent<RectTransform>();
+            if(crt!=null&&irt!=null)
+            {
+                float w=crt.rect.width,half=(w-8f)/2f,cx=CenterX(crt);
+                foreach(var (r,side) in new[]{(crt,-1f),(irt,1f)})
+                {
+                    r.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal,half);
+                    var ap=r.anchoredPosition;ap.x+=cx+side*(half/2f+4f)-CenterX(r);r.anchoredPosition=ap;
+                }
+            }
+            // 17:4x "allow us to type into the code not directly read from the clip board": the deck list's own search box takes the code
+            // (no length limit); Import reads it from there first and only falls back to the clipboard when the box holds no code.
+            var search=SearchField();if(search!=null)search.characterLimit=0;
             var nt=new GameObject("FA Deck Code Note");nt.layer=go.layer;
             var rt=nt.AddComponent<RectTransform>();rt.SetParent(go.transform,false);
             rt.anchorMin=new Vector2(0f,0f);rt.anchorMax=new Vector2(1f,0f);rt.pivot=new Vector2(0.5f,1f);rt.anchoredPosition=new Vector2(0f,-4f);rt.sizeDelta=new Vector2(0f,40f);
@@ -80,6 +95,8 @@ static class DeckCodes
         }
         catch(Exception e){MelonLogger.Warning("FREEDOM_ARROW_DECK_CODES import button: "+e.Message);}
     }
+    static float CenterX(RectTransform r)=>r.anchoredPosition.x+(0.5f-r.pivot.x)*r.rect.width;
+    static Il2CppTMPro.TMP_InputField SearchField(){try{return panel?._nameFilterField?._input;}catch{return null;}}
     public static void Tick(){ if(note!=null&&noteUntil>0f&&Time.unscaledTime>noteUntil){noteUntil=0f;try{note.SetText("");}catch{note=null;}} }
     static void Say(string s){MelonLogger.Msg("FREEDOM_ARROW_DECK_CODES: "+s);try{if(note!=null){note.SetText(s);noteUntil=Time.unscaledTime+6f;}}catch{note=null;}}
     static bool Chinese(){try{return Application.systemLanguage==SystemLanguage.Chinese||Application.systemLanguage==SystemLanguage.ChineseSimplified;}catch{return false;}}
@@ -138,7 +155,7 @@ static class DeckCodes
     public static Decoded Decode(string text)
     {
         int at=text.IndexOf(Prefix,StringComparison.Ordinal);
-        if(at<0)throw new FormatException(Chinese()?"剪贴板里没有卡组代码（以 FA1- 开头）。":"No deck code in the clipboard (it starts with FA1-).");
+        if(at<0)throw new FormatException(Chinese()?"请把卡组代码（以 FA1- 开头）粘贴或输入到搜索框，再点导入。":"Type or paste a deck code (it starts with FA1-) into the search box, then press Import deck code.");
         var sb=new StringBuilder();
         for(int i=at+Prefix.Length;i<text.Length;i++){char c=text[i];if(char.IsLetterOrDigit(c)||c=='-'||c=='_')sb.Append(c);else if(!char.IsWhiteSpace(c))break;}
         var b64=sb.ToString().Replace('-','+').Replace('_','/');b64+=new string('=',(4-b64.Length%4)%4);
@@ -170,7 +187,10 @@ static class DeckCodes
     {
         var svc=Service();if(svc==null){Say("Open the deck list first.");return;}
         var db=svc._dbService;if(db==null||!db.IsLoaded){Say("Unit data is not loaded yet.");return;}
-        var d=Decode(GUIUtility.systemCopyBuffer??"");
+        var search=SearchField();var typed=search?.text?.Trim()??"";
+        bool fromBox=typed.StartsWith(Prefix,StringComparison.OrdinalIgnoreCase);
+        var d=Decode(fromBox?typed:(GUIUtility.systemCopyBuffer??""));
+        if(fromBox)try{search.text="";}catch{}
         // Name: the shared name, made unique among this player's decks.
         var names=new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         var all=svc.AllValidDecks;if(all!=null)foreach(var x in all)if(x?.Name!=null)names.Add(x.Name);

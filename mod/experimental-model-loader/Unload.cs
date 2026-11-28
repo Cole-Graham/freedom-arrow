@@ -30,6 +30,7 @@ public partial class Mod
     {
         inMenu = sceneName == "Hangar_Scene";
         FreeUnused(0, "scene " + sceneName);
+        PreloadSceneLoaded(sceneName);
     }
 
     // Frees cached models no live unit uses, keeping the `keep` most recently used of them.

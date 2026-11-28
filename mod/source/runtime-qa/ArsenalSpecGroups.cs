@@ -2,6 +2,7 @@ using HarmonyLib;
 using Il2CppBrokenArrow.Client.Ecs.Decks_v2.UI;
 using Il2CppBrokenArrow.DataBase.Models;
 using Il2CppInterop.Runtime.InteropTypes.Arrays;
+using Il2CppNetworkCommon.Enums.Common;
 using MelonLoader;
 
 namespace FreedomArrow;
@@ -69,12 +70,26 @@ static class ArsenalSpecGroups
             foreach(int id in card.Unit.SpecializationIds)memberships.Add(id);
             if(memberships.Count==0)throw new InvalidOperationException("China unit has no specialization: "+card.Unit.Id);
             int target=ArsenalSpecPolicy.GroupFor(memberships[0],memberships,selected);
-            if(!buckets.TryGetValue(target,out var bucket))
-                throw new InvalidOperationException("Missing Arsenal heading for specialization "+target);
+            // A spec with no Arsenal heading (the hidden test spec 26 when its toggle is off) keeps its cards where the game put them.
+            // Before 27 Nov this threw, and every regroup failed (Osama's dev.7 log: "Missing Arsenal heading for specialization 26").
+            if(!buckets.TryGetValue(target,out var bucket))continue;
             bucket.Add(card);
         }
         foreach(var pair in byId)
-            changes.Add(new(pair.Value,pair.Value._unitCards,new(buckets[pair.Key].ToArray())));
+            changes.Add(new(pair.Value,pair.Value._unitCards,new(TanksByPrice(buckets[pair.Key]).ToArray())));
+    }
+    // Osama 27 Nov 2026 17:3x PST, thread 1567745029781454889: "resort the position of units so its cheapest MBT tank to highest, ztz-99g, then
+    // ztz-99-ii, then ztz-99a" / "and then the ztz-100". The game lists cards by name. Within each China heading, main battle tanks
+    // (UnitRole.Tank) are put in price order, cheapest first, in the places tanks already take; every other card keeps its place.
+    static List<HangarUnitCardScript> TanksByPrice(List<HangarUnitCardScript> cards)
+    {
+        static int Price(Units u)=>u.OriginalCost>0?u.OriginalCost:u.Cost;
+        var slots=new List<int>();
+        for(int i=0;i<cards.Count;i++)if(cards[i].Unit.Role==UnitRole.Tank)slots.Add(i);
+        var tanks=slots.Select(i=>cards[i]).OrderBy(c=>Price(c.Unit)).ThenBy(c=>c.Unit.Id).ToList();
+        var result=new List<HangarUnitCardScript>(cards);
+        for(int k=0;k<slots.Count;k++)result[slots[k]]=tanks[k];
+        return result;
     }
     static void Set(Change change,Il2CppReferenceArray<HangarUnitCardScript> cards)
     {
