@@ -71,6 +71,16 @@ internal static unsafe class InterceptLead
     static bool Active=>installed&&!off&&Environment.CurrentManagedThreadId==mainThread
         &&Runtime.IsApplied&&Conquest.Prototype.DiagnosticSceneActive;
 
+    // Native detours (this one, LosToolCap) use 1.2.2.1 layouts: refuse any other GameAssembly.dll. Hashed once per session.
+    static bool? hashOk;
+    internal static void CheckGameHash()
+    {
+        if(hashOk==null)
+            using(var file=File.OpenRead(Path.Combine(MelonEnvironment.GameRootDirectory,"GameAssembly.dll")))
+            using(var sha=SHA256.Create())
+                hashOk=Convert.ToHexString(sha.ComputeHash(file)).ToLowerInvariant()==GameHash;
+        if(hashOk!=true)throw new InvalidOperationException("Game engine fingerprint mismatch (native detours need BA 1.2.2.1)");
+    }
     public static void Install()
     {
         var layout=new{pointer=IntPtr.Size,entity=Unsafe.SizeOf<Entity>(),vector=Unsafe.SizeOf<Vector3>(),
@@ -78,10 +88,7 @@ internal static unsafe class InterceptLead
         DiagnosticLog.Write("intercept_lead_managed_layout",layout);
         if(layout.pointer!=8||layout.entity!=8||layout.vector!=12||layout.wire!=44||layout.wireReferences)
             throw new InvalidOperationException("Prediction ABI: "+System.Text.Json.JsonSerializer.Serialize(layout));
-        using(var file=File.OpenRead(Path.Combine(MelonEnvironment.GameRootDirectory,"GameAssembly.dll")))
-        using(var sha=SHA256.Create())
-            if(Convert.ToHexString(sha.ComputeHash(file)).ToLowerInvariant()!=GameHash)
-                throw new InvalidOperationException("Prediction engine fingerprint mismatch");
+        CheckGameHash();
         RuntimeHelpers.RunClassConstructor(typeof(BallisticsCalculationsHelper).TypeHandle);
         try
         {

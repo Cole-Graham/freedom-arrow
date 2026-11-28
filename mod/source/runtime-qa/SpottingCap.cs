@@ -22,6 +22,10 @@ static class SpottingCap
 {
     const int MaxLog=15;
     static readonly Dictionary<float,float> capTable=new();
+    // Ground tier names on the unit card (optics-names.json, Lateralus 28 Nov 2026): (lowest optics, name, colour), ascending. Empty = metres.
+    static (float min,string name,string color)[] groundNames=Array.Empty<(float,string,string)>();
+    // The ground cap of an optics value (raw), for LosToolCap. Read-only after Install, so safe from the LoS tool's worker thread.
+    internal static bool GroundCap(float optics,out float cap)=>capTable.TryGetValue(optics,out cap)&&cap>0;
     static readonly ConcurrentDictionary<(IntPtr,int),float> observerCaps=new();
     // 0.9.0-dev.13: whether a target is an aircraft, helicopter or fuse never changes, so it is looked up once per entity (3 native lookups
     // each time before); the observer cap is read without allocating a lambda per call.
@@ -42,6 +46,14 @@ static class SpottingCap
         var caps=JsonNode.Parse(File.ReadAllText(Path.Combine(root,"spotting-caps.json")))["OpticsGroundCaps"].AsObject();
         foreach(var (k,v) in caps)capTable[float.Parse(k,System.Globalization.CultureInfo.InvariantCulture)]=v.GetValue<float>();
         if(capTable.Count==0)throw new InvalidDataException("spotting-caps.json is empty");
+        var namesFile=Path.Combine(root,"optics-names.json");
+        if(File.Exists(namesFile))
+        {
+            var cfg=JsonNode.Parse(File.ReadAllText(namesFile));var colors=cfg["Colors"].AsObject();
+            groundNames=cfg["Ground"].AsArray().Select(t=>(t[0].GetValue<float>(),t[1].GetValue<string>(),colors[t[2].GetValue<string>()].GetValue<string>())).ToArray();
+            if(groundNames.Length==0||groundNames[0].min!=0||groundNames.Zip(groundNames.Skip(1)).Any(p=>p.Second.min<=p.First.min))
+                throw new InvalidDataException("optics-names.json: Ground must start at 0 and rise");
+        }
         hasFog=Store("MethodInfoStoreGeneric_Has_Public_Boolean_0`1",typeof(FogOfWarComponent));
         getFog=Store("MethodInfoStoreGeneric_Get_Public_byref_T_0`1",typeof(FogOfWarComponent));
         getFogCode=*(IntPtr*)getFog;
@@ -112,6 +124,9 @@ static class SpottingCap
         return float.TryParse(digits,out float shown)&&shown>0?shown/raw:2f;
     }
     static string M(float raw,float scale)=>$"{MathF.Round(raw*scale):0} m";
+    static string Name(float ground){var t=groundNames.Last(n=>ground>=n.min);return $"<color={t.color}>{t.name}</color>";}
+    // Distance a quiet target of this raw stealth is first seen at in the open: the same formula and cap as real spotting.
+    static string Seen(float ground,float cap,float stealth,float scale)=>M(Math.Min(ground*stealth,cap),scale);
     public static void CardAfter(UnitInfoCard __instance,Units __0)
     {
         if(cardBroken||__0==null)return;
@@ -127,9 +142,11 @@ static class SpottingCap
             }
             var sprite=__instance._infocardConfig?.Optics;
             if(sprite==null)return;
-            // Proposal W (Lateralus 28 Nov 2026): the card shows the real ground optics. The spotting cap is one published rule (2150 m,
-            // Exceptional 2600 m) instead of a per-tier number hidden behind the card value, so it is no longer shown here.
+            // Proposal W (Lateralus 28 Nov 2026 11:5x): optics are not literal ground distances any more (one ground cap, 2150 m / 2600 m),
+            // so the card shows the ground tier name and its tooltip shows only distances that are true: a quiet target in the open at card
+            // stealth 1 / 2 / 3. Low and high altitude stay in metres (no cap there). No names file = real optics in metres.
             float groundShown=ground;
+            float cap=capTable.TryGetValue(ground,out float c)&&c>0?c:float.MaxValue;
             // Main value = the native rule (SetUnitStatistic, 1.2.2.1 0x55F870): high-altitude optics for CategoryType Aircrafts (6), ground
             // optics for every other unit, helicopters and recon drones included (Lateralus 23 Nov 2026: helicopter cards showed the
             // low-altitude value, planes the ground value - 0 m on fighters; the 0.4 dev.19 code had assumed low-altitude for helicopters).
@@ -139,8 +156,10 @@ static class SpottingCap
                 var icon=item.Icon;
                 if(icon==null||icon.sprite==null||icon.sprite.Pointer!=sprite.Pointer)continue;
                 float scale=CardScale(item.Text.text,plane?high:ground);
-                string main=plane?M(high,scale):M(groundShown,scale);
-                string[] lines={M(groundShown,scale),M(low,scale),M(high,scale)};
+                string name=groundNames.Length==0?null:Name(ground);
+                string seen=$"{Seen(ground,cap,1f,scale)} / {Seen(ground,cap,0.5f,scale)} / {Seen(ground,cap,1f/3f,scale)} (stealth 1 / 2 / 3, quiet, open ground)";
+                string main=plane?M(high,scale):name??M(groundShown,scale);
+                string[] lines={name==null?M(groundShown,scale):$"{name}: {seen}",M(low,scale),M(high,scale)};
                 item.Text.text=main;
                 var tooltip=item.Tooltip;
                 if(tooltip!=null)

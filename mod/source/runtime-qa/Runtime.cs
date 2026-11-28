@@ -61,6 +61,7 @@ public class Runtime : MelonMod
         DiagnosticLog.Heartbeat();
         HookHealth.LateUpdate();
         InterceptLead.LateUpdate();
+        LosToolCap.Report();
         SeadOverkill.LateUpdate();
         LobbySlotDefaults.LateUpdate();
         AaCooldown.LateUpdate();
@@ -182,6 +183,9 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_COVER_DAMAGE_FAILED: not installed. "+e.Message); }
         try { SpottingCap.Install(HarmonyInstance,Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_SPOTTING_CAP_FAILED: not installed. "+e.Message); }
+        // After SpottingCap: the LoS tool reads its cap table (Lateralus 28 Nov 2026, Proposal W).
+        try { LosToolCap.Install(); }
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_LOS_TOOL_CAP_FAILED: not installed; the LoS tool shows uncapped optics. "+e.Message); }
         try { HeliRange.Install(HarmonyInstance,Root); }
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_HELI_RANGE_FAILED: not installed. "+e.Message); }
         try { HeliRangeCard.Install(HarmonyInstance); }

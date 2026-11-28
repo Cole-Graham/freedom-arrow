@@ -14,6 +14,12 @@ GROUND_CAP, EXCEPTIONAL_CAP = 1075.0, 1300.0
 # OpticsGround -> cap (raw) for spotting-caps.json. 0 = planes, 50 = blind optics, drones keep their 0.9.3 caps.
 CAPS = {0.0: 0.0, 50.0: 50.0, **{w: (EXCEPTIONAL_CAP if w == 2500.0 else GROUND_CAP) for w in TIERS.values()},
         4650.0: 2000.0, 5250.0: 2250.0, 6400.0: 2750.0}
+# Card names (Lateralus 28 Nov 2026 11:5x: "look up how we implemented the terminology before" - 0.4 dev.19/20 optics-names.json, colours and
+# Exceptional I-IV as then). The card shows the ground tier name; its tooltip gives the true open-ground distances (SpottingCap.CardAfter).
+NAMES = {'Colors': {'red': '#FF1744', 'orange': '#FF9100', 'green': '#39FF14', 'blue': '#00B0FF', 'grey': '#9E9E9E'},
+         'Ground': [[0, 'None', 'grey'], [50, 'Blind', 'red'], [450, 'Bad', 'red'], [700, 'Medium', 'orange'], [925, 'Medium+', 'orange'],
+                    [1375, 'Good', 'green'], [1950, 'Very Good', 'green'], [2500, 'Exceptional I', 'blue'], [4650, 'Exceptional II', 'blue'],
+                    [5250, 'Exceptional III', 'blue'], [6400, 'Exceptional IV', 'blue']]}
 
 
 def apply(t, g, ok, rec):
@@ -32,4 +38,5 @@ def apply(t, g, ok, rec):
     ok(used <= set(CAPS) | {500.0, 600.0}, ('deck sensor without a cap', sorted(used - set(CAPS))))
     rec['optics_w_1128'] = {'tiers_raw': {f'{k:g}': v for k, v in TIERS.items()}, 'caps_raw': {f'{k:g}': v for k, v in CAPS.items()},
                             'sensor_rows': {k: len(v) for k, v in moved.items()}, 'deck_ground_values': sorted(used)}
-    return {'OpticsGroundCaps': {f'{k:g}': v for k, v in sorted(CAPS.items())}}
+    ok([n[0] for n in NAMES['Ground']] == sorted({0.0, 50.0, *TIERS.values(), 4650.0, 5250.0, 6400.0}), 'a card name for every ground tier')
+    return {'OpticsGroundCaps': {f'{k:g}': v for k, v in sorted(CAPS.items())}}, NAMES
