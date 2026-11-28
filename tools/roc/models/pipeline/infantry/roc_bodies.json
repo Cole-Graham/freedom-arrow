@@ -18,11 +18,11 @@
     "CC_Arm_Normal"
    ],
    "M_tw_soldier_uniform": [
-    "T_tw_soldier_uniform_color",
+    "T_tw_soldier_uniform_color_army",
     "FLAT"
    ],
    "M_tw_soldier_vest": [
-    "T_tw_soldier_vest_color",
+    "T_tw_soldier_vest_color_army",
     "FLAT"
    ]
   },
@@ -114,7 +114,7 @@
     "T_CC_Arm_Normal"
    ],
    "M_PelvisGear_T_PelvisGear_Color": [
-    "T_PelvisGear_Color",
+    "T_PelvisGear_Color_army",
     "T_PelvisGear_Normal"
    ],
    "M_PMC_shoes_01_T_PMC_shoes_01_Color": [
@@ -122,7 +122,7 @@
     "T_PMC_shoes_01_normal"
    ],
    "M_TWCoat_T_TWCoat_Color": [
-    "T_TWCoat_Color",
+    "T_TWCoat_Color_army",
     "T_TWCoat_Normal"
    ],
    "M_twhead_T_twhead_color": [
@@ -130,11 +130,11 @@
     "T_twhead_normal"
    ],
    "M_TWPants_T_TWPants_Color": [
-    "T_TWPants_Color",
+    "T_TWPants_Color_army",
     "T_TWPants_Normal"
    ],
    "M_vestHeadGear_T_vestHeadGear_Color": [
-    "T_vestHeadGear_Color",
+    "T_vestHeadGear_Color_army",
     "T_vestHeadGear_Normal"
    ]
   },
@@ -167,7 +167,7 @@
   },
   "tex": {
    "japan_gunner_late_japan_gunner_late_Base_Color": [
-    "japan_gunner_late_Base_Color",
+    "japan_gunner_late_Base_Color_army",
     "japan_gunner_late_Normal"
    ],
    "japan_gunner_heads_japan_gunner_heads_Base_Color": [
@@ -434,7 +434,7 @@
   ],
   "tex": {
    "japan_gunner_late_japan_gunner_late_Base_Color": [
-    "japan_gunner_late_Base_Color",
+    "japan_gunner_late_Base_Color_army",
     "japan_gunner_late_Normal"
    ],
    "japan_gunner_heads_japan_gunner_heads_Base_Color": [
@@ -470,7 +470,7 @@
     "T_CC_Arm_Normal"
    ],
    "M_PelvisGear_T_PelvisGear_Color": [
-    "T_PelvisGear_Color",
+    "T_PelvisGear_Color_army",
     "T_PelvisGear_Normal"
    ],
    "M_PMC_shoes_01_T_PMC_shoes_01_Color": [
@@ -478,15 +478,15 @@
     "T_PMC_shoes_01_normal"
    ],
    "M_TWCoat_T_TWCoat_Color": [
-    "T_TWCoat_Color",
+    "T_TWCoat_Color_army",
     "T_TWCoat_Normal"
    ],
    "M_TWPants_T_TWPants_Color": [
-    "T_TWPants_Color",
+    "T_TWPants_Color_army",
     "T_TWPants_Normal"
    ],
    "M_vestHeadGear_T_vestHeadGear_Color": [
-    "T_vestHeadGear_Color",
+    "T_vestHeadGear_Color_army",
     "T_vestHeadGear_Normal"
    ],
    "japan_gunner_heads_japan_gunner_heads_Base_Color": [
@@ -502,7 +502,7 @@
     "TK_M2_Normal"
    ],
    "japan_gunner_late_japan_gunner_late_Base_Color": [
-    "japan_gunner_late_Base_Color",
+    "japan_gunner_late_Base_Color_army",
     "japan_gunner_late_Normal"
    ]
   },
@@ -540,15 +540,15 @@
     "CC_Arm_Normal"
    ],
    "M_tw_soldier_uniform": [
-    "T_tw_soldier_uniform_color",
+    "T_tw_soldier_uniform_color_army",
     "FLAT"
    ],
    "M_tw_soldier_vest": [
-    "T_tw_soldier_vest_color",
+    "T_tw_soldier_vest_color_army",
     "FLAT"
    ],
    "M_vestHeadGear_T_vestHeadGear_Color": [
-    "T_vestHeadGear_Color",
+    "T_vestHeadGear_Color_army",
     "T_vestHeadGear_Normal"
    ],
    "01 - Default": [
@@ -588,5 +588,198 @@
    "thumb_01_r": "thumb_01_r"
   },
   "units": "ROC Reserver variant (Shawn 27 Nov 20:0x): reservist + ROC Infantry vest/helmet + glasses (see-through lenses, cut-out)"
+ },
+ "assc_a": {
+  "scale": 0.01,
+  "ground": true,
+  "landmarks": "auto",
+  "source": "/home/sam/tars/work/ba-dev/replicas/codex/work/roc-20261125/x/ROC SF 5/ROC SF 5 a.blend",
+  "texdir": "/home/sam/tars/work/ba-dev/replicas/codex/work/roc-20261125/x/ROC SF 5",
+  "meshes": [
+   "M1",
+   "SM_CC_Arm",
+   "SM_Mask_pla",
+   "SM_PMC_shoes_01",
+   "SM_PelvisGear",
+   "SM_TWCoat",
+   "SM_TWPants",
+   "SM_backbag.001",
+   "SM_gear_pla_bnvd_up",
+   "SM_twhead",
+   "SM_vestHeadGear"
+  ],
+  "tex": {
+   "M_CC_Arm_T_CC_Arm_color": [
+    "T_CC_Arm_color",
+    "T_CC_Arm_Normal"
+   ],
+   "M_PelvisGear_T_PelvisGear_Color.001": [
+    "T_PelvisGear_Color_army",
+    "T_PelvisGear_Normal"
+   ],
+   "M_PMC_shoes_01_T_PMC_shoes_01_Color": [
+    "T_PMC_shoes_01_Color",
+    "T_PMC_shoes_01_normal"
+   ],
+   "M_TWCoat_T_TWCoat_Color": [
+    "T_TWCoat_Color_army",
+    "T_TWCoat_Normal"
+   ],
+   "M_TWPants_T_TWPants_Color": [
+    "T_TWPants_Color_army",
+    "T_TWPants_Normal"
+   ],
+   "M_backbag": [
+    "T_backbag_Color_army",
+    "T_backbag_Normal"
+   ],
+   "M_headgear_b": [
+    "headgear_b_co",
+    "FLAT"
+   ],
+   "M_pvs31_a": [
+    "pvs31_a_co",
+    "FLAT"
+   ],
+   "M_pvs31_alpha": [
+    "pvs31_alpha_co",
+    "FLAT"
+   ],
+   "M_vestHeadGear_T_vestHeadGear_Color.001": [
+    "T_vestHeadGear_Color_army",
+    "T_vestHeadGear_Normal"
+   ],
+   "M_twhead_T_twhead_color": [
+    "T_twhead_color",
+    "T_twhead_normal"
+   ],
+   "TK_M1": [
+    "TK_M1_Diffuse_darkgreen",
+    "TK_M1_Normal"
+   ],
+   "TK_M2": [
+    "TK_M2_Diffuse_darkgreen",
+    "TK_M2_Normal"
+   ],
+   "M_Mask_pla": [
+    "Mask_pla_co_army",
+    "FLAT"
+   ]
+  },
+  "rigid": {
+   "SM_vestHeadGear": "torso",
+   "SM_backbag.001": "torso",
+   "M1": "Head",
+   "SM_Mask_pla": "Head",
+   "SM_gear_pla_bnvd_up": "Head",
+   "SM_twhead": "Head"
+  },
+  "fit": [
+   "SM_CC_Arm",
+   "SM_TWCoat"
+  ],
+  "decimate": {
+   "M1": 5000,
+   "SM_gear_pla_bnvd_up": 2500
+  },
+  "units": "ROC ASSC (Shawn 27 Nov 20:4x) variant A: FAST helmet + NVG, ballistic face mask, backpack"
+ },
+ "assc_b": {
+  "scale": 0.01,
+  "ground": true,
+  "landmarks": "auto",
+  "source": "/home/sam/tars/work/ba-dev/replicas/codex/work/roc-20261125/x/ROC SF 5/ROC SF 5 b.blend",
+  "texdir": "/home/sam/tars/work/ba-dev/replicas/codex/work/roc-20261125/x/ROC SF 5",
+  "meshes": [
+   "Object017",
+   "SM_CC_Arm.001",
+   "SM_PMC_shoes_01.001",
+   "SM_PelvisGear.001",
+   "SM_TWCoat.001",
+   "SM_TWPants.001",
+   "SM_backbag",
+   "SM_gear_pla_bnvd_up.001",
+   "SM_pla_goggles_down.001",
+   "SM_vestHeadGear.002",
+   "SM_vestHeadGear.003"
+  ],
+  "tex": {
+   "M_CC_Arm_T_CC_Arm_color": [
+    "T_CC_Arm_color",
+    "T_CC_Arm_Normal"
+   ],
+   "M_PelvisGear_T_PelvisGear_Color.001": [
+    "T_PelvisGear_Color_army",
+    "T_PelvisGear_Normal"
+   ],
+   "M_PMC_shoes_01_T_PMC_shoes_01_Color": [
+    "T_PMC_shoes_01_Color",
+    "T_PMC_shoes_01_normal"
+   ],
+   "M_TWCoat_T_TWCoat_Color": [
+    "T_TWCoat_Color_army",
+    "T_TWCoat_Normal"
+   ],
+   "M_TWPants_T_TWPants_Color": [
+    "T_TWPants_Color_army",
+    "T_TWPants_Normal"
+   ],
+   "M_backbag": [
+    "T_backbag_Color_army",
+    "T_backbag_Normal"
+   ],
+   "M_headgear_b": [
+    "headgear_b_co",
+    "FLAT"
+   ],
+   "M_pvs31_a": [
+    "pvs31_a_co",
+    "FLAT"
+   ],
+   "M_pvs31_alpha": [
+    "pvs31_alpha_co",
+    "FLAT"
+   ],
+   "M_vestHeadGear_T_vestHeadGear_Color.001": [
+    "T_vestHeadGear_Color_army",
+    "T_vestHeadGear_Normal"
+   ],
+   "M_HeadCN_Rough_Color": [
+    "T_HeadCN_Rough_Color",
+    "T_HeadCN_Rough_Normal"
+   ],
+   "M_goggleglass": [
+    "goggleglass_co",
+    "FLAT"
+   ],
+   "M_goggles": [
+    "goggles_co",
+    "FLAT"
+   ],
+   "M_goggles_a": [
+    "goggles_a_co",
+    "FLAT"
+   ],
+   "M_vestHeadGear_T_vestHeadGear_Color": [
+    "T_vestHeadGear_Color_army",
+    "T_vestHeadGear_Normal"
+   ]
+  },
+  "rigid": {
+   "SM_vestHeadGear.003": "torso",
+   "SM_backbag": "torso",
+   "Object017": "Head",
+   "SM_gear_pla_bnvd_up.001": "Head",
+   "SM_pla_goggles_down.001": "Head",
+   "SM_vestHeadGear.002": "Head"
+  },
+  "fit": [
+   "SM_CC_Arm.001",
+   "SM_TWCoat.001"
+  ],
+  "decimate": {
+   "SM_gear_pla_bnvd_up.001": 2500
+  },
+  "units": "ROC ASSC variant B: Chinese-pattern head, helmet with goggles down (see-through lens, cut-out)"
  }
 }

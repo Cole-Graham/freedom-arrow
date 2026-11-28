@@ -206,5 +206,24 @@
    0
   ],
   "crew": true
+ },
+ {
+  "unitId": 5056,
+  "lods": [
+   "roc_assc_a_0.fas",
+   "roc_assc_a_1.fas",
+   "roc_assc_a_2.fas"
+  ],
+  "offset": [
+   0,
+   0,
+   0
+  ],
+  "alt": [
+   "roc_assc_b_0.fas",
+   "roc_assc_b_1.fas",
+   "roc_assc_b_2.fas"
+  ],
+  "altCutout": true
  }
 ]

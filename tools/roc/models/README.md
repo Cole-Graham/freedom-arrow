@@ -222,6 +222,12 @@ Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `inf
 - **Surface:** HF-IIE masks remapped (`patriot_pbr.py`: metal x0.3, smoothness 0.22-0.50); Thunderbolt-2000 had no masks, so `patriot_mask_from_colour.py` makes one from the paint.
 - Kung Feng VI, Land Sword II and Tien Kung III wait for Shawn's verdict on these two.
 
+## ASSC, army camo and test build roc10 (27 November 2026, night)
+
+- **ASSC** (card 5056): Shawn's two-variant model (`x/ROC SF 5`, split into `ROC SF 5 a/b.blend`), rigged as `assc_a` (FAST helmet dark green, NVG, face mask) and `assc_b` (goggles down, see-through lens); every second soldier is `assc_b` (FAModels alt body).
+- **ROC Army camo** (`infantry/army_yellow.py`): grass-yellow digital blocks on the army camo sheets of infantry, infjp, infantry2, sf2, reservist, reservist2 and both ASSC bodies (`*_army.png`); Marine sheets unchanged.
+- **Build:** roc9 (build 401) was packed but not published (Shawn asked for the camo change first); roc10 = build 402.
+
 ## Document change log
 
 - 2026-11-25 03:4x PST (America/Los_Angeles) — T91 rifle converted; recipe and first grip offset.
@@ -252,3 +258,4 @@ Rules file: `infantry-bodies-roc.json`. FAModels on this branch reads every `inf
 - 2026-11-27 19:29 PST (America/Los_Angeles) — In-game list 6 queued (TK-III, LSW2, M41D, CM-11/12, MTV + crew bodies, EC225 emblem, UH-60M / AH-64E glass); no build.
 - 2026-11-27 19:54 PST (America/Los_Angeles) — ROC card art (8 portraits) and the F-5E model for the F-5F card; no build.
 - 2026-11-27 20:01 PST (America/Los_Angeles) — Patriot wheels and surface on HF-IIE and Thunderbolt-2000; no build.
+- 2026-11-27 21:18 PST (America/Los_Angeles) — ASSC bodies, ROC Army grass-yellow camo, F-5E name, card art; test build roc10.
