@@ -17,7 +17,7 @@ namespace FreedomArrow;
 // Both native vision paths pass their range result to CreateFilterTaskForTarget as maxDistance, so the cap is set there.
 // The native air path (planes, helicopters and missiles) also ends there; Lateralus, 8 November 2026: planes and missiles
 // are not capped; 9 November 2026: helicopters are not capped either, so every air target is seen at native
-// low/high-altitude optics. Unit cards show optics in metres, capped only on the ground value; low and high never.
+// low/high-altitude optics. Unit cards show real optics in metres (Proposal W, 28 Nov 2026: the ground value is no longer shown capped).
 static class SpottingCap
 {
     const int MaxLog=15;
@@ -127,11 +127,11 @@ static class SpottingCap
             }
             var sprite=__instance._infocardConfig?.Optics;
             if(sprite==null)return;
-            // Same cap the hook uses: the vanilla ground optics of this unit's tier; unknown or zero tiers are not capped.
-            float cap=capTable.TryGetValue(ground,out float c)&&c>0?c:float.MaxValue;
-            float groundShown=Math.Min(ground,cap);
+            // Proposal W (Lateralus 28 Nov 2026): the card shows the real ground optics. The spotting cap is one published rule (2150 m,
+            // Exceptional 2600 m) instead of a per-tier number hidden behind the card value, so it is no longer shown here.
+            float groundShown=ground;
             // Main value = the native rule (SetUnitStatistic, 1.2.2.1 0x55F870): high-altitude optics for CategoryType Aircrafts (6), ground
-            // optics (capped) for every other unit, helicopters and recon drones included (Lateralus 23 Nov 2026: helicopter cards showed the
+            // optics for every other unit, helicopters and recon drones included (Lateralus 23 Nov 2026: helicopter cards showed the
             // low-altitude value, planes the ground value - 0 m on fighters; the 0.4 dev.19 code had assumed low-altitude for helicopters).
             bool plane=__0.CategoryType==Il2CppNetworkCommon.Enums.Common.UnitCategoryType.Aircrafts;
             foreach(var item in __instance.GetComponentsInChildren<UnitStatisticItem>(false))

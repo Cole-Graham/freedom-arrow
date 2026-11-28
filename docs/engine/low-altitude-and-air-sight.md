@@ -269,6 +269,8 @@ Freedom Arrow changes **Cover** for forest (3.0) and buildings (3.5), flash and 
 
 The hook writes the values in the `InitBattleSequentialSystem` prefix and restores vanilla when the tables are not applied, the same path as Cover.
 
+**Ground optics Proposal W (Lateralus 28 Nov 2026, queued after 0.9.8-dev.9, `tools/pla-specs/lateralus/optics_w_1128.py`).** Ground optics tiers 900 / 1300 / 1450 / 1650 / 2300 / 2800 → 450 / 700 / 925 / 1375 / 1950 / 2525 raw, and `SpottingCap.cs` caps every tier at 1075 raw (2150 m), Exceptional 1300 (2600 m), instead of 500 / 600 / 700 / 875 / 1000 / 1200. The old per-tier cap was 43–56% of the optics, so every target with stealth ≥ about 0.45 hit it in the open and vehicles, recon vehicles and infantry were spotted at the same range. Now the cap binds only for vehicles seen by Good or better optics. The card shows the real optics (`CardAfter`). Calculated change for quiet targets, averaged over the 6 tiers × 5 stealth classes: open ground −13% (vehicles +13%, infantry −23%, recon infantry and snipers −29%), tree line and buildings −29% (calculated, not measured in a game). Forest walk (option B), stealth, cover, flash, air optics and drones are unchanged. Calculator: Drive sheet "Optics and Stealth", tab "Proposal W".
+
 Ways to make AA placement easier (not implemented, not tested):
 
 - **Lower the forest `Height`** (15 → e.g. 8–10) in the same `DetectionConfig` write, before `GenerateVisionData` copies the settings into `TerrainVisionData`. This moves the layer top closer to the visible treetops. It also changes ground vision through and over woods, for every unit.

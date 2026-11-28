@@ -1191,6 +1191,9 @@ import osama_marines_qmk_1127;osama_marines_qmk_1127.apply(t,g,ok,rec)
 import osama_tiger_brigade_1127;osama_tiger_brigade_1127.apply(t,g,ok,rec)
 import unit_standards
 import roc_hook;roc_hook.apply(t,g,ok,rec,recheck=lambda:(disposable_launchers_1123.check(t,ok,a.vanilla),weapon_coverage_check.check(t,patches,ok),unit_standards.check(t,ok,rec)))
+# ---------- Ground optics Proposal W (Lateralus 28 Nov 2026 10:4x, "Ok queue up W proposal"): tiers 900/1300/1450/1650/2300/2800 -> 450/700/925/1375/1950/2525,
+# one spotting cap 1075 (Exceptional 1300). After roc_hook so ROC sensor rows move too. See lateralus/optics_w_1128.py.
+import optics_w_1128;spotting_caps=optics_w_1128.apply(t,g,ok,rec)
 # Unit standards on the final data (docs/development/UNIT-STANDARDS.md, Lateralus 26 Nov 2026): fails on a new squad that breaks the launcher or
 # one-name-one-damage rules, and rebuilds the disposable-launcher squad rate table (squad-reload.json) from this build's squads.
 squad_reload=unit_standards.check(t,ok,rec)
@@ -1204,6 +1207,8 @@ for tab,fn in FIELD_TO_FILE.items():save('UserData/FreedomArrow/constants/'+fn,p
 # squad-reload.json (SquadReload.cs disposable rate per squad): rebuilt from this build's data by unit_standards (Lateralus 26 Nov 2026); before,
 # it came unchanged from the 0.9.3 base. package.py takes it from mod/source when it differs from the base.
 (SRC/'UserData/FreedomArrow/squad-reload.json').write_text(json.dumps(squad_reload,indent=1,sort_keys=True)+'\n')
+# spotting-caps.json (SpottingCap.cs, OpticsGround -> cap): written from optics_w_1128 from 0.9.8 (Proposal W); before, it came from the 0.9.3 base.
+(SRC/'UserData/FreedomArrow/spotting-caps.json').write_text(json.dumps(spotting_caps,indent=2)+'\n')
 # Type 100 CSV CH-901 round (zbd100.py, Osama 22 Nov 13:5x "Give its CH-901 60mm penetration"): an own copy of 2018448 keeps the NLOS seeker lock
 # only if nlos.json lists it. The previous build's copy id (type100_ch901) is replaced, so a shifted row id never leaves a stale entry.
 _nf=SRC/'UserData/FreedomArrow/nlos.json';_nl=json.loads(_nf.read_text());_old=_nl.get('type100_ch901');_new=rec['zbd100']['ch901_round']
