@@ -14,7 +14,7 @@ test) has bots as in every FA Skirmish flavor; offline, LocalSkirmish may swap t
 import copy, json, shutil, tempfile, uuid
 from pathlib import Path
 import common as C
-import dead_center_1v1, highway_2v2, dam_3v3, klaipeda_1v1, chkalovsk_2v2, baltiisk_3v3, jelgava_1v1, dead_center_2v2, airport_4v4
+import dead_center_1v1, highway_2v2, dam_3v3, klaipeda_1v1, chkalovsk_2v2, baltiisk_3v3, jelgavas_pils_1v1, dead_center_2v2, airport_4v4
 
 # (players, base module, online base name, title, enemy specializations). Osama 13:2x PST: "I want to make sure as many specs are played in these
 # scenarios. Dead center should be SF rocket". Every China specialization fights on at least one map. The base's zone weights are copied to the
@@ -27,7 +27,8 @@ BASES=[(1,dead_center_1v1,dead_center_1v1.NAME,'Dead Center vs China','PLAN Spec
        (1,klaipeda_1v1,klaipeda_1v1.NAME,'Klaipeda vs USA','USMC'),
        (2,chkalovsk_2v2,chkalovsk_2v2.NAME,'Chkalovsk vs USA','Stryker Cavalry regiment + Armored Brigade'),
        (3,baltiisk_3v3,baltiisk_3v3.NAME,'Baltiisk vs USA','Airborne infantry + Special Operations Forces'),
-       (1,jelgava_1v1,jelgava_1v1.NAME,'Jelgava vs Russia','VDV Brigade'),
+       # Lateralus 28 Nov 2026: "replace the PvE Jelgava maps with new PvE maps based on the new design": [1v1] Jelgavas Pils, same waves and cards.
+       (1,jelgavas_pils_1v1,jelgavas_pils_1v1.NAME,'Jelgavas Pils vs Russia','VDV Brigade'),
        (2,dead_center_2v2,dead_center_2v2.NAME,'Dead Center vs Russia','Motorized Infantry + Mechanized Infantry'),
        (3,airport_4v4,airport_4v4.NAME,'Airport vs Russia','Guard Tank Brigade + Coastal Troops')]
 # Osama 19 Nov 2026 23:0x: "the scenario name ... gets cut off after about 20 characters": player count and enemy first, then the map.
@@ -202,7 +203,7 @@ WAVES.update({
  'Klaipeda vs USA':[(1, {407: 2, 99: 1}), (4, {63: 2, 30: 1, 14: 1}), (7, {70: 1, 408: 1, 53: 2, 34: 1}), (10, {54: 1, 61: 1, 63: 2, 53: 1})],
  'Chkalovsk vs USA':[(1, {701: 2, 277: 1, 35: 1}), (4, {57: 2, 25: 1, 453: 1}), (7, {245: 2, 62: 1, 20: 1}), (10, {243: 1, 244: 1, 449: 2, 27: 1})],
  'Baltiisk vs USA':[(1, {351: 1, 72: 1, 249: 1}), (4, {66: 1, 416: 1, 183: 1, 350: 1}), (7, {182: 2, 150: 1, 10: 1}), (10, {719: 2, 150: 1, 714: 1})],
- 'Jelgava vs Russia':[(1, {111: 2, 152: 1}), (4, {132: 1, 108: 1, 144: 1}), (7, {111: 2, 722: 1, 109: 1, 114: 1}), (10, {151: 1, 116: 1, 722: 1, 110: 1})],
+ 'Jelgavas Pils vs Russia':[(1, {111: 2, 152: 1}), (4, {132: 1, 108: 1, 144: 1}), (7, {111: 2, 722: 1, 109: 1, 114: 1}), (10, {151: 1, 116: 1, 722: 1, 110: 1})],
  'Dead Center vs Russia':[(1, {60: 2, 217: 1}), (4, {398: 2, 215: 1, 9: 1}), (7, {157: 2, 459: 1, 94: 1}), (10, {703: 1, 213: 1, 401: 2, 233: 1})],
  'Airport vs Russia':[(1, {133: 1, 126: 1, 209: 1}), (4, {158: 1, 240: 1, 117: 1}), (7, {236: 1, 239: 1, 134: 1, 31: 1}), (10, {238: 1, 716: 1, 372: 1, 211: 1})]})
 REPEAT_MINUTES=3
@@ -219,7 +220,7 @@ AI_CARDS.update({
  'Klaipeda vs USA':dict(ch1=[291, 288, 292, 86, 407],ch2=[34, 247, 407, 61, 54]),
  'Chkalovsk vs USA':dict(ch1=[285, 286, 300, 8, 701],ch2=[20, 452, 701, 65, 244]),
  'Baltiisk vs USA':dict(ch1=[283, 287, 293, 270, 351],ch2=[10, 50, 351, 350, 719]),
- 'Jelgava vs Russia':dict(ch1=[169, 168, 317, 46, 111],ch2=[109, 207, 111, 114, 722]),
+ 'Jelgavas Pils vs Russia':dict(ch1=[169, 168, 317, 46, 111],ch2=[109, 207, 111, 114, 722]),
  'Dead Center vs Russia':dict(ch1=[310, 307, 306, 256, 60],ch2=[233, 92, 398, 123, 157]),
  'Airport vs Russia':dict(ch1=[319, 312, 280, 271, 133],ch2=[31, 4, 133, 209, 238])})
 AI_MAX_UNITS=14
