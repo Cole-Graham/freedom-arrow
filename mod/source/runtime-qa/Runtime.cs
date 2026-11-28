@@ -313,6 +313,8 @@ public class Runtime : MelonMod
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_LANG_NAMES_FAILED: not installed; bilingual names show both languages. "+e.Message); }
         try { Type100ShopFix.Install(HarmonyInstance); }   // focolate 26 Nov 2026, Osama "Definitely port it": Type 100 CSV transport loadouts redeploy
         catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_TYPE100_SHOP_FIX_FAILED: not installed; Type 100 swap loadouts can stop deploying. "+e.Message); }
+        try { HangarIndoors.Install(HarmonyInstance); }   // Osama 27 Nov 2026: "Basic Hangar Indoors" hangar option (default), every unit on the plane spot
+        catch (Exception e) { MelonLogger.Error("FREEDOM_ARROW_HANGAR_INDOORS_FAILED: not installed; only the vanilla hangars. "+e.Message); }
     }
     public override void OnApplicationQuit()
     {

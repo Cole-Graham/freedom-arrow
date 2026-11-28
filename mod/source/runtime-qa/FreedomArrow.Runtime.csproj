@@ -38,6 +38,9 @@
     <Reference Include="Il2CppFMODUnity"><HintPath>$(IL2)/Il2CppFMODUnity.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="UnityEngine.PhysicsModule"><HintPath>$(IL2)/UnityEngine.PhysicsModule.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="UnityEngine.ImageConversionModule"><HintPath>$(IL2)/UnityEngine.ImageConversionModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Unity.Addressables"><HintPath>$(IL2)/Unity.Addressables.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Il2CppSirenix.Serialization"><HintPath>$(IL2)/Il2CppSirenix.Serialization.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Unity.ResourceManager"><HintPath>$(IL2)/Unity.ResourceManager.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="Unity.InputSystem"><HintPath>$(IL2)/Unity.InputSystem.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="UnityEngine.InputLegacyModule"><HintPath>$(IL2)/UnityEngine.InputLegacyModule.dll</HintPath><Private>false</Private></Reference>
   </ItemGroup>
